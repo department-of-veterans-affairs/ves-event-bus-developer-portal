@@ -25,6 +25,13 @@
   width: 50%;
 }
 
+.button {
+  padding: 0.5rem 1rem;
+  background-color: var(--ifm-color-warning);
+  border-radius: 5px;
+  border: none;
+}
+
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;

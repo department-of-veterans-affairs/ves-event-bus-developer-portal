@@ -19,6 +19,7 @@ function HomepageHeader() {
           Ut enim ad minim veniam, quis nostrud exercitation ullamco 
           laboris nisi ut aliquip ex ea commodo consequat.
         </p>
+        <button className={clsx(styles.button)}>Button</button>
       </div>
       <div className={clsx(styles.hero__img)}>
         <img src={require('@site/static/img/hedgehog_banner.png').default} />
