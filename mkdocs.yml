@@ -1,0 +1,26 @@
+site_name: VA | All About Hedgehogs
+nav:
+  - About Hedgehogs as Pets: about.md
+  - Keeping your Hedgehog Healthy: health.md
+  - Hedgehog Pet Community: community.md
+extra_css:
+  - stylesheets/extra.css
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.footer
+nav:
+  - README.md
+  - 'All About Hedgehogs as Pets':
+    - about.md
+    - topic-one.md
+    - topic-two.md
+  - 'Keeping your Hedgehog Healthy':
+    - health/topic-one.md
+    - health/topic-two.md
+    - health/topic-three.md
+  - 'Hedgehog Pet Community':
+    - community/topic-one.md
+    - community/topic-two.md
+    - community/topic-three.md
