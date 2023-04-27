@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+ name: event-bus-dev-portal-test
+ description: a place for event bus documentation
+ title: Event Bus Dev Portal Test
+spec:
+ type: openapi
+ lifecycle: experimental
+ owner: ves-event-bus
+ system: lhdi
+ definition:
+  $text: $text: https://github.com/department-of-veterans-affairs/vets-api/blob/master/modules/appeals_api/app/swagger/appeals_api/v2/swagger.json
