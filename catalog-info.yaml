@@ -10,4 +10,4 @@ spec:
  owner: ves-event-bus
  system: lhdi
  definition:
-  $text: $text: https://github.com/department-of-veterans-affairs/vets-api/blob/master/modules/appeals_api/app/swagger/appeals_api/v2/swagger.json
+  $text: https://github.com/department-of-veterans-affairs/vets-api/blob/master/modules/appeals_api/app/swagger/appeals_api/v2/swagger.json
