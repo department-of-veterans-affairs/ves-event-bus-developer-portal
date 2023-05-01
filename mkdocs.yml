@@ -1,4 +1,4 @@
-site_name: VA | All About Hedgehogs
+site_name: VA | Enterprise Event Bus
 nav:
   - About Hedgehogs as Pets: about.md
   - Keeping your Hedgehog Healthy: health.md
@@ -12,15 +12,12 @@ theme:
     - navigation.footer
 nav:
   - README.md
-  - 'All About Hedgehogs as Pets':
-    - about.md
-    - topic-one.md
-    - topic-two.md
-  - 'Keeping your Hedgehog Healthy':
-    - health/topic-one.md
-    - health/topic-two.md
-    - health/topic-three.md
-  - 'Hedgehog Pet Community':
-    - community/topic-one.md
-    - community/topic-two.md
-    - community/topic-three.md
+  - 'Getting Started':
+    - producer-onboarding.md
+    - consumer-onboarding.md
+  - 'Get Support':
+    - support/get-support.md
+  # - 'Hedgehog Pet Community':
+  #   - community/topic-one.md
+  #   - community/topic-two.md
+  #   - community/topic-three.md

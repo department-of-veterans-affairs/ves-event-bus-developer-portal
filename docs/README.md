@@ -1,13 +1,25 @@
-# All About Hedgehogs
+# Enterprise Event Bus
 
-## Welcome to the Hedgehog Portal
+## What is the Enterprise Event Bus? 
+Event-driven architecture enables systems to share data changes in real time across multiple, decoupled teams. It offers an alternative to the coupled, system-to-system API paradigm.
 
-Queso cow cheese triangles. Everyone loves fondue mascarpone smelly cheese goat everyone loves halloumi cheddar. Pecorino paneer emmental edam monterey jack cheese slices rubber cheese gouda. Boursin lancashire pecorino red leicester mascarpone roquefort cauliflower cheese edam. Edam queso.
+An event bus allows a system to publish a stream of changes to its data. Systems who are interested in those data changes can receive the information in real time and use it to send updates to trigger actions, send updates to Veterans, communicate with other internal teams, and more.
+ 
 
-Port-salut mascarpone cow. Chalk and cheese red leicester st. agur blue cheese cut the cheese emmental manchego queso goat. Cheesecake st. agur blue cheese gouda parmesan stinking bishop dolcelatte pecorino taleggio. Camembert de normandie fondue macaroni cheese taleggio monterey jack swiss blue castello feta. Paneer feta babybel say cheese.
+## Why use the Enterprise Event Bus?
+Teams can use the Enterprise Event Bus to generate events based on state changes to the data they own and publish them on an event bus. Consumers are free to consume those events and react accordingly. More specifically, with the Enterprise Event Bus:
 
-Cheese and wine port-salut cheeseburger. Edam ricotta pepper jack stilton feta cheesecake cheese and biscuits cheddar. Everyone loves cheese on toast cottage cheese emmental gouda danish fontina queso cheddar. Queso chalk and cheese the big cheese ricotta queso lancashire say cheese croque monsieur. Camembert de normandie taleggio.
+- Event producers don’t need to know who the interested consumers are and therefore don’t need to keep growing their outbound complexity. 
+- Multiple consumers may receive and act on an event; it’s not just an asynchronous queue sitting between a single producer and consumer.
 
-Chalk and cheese cheesy grin pecorino. Camembert de normandie port-salut pecorino cow macaroni cheese cream cheese cauliflower cheese parmesan. Caerphilly babybel bocconcini halloumi melted cheese who moved my cheese edam ricotta. St. agur blue cheese cheese slices blue castello parmesan when the cheese comes out everybody's happy boursin everyone loves halloumi. Hard cheese.
+## Getting Started
+Teams can use the Enterprise Event Bus to produce events for other systems to consume, or, subscribe to events and react accordingly.
 
-Lancashire blue castello cut the cheese. Cut the cheese cheese slices camembert de normandie everyone loves jarlsberg cheesy feet mascarpone smelly cheese. Cut the cheese airedale stilton chalk and cheese squirty cheese mozzarella caerphilly macaroni cheese. Squirty cheese stinking bishop cottage cheese.
+To learn more about becoming a producer on the Enterprise Event Bus, check out the [producer onboarding documentation](producer-onboarding.md) or [contact us](support/get-support.md) for a consultation. 
+
+To learn more about becoming a consumer on the Enterprise Event Bus, check out the [consumer onboarding documentation](consumer-onboarding.md) or [contact us](support/get-support.md) for a consultation. 
+
+## Event Catalog
+The Event Catalog lists all events currently available on the Enterprise Event Bus. In the catalog teams will be able to view details about specific events including event structure, which system produces the event, and what other systems may be subscribing to the event. From within the VA network, check out the Event Catalog on the [Lighthouse Hub]().
+
+**The Event Bus system is still in an experimental status. Information will be updated as it's available. Please reach out to use with questions. 
