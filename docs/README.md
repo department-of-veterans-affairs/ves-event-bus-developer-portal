@@ -22,4 +22,4 @@ To learn more about becoming a consumer on the Enterprise Event Bus, check out t
 ## Event Catalog
 The Event Catalog lists all events currently available on the Enterprise Event Bus. In the catalog teams will be able to view details about specific events including event structure, which system produces the event, and what other systems may be subscribing to the event. From within the VA network, check out the Event Catalog on the [Lighthouse Hub]().
 
-**The Event Bus system is still in an experimental status. Information will be updated as it's available. Please reach out to use with questions.**
+**The Event Bus system is still in an experimental status. Information will be updated as it's available. Please reach out to us with questions.**
