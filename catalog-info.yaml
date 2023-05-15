@@ -1,5 +1,5 @@
 apiVersion: backstage.io/v1alpha1
-kind: EVENT
+kind: Event
 metadata:
  name: event-bus-dev-portal-test
  description: a place for event bus documentation
