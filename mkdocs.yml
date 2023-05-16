@@ -15,8 +15,7 @@ nav:
   - 'Getting Started':
     - producer-onboarding.md
     - consumer-onboarding.md
-  - 'Get Support':
-    - support/get-support.md
+  - get-support.md
   # - 'Hedgehog Pet Community':
   #   - community/topic-one.md
   #   - community/topic-two.md
