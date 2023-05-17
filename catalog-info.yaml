@@ -12,7 +12,6 @@ spec:
  team: ves-event-bus
  system: lhdi
  topic: dev_appointments
- domain: health 
  definition: |
   asyncapi: 2.6.0
   info:
