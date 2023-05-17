@@ -8,9 +8,9 @@ spec:
  type: event
  lifecycle: experimental
  domain: appointments
- productowner: John Smith
- team: ves-event-bus
+ team: ves-event-bus 
  system: lhdi
+ productowner: John Smith
  definition: |
   asyncapi: 2.6.0
   info:
