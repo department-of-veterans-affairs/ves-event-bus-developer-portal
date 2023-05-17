@@ -7,7 +7,20 @@ metadata:
 spec:
  type: event
  lifecycle: experimental
- owner: ves-event-bus
+ productowner: John Smith
+ domain: appointments
+ team: ves-event-bus
  system: lhdi
  topic: dev_appointments
  domain: health 
+ definition: |
+  asyncapi: 2.6.0
+  info:
+   title: Event Bus Portal
+   version: '0.1.0'
+  channels:
+   test-topic-one:
+    subscribe:
+     message:
+      payload:
+       type: string
