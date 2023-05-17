@@ -7,11 +7,10 @@ metadata:
 spec:
  type: event
  lifecycle: experimental
- productowner: John Smith
  domain: appointments
+ productowner: John Smith
  team: ves-event-bus
  system: lhdi
- topic: dev_appointments
  definition: |
   asyncapi: 2.6.0
   info:
