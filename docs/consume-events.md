@@ -1,5 +1,5 @@
 ---
-title: Consuming Events
+title: Consume Events
 ---
 # What’s a Consumer?
 A consumer is an application that is set up to receive messages or events in an event-driven system. The Event Bus exposes streams of events, called topics, to consumers. The events capture significant occurrences taking place in an external system. A list of currently available topics can be found in our [Event Catalog]. 
@@ -9,7 +9,7 @@ To access messages in a particular topic, an event consumer would subscribe to t
 ## Steps For Becoming a Consumer
 ### Find Events/Topics to Consume
 The first step to consuming an event is to [reach out to the Enterprise Event Bus Team](get-support.md) about your interest in events. From there, you can either subscribe to an existing topic with relevant events, or else identify a team able to provide the topic that is of interest to you. At this point in time, we are unable to identify producers for consumers that do not have a source for their desired events, but we will do our best to work with your chosen producing team. 
-See also our [Producer Onboarding](producer-onboarding.md) page.
+See also our [Producer Onboarding](produce-events.md) page.
 
 ### Determine If You Need an ESECC Request
 Depending on the location of a consumer application, you may need to obtain an ESECC (Enterprise Security External Change Council) request. The diagram below illustrates the relationship between consumer locations and ESECC requirements. It shows that as a general rule, consumers located within the VAEC (VA Enterprise Cloud) AWS Organization do not need to file an ESECC request. For consumers who are in other AWS organizations, or outside of AWS, an ESECC process will likely be needed. If you’re unsure which category your use case fits in, please reach out to the Event Bus Team for help. However, please also note that while the Event Bus Team is happy to give direction and assist with some aspects of the ESECC process, consumers are ultimately responsible for initiating and monitoring the request.

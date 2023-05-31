@@ -9,8 +9,6 @@ theme:
 nav:
   - README.md
   - intro-to-eda.md
-  - 'Getting Started':
-    - producer-onboarding.md
-    - consumer-onboarding.md
+  - produce-events.md
   - consume-events.md
   - get-support.md
