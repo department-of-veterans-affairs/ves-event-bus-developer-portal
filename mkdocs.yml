@@ -1,8 +1,4 @@
 site_name: VA | Enterprise Event Bus
-nav:
-  - About Hedgehogs as Pets: about.md
-  - Keeping your Hedgehog Healthy: health.md
-  - Hedgehog Pet Community: community.md
 extra_css:
   - stylesheets/extra.css
 theme:
@@ -12,11 +8,9 @@ theme:
     - navigation.footer
 nav:
   - README.md
+  - intro-to-eda.md
   - 'Getting Started':
     - producer-onboarding.md
     - consumer-onboarding.md
+  - consume-events.md
   - get-support.md
-  # - 'Hedgehog Pet Community':
-  #   - community/topic-one.md
-  #   - community/topic-two.md
-  #   - community/topic-three.md
