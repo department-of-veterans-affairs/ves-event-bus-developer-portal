@@ -15,9 +15,9 @@ Teams can use the Enterprise Event Bus to generate events based on state changes
 ## Getting Started
 Teams can use the Enterprise Event Bus to produce events for other systems to consume, or, subscribe to events and react accordingly.
 
-To learn more about becoming a producer on the Enterprise Event Bus, check out the [producer onboarding documentation](producer-onboarding.md) or [contact us](support/get-support.md) for a consultation. 
+To learn more about becoming a producer on the Enterprise Event Bus, check out the [producer onboarding documentation](producer-onboarding.md) or [contact us](get-support.md) for a consultation. 
 
-To learn more about becoming a consumer on the Enterprise Event Bus, check out the [consumer onboarding documentation](consumer-onboarding.md) or [contact us](support/get-support.md) for a consultation. 
+To learn more about becoming a consumer on the Enterprise Event Bus, check out the [consumer onboarding documentation](consumer-onboarding.md) or [contact us](get-support.md) for a consultation. 
 
 ## Event Catalog
 The Event Catalog lists all events currently available on the Enterprise Event Bus. In the catalog teams will be able to view details about specific events including event structure, which system produces the event, and what other systems may be subscribing to the event. From within the VA network, check out the Event Catalog on the [Lighthouse Hub]().

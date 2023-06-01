@@ -16,6 +16,7 @@ Depending on the location of a consumer application, you may need to obtain an E
 
 This [example documentation](https://github.com/department-of-veterans-affairs/checkin-devops/blob/master/docs/esecc-requests.md) provides a summary of the steps and processes involved in an ESECC request. Please be sure to get started as early as possible, as this can be a lengthy process.
 
+![Client Environments ESECC Decision Circles](img/Client%20Environments%20ESECC%20Decision%20Circles.svg)
 ### Set up Authorization and Authentication
 To subscribe to specific topics on the Event Bus, consumers need to be authenticated and have the appropriate permissions. The Event Bus MSK cluster is only accessible from the VA Network, and we use AWS IAM (Identity and Access Management) Roles and Policies to control access to different resources. If your consuming application is within the AWS environment, you will need to let us know which IAM Role(s) or IAM User(s) we should grant access to, and set up the applicable IAM Policies on your end.
 
