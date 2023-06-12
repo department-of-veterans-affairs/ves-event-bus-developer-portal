@@ -10,15 +10,16 @@ spec:
  domain: appointments
  team: ves-event-bus 
  system: lhdi
+ topics:
+  - dev_test
+  - staging_test
+  - prod_test
  productowner: John Smith
- definition: |
-  asyncapi: 2.6.0
-  info:
-   title: Event Bus Portal
-   version: '0.1.0'
-  channels:
-   test-topic-one:
-    subscribe:
-     message:
-      payload:
-       type: string
+ payload:
+  id: string
+  date: string
+  name: string
+  age: integer
+  details: object
+   phone: integer
+   email: string
