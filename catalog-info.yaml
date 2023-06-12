@@ -20,6 +20,6 @@ spec:
   date: string
   name: string
   age: integer
-  details: object
-    phone: integer
-    email: string
+  details:
+   phone: integer
+   email: string
