@@ -9,6 +9,7 @@ theme:
 nav:
   - README.md
   - intro-to-eda.md
-  - produce-events.md
   - consume-events.md
+  - produce-events.md
+  - use-events.md
   - get-support.md
