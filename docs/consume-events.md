@@ -87,6 +87,15 @@ finally:
     # Close the consumer
     consumer.close()
 ```
+
+### Logs
+
+Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs will be available via Datadog.
+
+Datadog is a monitoring and analytics tool that is used within the VA and is hosted by the Devops Transformation Services (DOTS) team. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. In order for Event Bus users to [request access to Datadog](https://animated-carnival-57b3e7f5.pages.github.io/datadog-observability-tools/datadog-access/), they must have a VA email address.
+
+Event bus logs can be found [here](https://lighthousedi.ddog-gov.com/logs?query=host%3A%22arn%3Aaws%3As3%3A%3A%3Aeventbus-msk-logs%22%20&cols=host%2Cservice&index=%2A&messageDisplay=inline&stream_sort=desc&viz=stream&from_ts=1684858340160&to_ts=1684859240160&live=true).
+
 ### Register with the Lighthouse Developer Hub
 The [Lighthouse Developer Hub](https://hub.lighthouse.va.gov/) is a software catalog that houses entities from across VA. Once your consumer application is up and running, you'll want to register with the catalog so event producers are aware of how their events are being used, and which systems are consuming them. 
 
