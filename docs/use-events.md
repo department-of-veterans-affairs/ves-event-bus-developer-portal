@@ -33,5 +33,5 @@ If you’re interested in producing events and publishing them to the Event Bus,
 
 ## Having trouble?
 
-If you find something wrong in our documentation, didn’t find what you were looking for, or have a question or suggestion, please [contact us](get-support.md)
+If you find something wrong in our documentation, didn’t find what you were looking for, or have a question or suggestion, please [contact us](get-support.md).
 
