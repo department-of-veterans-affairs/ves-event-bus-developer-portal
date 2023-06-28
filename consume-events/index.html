@@ -1,0 +1,667 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../intro-to-eda/">
+      
+      
+        <link rel="next" href="../produce-events/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+    
+    
+      
+        <title>Consume Events - VA | Enterprise Event Bus</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#whats-a-consumer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="VA | Enterprise Event Bus" class="md-header__button md-logo" aria-label="VA | Enterprise Event Bus" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VA | Enterprise Event Bus
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Consume Events
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VA | Enterprise Event Bus" class="md-nav__button md-logo" aria-label="VA | Enterprise Event Bus" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    VA | Enterprise Event Bus
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Enterprise Event Bus
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro-to-eda/" class="md-nav__link">
+        Introduction to Event Driven Architecture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Consume Events
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Consume Events
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#steps-for-becoming-a-consumer" class="md-nav__link">
+    Steps For Becoming a Consumer
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps For Becoming a Consumer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-eventstopics-to-consume" class="md-nav__link">
+    Find Events/Topics to Consume
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determine-if-you-need-an-esecc-request" class="md-nav__link">
+    Determine If You Need an ESECC Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-authorization-and-authentication" class="md-nav__link">
+    Set up Authorization and Authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-the-event-bus-in-the-development-environment" class="md-nav__link">
+    Connect to the Event Bus in the Development Environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#develop-and-deploy-your-consumer-application" class="md-nav__link">
+    Develop and Deploy Your Consumer Application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    Logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-with-the-lighthouse-developer-hub" class="md-nav__link">
+    Register with the Lighthouse Developer Hub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produce-events/" class="md-nav__link">
+        Produce events
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use-events/" class="md-nav__link">
+        Find Events in the Catalog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get-support/" class="md-nav__link">
+        Get Support
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#steps-for-becoming-a-consumer" class="md-nav__link">
+    Steps For Becoming a Consumer
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps For Becoming a Consumer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-eventstopics-to-consume" class="md-nav__link">
+    Find Events/Topics to Consume
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determine-if-you-need-an-esecc-request" class="md-nav__link">
+    Determine If You Need an ESECC Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-authorization-and-authentication" class="md-nav__link">
+    Set up Authorization and Authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-the-event-bus-in-the-development-environment" class="md-nav__link">
+    Connect to the Event Bus in the Development Environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#develop-and-deploy-your-consumer-application" class="md-nav__link">
+    Develop and Deploy Your Consumer Application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    Logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-with-the-lighthouse-developer-hub" class="md-nav__link">
+    Register with the Lighthouse Developer Hub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="whats-a-consumer">What’s a Consumer?</h1>
+<p>A consumer is an application that is set up to receive messages or events in an event-driven system. The Event Bus exposes streams of events, called topics, to consumers. The events capture significant occurrences taking place in an external system. A list of currently available topics can be found in our [Event Catalog]. </p>
+<p>To access messages in a particular topic, an event consumer would subscribe to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. Learn more about the components and processes involved in event-based systems on our <a href="link">Introduction to Event-Driven Architecture</a> page.</p>
+<h2 id="steps-for-becoming-a-consumer">Steps For Becoming a Consumer</h2>
+<h3 id="find-eventstopics-to-consume">Find Events/Topics to Consume</h3>
+<p>The first step to consuming an event is to <a href="../get-support/">reach out to the Enterprise Event Bus Team</a> about your interest in events. From there, you can either subscribe to an existing topic with relevant events, or else identify a team able to provide the topic that is of interest to you. At this point in time, we are unable to identify producers for consumers that do not have a source for their desired events, but we will do our best to work with your chosen producing team. 
+See also our <a href="../produce-events/">Producer Onboarding</a> page.</p>
+<h3 id="determine-if-you-need-an-esecc-request">Determine If You Need an ESECC Request</h3>
+<p>Depending on the location of a consumer application, you may need to obtain an ESECC (Enterprise Security External Change Council) request. The diagram below illustrates the relationship between consumer locations and ESECC requirements. It shows that as a general rule, consumers located within the VAEC (VA Enterprise Cloud) AWS Organization do not need to file an ESECC request. For consumers who are in other AWS organizations, or outside of AWS, an ESECC process will likely be needed. If you’re unsure which category your use case fits in, please reach out to the Event Bus Team for help. However, please also note that while the Event Bus Team is happy to give direction and assist with some aspects of the ESECC process, consumers are ultimately responsible for initiating and monitoring the request.</p>
+<p>This <a href="https://github.com/department-of-veterans-affairs/checkin-devops/blob/master/docs/esecc-requests.md">example documentation</a> provides a summary of the steps and processes involved in an ESECC request. Please be sure to get started as early as possible, as this can be a lengthy process.</p>
+<p><img alt="Client Environments ESECC Decision Circles" src="../img/Client%20Environments%20ESECC%20Decision%20Circles.svg" /></p>
+<h3 id="set-up-authorization-and-authentication">Set up Authorization and Authentication</h3>
+<p>To subscribe to specific topics on the Event Bus, consumers need to be authenticated and have the appropriate permissions. The Event Bus MSK cluster is only accessible from the VA Network, and we use AWS IAM (Identity and Access Management) Roles and Policies to control access to different resources. If your consuming application is within the AWS environment, you will need to let us know which IAM Role(s) or IAM User(s) we should grant access to, and set up the applicable IAM Policies on your end.</p>
+<p>If your consuming application is outside of the AWS environment, we will request an IAM User to be created on your behalf. You will then be able to access the requested topic(s) using those credentials. </p>
+<h3 id="connect-to-the-event-bus-in-the-development-environment">Connect to the Event Bus in the Development Environment</h3>
+<p>Once the authentication and authorization steps have been completed, you will receive the Kafka bootstrap server addresses and port numbers with which you can connect to the Event Bus MSK cluster. The following ports are open for consumers and producers that are authenticated with AWS IAM:
+- 9098 (for access from AWS)
+- 9198 (for access from outside of AWS).</p>
+<h3 id="develop-and-deploy-your-consumer-application">Develop and Deploy Your Consumer Application</h3>
+<p>Many programming languages and frameworks have libraries designed to interact with Kafka clusters. This allows consumer applications to be written in your language of choice. For reference, here is a Python example that consumes events from a topic called “appointments:”</p>
+<pre><code class="language-python">from confluent_kafka import Consumer, KafkaException
+from confluent_kafka.admin import AdminClient, NewTopic
+
+# Configuration
+bootstrap_servers = 'event_bus_msk_bootstrap_servers' # Replace with the MSK cluster's bootstrap servers
+topic_name = 'appointments' # Name of the topic to consume from
+
+# IAM Role and AWS credentials
+aws_access_key_id = 'your_aws_access_key_id'
+aws_secret_access_key = 'your_aws_secret_access_key'
+aws_session_token = 'your_aws_session_token'  # Required for temporary credentials
+
+# Configure the consumer
+conf = {
+    'bootstrap.servers': bootstrap_servers,
+    'security.protocol': 'SASL_SSL',
+    'sasl.mechanism': 'AWS_MSK_IAM',
+    'sasl.username': aws_access_key_id,
+    'sasl.password': aws_secret_access_key,
+    'sasl.aws_session_token': aws_session_token,
+    'group.id': 'your_consumer_group_id',
+    'auto.offset.reset': 'earliest',
+}
+
+# Create a Kafka consumer
+consumer = Consumer(conf)
+
+# Subscribe to the topic
+consumer.subscribe([topic_name])
+
+# Consume events
+try:
+    while True:
+        msg = consumer.poll(1.0)  # Poll for new messages
+        if msg is None:
+            continue
+        if msg.error():
+            if msg.error().code() == KafkaException._PARTITION_EOF:
+                # Reached the end of a partition, handle as needed
+                continue
+            else:
+                # Handle other errors
+                print('Error occurred: {}'.format(msg.error().str()))
+                break
+
+        # Process the consumed event
+        print('Received message: {}'.format(msg.value().decode('utf-8')))
+
+except KeyboardInterrupt:
+    # Gracefully stop the consumer on keyboard interrupt
+    pass
+
+finally:
+    # Close the consumer
+    consumer.close()
+</code></pre>
+<h3 id="logs">Logs</h3>
+<p>Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs will be available via Datadog.</p>
+<p>Datadog is a monitoring and analytics tool that is used within the VA and is hosted by the Devops Transformation Services (DOTS) team. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. In order for Event Bus users to <a href="https://animated-carnival-57b3e7f5.pages.github.io/datadog-observability-tools/datadog-access/">request access to Datadog</a>, they must have a VA email address.</p>
+<p>Event bus logs can be found <a href="https://lighthousedi.ddog-gov.com/logs?query=host%3A%22arn%3Aaws%3As3%3A%3A%3Aeventbus-msk-logs%22%20&amp;cols=host%2Cservice&amp;index=%2A&amp;messageDisplay=inline&amp;stream_sort=desc&amp;viz=stream&amp;from_ts=1684858340160&amp;to_ts=1684859240160&amp;live=true">here</a>.</p>
+<h3 id="register-with-the-lighthouse-developer-hub">Register with the Lighthouse Developer Hub</h3>
+<p>The <a href="https://hub.lighthouse.va.gov/">Lighthouse Developer Hub</a> is a software catalog that houses entities from across VA. Once your consumer application is up and running, you'll want to register with the catalog so event producers are aware of how their events are being used, and which systems are consuming them. </p>
+<p>To register with with the Hub:</p>
+<ol>
+<li>Create a file named <code>catalog-info.yaml</code> at the root of your source code repository. </li>
+<li>
+<p>Backstage offers a built in <a href="https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system">System Entity Kind</a>. Populate your new <code>catalog-info.yaml</code> file with this template, updating <code>metadata</code> and <code>spec</code> with values that correspond to your system:</p>
+<pre><code>apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: your system name
+  description: what the system does
+spec:
+  owner: product team in charge of consuming system
+  domain: domain the system falls under
+</code></pre>
+</li>
+<li>
+<p>Once your <code>catalog-info.yaml</code> file has been committed, log into the <a href="https://hub.lighthouse.va.gov/">Lighthouse Developer Hub</a> while on the VA network, and follow the <a href="https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog">default Backstage provided method</a> for adding entries to the catalog. </p>
+</li>
+</ol>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>If you have questions or run into difficulties with any of these steps, please <a href="../get-support/">contact the Enterprise Event Bus Team</a>.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../intro-to-eda/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction to Event Driven Architecture" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Introduction to Event Driven Architecture
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../produce-events/" class="md-footer__link md-footer__link--next" aria-label="Next: Produce events" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Produce events
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      
+    
+  </body>
+</html>

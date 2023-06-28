@@ -1,0 +1,444 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../consume-events/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+    
+    
+      
+        <title>Introduction to Event Driven Architecture - VA | Enterprise Event Bus</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="VA | Enterprise Event Bus" class="md-header__button md-logo" aria-label="VA | Enterprise Event Bus" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VA | Enterprise Event Bus
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to Event Driven Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VA | Enterprise Event Bus" class="md-nav__button md-logo" aria-label="VA | Enterprise Event Bus" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    VA | Enterprise Event Bus
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Enterprise Event Bus
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Introduction to Event Driven Architecture
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consume-events/" class="md-nav__link">
+        Consume Events
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produce-events/" class="md-nav__link">
+        Produce events
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use-events/" class="md-nav__link">
+        Find Events in the Catalog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get-support/" class="md-nav__link">
+        Get Support
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduction">Introduction</h1>
+<p>The Enterprise Event Bus is an asynchronous event processing system that spans systems and lines of business at the VA. Event-driven architecture uses events, which are specific instances of something that happened, to communicate with systems that are subscribed to the stream of events. The systems that are producing the events <a href="https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/produce-events/">producers</a>, are decoupled from the systems that are consuming their events <a href="https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/consume-events/">consumers</a>.</p>
+<p>See this <a href="https://www.youtube.com/watch?v=R6tUoxx2gVY">brief video</a> for a quick overview of event-driven architecture.</p>
+<p><em>The following diagram illustrates how the different components of the Enterprise Event Bus come together to produce streams of events.</em></p>
+<p><img alt="future state whole" src="https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/f0dfe62a-8509-459c-bd9a-074e0babb22b" /></p>
+<h1 id="event-driven-architecture-at-the-va">Event-driven architecture at the VA</h1>
+<p>The Enterprise Event Bus is not intended to subsume or replace any existing VA API ecosystems, nor is it a one-stop shop or mandatory runtime environment for all VA data services; instead, it is intended to enable event-based architecture for current and future integrations between systems. </p>
+<p>The focus of the Enterprise Event Bus is enterprise events rather than data events. As described above, an event is a specific instance of something that happens. An enterprise event is a business event that is of potential interest to a broad scope of consuming systems. </p>
+<p>For example, when Veterans apply for benefits, they are issued a benefits decision letter detailing the VA’s decision about what benefits they are eligible for. The benefits decision letter becoming available is an enterprise event. The specific changes in the underlying data that indicate this document has become available are data events. Teams producing events onto the Enterprise Event Bus are encouraged to frame their events as enterprise events; that is, broadly speaking, an event that describes a concrete business event has the potential to be more useful to a broader audience than specific data change events. </p>
+<p>When determining what information an event should contain, a guiding principle is that consumers need events to at least contain enough information to know whether the event is of interest to them. This is the principle of <a href="https://www.okta.com/identity-101/minimum-access-policy/">least privilege</a>. In general it is easier to add new pieces of information to a schema than it is to later remove it; thus the system should trend towards leaner events.</p>
+<h1 id="technology-overview">Technology Overview</h1>
+<p>Enterprise Event Bus, like most other event-based systems in the VA, is based on <a href="https://kafka.apache.org/">Apache Kafka</a>, an open-source distributed event streaming platform. It is considered the industry standard for handling real-time data feeds, and is capable of handling the kinds of large scale, high-throughput loads we would expect an enterprise-wide event bus in the VA to be able to handle. In addition to being a proven technology, Kafka is already used in a production capacity by other teams in the VA, such as the <a href="https://confluence.devops.va.gov/pages/viewpage.action?spaceKey=VAExternal&amp;title=Benefits+Integration+Events">Benefits Integration Platform</a>.</p>
+<p>The Enterprise Event Bus uses <a href="https://docs.aws.amazon.com/msk/index.html">AWS Managed Streams for Kafka (MSK)</a>, a hosted version of Kafka that runs in the VA Enterprise Cloud. </p>
+<p><em>The following diagram illustrates how events pass through the different components of the Enterprise Event Bus system.</em></p>
+<p><img alt="Simple Data Flow EBus" src="https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/1d02ea15-2520-4b28-b02a-1d9b9bfd5272" /></p>
+<h1 id="terminology">Terminology</h1>
+<ul>
+<li><strong>Domain</strong>: a broad classification of events that corresponds to an area of business within the VA. One can think of a domain as a radio station that plays a certain type of music. <ul>
+<li>For example, transition events, claims/benefits events, health events, life events, memorial events, and interaction events.</li>
+</ul>
+</li>
+<li><strong>Topic</strong>: provides a destination for the storage of data. Each topic is split into one or more partitions. Topics are where events are durably stored; this is similar to how files are stored in a distributed file system. A topic can have many producers and many consumers. Continuing the music analogy from the definition of domain, a topic can be thought of as a radio channel that plays a single band. <ul>
+<li>For example, appointment events can be streamed from the appointments topic. </li>
+</ul>
+</li>
+<li><strong>Partitions</strong>: storage units within a topic. They hold a subset of the records owned by the topic. This is a logical concept in Kafka. <ul>
+<li>For example, the number of partitions will impact the distribution of your data. The Enterprise Event Bus team will provide guidance on allocating partitions for a topic during the onboarding process of a producer. </li>
+</ul>
+</li>
+<li><strong>Broker</strong>: (also called a server or node) orchestrates the storage and passing of messages. These are the machines that store and service the data.</li>
+<li><strong>Producer</strong>: the team, as well as the application that appends messages to the end of the topic. Messages are written to partitions on a round robin basis, or to a specific partition based on the message key.</li>
+<li><strong>Consumer</strong>: the team, as well as the application, that subscribes to the topic and reads messages according to topic, partition and offset.</li>
+<li><strong>Event</strong>: the type of business action that has occurred.<ul>
+<li>For example, an appointment was created.</li>
+</ul>
+</li>
+<li><strong>Event (instance)</strong>: a specific instance of a business action that has occurred  (note: event, message, and record can be seen interchangeably in various Kafka-related documentation).<ul>
+<li>For example, an appointment was created for Karen to see an orthopedic specialist on 6/1/2023 at 10:30 am.</li>
+</ul>
+</li>
+</ul>
+<h1 id="learn-more">Learn More</h1>
+<ul>
+<li><a href="https://developer.confluent.io/patterns/">Event Streaming Patterns</a></li>
+<li><a href="https://www.confluent.io/events/kafka-summit-americas-2021/improving-veteran-benefit-services-through-efficient-data-streaming/">Improving Veteran Benefit Services Through Efficient Data Streaming | Robert Ezekiel, Booz Allen Hamilton</a></li>
+<li><a href="https://www.confluent.io/resources/presentation/one-year-in-lessons-learned-and-plans-for-the-future/">One Year In – Lessons Learned and Plans for the Future with Robert Ezekiel | Current 2022</a></li>
+<li>The Enterprise Event Bus Team offers consultations and is happy to answer questions. Reach out to us <a href="https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/get-support/">link to contact page</a>.</li>
+</ul>
+<h1 id="having-trouble">Having Trouble?</h1>
+<p>If you find something wrong with the documentation, didn’t find what you’re looking for, or have a question or suggestion, please <a href="(https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/get-support/).">contact us</a>.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Enterprise Event Bus" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Enterprise Event Bus
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../consume-events/" class="md-footer__link md-footer__link--next" aria-label="Next: Consume Events" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Consume Events
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      
+    
+  </body>
+</html>
