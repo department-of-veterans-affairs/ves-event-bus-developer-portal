@@ -6,14 +6,20 @@ metadata:
  title: Event Bus Dev Portal Test
 spec:
  type: event
- lifecycle: experimental
+ lifecycle: Experimental
  domain: appointments
  team: ves-event-bus 
  system: lhdi
  topics:
-  - dev_test
-  - staging_test
-  - prod_test
+  - topic: dev_test
+    environment: development
+    brokerAddress: development.broker-address.com/dev-connection/v0/
+  - topic: staging_test
+    environment: staging
+    brokerAddress: staging.broker-address.com/dev-connection/v0/
+  - topic: prod_test
+    environment: production
+    brokerAddress: production.broker-address.com/dev-connection/v0/
  productowner: John Smith
  payload:
   id: string
