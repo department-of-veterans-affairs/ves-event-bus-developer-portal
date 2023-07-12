@@ -6,7 +6,7 @@ metadata:
  title: Event Bus Dev Portal Test
 spec:
  type: event
- lifecycle: Experimental
+ lifecycle: experimental
  domain: appointments
  team: ves-event-bus 
  system: lhdi
