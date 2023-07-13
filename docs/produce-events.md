@@ -77,7 +77,6 @@ See for instance this Java code that produces messages to a topic named â€œtestâ
     import io.confluent.kafka.serializers.subject.TopicRecordNameStrategy;
 
     import java.util.Properties;
-    import java.util.concurrent.atomic.AtomicBoolean;
 
     public class TestProducer {
       private static final Logger LOG = LoggerFactory.getLogger(TestProducer.class);
@@ -128,10 +127,6 @@ See for instance this Java code that produces messages to a topic named â€œtestâ
         } finally {
           producer.close();
         }
-      }
-
-      public void shutdown() {
-        shutdown.set(true);
       }
 
       private KafkaProducer<Long, GenericRecord> createProducer() {
