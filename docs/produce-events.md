@@ -206,7 +206,7 @@ To register your topic with with the Hub:
     For the time being, `apiVersion` will have a constant, static value of `backstage.io/v1alpha1`, though we are most likely free to change this if we wish. Because we are introducing a new Entity Kind that doesn't exist in Backstage, any `Event` specification we validate against won't correspond to anything. [Read more here](https://backstage.io/docs/features/software-catalog/descriptor-format#apiversion-and-kind-required)
 
     #### kind [required]
-    This is where we introduce our Entity Kind, `Event`. [Work is currently being done](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/pull/1434/files#diff-2197c22238300dc964e7fcfcb23675d1b34599a2edc577514a2554fbfa2b8d98R1) to add an `EventKindProcessor` to the Hub. The `EventKindProcessor` will handle all entities that have `Event` specified as their Kind. The processor will also be responsible for validating all entities against a predetermined `Event` schema to ensure they are valid catalog entries.
+    This value must be set to `Event` in order to pass JSON schema validation. 
 
     #### metadata [required]
     A structure that contains information about the entity itself. For now, this will include three properties:
@@ -215,7 +215,7 @@ To register your topic with with the Hub:
     - title: A human readable representation of the `name` to be used in backstage user interfaces
 
     #### spec
-    The section of a `catalog-info.yaml` file that producers (and potentially consumers) will most likely be filling out. Contains information about the events a producer will be emitting.
+    The section of a `catalog-info.yaml` file that producers will most likely be filling out. Contains information about the events a producer will be emitting.
 
     **type [required]**
     Currently set to event
