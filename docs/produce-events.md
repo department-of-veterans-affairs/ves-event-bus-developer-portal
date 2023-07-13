@@ -172,30 +172,30 @@ To register your topic with with the Hub:
     apiVersion: backstage.io/v1alpha1
     kind: Event
     metadata:
-    name: event-name
-    description: Event description
-    title: Event Name
+      name: event-name
+      description: Event description
+      title: Event Name
     spec:
-    type: event
-    lifecycle: production
-    domain: health
-    productowner: platform-PO-that-owns-this-work-for-VA
-    team: team-that-maintains-event-producing-code
-    system: system-that-produces-the-event
-    topics:
-      - topic: dev_appointments
-        environment: development
-        brokerAddress: broker_address_from_event_bus
-      - topic: staging_appointments
-        environment: staging
-        brokerAddress: broker_address_from_event_bus
-      - topic: prod_appointments
-        environment: production
-        brokerAddress: broker_address_from_event_bus
-    forwarders:
-      systemname: teamname
-    payload:
-      key: data-type
+      type: event
+      lifecycle: production
+      domain: health
+      productowner: platform-PO-that-owns-this-work-for-VA
+      team: team-that-maintains-event-producing-code
+      system: system-that-produces-the-event
+      topics:
+        - topic: dev_appointments
+          environment: development
+          brokerAddress: broker_address_from_event_bus
+        - topic: staging_appointments
+          environment: staging
+          brokerAddress: broker_address_from_event_bus
+        - topic: prod_appointments
+          environment: production
+          brokerAddress: broker_address_from_event_bus
+      forwarders:
+        systemname: teamname
+      payload:
+        key: data-type
     ```
 
 
