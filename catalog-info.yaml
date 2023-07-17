@@ -21,6 +21,9 @@ spec:
     environment: production
     brokerAddress: production.broker-address.com/dev-connection/v0/
  productowner: John Smith
+ forwarders:
+  - systemName: VA test system
+    teamName: VA test team
  payload:
   id: string
   date: string
