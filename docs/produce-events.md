@@ -72,11 +72,12 @@ See for instance this Java code that produces messages to a topic named â€œtestâ
     import org.slf4j.Logger;
     import org.slf4j.LoggerFactory;
 
-    import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
+    import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
     import io.confluent.kafka.serializers.KafkaAvroSerializer;
     import io.confluent.kafka.serializers.subject.TopicRecordNameStrategy;
 
     import java.util.Properties;
+    import java.util.Map;
 
     public class TestProducer {
       private static final Logger LOG = LoggerFactory.getLogger(TestProducer.class);
@@ -86,6 +87,7 @@ See for instance this Java code that produces messages to a topic named â€œtestâ
       private static final String EB_BOOTSTRAP_SERVERS = System.getenv("EB_BOOTSTRAP_SERVERS");
       private static final String EB_SECURITY_PROTOCOL = System.getenv("EB_SECURITY_PROTOCOL");
       private static final String SCHEMA_REGISTRY_URL = System.getenv("SCHEMA_REGISTRY_URL");
+      private static final String AWS_ROLE = System.getenv("AWS_ROLE");
 
       private final KafkaProducer<Long, GenericRecord> producer;
 
@@ -96,10 +98,8 @@ See for instance this Java code that produces messages to a topic named â€œtestâ
       public void run() {
         try {
           // Configure properties for the KafkaAvroSerializer
-          Properties serializerProps = new Properties();
-          serializerProps.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
-          serializerProps.put(AbstractKafkaAvroSerDeConfig.VALUE_SUBJECT_NAME_STRATEGY,
-              TopicRecordNameStrategy.class.getName());
+          Map<String, String> serializerProps = Map.of(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL,
+          AbstractKafkaSchemaSerDeConfig.VALUE_SUBJECT_NAME_STRATEGY,TopicRecordNameStrategy.class.getName());
 
           // Create KafkaAvroSerializer
           KafkaAvroSerializer avroSerializer = new KafkaAvroSerializer();
@@ -206,7 +206,7 @@ To register your topic with with the Hub:
     For the time being, `apiVersion` will have a constant, static value of `backstage.io/v1alpha1`, though we are most likely free to change this if we wish. Because we are introducing a new Entity Kind that doesn't exist in Backstage, any `Event` specification we validate against won't correspond to anything. [Read more here](https://backstage.io/docs/features/software-catalog/descriptor-format#apiversion-and-kind-required)
 
     #### kind [required]
-    This value must be set to `Event` in order to pass JSON schema validation. 
+    This value must be set to `Event` in order to pass JSON schema validation.
 
     #### metadata [required]
     A structure that contains information about the entity itself. For now, this will include three properties:
