@@ -7,5 +7,4 @@ spec:
   type: service
   lifecycle: production
   owner: team-a
-  subscribesToEvent:
-    - event-bus-dev-portal-test
+  subscribesToEvent: [event-bus-dev-portal-test]
