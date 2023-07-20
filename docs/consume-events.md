@@ -34,6 +34,9 @@ Many programming languages and frameworks offer libraries designed to interact w
 
 See for instance this Java code that consumes messages from a topic named “test”:
 
+!!! warning
+    Note that this code is a draft and might not run as it is. Once finalized, it will be accompanied by a comprehensive reference repo that can be set up locally for testing.
+
 ???+ example
     ```java
         package com.eventbus.testconsumer;
@@ -50,16 +53,15 @@ See for instance this Java code that consumes messages from a topic named “tes
         import org.slf4j.LoggerFactory;
         import java.util.concurrent.atomic.AtomicBoolean;
 
-        import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
         import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-        import io.confluent.kafka.serializers.subject.TopicRecordNameStrategy;
+        import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 
         import java.time.Duration;
         import java.util.Collections;
         import java.util.Properties;
         import java.util.Map;
 
-        public class TestConsumer {
+        public class TestConsumer implements Runnable {
             private static final Logger LOG = LoggerFactory.getLogger(TestConsumer.class);
             private final AtomicBoolean shutdown = new AtomicBoolean(false);
 
@@ -80,14 +82,6 @@ See for instance this Java code that consumes messages from a topic named “tes
 
             public void run() {
                 try {
-                    // Configure properties for the KafkaAvroDeserializer
-                    Map<String, String> deserializerProps = Map.of(
-                        AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL,
-                        AbstractKafkaSchemaSerDeConfig.VALUE_SUBJECT_NAME_STRATEGY, TopicRecordNameStrategy.class.getName());
-
-                    // Create KafkaAvroDeserializer
-                    KafkaAvroDeserializer avroDeserializer = new KafkaAvroDeserializer();
-                    avroDeserializer.configure(deserializerProps, false);
 
                     consumer.subscribe(Collections.singletonList(TOPIC));
 
@@ -126,6 +120,7 @@ See for instance this Java code that consumes messages from a topic named “tes
                 props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, EB_BOOTSTRAP_SERVERS);
                 props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
                 props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
+                props.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
                 props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group"); // Set your consumer group ID
 
                 // Use SASL_SSL in production but PLAINTEXT in local environment

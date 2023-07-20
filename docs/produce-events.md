@@ -54,6 +54,9 @@ Many programming languages and frameworks offer libraries designed to interact w
 
 See for instance this Java code that produces messages to a topic named “test”:
 
+!!! warning
+    Note that this code is a draft and might not run as it is. Once finalized, it will be accompanied by a comprehensive reference repo that can be set up locally for testing.
+
 ???+ example
 
     ```java
@@ -98,8 +101,7 @@ See for instance this Java code that produces messages to a topic named “test�
       public void run() {
         try {
           // Configure properties for the KafkaAvroSerializer
-          Map<String, String> serializerProps = Map.of(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL,
-          AbstractKafkaSchemaSerDeConfig.VALUE_SUBJECT_NAME_STRATEGY,TopicRecordNameStrategy.class.getName());
+          Map<String, String> serializerProps = Map.of(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
 
           // Create KafkaAvroSerializer
           KafkaAvroSerializer avroSerializer = new KafkaAvroSerializer();
