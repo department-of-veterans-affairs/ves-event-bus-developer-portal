@@ -2,7 +2,8 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: event-component
-  description: Component that consumes events
+  description: The VA test system is designed to consume events of the event bus and feed them to various veteran facing endpoints. 
+  title: VA Test System
 spec:
   type: service
   lifecycle: production
