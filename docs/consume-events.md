@@ -175,7 +175,17 @@ To register with with the Hub:
 
 4. Once your `catalog-info.yaml` file has been committed, log into the [Lighthouse Developer Hub](https://hub.lighthouse.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
-**NOTE**: As a consumer, it is imperative that you include the `subscribesToEvent` in your `catalog-info.yaml` file, in the `spec` object. `subscribesToEvent` is an array containing strings. Each string corresponds to a name specificed in a producer's `catalog-info.yaml` file [metadata object](https://backstage.io/docs/features/software-catalog/descriptor-format#common-to-all-kinds-the-metadata). We use the `subscribesToEvent` property to generate [Backstage relations](https://backstage.io/docs/features/software-catalog/extending-the-model#adding-a-new-relation-type) between consumers and producers. These relations are displayed on Event Overview pages in a table. Without this property, there will be no visual representation of what systems or components are subscribing to a given event.
+**NOTE**: As a consumer, it is imperative that you include the `subscribesToEvent` in your `catalog-info.yaml` file, in the `spec` object. `subscribesToEvent` is an array containing strings. Each string corresponds to a `name` specificed in a producer's `catalog-info.yaml` file [metadata object](https://backstage.io/docs/features/software-catalog/descriptor-format#common-to-all-kinds-the-metadata). This metadata name property can not always be derived from the event or the topic, so it will require referencing the producer's `catalog-info.yaml` file, e.g.:
+
+    apiVersion: backstage.io/v1alpha1
+    kind: Event
+    metadata:
+        name: event-name // <== This is what needs to be referenced
+        description: Event description
+        title: Event Name
+        // ...
+
+We use the `subscribesToEvent` property to generate [Backstage relations](https://backstage.io/docs/features/software-catalog/extending-the-model#adding-a-new-relation-type) between consumers and producers. These relations are displayed on Event Overview pages in a table. Without this property, there will be no visual representation of what systems or components are subscribing to a given event.
 
 ### Troubleshooting
 If you have questions or run into difficulties with any of these steps, please [contact the Enterprise Event Bus Team](get-support.md).
