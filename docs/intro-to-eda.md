@@ -27,8 +27,7 @@ Enterprise Event Bus, like most other event-based systems in the VA, is based on
 The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs.aws.amazon.com/msk/index.html), a hosted version of Kafka that runs in the VA Enterprise Cloud. 
 
 _The following diagram illustrates how events pass through the different components of the Enterprise Event Bus system._
-
-![Simple Data Flow EBus](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/1d02ea15-2520-4b28-b02a-1d9b9bfd5272)
+![Simple Flow EBus](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
 
 # Terminology
 * **Domain**: a broad classification of events that corresponds to an area of business within the VA. One can think of a domain as a radio station that plays a certain type of music. 
