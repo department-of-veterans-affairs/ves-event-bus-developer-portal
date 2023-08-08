@@ -170,7 +170,7 @@ To register your topic with with the Hub:
 1. Create a file named `catalog-info.yaml` at the root of your source code repository.
 2. Populate the `catalog-info.yaml` file with an `Event` Backstage entity based on the data structure below:
 
-    ```yaml
+    ``` { .yaml .copy }
     apiVersion: backstage.io/v1alpha1
     kind: Event
     metadata:

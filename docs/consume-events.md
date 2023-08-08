@@ -156,24 +156,41 @@ Event bus logs can be found [here](https://lighthousedi.ddog-gov.com/logs?query=
 ### Register with the Lighthouse Developer Hub
 The [Lighthouse Developer Hub](https://hub.lighthouse.va.gov/) is a software catalog that houses entities from across VA. Once your consumer application is up and running, you'll want to register with the catalog so event producers are aware of how their events are being used, and which systems are consuming them.
 
-To register with with the Hub:
+To register with the Hub:
 
 1. Create a file named `catalog-info.yaml` at the root of your source code repository.
-2. Backstage offers a built in [System Entity Kind](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system). Populate your new `catalog-info.yaml` file with this template, updating `metadata` and `spec` with values that correspond to your system:
+2. Backstage offers built-in [Component](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) and [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) Entity Kinds. Populate your new `catalog-info.yaml` file with the applicable template, updating `metadata` and `spec` with values that correspond to your component or system:
 
+    ??? Component Example
+        ``` { .yaml .copy }
+            apiVersion: backstage.io/v1alpha1
+            kind: Component
+            metadata:
+                name: your component name
+                description: what the component does
+            spec:
+                type: the component type, eg. service or website
+                lifecycle: the component's lifecycle, eg. development or production
+                owner: product team in charge of consuming component
+                subscribesToEvent: [event-name, event-name-two]
+        ```
 
-        apiVersion: backstage.io/v1alpha1
-        kind: System
-        metadata:
-          name: your system name
-          description: what the system does
-        spec:
-          owner: product team in charge of consuming system
-          domain: domain the system falls under
-          subscribesToEvent: [event-name, event-name-two]
+    ??? System Example
+        ``` { .yaml .copy }
+            apiVersion: backstage.io/v1alpha1
+            kind: System
+            metadata:
+                name: your system name
+                description: what the system does
+            spec:
+                owner: product team in charge of consuming system
+                domain: domain the system falls under (optional)
+                subscribesToEvent: [event-name, event-name-two]
+        ```
 
+    If you are unsure whether to classify your consumer as a Component or a System, see the [Backstage System Model](https://backstage.io/docs/features/software-catalog/system-model/).
 
-4. Once your `catalog-info.yaml` file has been committed, log into the [Lighthouse Developer Hub](https://hub.lighthouse.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
+3. Once your `catalog-info.yaml` file has been committed, log into the [Lighthouse Developer Hub](https://hub.lighthouse.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
 **NOTE**: As a consumer, it is imperative that you include the `subscribesToEvent` in your `catalog-info.yaml` file, in the `spec` object. `subscribesToEvent` is an array containing strings. Each string corresponds to a `name` specified in a producer's `catalog-info.yaml` file [metadata object](https://backstage.io/docs/features/software-catalog/descriptor-format#common-to-all-kinds-the-metadata). This metadata name property can not always be derived from the event or the topic, so it will require referencing the producer's `catalog-info.yaml` file, e.g.:
 
