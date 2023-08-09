@@ -54,110 +54,103 @@ Many programming languages and frameworks offer libraries designed to interact w
 
 See for instance this Java code that produces messages to a topic named “test”:
 
-!!! warning
-    Note that this code is a draft and might not run as it is. Once finalized, it will be accompanied by a comprehensive reference repo that can be set up locally for testing.
+!!! info
+    To see this Java producer code in context, please check out the [kafka-client-demo](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code/tree/main/kafka-client-demo) in the `ves-event-bus-sample-code` repository.
 
 ???+ example
 
     ```java
-    package com.eventbus.testproducer;
+        package gov.va.eventbus.example;
 
-    import org.apache.avro.Schema;
-    import org.apache.avro.generic.GenericData;
-    import org.apache.avro.generic.GenericRecord;
-    import org.apache.kafka.clients.CommonClientConfigs;
-    import org.apache.kafka.clients.producer.KafkaProducer;
-    import org.apache.kafka.clients.producer.ProducerConfig;
-    import org.apache.kafka.clients.producer.ProducerRecord;
-    import org.apache.kafka.common.config.SaslConfigs;
-    import org.apache.kafka.common.config.SslConfigs;
-    import org.apache.kafka.common.errors.WakeupException;
-    import org.slf4j.Logger;
-    import org.slf4j.LoggerFactory;
+        import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
+        import io.confluent.kafka.serializers.KafkaAvroSerializer;
+        import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
+        import java.time.LocalDate;
+        import java.util.Properties;
+        import org.apache.avro.specific.SpecificRecord;
+        import org.apache.kafka.clients.CommonClientConfigs;
+        import org.apache.kafka.clients.producer.KafkaProducer;
+        import org.apache.kafka.clients.producer.ProducerConfig;
+        import org.apache.kafka.clients.producer.ProducerRecord;
+        import org.apache.kafka.common.config.SaslConfigs;
+        import org.apache.kafka.common.config.SslConfigs;
+        import org.slf4j.Logger;
+        import org.slf4j.LoggerFactory;
 
-    import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
-    import io.confluent.kafka.serializers.KafkaAvroSerializer;
-    import io.confluent.kafka.serializers.subject.TopicRecordNameStrategy;
+        public class TestProducer implements Runnable {
+            private static final Logger LOG = LoggerFactory.getLogger(TestProducer.class);
 
-    import java.util.Properties;
-    import java.util.Map;
+            // Producer values
+            private static final String TOPIC = "test";
+            private static final String EB_BOOTSTRAP_SERVERS = System.getenv("EB_BOOTSTRAP_SERVERS");
+            private static final String EB_SECURITY_PROTOCOL = System.getenv("EB_SECURITY_PROTOCOL");
+            private static final String SCHEMA_REGISTRY_URL = System.getenv("SCHEMA_REGISTRY_URL");
+            private static final String AWS_ROLE = System.getenv("AWS_ROLE");
 
-    public class TestProducer {
-      private static final Logger LOG = LoggerFactory.getLogger(TestProducer.class);
+            private final KafkaProducer<Long, SpecificRecord> producer;
 
-      // Producer values
-      private static final String TOPIC = "test";
-      private static final String EB_BOOTSTRAP_SERVERS = System.getenv("EB_BOOTSTRAP_SERVERS");
-      private static final String EB_SECURITY_PROTOCOL = System.getenv("EB_SECURITY_PROTOCOL");
-      private static final String SCHEMA_REGISTRY_URL = System.getenv("SCHEMA_REGISTRY_URL");
-      private static final String AWS_ROLE = System.getenv("AWS_ROLE");
+            public TestProducer() {
+                this.producer = createProducer();
+            }
 
-      private final KafkaProducer<Long, GenericRecord> producer;
+            @Override
+            public void run() {
+                try {
+                    var sequenceNumber = 0;
+                    while (true) {
+                        sequenceNumber++;
+                        // The messages in the topic adhere to a User schema
+                        var user = User.newBuilder()
+                                .setName("Newbie")
+                                .setCompany("Ad Hoc")
+                                .setDateOfBirth(LocalDate.of(2000,7,26))
+                                .setSequenceNumber(sequenceNumber)
+                                .build();
 
-      public TestProducer() {
-        this.producer = createProducer();
-      }
+                        // Create producer record
+                        ProducerRecord<Long, SpecificRecord> producerRecord = new ProducerRecord<>(TOPIC, user);
 
-      public void run() {
-        try {
-          // Configure properties for the KafkaAvroSerializer
-          Map<String, String> serializerProps = Map.of(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
+                        // Send the record to the Kafka topic
+                        producer.send(producerRecord);
+                        Thread.sleep(1000);
+                    }
+                } catch (final Exception e) {
+                    LOG.error("An exception occurred while producing messages", e);
+                } finally {
+                    producer.close();
+                }
+            }
 
-          // Create KafkaAvroSerializer
-          KafkaAvroSerializer avroSerializer = new KafkaAvroSerializer();
-          avroSerializer.configure(serializerProps, false);
+            private KafkaProducer<Long, SpecificRecord> createProducer() {
+                final Properties props = new Properties();
 
-          while (true) {
-            // Retrieve the Avro schema from the Schema Registry, e.g. the schema named
-            // "test-value"
-            Schema schema = avroSerializer.getSchemaRegistry().getSchemaBySubjectAndVersion(TOPIC + "-value",
-                avroSerializer.getVersion(TOPIC + "-value"));
+                props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, EB_BOOTSTRAP_SERVERS);
+                props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
+                props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
+                props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
+                props.put(KafkaAvroSerializerConfig.AUTO_REGISTER_SCHEMAS, false);
+                props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false);
 
-            // Create a new Avro record
-            GenericRecord record = new GenericData.Record(schema);
-            record.put("name", "John Doe");
-            record.put("email", "john.doe@example.com");
+                // Use SASL_SSL in production but PLAINTEXT in local environment
+                // w/docker_compose
+                if ("SASL_SSL".equals(EB_SECURITY_PROTOCOL)) {
+                    props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, EB_SECURITY_PROTOCOL);
+                    props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/tmp/kafka.client.truststore.jks");
+                    props.put(SslConfigs.SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG, "");
+                    props.put(SaslConfigs.SASL_MECHANISM, "AWS_MSK_IAM");
+                    props.put(SaslConfigs.SASL_JAAS_CONFIG,
+                            "software.amazon.msk.auth.iam.IAMLoginModule required awsRoleArn=\""
+                                    + AWS_ROLE // use the role name provided to you
+                                    + "\" awsStsRegion=\"us-gov-west-1\";");
+                    props.put(SaslConfigs.SASL_CLIENT_CALLBACK_HANDLER_CLASS,
+                            "software.amazon.msk.auth.iam.IAMClientCallbackHandler");
+                } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
+                    LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);
+                }
 
-            // Create producer record
-            ProducerRecord<Long, GenericRecord> producerRecord = new ProducerRecord<>(TOPIC, record);
-
-            // Send the record to the Kafka topic
-            producer.send(producerRecord);
-          }
-        } catch (final Exception e) {
-          LOG.error("An exception occurred while producing messages", e);
-        } finally {
-          producer.close();
+                return new KafkaProducer<>(props);
+            }
         }
-      }
-
-      private KafkaProducer<Long, GenericRecord> createProducer() {
-        final Properties props = new Properties();
-
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, EB_BOOTSTRAP_SERVERS);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
-
-        // Use SASL_SSL in production but PLAINTEXT in local environment
-        // w/docker_compose
-        if ("SASL_SSL".equals(EB_SECURITY_PROTOCOL)) {
-          props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, EB_SECURITY_PROTOCOL);
-          props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/tmp/kafka.client.truststore.jks");
-          props.put(SslConfigs.SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG, "");
-          props.put(SaslConfigs.SASL_MECHANISM, "AWS_MSK_IAM");
-          producerProps.put(SaslConfigs.SASL_JAAS_CONFIG,
-              "software.amazon.msk.auth.iam.IAMLoginModule required awsRoleArn=\""
-                  + AWS_ROLE // use the role name provided to you
-                  + "\" awsStsRegion=\"us-gov-west-1\";");
-          props.put(SaslConfigs.SASL_CLIENT_CALLBACK_HANDLER_CLASS,
-              "software.amazon.msk.auth.iam.IAMClientCallbackHandler");
-        } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
-          LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);
-        }
-
-        return new KafkaProducer<>(props);
-      }
-    }
     ```
 
 ### Register with the Lighthouse Developer Hub
