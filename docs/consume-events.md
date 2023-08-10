@@ -34,12 +34,12 @@ Many programming languages and frameworks offer libraries designed to interact w
 
 See for instance this Java code that consumes messages from a topic named “test”:
 
-!!! warning
-    Note that this code is a draft and might not run as it is. Once finalized, it will be accompanied by a comprehensive reference repo that can be set up locally for testing.
+!!! info
+    To see this Java consumer code in context, please check out the [kafka-client-demo](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code/tree/main/kafka-client-demo) in the `ves-event-bus-sample-code` repository.
 
 ???+ example
     ```java
-        package com.eventbus.testconsumer;
+        package gov.va.eventbus.example;
 
         import org.apache.avro.generic.GenericRecord;
         import org.apache.kafka.clients.CommonClientConfigs;
@@ -49,6 +49,7 @@ See for instance this Java code that consumes messages from a topic named “tes
         import org.apache.kafka.clients.consumer.KafkaConsumer;
         import org.apache.kafka.common.config.SaslConfigs;
         import org.apache.kafka.common.config.SslConfigs;
+        import org.apache.kafka.common.errors.WakeupException;
         import org.slf4j.Logger;
         import org.slf4j.LoggerFactory;
         import java.util.concurrent.atomic.AtomicBoolean;
@@ -59,7 +60,6 @@ See for instance this Java code that consumes messages from a topic named “tes
         import java.time.Duration;
         import java.util.Collections;
         import java.util.Properties;
-        import java.util.Map;
 
         public class TestConsumer implements Runnable {
             private static final Logger LOG = LoggerFactory.getLogger(TestConsumer.class);
@@ -74,7 +74,7 @@ See for instance this Java code that consumes messages from a topic named “tes
             private static final String SCHEMA_REGISTRY_URL = System.getenv("SCHEMA_REGISTRY_URL");
             private static final String AWS_ROLE = System.getenv("AWS_ROLE");
 
-            private final KafkaConsumer<Long, GenericRecord> consumer;
+            private final KafkaConsumer<Long, User> consumer;
 
             public TestConsumer() {
                 this.consumer = createConsumer();
@@ -86,12 +86,12 @@ See for instance this Java code that consumes messages from a topic named “tes
                     consumer.subscribe(Collections.singletonList(TOPIC));
 
                     while (!shutdown.get()) {
-                        ConsumerRecords<Long, GenericRecord> records = consumer.poll(Duration.ofMillis(100));
+                        ConsumerRecords<Long, User> records = consumer.poll(Duration.ofMillis(100));
 
-                        for (ConsumerRecord<Long, GenericRecord> record : records) {
-                            GenericRecord genericRecord = record.value();
+                        for (ConsumerRecord<Long, User> record : records) {
+                            User user = record.value();
                             // Process the received Avro record
-                            LOG.info("Received record: {}", genericRecord.toString());
+                            LOG.info("Received record: {}", user.toString());
                         }
                     }
                 } catch (final WakeupException e) {
@@ -114,13 +114,15 @@ See for instance this Java code that consumes messages from a topic named “tes
                 consumer.wakeup();
             }
 
-            private KafkaConsumer<Long, GenericRecord> createConsumer() {
+            private KafkaConsumer<Long, User> createConsumer() {
                 final Properties props = new Properties();
 
                 props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, EB_BOOTSTRAP_SERVERS);
                 props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
                 props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
                 props.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
+                // ensure records with a schema are converted.
+                props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
                 props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group"); // Set your consumer group ID
 
                 // Use SASL_SSL in production but PLAINTEXT in local environment
