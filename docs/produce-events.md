@@ -55,7 +55,7 @@ Many programming languages and frameworks offer libraries designed to interact w
 See for instance this Java code that produces messages to a topic named “test”:
 
 !!! info
-    To see this Java producer code in context, please check out the [kafka-client-demo](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code/tree/main/kafka-client-demo) in the `ves-event-bus-sample-code` repository.
+    To see this Java producer code in context, please check out the [kafka-client-sample](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code/tree/main/kafka-client-sample) in the `ves-event-bus-sample-code` repository.
 
 ???+ example
 
