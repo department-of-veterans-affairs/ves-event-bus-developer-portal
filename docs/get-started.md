@@ -10,7 +10,7 @@ The VES Enterprise Event Bus is an asynchronous event processing system that all
 
 To learn more about the Event Bus, check out the presentation and demo below. An accompanying [slide deck](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Phase%203%20Artifacts/Event%20Bus%20-%20State%20of%20the%20System.pdf) is also available.
 
-<video width="640" height="400" controls poster="../img/phase3_demo_poster.png">
+<video width="640" height="400" crossorigin="anonymous" controls poster="../img/phase3_demo_poster.png">
   <source src="../videos/phase3_demo.mp4" type="video/mp4">
 </video>
 
