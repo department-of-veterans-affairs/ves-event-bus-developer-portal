@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: event-component
+  description: Component that consumes events
+spec:
+  type: service
+  lifecycle: production
+  owner: team-a
+  subscribesToEvent:
+    - event-bus-dev-portal-test

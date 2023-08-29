@@ -1,0 +1,31 @@
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+ name: event-bus-dev-portal-test
+ description: a place for event bus documentation
+ title: Event Bus Dev Portal Test
+spec:
+ type: event
+ lifecycle: experimental
+ domain: appointments
+ team: ves-event-bus 
+ system: lhdi
+ topics:
+  - topic: dev_test
+    environment: development
+    brokerAddress: development.broker-address.com/dev-connection/v0/
+  - topic: staging_test
+    environment: staging
+    brokerAddress: staging.broker-address.com/dev-connection/v0/
+  - topic: prod_test
+    environment: production
+    brokerAddress: production.broker-address.com/dev-connection/v0/
+ productowner: John Smith
+ payload:
+  id: string
+  date: string
+  name: string
+  age: integer
+  details:
+   phone: integer
+   email: string
