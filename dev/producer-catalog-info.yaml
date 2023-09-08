@@ -11,7 +11,7 @@ spec:
  team: ves-event-bus 
  system: lhdi
  topics:
-  - topic: dev_test
+  - topic: decision_letter_availability
     environment: development
     brokerAddress: development.broker-address.com/dev-connection/v0/
   - topic: staging_test
