@@ -20,7 +20,7 @@ We often refer to the Enterprise Event Bus as an **opinionated conduit** between
 
 * We have opinions about the **type of events** that would be suitable for an enterprise event bus (more on that below)
 * We have opinions about the **choice of technologies** with which we implement the Enterprise Event Bus and have done the legwork to set up the most suitable infrastructure according to our research
-* We have (proven) opinions about [**Kafka best practices**](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/ADR/ADR%20event%20design.md) which enable us to provide clear guidance to [producers](./produce-events.md) and [consumers](./consume-events.md) and assist with onboarding and learning about the underlying technologies
+* We have (proven) opinions about [**Kafka best practices**](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md) which enable us to provide clear guidance to [producers](./produce-events.md) and [consumers](./consume-events.md) and assist with onboarding and learning about the underlying technologies
 
 ### Role Within the VA Enterprise Environment
 
