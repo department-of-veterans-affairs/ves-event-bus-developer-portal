@@ -189,8 +189,6 @@ To register your topic with with the Hub:
           brokerAddress: broker_address_from_event_bus
       forwarders:
         systemname: teamname
-      payload:
-        key: data-type
     ```
 
 
@@ -236,11 +234,7 @@ To register your topic with with the Hub:
     **forwarders [optional]**
     Displayed in details page. Object with key-value pairs of `systemname: teamname`. Used if there is a system sitting in between data store and event bus which that mutates data before an event is published.
 
-    **payload [required]**
-    The structure of an event that gets published to a Kafka topic in Avro format. Should include all key names and their data type (string, int, etc).
-    <mark>Producers are responsible for providing accurate representations of their event payload</mark>.
-
-    The catalog.yaml file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json).
+    The `catalog.yaml` file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema` field included in this JSON schema will be auto-populated and does not need to be included in the `catalog-info.yaml` file. The event's schema will be fetched from the Schema Registry based on the event's topic name and stored in the `spec.schema` field.
 
 3. Once your `catalog-info.yaml` file has been committed, log into the [Lighthouse Developer Hub](https://hub.lighthouse.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
