@@ -21,11 +21,3 @@ spec:
     environment: production
     brokerAddress: production.broker-address.com/dev-connection/v0/
  productowner: John Smith
- payload:
-  id: string
-  date: string
-  name: string
-  age: integer
-  details:
-   phone: integer
-   email: string
