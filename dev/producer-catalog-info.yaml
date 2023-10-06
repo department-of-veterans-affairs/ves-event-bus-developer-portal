@@ -22,5 +22,5 @@ spec:
     brokerAddress: production.broker-address.com/dev-connection/v0/
  productowner: John Smith
  forwarders:
-   firstForwarder: ves-event-bus
-   secondForwarder: ves-event-bus
+   - firstForwarder: ves-event-bus
+   - secondForwarder: ves-event-bus
