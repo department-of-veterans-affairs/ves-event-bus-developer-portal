@@ -8,7 +8,7 @@ title: Get Started
 
 The VES Enterprise Event Bus is an asynchronous event processing system that allows producers to publish business events based on data changes and consumers to subscribe to those events. The system uses Kafka as its core event streaming platform, with [AWS MSK](https://aws.amazon.com/msk/) (Managed Streaming for Apache Kafka) as the management layer.
 
-To learn more about the Event Bus, check out the presentation and demo below. An accompanying [slide deck](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Phase%203%20Artifacts/Event%20Bus%20-%20State%20of%20the%20System.pdf) is also available.
+To learn more about the Event Bus, check out the presentation and demo below. An accompanying [slide deck](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Presentations%20and%20Deliverables/2023-08-08%20-%20Event%20Bus%20-%20State%20of%20the%20System.pdf) is also available.
 
 <video width="640" height="400" crossorigin="anonymous" controls poster="../img/phase3_demo_poster.png">
   <source src="../videos/phase3_demo.mp4" type="video/mp4">
