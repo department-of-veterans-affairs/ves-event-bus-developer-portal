@@ -4,6 +4,10 @@ metadata:
  name: event-bus-dev-portal-test
  description: a place for event bus documentation
  title: Event Bus Dev Portal Test
+ links:
+  - url: https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/consume-events/
+    title: Consumer Documentation
+    icon: web
 spec:
  type: event
  lifecycle: experimental
