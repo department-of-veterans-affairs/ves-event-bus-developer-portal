@@ -8,7 +8,7 @@ title: Get Started
 
 The VES Enterprise Event Bus is an asynchronous event processing system that allows producers to publish business events based on data changes and consumers to subscribe to those events. The system uses Kafka as its core event streaming platform, with [AWS MSK](https://aws.amazon.com/msk/) (Managed Streaming for Apache Kafka) as the management layer.
 
-To learn more about the Event Bus, check out the presentation and demo below. An accompanying [slide deck](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Phase%203%20Artifacts/Event%20Bus%20-%20State%20of%20the%20System.pdf) is also available.
+To learn more about the Event Bus, check out the presentation and demo below. An accompanying [slide deck](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Presentations%20and%20Deliverables/2023-08-08%20-%20Event%20Bus%20-%20State%20of%20the%20System.pdf) is also available.
 
 <video width="640" height="400" crossorigin="anonymous" controls poster="../img/phase3_demo_poster.png">
   <source src="../videos/phase3_demo.mp4" type="video/mp4">
@@ -20,7 +20,7 @@ We often refer to the Enterprise Event Bus as an **opinionated conduit** between
 
 * We have opinions about the **type of events** that would be suitable for an enterprise event bus (more on that below)
 * We have opinions about the **choice of technologies** with which we implement the Enterprise Event Bus and have done the legwork to set up the most suitable infrastructure according to our research
-* We have (proven) opinions about [**Kafka best practices**](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/ADR/ADR%20event%20design.md) which enable us to provide clear guidance to [producers](./produce-events.md) and [consumers](./consume-events.md) and assist with onboarding and learning about the underlying technologies
+* We have (proven) opinions about [**Kafka best practices**](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md) which enable us to provide clear guidance to [producers](./produce-events.md) and [consumers](./consume-events.md) and assist with onboarding and learning about the underlying technologies
 
 ### Role Within the VA Enterprise Environment
 

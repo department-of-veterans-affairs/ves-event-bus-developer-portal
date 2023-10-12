@@ -14,7 +14,7 @@ The first step in producing an event is to [contact the Enterprise Event Bus Tea
 
 While it is not a requirement to have consumers identified from the start, in an ideal scenario the events would theoretically be meaningful to multiple, independent consumers. If you do have consumers in mind, reach out to them and engage in preliminary discussions about their needs, preferences, and timelines. You can find more information on consuming events on our [Consuming Events page](./consume-events.md).
 
-If there is a mutual interest to continue after the initial meeting with the Event Bus Team, the producing team should create a one-page description of the proposed event topic, including details about the business context, event purpose, payload, and consumers. See examples of Event Bus one-pagers [here](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Use%20Cases/Decision%20Letter%20Availability%20Use%20Case.md) and [here](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Use%20Cases/Appointments%20Use%20Case%20One%20Pager.md). The Event Bus team will review and provide feedback on the document.
+If there is a mutual interest to continue after the initial meeting with the Event Bus Team, the producing team should create a one-page description of the proposed event topic, including details about the business context, event purpose, payload, and consumers. See examples of Event Bus one-pagers [here](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Use%20Cases/Decision%20Letter%20Availability/Decision%20Letter%20Availability%20Use%20Case.md) and [here](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Use%20Cases/Appointments/Appointments%20Use%20Case%20One%20Pager.md). The Event Bus team will review and provide feedback on the document.
 
 ### Determine If You Need an ESECC Request
 Depending on the location of a producer application, you may need to obtain an ESECC (Enterprise Security External Change Council) request. ESECC requests are required to open certain non-standard ports between different systems and allow traffic to flow over those ports.
@@ -27,19 +27,19 @@ This [example documentation](https://github.com/department-of-veterans-affairs/c
 
 ### Choose Configuration Settings and Submit Onboarding Request
 
-Before creating a topic, you need to consider various Kafka settings. Producing teams must choose appropriate settings based on their specific use case and technical requirements. From a logistical perspective, the Event Bus Team will handle the initial creation of the topic using the Kafka CLI and make it available for production. Producing teams should fill out our [Topic Creation Form](link to issue template) with their desired settings.
+Before creating a topic, you need to consider various Kafka settings. Producing teams must choose appropriate settings based on their specific use case and technical requirements. From a logistical perspective, the Event Bus Team will handle the initial creation of the topic using the Kafka CLI and make it available for production. Producing teams should fill out our "Topic Creation Form" with their desired settings.
 
 #### Number of Partitions
 
-Partitions in Kafka serve as the primary unit of storage within a topic, with each partition containing a subset of events. Determining the number of partitions is crucial, as it has implications for storage, scalability, replication, and message movement. To learn more about reasonable defaults, and other partition-related concerns, read our [guidance on topics and partitions](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/ADR/ADR%20Kafka%20Partitions.md).
+Partitions in Kafka serve as the primary unit of storage within a topic, with each partition containing a subset of events. Determining the number of partitions is crucial, as it has implications for storage, scalability, replication, and message movement. To learn more about reasonable defaults, and other partition-related concerns, read our [guidance on topics and partitions](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20Kafka%20Partitions.md).
 
 #### Event Retention
-Event retention refers to how long an event exists within Kafka and remains available for consumption. This setting would be especially important to consumers who need to be prepared to handle missed events before they expire. For additional information and discussion, see our section about Retention in the [Event Design ADR](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/ADR/ADR%20event%20design.md).
+Event retention refers to how long an event exists within Kafka and remains available for consumption. This setting would be especially important to consumers who need to be prepared to handle missed events before they expire. For additional information and discussion, see our section about Retention in the [Event Design ADR](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md).
 
 #### Event Schema and Event Registry
-The Event Bus utilizes the Confluent Schema Registry to store schemas and their versions. Avro is used to define the schema format. Producers need to submit an event schema representing the event payload in Avro format as part of the onboarding process. Additionally, producers should consider event versioning, which involves planning how schemas will evolve. Event versions are governed by the compatibility type setting, which determines allowed schema changes and how consumers interact with different versions. For more information, see our [article about the Confluent Schema Registry](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/ADR/ADR%20AWS%20Glue%20Schema%20Registry.md), and for additional details around schema versioning, see the [Versioning section in the Event Design ADR](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/ADR/ADR%20event%20design.md#event-retention).
+The Event Bus utilizes the Confluent Schema Registry to store schemas and their versions. Avro is used to define the schema format. Producers need to submit an event schema representing the event payload in Avro format as part of the onboarding process. Additionally, producers should consider event versioning, which involves planning how schemas will evolve. Event versions are governed by the compatibility type setting, which determines allowed schema changes and how consumers interact with different versions. For more information, see our [article about the Confluent Schema Registry](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20schema%20registry.md), and about [schema versioning](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20schema%20versioning.md).
 
-Once the producing team completes the [Topic Creation Form](TBD), the Event Bus admin team will create the topic, along with the schema, and notify the producing team when everything is ready for use.
+Once the producing team completes the "Topic Creation Form", the Event Bus admin team will create the topic, along with the schema, and notify the producing team when everything is ready for use.
 
 ### Set up Authorization and Authentication
 To produce messages to specific topics on the Event Bus, producers need to be authenticated and have the appropriate permissions. The Event Bus MSK cluster is only accessible from the VA Network, and we use AWS IAM (Identity and Access Management) Roles and Policies to control access to different resources. If your producing application is within the AWS environment, please inform us of the IAM Role(s) or IAM User(s) to which we should grant access. We will then set up the corresponding IAM Policies on our end and assign a named role for producers to authenticate with AWS MSK in their application code.
@@ -189,8 +189,6 @@ To register your topic with with the Hub:
           brokerAddress: broker_address_from_event_bus
       forwarders:
         systemname: teamname
-      payload:
-        key: data-type
     ```
 
 
@@ -236,11 +234,7 @@ To register your topic with with the Hub:
     **forwarders [optional]**
     Displayed in details page. Object with key-value pairs of `systemname: teamname`. Used if there is a system sitting in between data store and event bus which that mutates data before an event is published.
 
-    **payload [required]**
-    The structure of an event that gets published to a Kafka topic in Avro format. Should include all key names and their data type (string, int, etc).
-    <mark>Producers are responsible for providing accurate representations of their event payload</mark>.
-
-    The catalog.yaml file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json).
+    The `catalog.yaml` file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema` field included in this JSON schema will be auto-populated and does not need to be included in the `catalog-info.yaml` file. The event's schema will be fetched from the Schema Registry based on the event's topic name and stored in the `spec.schema` field.
 
 3. Once your `catalog-info.yaml` file has been committed, log into the [Lighthouse Developer Hub](https://hub.lighthouse.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 

@@ -5,7 +5,7 @@ Event-driven architecture enables systems to share data changes in real time acr
 
 An Event Bus allows a system to publish a stream of changes to its data. Systems who are interested in those data changes can receive the information in real time and use it to send updates to trigger actions, send updates to Veterans, communicate with other internal teams, and more.
 
-To learn more about the Event Bus, you can check out this brief [presentation and demo](https://adhocteam-us.zoom.us/rec/share/jClfe0fbbbiIPXZkotBaOpgC0_QdeMxg4V7TGPYo2FBnf4BC7Vb8LkavZXGPo8Xy.2suQjbQNrKeQCL2W) (_Passcode: T55c%^Xu_) and the accompanying [slide deck](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Phase%203%20Artifacts/Event%20Bus%20-%20State%20of%20the%20System.pdf).
+To learn more about the Event Bus, you can check out this brief [presentation and demo](https://adhocteam-us.zoom.us/rec/share/jClfe0fbbbiIPXZkotBaOpgC0_QdeMxg4V7TGPYo2FBnf4BC7Vb8LkavZXGPo8Xy.2suQjbQNrKeQCL2W) (_Passcode: T55c%^Xu_) and the accompanying [slide deck](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Presentations%20and%20Deliverables/2023-08-08%20-%20Event%20Bus%20-%20State%20of%20the%20System.pdf).
 
 ## Why use the Enterprise Event Bus?
 Teams can use the Enterprise Event Bus to generate events based on state changes to the data they own and publish them on an event bus. Consumers are free to consume those events and react accordingly. More specifically, with the Enterprise Event Bus:
