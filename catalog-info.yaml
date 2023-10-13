@@ -7,7 +7,7 @@ metadata:
  links:
    - url: https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal
      title: Event Bus Developer Portal
-     icon: web
+     icon: Web
 spec:
  type: website
  lifecycle: experimental
