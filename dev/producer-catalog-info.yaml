@@ -13,6 +13,7 @@ spec:
  lifecycle: experimental
  domain: appointments
  team: ves-event-bus 
+ owner: ves-event-bus
  system: lhdi
  topics:
   - topic: decision_letter_availability
