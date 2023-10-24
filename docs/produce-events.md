@@ -170,6 +170,11 @@ To register your topic with with the Hub:
       name: event-name
       description: Event description
       title: Event Name
+      links:
+        - url: https://sample-slack-link.com
+          title: Event Producer slack channel
+        - url: https://sample-link.com
+          title: Event documentation
     spec:
       type: event
       lifecycle: production
@@ -202,10 +207,19 @@ To register your topic with with the Hub:
     This value must be set to `Event` in order to pass JSON schema validation.
 
     #### metadata [required]
-    A structure that contains information about the entity itself. For now, this will include three properties:
-    - name: machine readable name of the event in question (or maybe in our case, because topics and events are 1:1, this may just be the topic name)
-    - description: a short description about the event
-    - title: A human readable representation of the `name` to be used in backstage user interfaces
+    A structure that contains information about the entity itself. The metadata structure includes the following properties:
+
+    **name**
+    A machine-readable name of the event
+    
+    **description**
+    A short description of the event
+
+    **title**
+    A human-readable representation of the `name` to be used in Backstage user interfaces
+
+    **links**
+    An optional list of links related to the event that will be displayed on the details page. Each link consists of a `url` and `title`
 
     #### spec
     The section of a `catalog-info.yaml` file that producers will most likely be filling out. Contains information about the events a producer will be emitting.
