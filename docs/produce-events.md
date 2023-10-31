@@ -193,7 +193,11 @@ To register your topic with with the Hub:
           environment: production
           brokerAddress: broker_address_from_event_bus
       forwarders:
-        systemname: teamname
+        - systemName: First Forwarder
+          teamName: first-forwarder-team
+        - systemName: Second Forwarder
+          teamName: second-forwarder-team
+          
     ```
 
 
@@ -246,7 +250,7 @@ To register your topic with with the Hub:
     The Kafka topics these events will be published to. Each topic consists of the actual topic name, the environment it's available in, and the broker address that will be provided to you by the Event Bus Team. The example shows a topic for each the dev, staging, and production environments.
 
     **forwarders [optional]**
-    Displayed in details page. Object with key-value pairs of `systemname: teamname`. Used if there is a system sitting in between data store and event bus which that mutates data before an event is published.
+    Displayed in details page. Array of objects with `systemName` and `teamName` properties. Used if there is a system sitting in between the source data store and the Event Bus that mutates data before an event is published.
 
     The `catalog.yaml` file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema` and `spec.schemaCompatibilityMode` fields included in this JSON schema will be auto-populated and do not need to be included in the `catalog-info.yaml` file. These values will be fetched from the Schema Registry based on the event's topic name.
 
