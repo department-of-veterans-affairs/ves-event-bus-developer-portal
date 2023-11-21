@@ -20,7 +20,6 @@ spec:
   - systemName: VistA
     teamName: second-team-name
     productOwner: Sally Smith
- system: lhdi
  topics:
   - topic: decision_letter_availability
     environment: development
