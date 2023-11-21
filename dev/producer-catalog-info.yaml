@@ -13,7 +13,8 @@ spec:
  type: event
  lifecycle: experimental
  domain: appointments
- sourceSystems: []
+ sourceSystems:
+  - systemName: BIP
  team: ves-event-bus 
  owner: ves-event-bus
  system: lhdi
