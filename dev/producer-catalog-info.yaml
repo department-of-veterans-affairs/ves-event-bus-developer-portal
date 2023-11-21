@@ -17,6 +17,9 @@ spec:
   - systemName: BIP
     teamName: ves-event-bus
     productOwner: John Smith
+  - systemName: VistA
+    teamName: second-team-name
+    productOwner: Sally Smith
  system: lhdi
  topics:
   - topic: decision_letter_availability
