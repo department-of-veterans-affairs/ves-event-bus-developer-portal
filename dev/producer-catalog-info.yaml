@@ -15,8 +15,8 @@ spec:
  domain: appointments
  sourceSystems:
   - systemName: BIP
- team: ves-event-bus 
- owner: ves-event-bus
+    teamName: ves-event-bus
+    productOwner: John Smith
  system: lhdi
  topics:
   - topic: decision_letter_availability
@@ -28,7 +28,6 @@ spec:
   - topic: prod_test
     environment: production
     brokerAddress: production.broker-address.com/dev-connection/v0/
- productowner: John Smith
  forwarders:
   - systemName: firstForwarder
     teamName: ves-event-bus
