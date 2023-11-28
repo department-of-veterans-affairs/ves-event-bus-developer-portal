@@ -17,6 +17,9 @@ spec:
   - systemName: BIP
     teamName: ves-event-bus
     productOwner: John Smith
+  - systemName: VistA
+    teamName: ves-event-bus-2
+    productOwner: Sally Smith
  topics:
   - topic: decision_letter_availability
     environment: development
