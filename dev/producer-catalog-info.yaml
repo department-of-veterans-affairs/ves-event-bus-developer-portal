@@ -35,4 +35,4 @@ spec:
     teamName: ves-event-bus
   - systemName: secondForwarder
     teamName: ves-event-bus
- retention: oops
+ retention: 10
