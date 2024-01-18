@@ -38,5 +38,5 @@ Your system **lacks well-defined components, or has constantly changing interact
 Systems that are continuously in flux, or don't have well-established boundaries or communication patters would make it difficult to introduce event-driven designs.
 
 Your system **is rated as “high” under [FISMA](https://security.cms.gov/learn/federal-information-security-management-act-fisma) and the [VA system categorization](https://jubilant-succotash-m55rqe7.pages.github.io/categorization/)**:<br/> 
-The Event Bus is hosted on the LHDI platform. Because the platform is rated at a “Medium” level under FISMA and the VA system categorization, we are only accepting applications that are rated as Low or Moderate systems at this time.”
+The Event Bus is hosted on the LHDI platform. Because the platform is rated at a “Medium” level under FISMA and the VA system categorization, we are only accepting applications that are rated as Low or Moderate systems at this time.
 
