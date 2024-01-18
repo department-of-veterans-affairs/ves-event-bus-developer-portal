@@ -26,3 +26,5 @@ title: Terminology
 
 * **Event (instance)**: a specific instance of a business action that has occurred  (note: event, message, and record can be seen interchangeably in various Kafka-related documentation).
     * For example, an appointment was created for Karen to see an orthopedic specialist on 6/1/2023 at 10:30 am.
+ 
+Find additional terms and abbreviations defined in [Github](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Event%20Bus%20Terminology.md). 
