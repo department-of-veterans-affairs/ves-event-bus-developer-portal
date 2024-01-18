@@ -1,17 +1,17 @@
 ---
-title: Consume Events
+title: Consuming Events
 ---
-# What’s a Consumer?
+# What’s a consumer?
 A consumer is an application that is set up to receive messages or events in an event-driven system. The Event Bus exposes streams of events, called topics, to consumers. The events capture significant occurrences taking place in an external system. A list of currently available topics can be found in our [Event Catalog](https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/use-events/).
 
-To access messages in a particular topic, an event consumer would subscribe to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. Learn more about the components and processes involved in event-based systems on our [Introduction to Event-Driven Architecture](./intro-to-eda.md) page.
+To access messages in a particular topic, an event consumer would subscribe to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. The content below outlines the steps needed to start consuming events. These steps can also be visualized on the <a href="https://app.mural.co/t/adhoccorporateworkspace2583/m/adhoccorporateworkspace2583/1678744533321/6e9663e9ba0295865de5f094a62d427affc22f5e?sender=ucc14575938bb14be79634773" target="_blank">Enterprise Event Bus Service Blueprint</a>. Learn more about the components and processes involved in event-based systems on our [Introduction to Event-Driven Architecture](./intro-to-eda.md) page.
 
-## Steps For Becoming a Consumer
-### Find Events/Topics to Consume
+## Steps to becoming a consumer
+### Find events/topics to consume
 The first step to consuming an event is to [reach out to the Enterprise Event Bus Team](./get-support.md) about your interest in events. From there, you can either subscribe to an existing topic with relevant events, or else identify a team able to provide the topic that is of interest to you. At this point in time, we are unable to identify producers for consumers that do not have a source for their desired events, but we will do our best to work with your chosen producing team.
 See also our [Produce Events](./produce-events.md) page.
 
-### Determine If You Need an ESECC Request
+### Determine if you need an ESECC request
 Depending on the location of a consumer application, you may need to obtain an ESECC (Enterprise Security External Change Council) request. ESECC requests are required to open certain non-standard ports between different systems and allow traffic to flow over those ports.
 
 The diagram below illustrates the relationship between consumer locations and ESECC requirements. It shows that as a general rule, consumers located within the VAEC (VA Enterprise Cloud) AWS Organization do not need to file an ESECC request. For consumers who are in other AWS organizations, or outside of AWS, an ESECC process will likely be needed. If you’re unsure which category your use case fits in, please reach out to the Event Bus Team for help. However, please also note that while the Event Bus Team is happy to give direction and assist with some aspects of the ESECC process, consumers are ultimately responsible for initiating and monitoring the request.
@@ -19,17 +19,18 @@ The diagram below illustrates the relationship between consumer locations and ES
 This [example documentation](https://github.com/department-of-veterans-affairs/checkin-devops/blob/master/docs/esecc-requests.md) provides a starting point that outlines the steps and processes involved in an ESECC request. Note that we have not verified that the document is complete and would be applicable in all situations. Please do your own research and be sure to get started as early as possible, as this can be a lengthy process.
 
 ![Client Environments ESECC Decision Circles](img/Client%20Environments%20ESECC%20Decision%20Circles.svg)
-### Set up Authorization and Authentication
+
+### Set up authorization and authentication
 To subscribe to specific topics on the Event Bus, consumers need to be authenticated and have the appropriate permissions. The Event Bus MSK cluster is only accessible from the VA Network, and we use AWS IAM (Identity and Access Management) Roles and Policies to control access to different resources. If your consuming application is within the AWS environment, you will need to let us know to which IAM Role(s) or IAM User(s) we should grant access. We will then set up the corresponding IAM Policies on our end and assign a named role for consumers to authenticate with AWS MSK in their application code.
 
 If your consuming application is outside of the AWS environment, we will request an IAM User to be created on your behalf. You will then be able to access the requested topic(s) using those credentials.
 
-### Connect to the Event Bus in the Development Environment
+### Connect to the Event Bus in the development environment
 Once the authentication and authorization steps have been completed, you will receive the Kafka bootstrap server addresses and port numbers with which you can connect to the Event Bus MSK cluster. The following ports are open for consumers and producers that are authenticated with AWS IAM:
 - 9098 (for access from AWS)
 - 9198 (for access from outside of AWS).
 
-### Develop and Deploy Your Consumer Application
+### Develop and deploy Your consumer application
 Many programming languages and frameworks offer libraries designed to interact with Kafka. To ensure full compatibility with the Event Bus, your code needs to authenticate with the AWS MSK cluster using the assigned role provided during the onboarding process. Additionally, consumers should reference the Confluent Schema Registry and use the appropriate schema to deserialize messages in Avro.
 
 See for instance this Java code that consumes messages from a topic named “test”:
@@ -149,16 +150,14 @@ See for instance this Java code that consumes messages from a topic named “tes
 
 ### Logs
 
-Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs will be available via Datadog.
+Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs are available via [Datadog](https://lighthousedi.ddog-gov.com/). Event bus broker logs are available through [this query](https://lighthousedi.ddog-gov.com/logs?query=host%3A%22arn%3Aaws%3As3%3A%3A%3Aeventbus-msk-logs%22%20&cols=host%2Cservice&index=%2A&messageDisplay=inline&stream_sort=desc&viz=stream&from_ts=1684858340160&to_ts=1684859240160&live=true) and application logs are available through [this query](https://lighthousedi.ddog-gov.com/logs?query=kube_namespace%3Aves-event-bus-infra-dev%20&cols=host%2Cservice&index=%2A&messageDisplay=inline&refresh_mode=sliding&stream_sort=desc&viz=stream&from_ts=1695939680975&to_ts=1696544480975&live=true). 
 
-Datadog is a monitoring and analytics tool that is used within the VA and is hosted by the Devops Transformation Services (DOTS) team. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. In order for Event Bus users to [request access to Datadog](https://animated-carnival-57b3e7f5.pages.github.io/datadog-observability-tools/datadog-access/), they must have a VA email address.
+Datadog is a monitoring and analytics tool that is used within VA and is hosted by the Devops Transformation Services (DOTS) team. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. In order for Event Bus users to [request access to Datadog](https://animated-carnival-57b3e7f5.pages.github.io/datadog-observability-tools/datadog-access/), they must have a VA email address. To request access to Datadog, complete the HelpDesk form on the ServiceNow Portal at [ECC (Enterprise Command Center) Monitoring Services - your IT Service Portal](https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fyourit.va.gov%2Fva%3Fid%3Dsc_cat_item%26sys_id%3D4cdf488b1ba4fcd412979796bc4bcb74&data=05%7C01%7C%7Ccb701e4e7fc944b6041308dbeacea9aa%7Ce95f1b23abaf45ee821db7ab251ab3bf%7C0%7C0%7C638361945550254440%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=sJfq3j8vnXwdtuQrfY%2FBaRttaqyOpKA6X17O8TMK9ug%3D&reserved=0). This must be accessed from the VA Network.
 
-Event bus logs can be found [here](https://lighthousedi.ddog-gov.com/logs?query=host%3A%22arn%3Aaws%3As3%3A%3A%3Aeventbus-msk-logs%22%20&cols=host%2Cservice&index=%2A&messageDisplay=inline&stream_sort=desc&viz=stream&from_ts=1684858340160&to_ts=1684859240160&live=true).
+### Register with CODE VA
+CODE VA (formerly known as the Hub) is a software catalog that houses entities from across VA. Once your consumer application is up and running, register with the catalog so event producers are aware of how their events are being used, and which systems are consuming them.
 
-### Register with the Lighthouse Developer Hub
-The [Lighthouse Developer Hub](https://hub.lighthouse.va.gov/) is a software catalog that houses entities from across VA. Once your consumer application is up and running, you'll want to register with the catalog so event producers are aware of how their events are being used, and which systems are consuming them.
-
-To register with the Hub:
+To register with CODE VA:
 
 1. Create a file named `catalog-info.yaml` at the root of your source code repository.
 2. Backstage offers built-in [Component](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) and [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) Entity Kinds. Populate your new `catalog-info.yaml` file with the applicable template, updating `metadata` and `spec` with values that correspond to your component or system:
@@ -190,9 +189,9 @@ To register with the Hub:
                 subscribesToEvent: [event-name, event-name-two]
         ```
 
-    If you are unsure whether to classify your consumer as a Component or a System, see the [Backstage System Model](https://backstage.io/docs/features/software-catalog/system-model/).
+3. If you are unsure whether to classify your consumer as a Component or a System, see the [Backstage System Model](https://backstage.io/docs/features/software-catalog/system-model/).
 
-3. Once your `catalog-info.yaml` file has been committed, log into the [Lighthouse Developer Hub](https://hub.lighthouse.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
+4. Once your `catalog-info.yaml` file has been committed, log into [CODE VA](https://hub.lighthouse.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
 **NOTE**: As a consumer, it is imperative that you include the `subscribesToEvent` in your `catalog-info.yaml` file, in the `spec` object. `subscribesToEvent` is an array containing strings. Each string corresponds to a `name` specified in a producer's `catalog-info.yaml` file [metadata object](https://backstage.io/docs/features/software-catalog/descriptor-format#common-to-all-kinds-the-metadata). This metadata name property can not always be derived from the event or the topic, so it will require referencing the producer's `catalog-info.yaml` file, e.g.:
 
