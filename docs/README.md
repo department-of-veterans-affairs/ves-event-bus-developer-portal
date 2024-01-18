@@ -16,7 +16,7 @@ Teams can use the Enterprise Event Bus to generate events based on state changes
 * Event producers don’t need to know who the interested consumers are and therefore don’t need to keep growing their outbound complexity.
 * Multiple consumers may receive and act on an event; it’s not just an asynchronous queue sitting between a single producer and consumer.
 
-## Next Steps
+## Next steps
 Take the next steps to explore and begin using the Enterprise Event Bus:
 
 * Learn more about [which teams would benefit from using event-driven architecture](https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/get-started/),
