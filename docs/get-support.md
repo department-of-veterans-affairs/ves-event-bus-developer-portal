@@ -4,7 +4,7 @@ title: Get Support
 
 # Get Support
 
-The best way to request support from the Event Bus Team is to reach out to us via the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) Slack channel in the `Office of CTO @VA` workspace.
+The best way to request support from the Event Bus Team is to reach out to us via the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) Slack channel in the Office of CTO @VA workspace.
 
 Please avoid direct messaging an Event Bus team member in Slack. Chatting openly in the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) channel allows others to learn from the questions and answers discussed.
 
