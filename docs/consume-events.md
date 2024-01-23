@@ -1,7 +1,10 @@
 ---
 title: Consuming Events
 ---
-# What’s a consumer?
+
+# Consuming Events
+
+## What’s a consumer?
 A consumer is an application that is set up to receive messages or events in an event-driven system. The Event Bus exposes streams of events, called topics, to consumers. The events capture significant occurrences taking place in an external system. A list of currently available topics can be found in our [Event Catalog](https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/use-events/).
 
 To access messages in a particular topic, an event consumer would subscribe to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. The content below outlines the steps needed to start consuming events. These steps can also be visualized on the <a href="https://app.mural.co/t/adhoccorporateworkspace2583/m/adhoccorporateworkspace2583/1678744533321/6e9663e9ba0295865de5f094a62d427affc22f5e?sender=ucc14575938bb14be79634773" target="_blank">Enterprise Event Bus Service Blueprint</a>. Learn more about the components and processes involved in event-based systems on our [Introduction to Event-Driven Architecture](./intro-to-eda.md) page.
