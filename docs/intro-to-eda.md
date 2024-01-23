@@ -7,7 +7,7 @@ title: About Event Driven Architecture at VA
 ## Introduction
 The Enterprise Event Bus is an asynchronous event processing system that spans systems and lines of business at VA. Event-driven architecture uses events &mdash; types of actions, such as a Veteran creating a medical appointment or updating their beneficiaries &mdash; to communicate with systems that are subscribed to the stream of events. The systems that are producing the events, also known as [producers](https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/produce-events/), are decoupled from the systems that are consuming their events, also known as [consumers](https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/consume-events/).
 
-_The following diagram illustrates how the different components of the Enterprise Event Bus come together to produce streams of events. Open the diagram in [Github](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)._
+_The following diagram illustrates how the different components of the Enterprise Event Bus come together to produce streams of events. [View the full-sized diagram.](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
 
 ![future state whole](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/f0dfe62a-8509-459c-bd9a-074e0babb22b)
 
