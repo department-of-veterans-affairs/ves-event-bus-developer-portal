@@ -2,7 +2,9 @@
 title: Producing Events
 ---
 
-# What's a producer?
+# Producing Events
+
+## What's a producer?
 A producer is an application designed to generate messages or events within an event-driven system. In the context of the Enterprise Event Bus, which aims to expose streams of events known as topics, producers play a crucial role. Producing teams have access to, or knowledge about, important data changes in the VA ecosystem and can send events to specific topics on the Event Bus. You can find a list of currently available topics in our [Event Catalog](https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/use-events/).
 
 As producers are responsible for defining topics and their contents, they will work with the Event Bus Team to determine configuration settings such as the number of topic partitions, event versioning, and event retention rules. The content below outlines the steps needed to start producing events. These steps can also be visualized on the <a href="https://app.mural.co/t/adhoccorporateworkspace2583/m/adhoccorporateworkspace2583/1678744533321/6e9663e9ba0295865de5f094a62d427affc22f5e?sender=ucc14575938bb14be79634773" target="_blank">Enterprise Event Bus Service Blueprint</a>. To learn more about the components and processes involved in event-based systems, please visit our [Introduction to Event-Driven Architecture page](./intro-to-eda.md).
