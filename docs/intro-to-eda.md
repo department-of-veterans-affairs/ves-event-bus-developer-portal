@@ -43,7 +43,7 @@ Enterprise Event Bus, like most other event-based systems in VA, is based on [Ap
 
 The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs.aws.amazon.com/msk/index.html), a hosted version of Kafka that runs in the VA Enterprise Cloud. 
 
-_The following diagram illustrates how events pass through the different components of the Enterprise Event Bus system. View the diagram in [Github](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/Data%20Flow.jpeg)._
+_The following diagram illustrates how events pass through the different components of the Enterprise Event Bus system. [View the full-sized diagram.](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/Data%20Flow.jpeg)_
 ![Simple Flow EBus](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
 
 ## Learn more
