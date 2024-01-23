@@ -9,7 +9,7 @@ A producer is an application designed to generate messages or events within an e
 
 As producers are responsible for defining topics and their contents, they will work with the Event Bus Team to determine configuration settings such as the number of topic partitions, event versioning, and event retention rules. The content below outlines the steps needed to start producing events. These steps can also be visualized on the <a href="https://app.mural.co/t/adhoccorporateworkspace2583/m/adhoccorporateworkspace2583/1678744533321/6e9663e9ba0295865de5f094a62d427affc22f5e?sender=ucc14575938bb14be79634773" target="_blank">Enterprise Event Bus Service Blueprint</a>. To learn more about the components and processes involved in event-based systems, please visit our [Introduction to Event-Driven Architecture](./intro-to-eda.md) page.
 
-## Steps to becoming a producer
+## Steps to become a producer
 
 ### Define the event or topic
 The first step in producing an event is to [contact the Enterprise Event Bus Team](./get-support.md) and express your interest in contributing an event stream. An ideal event stream represents a business event within the VA that would be of interest to multiple stakeholders and have a significant impact on Veterans. Examples of such events include changes to eligibility for benefits, milestones in the claims process, or updates to a Veteran's health record, such as new appointments, prescriptions, or lab results.
