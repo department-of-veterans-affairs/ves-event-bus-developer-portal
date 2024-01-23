@@ -30,8 +30,8 @@ If your consuming application is outside of the AWS environment, we will request
 
 ### Connect to the Event Bus in the development environment
 Once the authentication and authorization steps have been completed, you will receive the Kafka bootstrap server addresses and port numbers with which you can connect to the Event Bus MSK cluster. The following ports are open for consumers and producers that are authenticated with AWS IAM:
-- 9098 (for access from AWS)
-- 9198 (for access from outside of AWS).
+* 9098 (for access from AWS)
+* 9198 (for access from outside of AWS)
 
 ### Develop and deploy Your consumer application
 Many programming languages and frameworks offer libraries designed to interact with Kafka. To ensure full compatibility with the Event Bus, your code needs to authenticate with the AWS MSK cluster using the assigned role provided during the onboarding process. Additionally, consumers should reference the Confluent Schema Registry and use the appropriate schema to deserialize messages in Avro.
