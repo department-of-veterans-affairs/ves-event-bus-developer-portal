@@ -14,6 +14,10 @@ In the Event Catalog, you’ll find the following information for every event:
 * Data elements: A summary of what each field in an event is.
 * Schema: the overall structure of an event payload, described as an [Avro schema](https://docs.oracle.com/cd/E26161_02/html/GettingStartedGuide/avroschemas.html).
 
+![A screenshot of the event catalog, showing a table to display events. The headers are name, topic, lifecycle, domain, and actions. There are filters on the left to filter content in the table.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/18290306/c50c04e0-0f98-4901-81f8-0b3c9d709137)
+
+![A screenshot of an event detail page, showing the name and key metadata like the domain, lifecycle, system of record, connection information, and consumers. At the bottom is an event schema.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/18290306/c6f32b9f-475c-4426-aeeb-65bb2cf8d6a4)
+
 ## Producing and consuming events from the catalog
 
 Producers add events to the catalog and are responsible for keeping them up to date. You can read more about what to expect as a producer on the [producing events](produce-events.md) page.
