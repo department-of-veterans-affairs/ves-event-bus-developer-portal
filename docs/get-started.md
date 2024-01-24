@@ -1,36 +1,12 @@
 ---
-title: Get Started
+title: Are you a good fit for the Enterprise Event Bus?
 ---
 
-# Get Started
+# Are you a good fit for the Enterprise Event Bus?
 
-## What the Enterprise Event Bus Is
+Before you make further plans to leverage enterprise events, you should evaluate if your system is the right fit for event-driven architecture. Please read the content below, which describes the sorts of systems that would benefit (or not benefit) from enterprise events. If you have questions, please [reach out](https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/get-support/)!
 
-The VES Enterprise Event Bus is an asynchronous event processing system that allows producers to publish business events based on data changes and consumers to subscribe to those events. The system uses Kafka as its core event streaming platform, with [AWS MSK](https://aws.amazon.com/msk/) (Managed Streaming for Apache Kafka) as the management layer.
-
-To learn more about the Event Bus, check out the presentation and demo below. An accompanying [slide deck](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Presentations%20and%20Deliverables/2023-08-08%20-%20Event%20Bus%20-%20State%20of%20the%20System.pdf) is also available.
-
-<video width="640" height="400" crossorigin="anonymous" controls poster="../img/phase3_demo_poster.png">
-  <source src="../videos/phase3_demo.mp4" type="video/mp4">
-</video>
-
-### An Opinionated Conduit
-
-We often refer to the Enterprise Event Bus as an **opinionated conduit** between event consumers and producers across the VA ecosystem. Why are we opinionated?
-
-* We have opinions about the **type of events** that would be suitable for an enterprise event bus (more on that below)
-* We have opinions about the **choice of technologies** with which we implement the Enterprise Event Bus and have done the legwork to set up the most suitable infrastructure according to our research
-* We have (proven) opinions about [**Kafka best practices**](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md) which enable us to provide clear guidance to [producers](./produce-events.md) and [consumers](./consume-events.md) and assist with onboarding and learning about the underlying technologies
-
-### Role Within the VA Enterprise Environment
-
-We define **enterprise events** as those that capture significant occurrences within the VA, such as when a Veteran’s benefit claim reaches certain meaningful milestones.
-
-We strive to enable **connecting previously disparate systems** that live across different business lines within the VA, such as the Veteran Benefit Administration (VBA) and the Veteran Health Administration (VHA). As such, we are **not limited to a specific business line or domain** within the VA.
-
-It should be noted that Enterprise Event Bus does **not aspire to be the only event streaming platform within the VA**, but one that is available to any team that wants to produce or consume enterprise events. This would allow teams who don’t have the **time or resources** to set up their own event streaming platform to take advantage of event-driven technologies. In summary, the Event Bus does not attempt to subsume or replace any existing event platforms, or replicate their functionality.
-
-## The Enterprise Event Bus Is a Good Fit If ...
+## The Enterprise Event Bus is a good fit if ...
 
 Your system relies on **heavy orchestration**:<br/>
 Coordinating multiple systems or services can become a challenging task, especially when some individual components lack reliability. This can lead to (partial) failures due to delayed status responses, unclear errors, or frequent retry attempts. A well-considered event-driven solution can greatly enhance the quality and performance of such systems.
@@ -47,21 +23,25 @@ Instead of direct and synchronous interactions between components, producing and
 Your system has **delayed or no user notifications**:<br/>
 Although there are many systems that would benefit from events, almost any scenario where a side effect of the business event is “to notify the Veteran” could be a candidate for an event stream.
 
-## The Enterprise Event Bus Is Not a Good Fit If ...
+## The Enterprise Event Bus is not a good fit if ...
 
-You are interested in a **one-time data sweep**<br/>
+You are interested in a **one-time data sweep**:<br/>
 If you just need to search through a data source to identify specific cases for further processing, event-driven systems would introduce unnecessary complexity and overhead. The Enterprise Event Bus is geared towards handling ongoing event streams rather than singular, one-time data analysis tasks.
 
-Your system deals with **simple, linear workflows**<br/>
+Your system deals with **simple, linear workflows**:<br/>
 If you are dealing with a system that has no significant interaction between components, the overhead of event handling might outweigh the benefits.
 
-Your system is based on a **different programming paradigm**<br/>
+Your system is based on a **different programming paradigm**:<br/>
 There are many valid reasons to use other architectures, such as synchronous API-based technologies. Event-driven architecture is not the best solution in every scenario.
 
-Your system **lacks well-defined components, or has constantly changing interactions**<br/>
+Your system **lacks well-defined components, or has constantly changing interactions**:<br/>
 Systems that are continuously in flux, or don't have well-established boundaries or communication patters would make it difficult to introduce event-driven designs.
 
-## Reach Out To Us
+Your system **is rated as “high” under [FISMA](https://security.cms.gov/learn/federal-information-security-management-act-fisma) and the [VA system categorization](https://jubilant-succotash-m55rqe7.pages.github.io/categorization/)**:<br/> 
+The Event Bus is hosted on the LHDI platform. Because the platform is rated at a “Medium” level under FISMA and the VA system categorization, we are only accepting applications that are rated as Low or Moderate systems at this time.
+
+## Reach out to us
 If you think the Enterprise Event Bus would be a good fit for your situation, or help you solve a problem, then please get in touch with us to discuss further.
 
-The best way to reach out to the Event Bus Team is via the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) Slack channel in the Digital Service VA workspace.
+The best way to reach out to the Event Bus Team is via the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) Slack channel in the Office of CTO @VA workspace.
+
