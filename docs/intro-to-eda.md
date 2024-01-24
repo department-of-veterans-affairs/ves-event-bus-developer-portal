@@ -22,10 +22,10 @@ It should be noted that Enterprise Event Bus does not aspire to be the only even
 
 ## An opinionated conduit
 
-We often refer to the Enterprise Event Bus team as an opinionated conduit between event consumers and producers across the VA ecosystem. That’s because our research, hands-on experience, and deep knowledge of [Apache Kafka best practices](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/ADR/ADR%20event%20design.md) have led us to definite opinions regarding:
+We often refer to the Enterprise Event Bus team as an opinionated conduit between event consumers and producers across the VA ecosystem. That’s because our research, hands-on experience, and deep knowledge of [Apache Kafka best practices](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md) have led us to definite opinions regarding:
 * the type of events that best fit an _Enterprise_ Event Bus architecture (more on that below)
 * the choice of technologies with which we implement the Enterprise Event Bus across different contexts of use 
-* and the most suitable infrastructure for implementing it 
+* and the most suitable infrastructure for implementing it. 
 
 These enable us to provide producers and consumers with clear guidance to and assist with onboarding and learning about the underlying technologies.
 
@@ -47,9 +47,9 @@ _The following diagram illustrates how events pass through the different compone
 ![Simple Flow EBus](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
 
 ## Learn more
-* Find definitions for acronyms and event-related terms on the [Terminology page](./terminology.md).
-* Watch this <a href="https://www.youtube.com/watch?v=R6tUoxx2gVY" target="_blank">brief video for a quick overview of event-driven architecture.
+* Find definitions for acronyms and event-related terms on the [Terminology](./terminology.md) page.
+* <a href="https://www.youtube.com/watch?v=R6tUoxx2gVY" target="_blank">Watch this brief video</a> for a quick overview of event-driven architecture.
 * <a href="https://developer.confluent.io/patterns/" target="_blank">Learn about event streaming patterns</a> on the Confluent Developer website.
 * <a href="https://www.confluent.io/resources/presentation/one-year-in-lessons-learned-and-plans-for-the-future/" target="_blank">Watch a presentation</a> about “Lessons Learned and Plans for the Future” by Robert Ezekiel from Booz Allen Hamilton.
 * <a href="https://www.confluent.io/events/kafka-summit-americas-2021/improving-veteran-benefit-services-through-efficient-data-streaming/" target="_blank">Watch a presentation</a> about “Improving Veteran Benefit Services Through Efficient Data Streaming” by Robert Ezekiel from Booz Allen Hamilton
-* The Enterprise Event Bus Team offers consultations and is happy to answer questions. [Reach out to us](./get-support.md).
+* The Enterprise Event Bus Team offers consultations and is happy to answer questions. [Reach out to us.](./get-support.md)
