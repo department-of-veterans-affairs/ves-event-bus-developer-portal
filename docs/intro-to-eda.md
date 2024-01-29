@@ -48,8 +48,8 @@ _The following diagram illustrates how events pass through the different compone
 
 ## Learn more
 * Find definitions for acronyms and event-related terms on the [Terminology](./terminology.md) page.
-* <a href="https://www.youtube.com/watch?v=R6tUoxx2gVY" target="_blank">Watch this brief video</a> for a quick overview of event-driven architecture.
-* <a href="https://developer.confluent.io/patterns/" target="_blank">Learn about event streaming patterns</a> on the Confluent Developer website.
-* <a href="https://www.confluent.io/resources/presentation/one-year-in-lessons-learned-and-plans-for-the-future/" target="_blank">Watch a presentation</a> about “Lessons Learned and Plans for the Future” by Robert Ezekiel from Booz Allen Hamilton.
-* <a href="https://www.confluent.io/events/kafka-summit-americas-2021/improving-veteran-benefit-services-through-efficient-data-streaming/" target="_blank">Watch a presentation</a> about “Improving Veteran Benefit Services Through Efficient Data Streaming” by Robert Ezekiel from Booz Allen Hamilton
+* <a href="https://www.youtube.com/watch?v=R6tUoxx2gVY">Watch this brief video</a> for a quick overview of event-driven architecture.
+* <a href="https://developer.confluent.io/patterns/">Learn about event streaming patterns</a> on the Confluent Developer website.
+* <a href="https://www.confluent.io/resources/presentation/one-year-in-lessons-learned-and-plans-for-the-future/">Watch a presentation</a> about “Lessons Learned and Plans for the Future” by Robert Ezekiel from Booz Allen Hamilton.
+* <a href="https://www.confluent.io/events/kafka-summit-americas-2021/improving-veteran-benefit-services-through-efficient-data-streaming/">Watch a presentation</a> about “Improving Veteran Benefit Services Through Efficient Data Streaming” by Robert Ezekiel from Booz Allen Hamilton
 * The Enterprise Event Bus Team offers consultations and is happy to answer questions. [Reach out to us.](./get-support.md)
