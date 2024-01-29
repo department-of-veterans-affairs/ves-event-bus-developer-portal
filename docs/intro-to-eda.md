@@ -23,6 +23,7 @@ It should be noted that Enterprise Event Bus does not aspire to be the only even
 ## An opinionated conduit
 
 We often refer to the Enterprise Event Bus team as an opinionated conduit between event consumers and producers across the VA ecosystem. That’s because our research, hands-on experience, and deep knowledge of [Apache Kafka best practices](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md) have led us to definite opinions regarding:
+
 * the type of events that best fit an _Enterprise_ Event Bus architecture (more on that below)
 * the choice of technologies with which we implement the Enterprise Event Bus across different contexts of use 
 * and the most suitable infrastructure for implementing it. 

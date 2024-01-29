@@ -13,10 +13,11 @@ Event Bus Slack channel support hours are from 9am - 5pm ET, Monday through Frid
 
 Response times are based on the nature of the posting:
 
-- Incidents (outage or error): ASAP. Please clearly indicate this is an “INCIDENT” in the post.
-- General inquiries: 2-3 hours.
+* Incidents (outage or error): ASAP. Please clearly indicate this is an “INCIDENT” in the post.
+* General inquiries: 2-3 hours.
 
 ## Slack service notifications
 Alerts about Event Bus monitoring can be found on the following Slack channels:
-- [#ves-event-bus-dev](https://dsva.slack.com/archives/C04PART9C05)
-- [#vaapi-lhdi-customer-env-alerts](https://lighthouseva.slack.com/archives/C05RZUP7H6D) (includes alerts for the wider LHDI environment)
+
+* [#ves-event-bus-dev](https://dsva.slack.com/archives/C04PART9C05)
+* [#vaapi-lhdi-customer-env-alerts](https://lighthouseva.slack.com/archives/C05RZUP7H6D) (includes alerts for the wider LHDI environment)
