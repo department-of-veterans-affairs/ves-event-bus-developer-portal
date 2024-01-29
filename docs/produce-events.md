@@ -160,7 +160,7 @@ See for instance this Java code that produces messages to a topic named â€œtestâ
 
 In Backstage, entities represent software components or resources that share a common data shape and semantics. While there are several built-in entities, we have specifically created a custom entity called "Event" for the Event Bus.
 
-To register your topic with with the Hub:
+To register your topic with CODE VA:
 
 1. Create a file named `catalog-info.yaml` at the root of your source code repository.
 2. Populate the `catalog-info.yaml` file with an `Event` Backstage entity based on the data structure below:
@@ -205,53 +205,44 @@ To register your topic with with the Hub:
 
     Here is some additional information on the individual fields:
 
+    **apiVersion** [required]: For the time being, `apiVersion` will have a constant, static value of `backstage.io/v1alpha1`, though we are most likely free to change this if we wish. Because we are introducing a new Entity Kind that doesn't exist in Backstage, any `Event` specification we validate against won't correspond to anything. [Read more here](https://backstage.io/docs/features/software-catalog/descriptor-format#apiversion-and-kind-required).
 
-    #### apiVersion [required]
-    For the time being, `apiVersion` will have a constant, static value of `backstage.io/v1alpha1`, though we are most likely free to change this if we wish. Because we are introducing a new Entity Kind that doesn't exist in Backstage, any `Event` specification we validate against won't correspond to anything. [Read more here](https://backstage.io/docs/features/software-catalog/descriptor-format#apiversion-and-kind-required)
+    **kind** [required]: This value must be set to `Event` in order to pass JSON schema validation.
 
-    #### kind [required]
-    This value must be set to `Event` in order to pass JSON schema validation.
+    **metadata** [required]: A structure that contains information about the entity itself. The metadata structure includes the following properties:
 
-    #### metadata [required]
-    A structure that contains information about the entity itself. The metadata structure includes the following properties:
-
-    **name**
-    A machine-readable name of the event
+    * **name**: A machine-readable name of the event
     
-    **description**
-    A short description of the event
+    * **description**: A short description of the event
 
-    **title**
-    A human-readable representation of the `name` to be used in Backstage user interfaces
+    * **title**: A human-readable representation of the `name` to be used in Backstage user interfaces
 
-    **links**
-    An optional list of links related to the event that will be displayed on the details page. Each link consists of a `url` and `title`
+    * **links**: An optional list of links related to the event that will be displayed on the details page. Each link consists of a `url` and `title`
 
-    #### spec
-    The section of a `catalog-info.yaml` file that producers will most likely be filling out. Contains information about the events a producer will be emitting.
+    **spec**: The section of a `catalog-info.yaml` file that producers will most likely be filling out. Contains information about the events a producer will be emitting.
 
-    **type [required]**
+    * **type** [required]:
     Currently set to event
 
-    **lifecycle [required]**
+    * **lifecycle** [required]:
     Displayed in table. The current development status for an event. Possible values are: `experimental`, `development`, `production`, or `deprecated`.
 
-    **domain [required]**
+    * **domain** [required]:
     Displayed in table. The domain in which a particular event exists. Values might be: `claims status`, `health`, `appointments`, `benefits`, etc.
 
-    **productowner [required]**
+    * **productowner** [required]:
     Displayed in details page. OCTODE/VA PO embedded on team (directly below) building app code.
 
-    **team [required]**
+    * **team** [required]:
     The application team that maintains app code responsible for producing events
 
-    **system [required]**
+    * **system** [required]:
     The system from which events are produced
 
-    **topics [required]**
+    * **topics** [required]:
     The Kafka topics these events will be published to. Each topic consists of the actual topic name, the environment it's available in, and the broker address that will be provided to you by the Event Bus Team. The example shows a topic for each the dev, staging, and production environments.
 
-    **forwarders [optional]**
+    * **forwarders** [optional]:
     Displayed in details page. Array of objects with `systemName` and `teamName` properties. Used if there is a system sitting in between the source data store and the Event Bus that mutates data before an event is published.
 
     The `catalog.yaml` file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema` and `spec.schemaCompatibilityMode` fields included in this JSON schema will be auto-populated and do not need to be included in the `catalog-info.yaml` file. These values will be fetched from the Schema Registry based on the event's topic name.
