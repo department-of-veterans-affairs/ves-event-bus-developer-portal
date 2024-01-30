@@ -9,6 +9,7 @@ The best way to request support from the Event Bus Team is to reach out to us vi
 Please avoid direct messaging an Event Bus team member in Slack. Chatting openly in the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) channel allows others to learn from the questions and answers discussed.
 
 ## Slack channel support hours 
+
 Event Bus Slack channel support hours are from 9am - 5pm ET, Monday through Friday, with the exception of federal holidays.
 
 Response times are based on the nature of the posting:
@@ -17,6 +18,7 @@ Response times are based on the nature of the posting:
 * General inquiries: 2-3 hours.
 
 ## Slack service notifications
+
 Alerts about Event Bus monitoring can be found on the following Slack channels:
 
 * [#ves-event-bus-dev](https://dsva.slack.com/archives/C04PART9C05)

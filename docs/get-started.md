@@ -41,6 +41,7 @@ Your system **is rated as “high” under [FISMA](https://security.cms.gov/lear
 The Event Bus is hosted on the LHDI platform. Because the platform is rated at a “Medium” level under FISMA and the VA system categorization, we are only accepting applications that are rated as Low or Moderate systems at this time.
 
 ## Reach out to us
+
 If you think the Enterprise Event Bus would be a good fit for your situation, or help you solve a problem, then please get in touch with us to discuss further.
 
 The best way to reach out to the Event Bus Team is via the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) Slack channel in the Office of CTO @VA workspace.

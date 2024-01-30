@@ -5,16 +5,20 @@ title: Consuming Events
 # Consuming Events
 
 ## What’s a consumer?
+
 A consumer is an application that is set up to receive messages or events in an event-driven system. The Event Bus exposes streams of events, called topics, to consumers. The events capture significant occurrences taking place in an external system. A list of currently available topics can be found in our [Event Catalog](./use-events.md).
 
 To access messages in a particular topic, an event consumer would subscribe to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. The content below outlines the steps needed to start consuming events. These steps can also be visualized on the <a href="https://app.mural.co/t/adhoccorporateworkspace2583/m/adhoccorporateworkspace2583/1678744533321/6e9663e9ba0295865de5f094a62d427affc22f5e?sender=ucc14575938bb14be79634773">Enterprise Event Bus Service Blueprint</a>. Learn more about the components and processes involved in event-based systems on our [Introduction to Event-Driven Architecture](./intro-to-eda.md) page.
 
 ## Steps to become a consumer
+
 ### Find events/topics to consume
+
 The first step to consuming an event is to [reach out to the Enterprise Event Bus Team](./get-support.md) about your interest in events. From there, you can either subscribe to an existing topic with relevant events, or else identify a team able to provide the topic that is of interest to you. At this point in time, we are unable to identify producers for consumers that do not have a source for their desired events, but we will do our best to work with your chosen producing team.
 See also our [Produce Events](./produce-events.md) page.
 
 ### Determine if you need an ESECC request
+
 Depending on the location of a consumer application, you may need to obtain an ESECC (Enterprise Security External Change Council) request. ESECC requests are required to open certain non-standard ports between different systems and allow traffic to flow over those ports.
 
 The diagram below illustrates the relationship between consumer locations and ESECC requirements. It shows that as a general rule, consumers located within the VAEC (VA Enterprise Cloud) AWS Organization do not need to file an ESECC request. For consumers who are in other AWS organizations, or outside of AWS, an ESECC process will likely be needed. If you’re unsure which category your use case fits in, please reach out to the Event Bus Team for help. However, please also note that while the Event Bus Team is happy to give direction and assist with some aspects of the ESECC process, consumers are ultimately responsible for initiating and monitoring the request.
@@ -24,17 +28,20 @@ This [example documentation](https://github.com/department-of-veterans-affairs/c
 ![A diagram showing various possibilities and whether a system would likely need an ESECC. If you are on Amazon Web Services (AWS) inside VA Enterprise Cloud (VAEC) and outside GovCloud High, or on LHDI - Event Bus, Virtual Regional Office (VRO), no ESECC is needed. Instead, a Service Now ticket is needed. If you are on AWS outside VA Enterprise Cloud - GovCloud High or if you are on Non-AWS Cloud (e.g. Azure), you should check if ESECC is needed. If you are on Premise - VistA, ESECC is needed.](img/Client%20Environments%20ESECC%20Decision%20Circles.svg)
 
 ### Set up authorization and authentication
+
 To subscribe to specific topics on the Event Bus, consumers need to be authenticated and have the appropriate permissions. The Event Bus MSK cluster is only accessible from the VA Network, and we use AWS IAM (Identity and Access Management) Roles and Policies to control access to different resources. If your consuming application is within the AWS environment, you will need to let us know to which IAM Role(s) or IAM User(s) we should grant access. We will then set up the corresponding IAM Policies on our end and assign a named role for consumers to authenticate with AWS MSK in their application code.
 
 If your consuming application is outside of the AWS environment, we will request an IAM User to be created on your behalf. You will then be able to access the requested topic(s) using those credentials.
 
 ### Connect to the Event Bus in the development environment
+
 Once the authentication and authorization steps have been completed, you will receive the Kafka bootstrap server addresses and port numbers with which you can connect to the Event Bus MSK cluster. The following ports are open for consumers and producers that are authenticated with AWS IAM:
 
 * 9098 (for access from AWS)
 * 9198 (for access from outside of AWS)
 
 ### Develop and deploy Your consumer application
+
 Many programming languages and frameworks offer libraries designed to interact with Kafka. To ensure full compatibility with the Event Bus, your code needs to authenticate with the AWS MSK cluster using the assigned role provided during the onboarding process. Additionally, consumers should reference the Confluent Schema Registry and use the appropriate schema to deserialize messages in Avro.
 
 See for instance this Java code that consumes messages from a topic named “test”:
@@ -153,6 +160,7 @@ See for instance this Java code that consumes messages from a topic named “tes
     ```
 
 ### Register with CODE VA
+
 [CODE VA](https://hub.lighthouse.va.gov) (formerly known as the Hub) is a software catalog that houses entities from across VA. Once your consumer application is up and running, register with the catalog so event producers are aware of how their events are being used, and which systems are consuming them.
 
 To register with CODE VA:
@@ -210,4 +218,5 @@ Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket
 Datadog is a monitoring and analytics tool that is used within VA and is hosted by the Devops Transformation Services (DOTS) team. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. In order for Event Bus users to [request access to Datadog](https://animated-carnival-57b3e7f5.pages.github.io/datadog-observability-tools/datadog-access/), they must have a VA email address. To request access to Datadog, complete the HelpDesk form on the ServiceNow Portal at [ECC (Enterprise Command Center) Monitoring Services - your IT Service Portal](https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fyourit.va.gov%2Fva%3Fid%3Dsc_cat_item%26sys_id%3D4cdf488b1ba4fcd412979796bc4bcb74&data=05%7C01%7C%7Ccb701e4e7fc944b6041308dbeacea9aa%7Ce95f1b23abaf45ee821db7ab251ab3bf%7C0%7C0%7C638361945550254440%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=sJfq3j8vnXwdtuQrfY%2FBaRttaqyOpKA6X17O8TMK9ug%3D&reserved=0). This must be accessed from the VA Network.
 
 ## Troubleshooting
+
 If you have questions or run into difficulties with any of these steps, please [contact the Enterprise Event Bus Team](./get-support.md).

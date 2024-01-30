@@ -5,6 +5,7 @@ title: Event-Driven Architecture at VA
 # Event-Driven Architecture at VA
 
 ## Introduction
+
 The Enterprise Event Bus is an asynchronous event processing system that spans systems and lines of business at VA. Event-driven architecture uses events &mdash; types of actions, such as a Veteran creating a medical appointment or updating their beneficiaries &mdash; to communicate with systems that are subscribed to the stream of events. The systems that are producing the events, also known as [producers](./produce-events.md), are decoupled from the systems that are consuming their events, also known as [consumers](./consume-events.md).
 
 _The following diagram illustrates how the different components of the Enterprise Event Bus come together to produce streams of events. [View the full-sized diagram.](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
@@ -48,6 +49,7 @@ _The following diagram illustrates how events pass through the different compone
 ![A diagram showing a producer application on the left, pushing a stream of events to a topic. In the center of the diagram, events are shown in a box called AWS MSK (indicating that they are hosted there) and distributed among brokers and partitions to balance the load. There is a note explaining that metadata managed by the cluster informs producers and consumers which broker to connect to. The data on AWS MSK is stored in AWS EBS. Consumer applications can subscribe to topics to pull streams of events, as the consuming application is doing in the right side of the diagram.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
 
 ## Learn more
+
 * Find definitions for acronyms and event-related terms on the [Terminology](./terminology.md) page.
 * <a href="https://www.youtube.com/watch?v=R6tUoxx2gVY">Watch this brief video</a> for a quick overview of event-driven architecture.
 * <a href="https://developer.confluent.io/patterns/">Learn about event streaming patterns</a> on the Confluent Developer website.
