@@ -1,5 +1,21 @@
 :root {
   --md-primary-fg-color: #0060df;
-  --md-primary-fg-color--light: #307eb2;
-  --md-primary-fg-color--dark: #112e51;
+  --md-typeset-color: #1b1b1b;
+  --md-admonition-fg-color: #1b1b1b;
+}
+
+article p a:link,
+article li a:link,
+li a:hover {
+  text-decoration: underline;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-nav__title,
+.md-typeset code,
+.md-nav__link[href]:hover,
+.md-typeset a:hover {
+  color: var(--md-typeset-color);
 }

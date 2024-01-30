@@ -219,15 +219,15 @@ To register your topic with CODE VA:
 
     **metadata** [required]: A structure that contains information about the entity itself. The metadata structure includes the following properties:
 
-    * **name**: A machine-readable name of the event
+    * **name** [required]: A machine-readable name of the event
     
-    * **description**: A short description of the event
+    * **description** [required]: A short description of the event
 
-    * **title**: A human-readable representation of the `name` to be used in Backstage user interfaces
+    * **title** [required]: A human-readable representation of the `name` to be used in Backstage user interfaces
 
-    * **links**: An optional list of links related to the event that will be displayed on the details page. Each link consists of a `url` and `title`
+    * **links** [optional]: An optional list of links related to the event that will be displayed on the details page. Each link consists of a `url` and `title`
 
-    **spec**: The section of a `catalog-info.yaml` file that producers will most likely be filling out. Contains information about the events a producer will be emitting.
+    **spec** [required]: The section of a `catalog-info.yaml` file that producers will most likely be filling out. Contains information about the events a producer will be emitting.
 
     * **type** [required]:
     Currently set to event
