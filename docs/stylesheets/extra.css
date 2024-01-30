@@ -4,18 +4,32 @@
   --md-admonition-fg-color: #1b1b1b;
 }
 
+/* add affordance to article links */
 article p a:link,
 article li a:link,
 li a:hover {
   text-decoration: underline;
 }
 
+/* use same text color as VA.gov */
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3,
+.md-typeset h4,
 .md-nav__title,
 .md-typeset code,
 .md-nav__link[href]:hover,
 .md-typeset a:hover {
   color: var(--md-typeset-color);
+}
+
+/* adds underline to nav item focus state */
+.md-nav__link[href]:focus {
+  text-decoration: underline;
+}
+
+/* allows visually consistent focus state for top nav item */
+.md-nav--primary .md-nav__title,
+.md-nav--secondary .md-nav__title {
+  box-shadow: none;
 }
