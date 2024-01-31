@@ -25,7 +25,7 @@ The diagram below illustrates the relationship between consumer locations and ES
 
 This [example documentation](https://github.com/department-of-veterans-affairs/checkin-devops/blob/master/docs/esecc-requests.md) provides a starting point that outlines the steps and processes involved in an ESECC request. Note that we have not verified that the document is complete and would be applicable in all situations. Please do your own research and be sure to get started as early as possible, as this can be a lengthy process.
 
-![A diagram showing various possibilities and whether a system would likely need an ESECC. If you are on Amazon Web Services (AWS) inside VA Enterprise Cloud (VAEC) and outside GovCloud High, or on LHDI - Event Bus, Virtual Regional Office (VRO), no ESECC is needed. Instead, a Service Now ticket is needed. If you are on AWS outside VA Enterprise Cloud - GovCloud High or if you are on Non-AWS Cloud (e.g. Azure), you should check if ESECC is needed. If you are on Premise - VistA, ESECC is needed.](img/Client%20Environments%20ESECC%20Decision%20Circles.svg)
+![A diagram showing various possibilities and whether a system would likely need an ESECC. If you are on Amazon Web Services (AWS) inside VA Enterprise Cloud (VAEC) and outside GovCloud High, or on LHDI - Event Bus, Virtual Regional Office (VRO), no ESECC is needed. Instead, a Service Now ticket is needed. If you are on AWS outside VA Enterprise Cloud - GovCloud High or if you are on Non-AWS Cloud (e.g. Azure), you should check if ESECC is needed. If you are on Premise - VistA, ESECC is needed.](img/Client-Environments-ESECC-Decision-Circles.svg)
 
 ### Set up authorization and authentication
 
