@@ -5,11 +5,12 @@ title: Event-Driven Architecture at VA
 # Event-Driven Architecture at VA
 
 ## Introduction
-The Enterprise Event Bus is an asynchronous event processing system that spans systems and lines of business at VA. Event-driven architecture uses events &mdash; types of actions, such as a Veteran creating a medical appointment or updating their beneficiaries &mdash; to communicate with systems that are subscribed to the stream of events. The systems that are producing the events, also known as [producers](https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/produce-events/), are decoupled from the systems that are consuming their events, also known as [consumers](https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/consume-events/).
 
-_The following diagram illustrates how the different components of the Enterprise Event Bus come together to produce streams of events. [View the full-sized diagram.](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
+The Enterprise Event Bus is an asynchronous event processing system that spans systems and lines of business at VA. Event-driven architecture uses events &mdash; types of actions, such as a Veteran creating a medical appointment or updating their beneficiaries &mdash; to communicate with systems that are subscribed to the stream of events. The systems that are producing the events, also known as [producers](./produce-events.md), are decoupled from the systems that are consuming their events, also known as [consumers](./consume-events.md).
 
-![An diagram showing various event-producing systems on the left, which funnel into business topics in the center, which are finally filtered out to consuming systems on the right.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/f0dfe62a-8509-459c-bd9a-074e0babb22b)
+_The following conceptual diagram illustrates how the different components of the Enterprise Event Bus might come together to produce streams of events. [View the full-sized diagram.](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
+
+![A conceptual diagram showing various event-producing systems on the left, which funnel into business topics in the center, which are finally filtered out to consuming systems on the right.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/f0dfe62a-8509-459c-bd9a-074e0babb22b)
 
 
 ## Role within the VA enterprise environment
@@ -23,6 +24,7 @@ It should be noted that Enterprise Event Bus does not aspire to be the only even
 ## An opinionated conduit
 
 We often refer to the Enterprise Event Bus team as an opinionated conduit between event consumers and producers across the VA ecosystem. That’s because our research, hands-on experience, and deep knowledge of [Apache Kafka best practices](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md) have led us to definite opinions regarding:
+
 * the type of events that best fit an _Enterprise_ Event Bus architecture (more on that below)
 * the choice of technologies with which we implement the Enterprise Event Bus across different contexts of use 
 * and the most suitable infrastructure for implementing it. 
@@ -47,9 +49,10 @@ _The following diagram illustrates how events pass through the different compone
 ![A diagram showing a producer application on the left, pushing a stream of events to a topic. In the center of the diagram, events are shown in a box called AWS MSK (indicating that they are hosted there) and distributed among brokers and partitions to balance the load. There is a note explaining that metadata managed by the cluster informs producers and consumers which broker to connect to. The data on AWS MSK is stored in AWS EBS. Consumer applications can subscribe to topics to pull streams of events, as the consuming application is doing in the right side of the diagram.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
 
 ## Learn more
+
 * Find definitions for acronyms and event-related terms on the [Terminology](./terminology.md) page.
-* <a href="https://www.youtube.com/watch?v=R6tUoxx2gVY" target="_blank">Watch this brief video</a> for a quick overview of event-driven architecture.
-* <a href="https://developer.confluent.io/patterns/" target="_blank">Learn about event streaming patterns</a> on the Confluent Developer website.
-* <a href="https://www.confluent.io/resources/presentation/one-year-in-lessons-learned-and-plans-for-the-future/" target="_blank">Watch a presentation</a> about “Lessons Learned and Plans for the Future” by Robert Ezekiel from Booz Allen Hamilton.
-* <a href="https://www.confluent.io/events/kafka-summit-americas-2021/improving-veteran-benefit-services-through-efficient-data-streaming/" target="_blank">Watch a presentation</a> about “Improving Veteran Benefit Services Through Efficient Data Streaming” by Robert Ezekiel from Booz Allen Hamilton
+* <a href="https://www.youtube.com/watch?v=R6tUoxx2gVY">Watch this brief video</a> for a quick overview of event-driven architecture.
+* <a href="https://developer.confluent.io/patterns/">Learn about event streaming patterns</a> on the Confluent Developer website.
+* <a href="https://www.confluent.io/resources/presentation/one-year-in-lessons-learned-and-plans-for-the-future/">Watch a presentation</a> about “Lessons Learned and Plans for the Future” by Robert Ezekiel from Booz Allen Hamilton.
+* <a href="https://www.confluent.io/events/kafka-summit-americas-2021/improving-veteran-benefit-services-through-efficient-data-streaming/">Watch a presentation</a> about “Improving Veteran Benefit Services Through Efficient Data Streaming” by Robert Ezekiel from Booz Allen Hamilton
 * The Enterprise Event Bus Team offers consultations and is happy to answer questions. [Reach out to us.](./get-support.md)
