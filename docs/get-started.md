@@ -4,7 +4,7 @@ title: Are you a good fit for the Enterprise Event Bus?
 
 # Are you a good fit for the Enterprise Event Bus?
 
-Before you make further plans to leverage enterprise events, you should evaluate if your system is the right fit for event-driven architecture. Please read the content below, which describes the sorts of systems that would benefit (or not benefit) from enterprise events. If you have questions, please [reach out](./get-support.md)!
+Before you make further plans to leverage enterprise events, you should evaluate if your system is the right fit for event-driven architecture. Please read the content below, which describes the sorts of systems that would benefit (or not benefit) from enterprise events.
 
 ## The Enterprise Event Bus is a good fit if ...
 
@@ -42,7 +42,7 @@ The Event Bus is hosted on the LHDI platform. Because the platform is rated at a
 
 ## Reach out to us
 
-If you think the Enterprise Event Bus would be a good fit for your situation, or help you solve a problem, then please get in touch with us to discuss further.
+If you think the Enterprise Event Bus would be a good fit for your situation, please [reach out](./get-support.md)!
 
-The best way to reach out to the Event Bus Team is via the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) Slack channel in the Office of CTO @VA workspace.
+The best way to contact the Event Bus Team is via the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) Slack channel in the Office of CTO @VA workspace.
 
