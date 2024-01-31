@@ -55,7 +55,7 @@ If your producing application is outside of the AWS environment, we will request
 
 ### Connect to the Event Bus in the development environment
 
-Once the authentication and authorization steps have been completed, you will be able to connect to the the Event Bus MSK cluster using the Kafka bootstrap server addresses and port numbers available in the Event Catalog. The following ports are open for consumers and producers that are authenticated with AWS IAM: - 9098 (for access from AWS) - 9198 (for access from outside of AWS.
+Once the authentication and authorization steps have been completed, you will be able to connect to the the Event Bus MSK cluster using the Kafka bootstrap server addresses and port numbers available in the Event Catalog. The following ports are open for consumers and producers that are authenticated with AWS IAM: - 9098 (for access from AWS) - 9198 (for access from outside of AWS).
 
 ### Develop and deploy your producer application
 
