@@ -21,7 +21,7 @@ spec:
     teamName: ves-event-bus-2
     productOwner: Sally Smith
  topics:
-  - topic: does_not_exist
+  - topic: decision_letter_availability
     environment: development
     brokerAddress: development.broker-address.com/dev-connection/v0/
   - topic: staging_test
