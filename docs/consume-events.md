@@ -161,7 +161,7 @@ See for instance this Java code that consumes messages from a topic named “tes
 
 ### Register with CODE VA
 
-[CODE VA](https://code.va.gov) (formerly known as the Hub) is a software catalog that houses entities from across VA. Once your consumer application is up and running, register with the catalog so event producers are aware of how their events are being used, and which systems are consuming them.
+[CODE VA](https://code.va.gov/) (formerly known as the Hub) is a software catalog that houses entities from across VA. Once your consumer application is up and running, register with the catalog so event producers are aware of how their events are being used, and which systems are consuming them.
 
 To register with CODE VA:
 

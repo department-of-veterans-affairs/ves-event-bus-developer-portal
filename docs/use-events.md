@@ -6,7 +6,7 @@ title: Event Catalog
 
 ## About the Catalog
 
-The Event Catalog is the single source of truth for all events currently published on the Event Bus. The Event Catalog lives on [CODE VA](https://code.va.gov) (formerly called the Lighthouse Hub), and you will need to be on the VA network to access it.
+The Event Catalog is the single source of truth for all events currently published on the Event Bus. The Event Catalog lives on [CODE VA](https://code.va.gov/) (formerly called the Lighthouse Hub), and you will need to be on the VA network to access it.
 
 In the Event Catalog, you’ll find the following information for every event:
 
