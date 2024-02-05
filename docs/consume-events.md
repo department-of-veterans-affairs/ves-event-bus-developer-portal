@@ -161,7 +161,7 @@ See for instance this Java code that consumes messages from a topic named “tes
 
 ### Register with CODE VA
 
-[CODE VA](https://hub.lighthouse.va.gov) (formerly known as the Hub) is a software catalog that houses entities from across VA. Once your consumer application is up and running, register with the catalog so event producers are aware of how their events are being used, and which systems are consuming them.
+[CODE VA](https://code.va.gov/) (formerly known as the Hub) is a software catalog that houses entities from across VA. Once your consumer application is up and running, register with the catalog so event producers are aware of how their events are being used, and which systems are consuming them.
 
 To register with CODE VA:
 
@@ -197,7 +197,7 @@ To register with CODE VA:
 
 3. If you are unsure whether to classify your consumer as a Component or a System, see the [Backstage System Model](https://backstage.io/docs/features/software-catalog/system-model/).
 
-4. Once your `catalog-info.yaml` file has been committed, log into [CODE VA](https://hub.lighthouse.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
+4. Once your `catalog-info.yaml` file has been committed, log into [CODE VA](https://code.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
 **NOTE**: As a consumer, it is imperative that you include the `subscribesToEvent` in your `catalog-info.yaml` file, in the `spec` object. `subscribesToEvent` is an array containing strings. Each string corresponds to a `name` specified in a producer's `catalog-info.yaml` file [metadata object](https://backstage.io/docs/features/software-catalog/descriptor-format#common-to-all-kinds-the-metadata). This metadata name property can not always be derived from the event or the topic, so it will require referencing the producer's `catalog-info.yaml` file, e.g.:
 

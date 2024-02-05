@@ -166,7 +166,7 @@ See for instance this Java code that produces messages to a topic named â€œtestâ
 
 ### Register with CODE VA
 
-[CODE VA](https://hub.lighthouse.va.gov/) (formerly known as the Hub) is a software catalog that houses entities from across VA. Once you have your producer application up and running, it's important to register with the catalog to ensure that both current and future consumers can discover your event and access its details.
+[CODE VA](https://code.va.gov/) (formerly known as the Hub) is a software catalog that houses entities from across VA. Once you have your producer application up and running, it's important to register with the catalog to ensure that both current and future consumers can discover your event and access its details.
 
 In Backstage, entities represent software components or resources that share a common data shape and semantics. While there are several built-in entities, we have specifically created a custom entity called "Event" for the Event Bus.
 
@@ -257,7 +257,7 @@ To register your topic with CODE VA:
 
     The `catalog.yaml` file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema` and `spec.schemaCompatibilityMode` fields included in this JSON schema will be auto-populated and do not need to be included in the `catalog-info.yaml` file. These values will be fetched from the Schema Registry based on the event's topic name.
 
-3. Once your `catalog-info.yaml` file has been committed, log into [CODE VA](https://hub.lighthouse.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
+3. Once your `catalog-info.yaml` file has been committed, log into [CODE VA](https://code.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
 
 ## Logs
