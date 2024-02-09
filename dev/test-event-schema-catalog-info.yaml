@@ -1,0 +1,35 @@
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+ name: test-event
+ description: A test event.
+ title: Test Event
+ links:
+  - url: https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/consume-events/
+    title: Consumer documentation
+  - url: https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/produce-events/
+    title: Producer documentation
+spec:
+ type: event
+ lifecycle: experimental
+ domain: test
+ sourceSystems:
+  - systemName: BIP
+    teamName: ves-event-bus
+    productOwner: John Smith
+  - systemName: VistA
+    teamName: ves-event-bus-2
+    productOwner: Sally Smith
+ topics:
+  - topic: test
+    environment: development
+    brokerAddress: development.broker-address.com/dev-connection/v0/
+  - topic: test
+    environment: staging
+    brokerAddress: staging.broker-address.com/staging-connection/v0/
+ forwarders:
+  - systemName: firstForwarder
+    teamName: ves-event-bus
+  - systemName: secondForwarder
+    teamName: ves-event-bus
+ retention: 10
