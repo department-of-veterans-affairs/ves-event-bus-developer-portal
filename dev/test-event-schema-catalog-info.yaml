@@ -11,7 +11,7 @@ metadata:
     title: Producer documentation
 spec:
  type: event
- lifecycle: experimental
+ lifecycle: development
  domain: test
  sourceSystems:
   - systemName: BIP
