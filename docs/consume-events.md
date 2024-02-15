@@ -142,14 +142,13 @@ See for instance this Java code that consumes messages from a topic named “tes
                 if ("SASL_SSL".equals(EB_SECURITY_PROTOCOL)) {
                     props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, EB_SECURITY_PROTOCOL);
                     props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/tmp/kafka.client.truststore.jks");
-                    props.put(SslConfigs.SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG, "");
-                    props.put(SaslConfigs.SASL_MECHANISM, "AWS_MSK_IAM");
+                    props.put(SaslConfigs.SASL_MECHANISM, "OAUTHBEARER");
                     props.put(SaslConfigs.SASL_JAAS_CONFIG,
-                            "software.amazon.msk.auth.iam.IAMLoginModule required awsRoleArn=\""
+                            "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required awsRoleArn=\""
                                     + AWS_ROLE // use the role name provided to you
                                     + "\" awsStsRegion=\"us-gov-west-1\";");
-                    props.put(SaslConfigs.SASL_CLIENT_CALLBACK_HANDLER_CLASS,
-                            "software.amazon.msk.auth.iam.IAMClientCallbackHandler");
+                    props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS,
+                            "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
                 } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
                     LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);
                 }
