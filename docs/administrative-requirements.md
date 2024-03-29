@@ -35,7 +35,7 @@ The client system should either have or be in the process of procuring:
 
 The VA Systems Inventory (VASI) is intended to be a registry of all applications in use at VA. 
 
-The Enterprise Event Bus’s VASI ID is 3325, and [this is our entry](https://vaww.vear.ea.oit.va.gov/system_and_application_domain_defs_system_381405.htm) in the VASI registry. You may find your system’s VASI ID by visiting the [VA System Inventory](https://vaww.vear.ea.oit.va.gov/system_and_application_domain_defs_system_381405.htm). (must be on VA network to view)
+The Enterprise Event Bus VASI ID is 3325, and [this is our entry](https://vaww.vear.ea.oit.va.gov/system_and_application_domain_defs_system_381405.htm) in the VASI registry. You may find your system’s VASI ID by visiting the [VA System Inventory](https://vaww.vear.ea.oit.va.gov/system_and_application_domain_defs_system_381405.htm). (must be on VA network to view)
 
 **For non-LHDI clients**:
 
@@ -49,7 +49,7 @@ The Enterprise Event Bus’s VASI ID is 3325, and [this is our entry](https://va
 
 Enterprise Mission Assurance Support Service (eMASS), VA’s Governance, Risk and Compliance (GRC) tool, is the authoritative management tool for VA’s Assessment and Authorization (A&A) process and Risk Management Framework. All systems will be assessed in eMASS by the Risk Review team for an authorization recommendation to be submitted to the Authorizing Official (AO) for final ATO consideration.
 
-All VA systems are given an entry with a unique number in the eMASS system. The Enterprise Event Bus’s eMASS ID is 2350. 
+All VA systems are given an entry with a unique number in the eMASS system. The Enterprise Event Bus eMASS ID is 2350. 
 
 Getting an eMASS ID is a prerequisite for [System Categorization](#fisma-system-categorization). 
 
