@@ -16,10 +16,11 @@ Preparing to connect your system to Enterprise Event Bus may require additional 
 
 **Requirements for production**:
 
-* The client system is registered in the VA Systems Inventory (VASI) and has a VASI number.
-* The client system has been evaluated and classified by the Enterprise Management and Support Services (eMASS). 
+* The client system is registered in the VA Systems Inventory (VASI) and has a VASI ID.
+* The client system has been evaluated and classified by the Enterprise Management and Support Services (eMASS) and has an eMASS ID. 
 * The client system has an active Authority to Operate (ATO), or if inside the Lighthouse Delivery Infrastructure (LHDI), a continuous Authority to Operate (cATO).
 * The client system has been through the System Categorization process and has a FISMA rating.
+* The client system has approved PTA and PIA documents.
 
 ## VASI and eMASS 
 
@@ -38,7 +39,7 @@ The Enterprise Event Bus’s VASI ID is 3325, and [this is our entry](https://va
 
 **For non-LHDI clients**:
 
-* If a prospective client system does not have a VASI number, it will need to submit a LEAF intake request to get one. 
+* If a prospective client system does not have a VASI ID, it will need to submit a LEAF intake request to get one. 
 
 **For new LHDI clients**:
 
@@ -50,11 +51,11 @@ Enterprise Mission Assurance Support Service (eMASS), VA’s Governance, Risk an
 
 All VA systems are given an entry with a unique number in the eMASS system. The Enterprise Event Bus’s eMASS ID is 2350. 
 
-Getting an eMASS number is a prerequisite for [System Categorization](#fisma-system-categorization). 
+Getting an eMASS ID is a prerequisite for [System Categorization](#fisma-system-categorization). 
 
 **For non-LHDI clients**:
 
-* If a prospective client system does not have an eMASS number, it will need to submit a [LEAF intake request](https://leaf.va.gov/NATIONAL/103/cybersecurity_request_portal/) to get one.
+* If a prospective client system does not have an eMASS ID, it will need to submit a [LEAF intake request](https://leaf.va.gov/NATIONAL/103/cybersecurity_request_portal/) to get one.
 
 **For new LHDI clients**:
 
@@ -82,20 +83,6 @@ If a prospective client system has not been through System Categorization, it wi
 
 **Note**: For teams handling ePHI (medical information specific to an individually identifiable patent), the HIPAA Security Rule applies and further review will be required. Support for this can be requested by sending an email to [VHAHCSDevelopmentSecurity2@va.gov](mailto:VHAHCSDevelopmentSecurity2@va.gov).
 
-## ESECC
-
-Depending on the operating boundaries or ports used by the client system, a request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
-
-Prior to determining if your system will require an ESECC, teams are highly encouraged to first attempt connecting to the Enterprise Event Bus.
-
-![A diagram showing various possibilities and whether a system would likely need an ESECC. If you are on Amazon Web Services (AWS) inside VA Enterprise Cloud (VAEC) and outside GovCloud High, or on LHDI - Event Bus, Virtual Regional Office (VRO), no ESECC is needed. Instead, a Service Now ticket is needed. If you are on AWS outside VA Enterprise Cloud - GovCloud High or if you are on Non-AWS Cloud (e.g. Azure), you should check if ESECC is needed. If you are on Premise - VistA, ESECC is needed.](img/Client-Environments-ESECC-Decision-Circles.svg)
-
-Resources:
-
-* [ESECC Public URL process (GitHub)](https://github.com/department-of-veterans-affairs/devops/blob/master/docs/ESECC-Public-URL-process.md#prereq)
-* [Tutorial video](https://dvagov.sharepoint.com/:v:/r/sites/OITECOESDKM/KM%20video%20library/Stream%20Migrated%20Videos/Knowledge%20Management%20Videos/KB0106755%20-%20Network%20ESECC%20-%20Create%20a%20Change%20Request-20221206_034448.mp4?csf=1&web=1&e=cCAS5z&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) on creating a Change Request in ESECC
-* [ChangeGear site](https://esecc.va.gov/CGWeb/Main.aspx) for initiating new requests or change requests
-
 ## PTA and PIA
 
 Privacy Threshold Analysis (PTA) and Privacy Impact Assessment (PIA) documents address what data is crossing what boundaries - this changes for both the Enterprise Event Bus and the client system when a new (producing or consuming) system is added to the bus. When this happens, Enterprise Event Bus becomes a system that clients share data with, so PTA/PIA updates are likely in order for both the Enterprise Event Bus and the new client system.
@@ -111,11 +98,25 @@ Resources:
 * [Privacy Threshold Analysis (PTA) and Privacy Impact Assessment (PIA) Submittal Checklist and Process Overview](https://dvagov.sharepoint.com/sites/OITPrivacyHub/PTA%20Training%20Resources/Forms/AllItems.aspx?id=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources%2FPTA%20and%20PIA%20Submittal%20Checklist%20and%20Process%20Overview%2Epdf&parent=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources&isSPOFile=1&OR=Teams%2DHL&CT=1709826099209&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyNy8yNDAxMDQxNzUwNCIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D) (pdf, must be on VA network to view)
 * [PTA Training Resources](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/Privacy-Impact-Assessment.aspx?csf=1&web=1&e=u8YJ0w) (VA SharePoint, must be on VA network to view)
 
+## ESECC
+
+Depending on the operating boundaries or ports used by the client system, a request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
+
+Prior to determining if your system will require an ESECC, teams are highly encouraged to first attempt connecting to the Enterprise Event Bus.
+
+![A diagram showing various possibilities and whether a system would likely need an ESECC. If you are on Amazon Web Services (AWS) inside VA Enterprise Cloud (VAEC) and outside GovCloud High, or on LHDI - Event Bus, Virtual Regional Office (VRO), no ESECC is needed. Instead, a Service Now ticket is needed. If you are on AWS outside VA Enterprise Cloud - GovCloud High or if you are on Non-AWS Cloud (e.g. Azure), you should check if ESECC is needed. If you are on Premise - VistA, ESECC is needed.](img/Client-Environments-ESECC-Decision-Circles.svg)
+
+Resources:
+
+* [ESECC Public URL process (GitHub)](https://github.com/department-of-veterans-affairs/devops/blob/master/docs/ESECC-Public-URL-process.md#prereq)
+* [Tutorial video](https://dvagov.sharepoint.com/:v:/r/sites/OITECOESDKM/KM%20video%20library/Stream%20Migrated%20Videos/Knowledge%20Management%20Videos/KB0106755%20-%20Network%20ESECC%20-%20Create%20a%20Change%20Request-20221206_034448.mp4?csf=1&web=1&e=cCAS5z&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) on creating a Change Request in ESECC
+* [ChangeGear site](https://esecc.va.gov/CGWeb/Main.aspx) for initiating new requests or change requests
+
 ## WASA Testing
 
 Web Application Security Assessment (WASA) scanning may be needed when a client system builds a web application for consuming events from the bus.
 
-The VA SAVD WASA Coordination team can be contacted via email at [VASAVDWASACoordination@va.gov](mailto:VASAVDWASACoordination@va.gov). A request for WASA testing can be submitted on the [Security Assessment Portal home page](https://portalapps.vansoc.va.gov/EAS/Home) (select Get Started for Web Application Security Testing).
+The VA SAVD WASA Coordination team can be contacted via email at [VASAVDWASACoordination@va.gov](mailto:VASAVDWASACoordination@va.gov). A request for WASA testing can be submitted on the [Security Assessment Portal home page](https://portalapps.vansoc.va.gov/EAS/Home).
 
 ## Other Resources
 
