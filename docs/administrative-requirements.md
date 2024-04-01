@@ -21,6 +21,7 @@ Preparing to connect your system to Enterprise Event Bus may require additional 
 * The client system has an active Authority to Operate (ATO), or if inside the Lighthouse Delivery Infrastructure (LHDI), a continuous Authority to Operate (cATO).
 * The client system has been through the System Categorization process and has a FISMA rating.
 * The client system has approved PTA and PIA documents.
+* Depending on the client system, an ESECC request and/or WASA scan may also be required.
 
 ## VASI and eMASS 
 
@@ -65,7 +66,7 @@ Getting an eMASS ID is a prerequisite for [System Categorization](#fisma-system-
 
 ATO, or “Authority to Operate,” indicates that your system has been evaluated by VA and given permission to deploy code in production.
 
-Client teams that have an active ATO should review it to understand the implications of integrating with the Enterprise Event Bus. That information should be shared with the Enterprise Event Bus team so that both parties understand each other’s requirements for deploying code to production.
+Teams that have an active ATO should review it to understand the implications of integrating with other systems.
 
 **For non-LHDI clients**:
 
@@ -104,7 +105,7 @@ A request to the Enterprise Security External Change Council (ESECC) may be need
 
 Prior to determining if your system will require an ESECC, teams are highly encouraged to first attempt connecting to the Enterprise Event Bus.
 
-![A diagram showing various possibilities and whether a system would likely need an ESECC. If you are on Amazon Web Services (AWS) inside VA Enterprise Cloud (VAEC), or on LHDI, no ESECC is needed. Instead, a Service Now ticket is needed. If you are on AWS outside VAE, or if you are on Non-AWS Cloud (e.g. Azure), you should check if ESECC is needed. If you are on Premise, e.g., VistA, an ESECC is needed.](img/Client-Environments-ESECC-Decision-Circles.svg)
+![A diagram showing various possibilities and whether a system would likely need an ESECC. If you are on Amazon Web Services (AWS) inside VA Enterprise Cloud (VAEC), or on LHDI, no ESECC is needed. Instead, a Service Now ticket is needed. If you are on AWS outside VAEC, or if you are on Non-AWS Cloud (e.g. Azure), you should check if ESECC is needed. If you are on Premise, e.g., VistA, an ESECC is needed.](img/Client-Environments-ESECC-Decision-Circles.svg)
 
 Resources:
 
@@ -114,7 +115,7 @@ Resources:
 
 ## WASA Testing
 
-Web Application Security Assessment (WASA) scanning may be needed when a client system builds a web application for consuming events from the bus.
+Web Application Security Assessment (WASA) scanning may be needed when a client system builds a web application for consuming events from the bus. Please note that a 30 day notice is required for WASA testing.
 
 The VA SAVD WASA Coordination team can be contacted via email at [VASAVDWASACoordination@va.gov](mailto:VASAVDWASACoordination@va.gov). A request for WASA testing can be submitted on the [Security Assessment Portal home page](https://portalapps.vansoc.va.gov/EAS/Home).
 
