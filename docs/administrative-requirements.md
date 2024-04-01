@@ -79,7 +79,7 @@ For new teams within the Lighthouse Delivery Infrastructure, please consult your
 
 As part of the eMASS process, System Categorization will evaluate the impact to the organization of loss or compromise to the data in the application. The outcome of the System Categorization process is a FISMA risk level rating of Low, Moderate, or High.
 
-If a prospective client system has not been through System Categorization, it will need to follow the steps outlined on this [(LHDI) GRC System Categorization page](https://confluence.devops.va.gov/display/VAExternal/GRC+-+System+Categorization). Note that completing a Privacy Threshold Analysis (PTA) document is a prerequisite for System Categorization.
+If a prospective client system has not been through System Categorization, it will need to follow the steps outlined on this [GRC System Categorization page](https://confluence.devops.va.gov/display/VAExternal/GRC+-+System+Categorization). Note that completing a Privacy Threshold Analysis (PTA) document is a prerequisite for System Categorization.
 
 **Note**: For teams handling ePHI (medical information specific to an individually identifiable patient), the HIPAA Security Rule applies and further review will be required. Support for this can be requested by sending an email to [VHAHCSDevelopmentSecurity2@va.gov](mailto:VHAHCSDevelopmentSecurity2@va.gov).
 
