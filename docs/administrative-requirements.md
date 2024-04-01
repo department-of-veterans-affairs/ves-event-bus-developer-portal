@@ -85,7 +85,7 @@ If a prospective client system has not been through System Categorization, it wi
 
 ## PTA and PIA
 
-Privacy Threshold Analysis (PTA) and Privacy Impact Assessment (PIA) documents address what data is crossing what boundaries - this changes for both the Enterprise Event Bus and the client system when a new (producing or consuming) system is added to the bus. When this happens, Enterprise Event Bus becomes a system that clients share data with, so PTA/PIA updates are likely in order for both the Enterprise Event Bus and the new client system.
+Privacy Threshold Analysis (PTA) and Privacy Impact Assessment (PIA) documents address what data is crossing what boundaries - this changes for both the Enterprise Event Bus and the client system when a new (producing or consuming) system is added to the bus. When this happens, the Enterprise Event Bus becomes a system that clients share data with, so PTA/PIA updates are likely in order for both the Enterprise Event Bus and the new client system.
 
 PTAs are renewed annually and PIAs are renewed every 3 years, unless there are major changes. Submitting a new PTA restarts the clock on annual renewal.
 
