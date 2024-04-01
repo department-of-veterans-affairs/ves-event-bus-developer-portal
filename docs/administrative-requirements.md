@@ -35,7 +35,7 @@ The client system should either have or be in the process of procuring:
 
 The VA Systems Inventory (VASI) is intended to be a registry of all applications in use at VA. 
 
-The Enterprise Event Bus VASI ID is 3325, and [this is our entry](https://vaww.vear.ea.oit.va.gov/system_and_application_domain_defs_system_381405.htm) in the VASI registry. You may find your system’s VASI ID by visiting the [VA System Inventory](https://vaww.vear.ea.oit.va.gov/system_and_application_domain_defs_system_381405.htm). (must be on VA network to view)
+The Enterprise Event Bus VASI ID is 3325, and [this is our entry](https://vaww.vear.ea.oit.va.gov/system_and_application_domain_defs_system_381405.htm) in the VASI registry. You may find your system’s VASI ID by visiting the [VA System Inventory](https://vaww.vear.ea.oit.va.gov/). (must be on VA network to view)
 
 **For non-LHDI clients**:
 
