@@ -47,7 +47,7 @@ The Enterprise Event Bus VASI ID is 3325, and [this is our entry](https://vaww.v
 
 ### eMASS
 
-Enterprise Mission Assurance Support Service (eMASS), VA’s Governance, Risk and Compliance (GRC) tool, is the authoritative management tool for VA’s Assessment and Authorization (A&A) process and Risk Management Framework. All systems will be assessed in eMASS by the Risk Review team for an authorization recommendation to be submitted to the Authorizing Official (AO) for final ATO consideration.
+Enterprise Mission Assurance Support Service (eMASS) is VA’s Governance, Risk and Compliance (GRC) tool. All systems will be assessed in eMASS by the Risk Review team for an authorization recommendation to be submitted to the Authorizing Official (AO) for final ATO consideration.
 
 All VA systems are given an entry with a unique number in the eMASS system. The Enterprise Event Bus eMASS ID is 2350. 
 
