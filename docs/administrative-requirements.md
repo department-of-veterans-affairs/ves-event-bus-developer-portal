@@ -100,7 +100,7 @@ Resources:
 
 ## ESECC
 
-Depending on the operating boundaries or ports used by the client system, a request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
+A request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
 
 Prior to determining if your system will require an ESECC, teams are highly encouraged to first attempt connecting to the Enterprise Event Bus.
 
