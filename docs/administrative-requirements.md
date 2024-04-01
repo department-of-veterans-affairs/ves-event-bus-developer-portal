@@ -77,11 +77,11 @@ For new teams within the Lighthouse Delivery Infrastructure, please consult your
 
 ## FISMA - System Categorization
 
-As part of the eMASS process, System Categorization will evaluate the impact to the organization of loss or compromise to the data in the application. The outcome of the System Categorization process is a FISMA risk level rating for the system of Low, Moderate, or High.
+As part of the eMASS process, System Categorization will evaluate the impact to the organization of loss or compromise to the data in the application. The outcome of the System Categorization process is a FISMA risk level rating of Low, Moderate, or High.
 
 If a prospective client system has not been through System Categorization, it will need to follow the steps outlined on this [(LHDI) GRC System Categorization page](https://confluence.devops.va.gov/display/VAExternal/GRC+-+System+Categorization). Note that completing a Privacy Threshold Analysis (PTA) document is a prerequisite for System Categorization.
 
-**Note**: For teams handling ePHI (medical information specific to an individually identifiable patent), the HIPAA Security Rule applies and further review will be required. Support for this can be requested by sending an email to [VHAHCSDevelopmentSecurity2@va.gov](mailto:VHAHCSDevelopmentSecurity2@va.gov).
+**Note**: For teams handling ePHI (medical information specific to an individually identifiable patient), the HIPAA Security Rule applies and further review will be required. Support for this can be requested by sending an email to [VHAHCSDevelopmentSecurity2@va.gov](mailto:VHAHCSDevelopmentSecurity2@va.gov).
 
 ## PTA and PIA
 
@@ -104,13 +104,13 @@ Depending on the operating boundaries or ports used by the client system, a requ
 
 Prior to determining if your system will require an ESECC, teams are highly encouraged to first attempt connecting to the Enterprise Event Bus.
 
-![A diagram showing various possibilities and whether a system would likely need an ESECC. If you are on Amazon Web Services (AWS) inside VA Enterprise Cloud (VAEC) and outside GovCloud High, or on LHDI - Event Bus, Virtual Regional Office (VRO), no ESECC is needed. Instead, a Service Now ticket is needed. If you are on AWS outside VA Enterprise Cloud - GovCloud High or if you are on Non-AWS Cloud (e.g. Azure), you should check if ESECC is needed. If you are on Premise - VistA, ESECC is needed.](img/Client-Environments-ESECC-Decision-Circles.svg)
+![A diagram showing various possibilities and whether a system would likely need an ESECC. If you are on Amazon Web Services (AWS) inside VA Enterprise Cloud (VAEC), or on LHDI, no ESECC is needed. Instead, a Service Now ticket is needed. If you are on AWS outside VAE, or if you are on Non-AWS Cloud (e.g. Azure), you should check if ESECC is needed. If you are on Premise, e.g., VistA, an ESECC is needed.](img/Client-Environments-ESECC-Decision-Circles.svg)
 
 Resources:
 
 * [ESECC Public URL process (GitHub)](https://github.com/department-of-veterans-affairs/devops/blob/master/docs/ESECC-Public-URL-process.md#prereq)
 * [Tutorial video](https://dvagov.sharepoint.com/:v:/r/sites/OITECOESDKM/KM%20video%20library/Stream%20Migrated%20Videos/Knowledge%20Management%20Videos/KB0106755%20-%20Network%20ESECC%20-%20Create%20a%20Change%20Request-20221206_034448.mp4?csf=1&web=1&e=cCAS5z&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) on creating a Change Request in ESECC
-* [ChangeGear site](https://esecc.va.gov/CGWeb/Main.aspx) for initiating new requests or change requests
+* [ESECC Self-service Portal](https://esecc.va.gov/CGWeb/Main.aspx) for initiating new requests or change requests
 
 ## WASA Testing
 
