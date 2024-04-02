@@ -86,7 +86,7 @@ If a prospective client system has not been through System Categorization, it wi
 
 ## PTA and PIA
 
-A PTA, or Privacy Threshold Analysis, is a required document used to determine if an IT system, program, project, or boundary is privacy-sensitive and requires additional privacy compliance documentation such as a PIA or SORN.  It is also the first step of the privacy compliance documentation process. 
+A PTA, or Privacy Threshold Analysis, is a required document used to determine if a system is privacy-sensitive and requires additional privacy compliance documentation such as a PIA or SORN.  It is also the first step of the privacy compliance documentation process. 
 
 A PIA, or Privacy Impact Assessment, is a public document that describes:  
 
