@@ -2,6 +2,9 @@
   --md-primary-fg-color: #0060df;
   --md-typeset-color: #1b1b1b;
   --md-admonition-fg-color: #1b1b1b;
+  --md-code-fg-color: #1b1b1b;
+  --md-code-hl-variable-color: #565c65;
+  --md-code-hl-comment-color: #565c65;
 }
 
 /* add affordance to article links */
@@ -19,8 +22,24 @@ li a:hover {
 .md-nav__title,
 .md-typeset code,
 .md-nav__link[href]:hover,
-.md-typeset a:hover {
+.md-typeset a:hover,
+.md-search-result__meta {
   color: var(--md-typeset-color);
+}
+
+/* use anchor element color for search result marks to increase contrast */
+.md-search-result mark {
+  color: var(--md-typeset-a-color);
+}
+
+/* use code foreground color for copy-to-clipboard button to increase contrast */
+.md-clipboard {
+  color: var(--md-code-fg-color);
+}
+
+/* use footer foreground color for copyright text to increase contrast */
+.md-copyright {
+  color: var(--md-footer-fg-color);
 }
 
 /* adds underline to nav item focus state */
