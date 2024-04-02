@@ -86,13 +86,19 @@ If a prospective client system has not been through System Categorization, it wi
 
 ## PTA and PIA
 
-Privacy Threshold Analysis (PTA) and Privacy Impact Assessment (PIA) documents address what data is crossing what boundaries - this changes for both the Enterprise Event Bus and the client system when a new (producing or consuming) system is added to the bus. When this happens, the Enterprise Event Bus becomes a system that clients share data with, so PTA/PIA updates are likely in order for both the Enterprise Event Bus and the new client system.
+A PTA, or Privacy Threshold Analysis, is a required document used to determine if an IT system, program, project, or boundary is privacy-sensitive and requires additional privacy compliance documentation such as a PIA or SORN.  It is also the first step of the privacy compliance documentation process. 
 
-PTAs are renewed annually and PIAs are renewed every 3 years, unless there are major changes. Submitting a new PTA restarts the clock on annual renewal.
+A PIA, or Privacy Impact Assessment, is a public document that describes:  
 
-In summary, every time there is a change to working VA data, the Privacy Office needs to be engaged, regardless of whether it is a major change or not, in order to make a determination. If there is concurrence from the ISO and ISSO that a new PTA should be submitted, PIA Support will decide if the PIA needs to be renewed when evaluating the submitted PTA.
+* What PII VA is collecting  
+* Why the PII is being collected
+* How the PII will be collected, used, accessed, shared, safeguarded, and stored 
 
-*Note that producing and consuming systems are subject to their own PTA and PIA reviews to ensure best practices are followed.
+Whenever there is a change to the data being shared between VA systems, such as a new Event Bus integration or change to an existing Event Bus integration, the Privacy Office should be consulted, regardless of whether it is a major change or not, in order to make a determination that an updated PTA or PIA may be required.
+
+PTAs are renewed annually and PIAs are renewed every three years, unless there are major changes. Submitting a new PTA restarts the clock on annual renewal.
+
+*Note that all producing and consuming client systems are subject to their own PTA and PIA reviews.
 
 Resources:
 
