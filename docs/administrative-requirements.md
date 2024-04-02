@@ -103,9 +103,9 @@ Resources:
 
 A request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
 
-Prior to determining if your system will require an ESECC, teams are highly encouraged to first attempt connecting to the Enterprise Event Bus.
+Prior to determining if your system will require an ESECC, teams are highly encouraged to attempt connecting to the Enterprise Event Bus. If an error message indicates that traffic is blocked at the network level, then check to see if an ESECC is required.
 
-![A diagram showing various possibilities and whether a system would likely need an ESECC. If you are on Amazon Web Services (AWS) inside VA Enterprise Cloud (VAEC), or on LHDI, no ESECC is needed. Instead, a Service Now ticket is needed. If you are on AWS outside VAEC, or if you are on Non-AWS Cloud (e.g. Azure), you should check if ESECC is needed. If you are on Premise, e.g., VistA, an ESECC is needed.](img/Client-Environments-ESECC-Decision-Circles.svg)
+![A diagram showing various scenarios indicating whether a system would need an ESECC. If you are already on the Lighthouse Delivery Infrastructure (LHDI), no ESECC is required. If you are on AWS GovCloud but outside of LHDI, check to see if an ESECC is required. If you are on Non-AWS Cloud (e.g. Azure), check to see if an ESECC is required. If you are on-premises, e.g., VistA, an ESECC is required.](img/Client-Environments-ESECC-Decision-Circles.svg)
 
 Resources:
 
@@ -115,7 +115,7 @@ Resources:
 
 ## WASA Testing
 
-Web Application Security Assessment (WASA) scanning may be needed when a client system builds a web application for consuming events from the bus. Please note that a 30 day notice is required for WASA testing.
+Web Application Security Assessment (WASA) scanning may be needed as part of the ATO process when a client system builds a web application for consuming events from the Event Bus. Please note that a 30 day notice is required for WASA testing.
 
 The VA SAVD WASA Coordination team can be contacted via email at [VASAVDWASACoordination@va.gov](mailto:VASAVDWASACoordination@va.gov). A request for WASA testing can be submitted on the [Security Assessment Portal home page](https://portalapps.vansoc.va.gov/EAS/Home).
 
