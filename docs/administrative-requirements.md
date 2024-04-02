@@ -90,7 +90,7 @@ A PTA, or Privacy Threshold Analysis, is a required document used to determine i
 
 A PIA, or Privacy Impact Assessment, is a public document that describes:  
 
-* What PII VA is collecting  
+* What PII the system is collecting  
 * Why the PII is being collected
 * How the PII will be collected, used, accessed, shared, safeguarded, and stored 
 
