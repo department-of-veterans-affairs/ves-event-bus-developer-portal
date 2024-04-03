@@ -38,7 +38,7 @@ Your system **lacks well-defined components, or has constantly changing interact
 Systems that are continuously in flux, or don't have well-established boundaries or communication patters would make it difficult to introduce event-driven designs.
 
 Your event data **is rated as “high” under [FISMA](https://security.cms.gov/learn/federal-information-security-management-act-fisma) and the [VA system categorization](https://jubilant-succotash-m55rqe7.pages.github.io/categorization/)**:<br/> 
-The Event Bus is rated at a “Medium” level under FISMA and VA system categorization, and can only broker data that is rated as Low or Moderate at this time.
+The Event Bus is rated at a Medium level under FISMA and VA system categorization, and can only broker data that is rated as Low or Moderate at this time.
 
 ## Reach out to us
 
