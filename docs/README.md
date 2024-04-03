@@ -10,8 +10,6 @@ An Event Bus allows a system to publish a stream of changes to its data. Systems
   <source src="videos/phase3_demo.mp4" type="video/mp4">
 </video>
 
-The Event Bus system is currently in a pre-production state. Information will be updated as it's available. Please [reach out](./get-support.md) to us with questions.
-
 ## Why use the Enterprise Event Bus?
 
 Teams can use the Enterprise Event Bus to generate events based on state changes to the data they own and publish them on an event bus. Consumers are free to consume those events and react accordingly. More specifically, with the Enterprise Event Bus:
@@ -23,6 +21,7 @@ Teams can use the Enterprise Event Bus to generate events based on state changes
 Take the next steps to explore and begin using the Enterprise Event Bus:
 
 * Learn more about [which teams would benefit from using event-driven architecture](./get-started.md),
+* Understand the [administrative requirements](./administrative-requirements.md) for connecting to the Enterprise Event Bus,
 * [Dive deeper into a technical explanation of events](./intro-to-eda.md),
 * Learn how to [produce events](./produce-events.md),
 * Learn how to [consume events](./consume-events.md), or 
