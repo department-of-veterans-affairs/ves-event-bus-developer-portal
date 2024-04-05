@@ -21,5 +21,5 @@ Response times are based on the nature of the posting:
 
 Alerts about Event Bus monitoring can be found on the following Slack channels:
 
-* [#ves-event-bus-dev-alerts](https://dsva.slack.com/archives/C04PART9C05)
+* [#ves-event-bus-prod-alerts](https://dsva.slack.com/archives/C06N7QKMQN4)
 * [#vaapi-lhdi-customer-env-alerts](https://lighthouseva.slack.com/archives/C05RZUP7H6D) (includes alerts for the wider LHDI environment)
