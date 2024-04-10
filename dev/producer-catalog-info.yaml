@@ -2,12 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Event
 metadata:
  name: event-bus-dev-portal-test
- description: >
-   This event indicates when a decision letter for a benefits claim is electronically available. 
-   Notifying Veterans that the letter is available enables them to download the letter before the physical 
-   letter arrives in the mail and speeds up the claims process. See 
-   "[this document](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Use%20Cases/Decision%20Letter%20Availability/Decision%20Letter%20Availability%20Use%20Case.md)" 
-   for more information about the Decision Letter Availability event.
+ description: This event occurs when a decision letter for a Veteran's benefits claim is electronically available.
  title: Event Bus Dev Portal Test
  links:
   - url: https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/consume-events/
