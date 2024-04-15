@@ -6,11 +6,11 @@ KAREN TAYLOR: I believe we're recording. Welcome everyone to the VA Enterprise E
 
 2
 00:00:11.201 --> 00:00:19.500
-I'm Karen Taylor. I'm the product manager for the event bus team, and I'm here with the team to present a talk about event-driven architecture and how
+I'm Karen Taylor. I'm the product manager for the Event Bus team, and I'm here with the team to present a talk about event-driven architecture and how
 
 3
 00:00:19.501 --> 00:00:25.339
-the event bus fits into that as well as do some summarizing of the work that we've done in our most recent phase of development.
+the Event Bus fits into that as well as do some summarizing of the work that we've done in our most recent phase of development.
 
 4
 00:00:29.310 --> 00:00:31.449
@@ -22,11 +22,11 @@ We're gonna talk about what is event-driven architecture. We'll talk about the p
 
 6
 00:00:37.751 --> 00:00:43.000
-We'll talk a little bit more detail about how specifically the event bus is implementing event driven architecture.
+We'll talk a little bit more detail about how specifically the Event Bus is implementing event driven architecture.
 
 7
 00:00:43.001 --> 00:00:46.000
-We'll do a demo of our current event bus system capabilities.
+We'll do a demo of our current Event Bus system capabilities.
 
 8
 00:00:46.001 --> 00:00:52.400
@@ -38,7 +38,7 @@ So we'll start today with what is event-driven architecture, and I'm gonna hand 
 
 10
 00:01:00.260 --> 00:01:08.750
-EMILY WILSON: Hello, everyone! So when we talk about the Enterprise event bus, we describe it as an asynchronous event processing system.
+EMILY WILSON: Hello, everyone! So when we talk about the Enterprise Event Bus, we describe it as an asynchronous event processing system.
 
 11
 00:01:08.751 --> 00:01:15.119
@@ -74,7 +74,7 @@ which describes the transitions from the different states. So
 
 19
 00:01:58.570 --> 00:02:06.589
-what the enterprise event bus does is we form connections to these data systems, and we provide the infrastructure
+what the Enterprise Event Bus does is we form connections to these data systems, and we provide the infrastructure
 
 20
 00:02:06.630 --> 00:02:13.440
@@ -86,59 +86,59 @@ streams of events.
 
 22
 00:02:15.040 --> 00:02:23.039
-So the Enterprise Event bus acts as an opinionated conduit between these data systems and the clients that are consuming
+So the Enterprise Event Bus acts as an opinionated conduit between these data systems and the clients that are consuming
 
 23
-00:02:23.050 --> 00:02:30.750
+00:02:23.050 --> 00:02:29.750
 from these events. One of the kind of important technical details here is that the events exist in a chronological order.
 
 24
-00:02:30.751 --> 00:02:34.330
+00:02:29.751 --> 00:02:34.330
 So you can kind of see how the state changes over time.
 
 25
-00:02:34.350 --> 00:02:41.750
+00:02:34.350 --> 00:02:40.750
 Another really kind of key feature here is that these event processing systems are asynchronous.
 
 26
-00:02:41.751 --> 00:02:46.010
+00:02:40.751 --> 00:02:46.010
 So what this means is that the systems that are consuming the events
 
 27
-00:02:46.590 --> 00:02:54.000
+00:02:46.590 --> 00:02:53.000
 don't need to do this at the same time they are produced. And this helps decouple the different systems.
 
 28
-00:02:54.001 --> 00:02:59.869
+00:02:53.001 --> 00:02:59.869
 Another kind of key feature here is that multiple clients can consume events from a single topic.
 
 29
-00:02:59.990 --> 00:03:09.500
-So to summarize what the enterprise event bus is. It's a VA-wide system for streaming different events from assorted producers.
+00:02:59.990 --> 00:03:09.900
+So to summarize what the Enterprise Event Bus is. It's a VA-wide system for streaming different events from assorted producers.
 
 30
-00:03:09.501 --> 00:03:18.000
+00:03:09.901 --> 00:03:18.500
 And that is the data systems that produce the events into consumers. Those are the data systems that are consuming the events and doing something with them.
 
 31
-00:03:18.001 --> 00:03:26.260
+00:03:18.501 --> 00:03:25.250
 Go to the next slide, and we can kind of dive into what this means for VA systems specifically.
 
 32
-00:03:26.740 --> 00:03:39.320
-So this diagram illustrates what our goal for this system is. And it kind of illustrates specifically what some of the systems that we envision could potentially become part of this enterprise event bus.
+00:03:25.251 --> 00:03:33.500
+So this diagram illustrates what our goal for this system is. And it kind of illustrates specifically
 
 33
-00:03:39.670 --> 00:03:47.759
-Currently, in this phase of the project, we've connected ourselves to the Benefits Integration Platform. That's this red
+00:03:33.501 --> 00:03:39.320
+what some of the systems that we envision could potentially become part of this Enterprise Event Bus.
 
 34
-00:03:48.110 --> 00:03:49.569
-red roll
+00:03:39.670 --> 00:03:51.500
+Currently, in this phase of the project, we've connected ourselves to the Benefits Integration Platform. That's this red, little, six-sided shape,
 
 35
-00:03:50.590 --> 00:04:00.770
-6 sided shape. I can't remember the name for a six-sided shape up in this corner, and we've also connected to a VistA event, and that's this orange thing.
+00:03:51.501 --> 00:04:00.770
+I can't remember the name for a six-sided shape, up in this corner. And we've also connected to a VistA event, and that's this orange thing.
 
 36
 00:04:00.790 --> 00:04:04.159
@@ -146,413 +146,493 @@ And, as you can see, we stream into our system.
 
 37
 00:04:04.650 --> 00:04:13.109
-And then over on the right hand side a variety of different systems can consume these events. We currently have little
+And then over on the right hand side a variety of different systems can consume these events. We currently have little 
 
 38
-00:04:13.120 --> 00:04:22.450
-demos that we'll be illustrating shortly. But I think this diagram is a really great illustration of what the power of the Enterprise Event Bus could be.
+00:04:13.120 --> 00:04:15.000
+demos that we'll be illustrating shortly.
 
 39
+00:04:15.001 --> 00:04:22.450
+But I think this diagram is a really great illustration of what the power of the Enterprise Event Bus could be.
+
+40
 00:04:22.770 --> 00:04:25.710
 I'm gonna transition over into
 
-40
-00:04:26.460 --> 00:04:34.000
+41
+00:04:26.460 --> 00:04:35.500
 my segue to plug our developer portal. We have more in depth information about this on our developer portal. There'll be a link at the end.
 
-41
-00:04:34.001 --> 00:04:42.010
-It contains some great high, level information about the underlying architect architecture.
-
 42
+00:04:35.501 --> 00:04:42.010
+It contains some great high, level information about the underlying architecture.
+
+43
 00:04:42.120 --> 00:04:49.640
 My colleague Andrea is gonna dive into some of the technical implementations and get into some of the nitty gritty of how this works.
 
-43
-00:04:51.030 --> 00:04:55.250
-KAREN TAYLOR: The truth have been talked about how the problems can be solved with event-driven architecture.
-
 44
-00:04:55.840 --> 00:05:01.260
-So, as you might imagine, there is more than one problem we can solve the event-driven architecture. But we're going to focus on 3 today.
+00:04:51.030 --> 00:04:55.250
+KAREN TAYLOR: We're going to talk about how problems can be solved with event-driven architecture.
 
 45
-00:05:01.261 --> 00:05:06.260
-The first is replacing heavy orchestration and high latency or infrequent processes
+00:04:55.840 --> 00:05:01.260
+So, as you might imagine, there is more than one problem we can solve with event-driven architecture, but we're going to focus on 3 today.
 
 46
-00:05:06.380 --> 00:05:14.000
-systems that make calls to multiple external systems await statuses and retry, or prone to issues like partial failures and can shift to consuming role
+00:05:01.261 --> 00:05:06.260
+The first is replacing heavy orchestration and high latency or infrequent processes.
 
 47
-00:05:14.001 --> 00:05:21.660
-of events from just one single system. In this event system architecture that we're talking about today in a similar vein systems with low frequency, polling batch
+00:05:06.380 --> 00:05:14.000
+Systems that make calls to multiple external systems, await statuses, and retry, are prone to issues like partial failures and can shift to consuming all
 
 48
-00:05:21.661 --> 00:05:29.000
-processing or requiring veterans or staff to manually check on status updates is often inefficient and can be replaced by the near real time updates that are pushed
+00:05:14.001 --> 00:05:23.000
+of the events from just one single system in this event system architecture that we're talking about today. In a similar vein, systems with low frequency, polling, batch
 
 49
-00:05:29.001 --> 00:05:34.660
-to the consuming system through the architecture. That only was just showing
+00:05:23.001 --> 00:05:28.250
+processing, or requiring veterans or staff to manually check on status updates is often inefficient
 
 50
-00:05:35.780 --> 00:05:44.000
-a second problem that this can solve is replacing tightly coupled components with event-driven architecture, producing systems and consuming systems
+00:05:28.251 --> 00:05:34.660
+and can be replaced by the near real time updates that are pushed to the consuming system through the architecture that Emily was just showing.
 
 51
-00:05:44.001 --> 00:05:52.869
-do not have a direct connection. The consuming systems can act upon events as they are stream. Instead of needing to maintain one to one connections with their other systems,
+00:05:35.780 --> 00:05:43.000
+A second problem that this can solve is replacing tightly coupled components with event-driven architecture, producing systems and consuming systems
 
 52
-00:05:52.870 --> 00:05:56.870
-and having to wait for the call and response cycle to complete with each of those other systems.
+00:05:43.001 --> 00:05:47.500
+do not have a direct connection. The consuming systems can act upon events as they are streamed,
 
 53
-00:05:56.871 --> 00:06:00.869
-So that helps to add resiliency in general to the overall system interactions that are going on.
+00:05:47.501 --> 00:05:51.250
+instead of needing to maintain one-to-one connections with their other systems,
 
 54
-00:06:01.780 --> 00:06:09.000
-And the third problem we want to talk about today is how event driven architecture, and specifically the event bus, expedite user notifications.
+00:05:51.251 --> 00:05:55.750
+and having to wait for the call and response cycle to complete with each of those other systems.
 
 55
-00:06:09.001 --> 00:06:17.639
-Although there are many systems that would benefit from events as we've been talking about in terms of the architecture. And we just showed some of the problems I just
+00:05:55.751 --> 00:06:00.869
+So that helps to add resiliency in general to the overall system interactions that are going on.
 
 56
-00:06:17.640 --> 00:06:24.000
-discussed that we could solve almost any scenario where a side effect or desired outcome of a business action is to notify.
+00:06:01.780 --> 00:06:09.000
+And the third problem we want to talk about today is how event driven architecture, and specifically the Event Bus, can expedite user notifications.
 
 57
-00:06:24.001 --> 00:06:28.639
-The veteran is a candidate for an event stream because any system, anywhere that wants to
+00:06:09.001 --> 00:06:14.000
+Although there are many systems that would benefit from events as we've been talking about in terms of the architecture
 
 58
-00:06:28.670 --> 00:06:35.839
-make sure veteran knows about something can drop an event on the event bus. And any system that actually does the notification can then pick it up from the bus.
+00:06:14.001 --> 00:06:15.750
+Emily just showed and some of the problems I just
 
 59
+00:06:15.751 --> 00:06:22.000
+discussed that we could solve, almost any scenario where a side effect or desired outcome of a business action is to notify
+
+60
+00:06:22.001 --> 00:06:28.639
+the veteran is a candidate for an event stream because any system, anywhere, that wants to
+
+61
+00:06:28.670 --> 00:06:32.000
+make sure veteran knows about something can drop an event on the Event Bus. 
+
+62
+00:06:32.001 --> 00:06:35.839
+And any system that actually does the notification can then pick it up from the bus.
+
+63
 00:06:37.530 --> 00:06:44.990
 So that's all about problems. Now, we are going to move on to Andrea, another engineer on the team to talk a little about our specific implementation.
 
-60
+64
 00:06:47.840 --> 00:06:57.500
 ANDREA SINGH: Yes. So in this last phase we migrated from a self-hosted Kafka version to MSK, or Managed Streams for Kafka on AWS.
 
-61
+65
 00:06:57.910 --> 00:07:04.000
 And MSK Was chosen for the ease of set up to reduce operational burden on our team,
 
-62
+66
 00:07:04.001 --> 00:07:11.739
 and several built in features that we were interested in such as encryption, a robust set of default configurations,
 
-63
+67
 00:07:11.750 --> 00:07:14.360
 and the automatic gathering of metrics.
 
-64
+68
 00:07:16.810 --> 00:07:25.690
-So we wanted to facilitate access to the event bus for as many users within VA as possible, and after researching multiple options,
+So we wanted to facilitate access to the Event Bus for as many users within VA as possible, and after researching multiple options,
 
-65
+69
 00:07:25.691 --> 00:07:34.690
-we found that the best way to do that is to place it to cluster into a V or audible subnet, and that would afford the greatest networking access.
+we found that the best way to do that is to place it to cluster into a VA-routable subnet, and that would afford the greatest networking access.
 
-66
+70
 00:07:36.370 --> 00:07:47.369
 We have completely turned off any sort of unauthenticated or unencrypted access to MSK and implemented role-based access control using AWS IAM,
 
-67
-00:07:47.990 --> 00:07:56.130
-and there we use the principle of least privilege and restrict access to specific topics to only specific consumers and producers.
-
-68
-00:07:58.190 --> 00:08:07.000
-And the custom software we developed. So basically our producers and consumers that interact with the MSK cluster for our 2 pilot use cases.
-
-69
-00:08:07.001 --> 00:08:15.000
-They themselves are deployed as separate services into an EKS cluster in the LHDI environment,
-
-70
-00:08:15.001 --> 00:08:23.070
-and in this last phase we worked on hardening our original appointment, use case and developed a decision which will be demoed here soon.
-
 71
-00:08:23.930 --> 00:08:35.740
-Then we have identified Confluent as our schema registry of choice, and it has one out against obvious blue because of its maturity and a convenient REST API, that it provides.
+00:07:47.990 --> 00:07:56.130
+and there we use the principle of least privilege and restrict access to specific topics to only specified consumers and producers
 
 72
+00:07:58.190 --> 00:08:07.000
+and the custom software we developed. So basically our producers and consumers that interact with the MSK cluster for our 2 pilot use cases,
+
+73
+00:08:07.001 --> 00:08:14.000
+they themselves are deployed as separate services into an EKS cluster in the LHDI environment.
+
+74
+00:08:14.001 --> 00:08:23.070
+And in this last phase we worked on hardening our original appointment, use case and developed a decision letter availability engine which will be demoed here soon.
+
+75
+00:08:23.930 --> 00:08:35.740
+Then we have identified Confluent as our schema registry of choice, and it has won out against AWS Glue because of its maturity and a convenient REST API, that it provides.
+
+76
 00:08:35.799 --> 00:08:43.419
 and then the next phase it will be setting up and integrating it with a integrating the self-hosted Confluent schema registry.
 
-73
-00:08:44.220 --> 00:08:52.000
+77
+00:08:44.220 --> 00:08:51.000
 And then, finally, we have identified separate sets of significant metrics to monitor both the performance of MSK
 
-74
-00:08:52.001 --> 00:08:59.000
-as well as the stability of the consumers and producers that we have, and they will require different strategies together,
+78
+00:08:51.001 --> 00:08:59.000
+as well as the stability of the consumers and producers that we have, and they will require different strategies together
 
-75
+79
 00:08:59.001 --> 00:09:05.500
-and display on a custom event dashboard, and we will be. We are planning on tackling that next in the next phase.
+and display on a custom Event Bus Datadog dashboard, and  we are planning on tackling that next in the next phase.
 
-76
+80
 00:09:06.470 --> 00:09:07.719
 KAREN TAYLOR: Alright. Thank you.
 
-77
-00:09:07.990 --> 00:09:17.330
-So now the most exciting part, we're going to demo the current event bus capabilities. And we'll hand over to Jamie White, who is a Java engineer in the team.
+81
+00:09:07.990 --> 00:09:13.500
+So now the most exciting part, we're going to demo the current Event Bus capabilities.
 
-78
+82
+00:09:13.501 --> 00:09:18.330
+And we'll hand over to Jamie White, who is a Java engineer on the team.
+
+83
 00:09:19.070 --> 00:09:23.059
 JAMIE WHITE: Yeah. So before getting into the actual demo, I wanted to give
 
-79
+84
 00:09:23.120 --> 00:09:27.650
 a high-level overview of what we've built for the decision letter availability use case.
 
-80
+85
 00:09:27.980 --> 00:09:34.369
-So we have a connection to BIP which Emily mentioned is the Benefits Integration platform.
+So we have a connection to BIP which Emily mentioned is the Benefits Integration Platform.
 
-81
+86
 00:09:34.460 --> 00:09:38.620
 So this system has a set of events that we have identified.
 
-82
+87
 00:09:38.750 --> 00:09:45.549
 Contain some records that represent that a decision letter is available for veterans to look at.
 
-83
+88
 00:09:45.830 --> 00:09:53.779
 So we've built this DLA engine, which is essentially a combination of a Kafka consumer that reads data from BIP
 
-84
-00:09:53.870 --> 00:10:03.669
-and a Kafka producer that sends the filtered data to our own event bus. So we filter out anything that doesn't represent that a decision letter is available.
+89
+00:09:53.870 --> 00:09:58.000
+and a Kafka producer that sends the filtered data to our own Event Bus.
 
-85
-00:10:03.950 --> 00:10:14.109
-Once we have that subset of events, we then have a consumer that we've developed which takes that event and sends a notification using the VANotify system 
+90
+00:09:58.001 --> 00:10:03.669
+So we filter out anything that doesn't represent that a decision letter is available.
 
-86
+91
+00:10:03.950 --> 00:10:06.000
+Once we have that subset of events,
+
+92
+00:10:06.001 --> 00:10:14.109
+we then have a consumer that we've developed which takes that event and sends a notification using the VANotify system 
+
+93
 00:10:14.240 --> 00:10:19.409
 so we can deliver an email to a veteran. And I'll demonstrate that
 
-87
+94
 00:10:19.460 --> 00:10:25.139
 sending an email to my own inbox. So I'll go ahead and take over the screenshare.
 
-88
+95
 00:10:30.150 --> 00:10:38.880
 So what I have here are a few screens in the bottom left just a screen showing that the demo is running locally. So we've also deployed this
 
-89
-00:10:38.900 --> 00:10:48.769
+96
+00:10:38.900 --> 00:10:48.700
 to a more production environment that's actually connected to BIP itself. But we also have this local environment that developers can use to run tests.
 
-90
-00:10:48.770 --> 00:10:52.769
+97
+00:10:48.701 --> 00:10:52.769
 So this is just kind of containing a a local Kafka instance.
 
-91
+98
 00:10:53.520 --> 00:10:59.359
 So what I'll do first is I'll start up a Kafka producer.
 
-92
+99
 00:11:00.600 --> 00:11:08.290
-So what I'll do here is be able to send messages kind of replicating what it would be like in the real system, with dip sending events to us.
+So what I'll do here is be able to send messages kind of replicating what it would be like in the real system, with BIP sending events to us.
 
-93
+100
 00:11:08.730 --> 00:11:15.910
 and then in the bottom, right hand corner, I have a consumer. So we'll be able to see the events as they come through.
 
-94
+101
 00:11:17.660 --> 00:11:25.739
-So first, I'm gonna send a positive test case. So this is one that matches the filters that we have. So we've identified. It represents the decision letters available.
+So first, I'm gonna send a positive test case. So this is one that matches the filters that we have. So we've identified it represents the decision letter's available.
 
-95
+102
 00:11:26.080 --> 00:11:32.859
 And the fields here match what we'll see in the BIP events. So we have a number of properties that
 
-96
-00:11:32.910 --> 00:11:38.450
+103
+00:11:32.910 --> 00:11:37.750
 make this look just like what we'd see in real data. So in the bottom, right hand corner,
 
-97
-00:11:38.451 --> 00:11:43.450
+104
+00:11:37.751 --> 00:11:43.450
 we see that the consumer has received an event which means in the top left, we should shortly see
 
-98
+105
 00:11:43.890 --> 00:11:46.810
 a new email coming through.
 
-99
+106
 00:11:48.360 --> 00:11:54.439
-So we have a kind of a template that we can use and VANotify which just kind of shows
+So we have a kind of a template that we can use at VANotify which just kind of shows
 
-100
+107
 00:11:54.500 --> 00:11:58.760
 veterans that their claim has been submitted, and they can view the status.
 
-101
+108
 00:12:00.290 --> 00:12:08.050
 I'll also show that we have the ability to filter out negative test cases. So if this doesn't match the properties we're looking for.
 
-102
+109
 00:12:08.350 --> 00:12:10.400
 We shouldn't see anything coming through
 
-103
+110
 00:12:13.970 --> 00:12:20.400
-and just to show that it is still working, else in that positive test case. And again, and we can see it coming through in the bottom right hand corner.
+and just to show that it is still working, I'll send that positive test case again, and we can see it coming through in the bottom right hand corner.
 
-104
+111
 00:12:23.250 --> 00:12:24.790
 And there we have it.
 
-105
+112
 00:12:29.950 --> 00:12:33.459
 KAREN TAYLOR: Okay, thank you, Jamie. Let me get switched back
 
-106
+113
 00:12:33.580 --> 00:12:35.180
 to our presentation.
 
-107
+114
 00:12:37.380 --> 00:12:44.489
 and we're going to hand off to Oseas Moran, who is the DevOps engineer on the team. Tell us about what you've been doing.
 
-108
+115
 00:12:44.610 --> 00:12:48.839
-OSEAS MORAN: Sure. As part of phase 3 focus. One of the requirements was
+OSEAS MORAN: Sure. As part of phase 3 focus one of the requirements was
 
-109
-00:12:48.920 --> 00:12:59.000
+116
+00:12:48.920 --> 00:12:57.251
 to harden our pipeline as we move towards production. A continuous integration workflow was created that does the following,
 
-110
-00:12:59.001 --> 00:13:08.590
-it checks for linting unit test integration testing and incorporates the secure release pipeline when a pull request is created.
+117
+00:12:57.251 --> 00:13:08.590
+it checks for linting unit, test integration testing, and incorporates the secure release pipeline when a pull request is created.
 
-111
+118
 00:13:08.670 --> 00:13:16.000
-When that pull request is merged into the main branch. It will kick off a build and deploy workflow which build,
+When that pull request is merged into the main branch, it will kick off a build and deploy workflow which builds
 
-112
+119
 00:13:16.001 --> 00:13:24.520
-publishes the image to the Department of Veterans Affairs GitHub container registry and then deployed them into our infrastructure.
+publishes the image to the Department of Veterans Affairs GitHub container registry and then deploys them into our infrastructure.
 
-113
+120
 00:13:26.480 --> 00:13:31.590
 KAREN TAYLOR: Alright. So let's talk a little about what's next, and we'll bring Emily back.
 
-114
+121
 00:13:31.730 --> 00:13:33.930
 EMILY WILSON: Yeah. So
 
-115
-00:13:34.150 --> 00:13:42.369
-I wanted to do a quick overview of what's next for the event bus. We're wrapping up right now what we called phase 3.
+122
+00:13:34.150 --> 00:13:41.000
+I wanted to do a quick overview of what's next for the Event Bus. We're wrapping up right now what we called phase 3.
 
-116
-00:13:42.370 --> 00:13:51.369
+123
+00:13:41.001 --> 00:13:51.369
 Phase 3 was a complete technical proof of concept. So, as you saw from the really awesome demo we have hooked up to real data sources.
 
-117
+124
 00:13:51.370 --> 00:13:59.000
-These data sources are filtered and processed through the event bus system. And then we connect to other systems to do something in this case,
+These data sources are filtered and processed through the Event Bus system. And then we connect to other systems to do something, in this case
 
-118
+125
 00:13:59.001 --> 00:14:05.769
-send an email with the event. We've also, as I say, as mentioned, have hardened the system so that we feel
+send an email with the event. We've also, as Oseas mentioned, have hardened the system so that we feel
 
-119
+126
 00:14:06.110 --> 00:14:09.660
 good about its stability and its security.
 
-120
+127
 00:14:10.140 --> 00:14:16.570
-The next step for us is to add more data sources onto the enterprise events.
+The next step for us is to add more data sources onto the Enterprise Event Bus.
 
-121
-00:14:16.760 --> 00:14:24.050
-As you saw from previous diagram, we have identified a bunch of different data sources across VA that could
+128
+00:14:16.760 --> 00:14:24.600
+As you saw from the previous diagram, we have identified a bunch of different data sources across VA that could
 
-122
-00:14:24.051 --> 00:14:32.050
+129
+00:14:24.601 --> 00:14:32.150
 be good candidates to enhance the data that we can potentially provide to consumers. A key part of this is going to be
 
-123
-00:14:32.051 --> 00:14:40.050
+130
+00:14:32.151 --> 00:14:40.050
 creating and refining an onboarding onboarding journey so that developers have a smooth path to integrate with our system.
 
-124
+131
 00:14:40.130 --> 00:14:48.410
 and part of this process will be deploying a schema registry and making it available for additional clients throughout the enterprise.
 
-125
-00:14:48.820 --> 00:45:56.000
-The next step will be to step and repeat. We want to guide 2 to 3 systems onto the Enterprise event bus,
-
-126
-00:45:56.001 --> 00:15:03.230
-we've identified data sources that we feel are high value because of the data they contain and as well as the potential that
-
-127
-00:15:03.580 --> 00:15:09.120
-they could by incorporating them onto the event bus, we could relieve
-
-128
-00:15:09.610 --> 00:15:19.830
-pressures on systems. We could allow valuable use cases, notifications. So we want to guide between 2 to 3 systems onto the Enterprise event bus and
-
-129
-00:15:20.240 --> 00:15:25.159
-actually get them onto the Enterprise event bus, so that these data streams would be available for clients.
-
-130
-00:15:25.680 --> 00:15:32.000
-After that comes phase 4. And this is what we're calling the MVP feature complete. What we want to complete
-
 132
-00:15:32.001 --> 00:15:38.770
-is a minimum viable product and begin launching into the final preparations for full production release.
+00:14:48.820 --> 00:14:54.500
+The next step will be to step and repeat. We want to guide two to three systems onto the Enterprise Event Bus.
 
 133
+00:14:54.501 --> 00:15:03.230
+We've identified data sources that we feel are high value because of the data they contain and as well as the potential that
+
+134
+00:15:03.580 --> 00:15:09.120
+they could, by incorporating them onto the Event Bus, we could relieve
+
+135
+00:15:09.610 --> 00:15:19.830
+pressures on systems. We could allow valuable use cases, notifications. So we want to guide between 2 to 3 systems onto the Enterprise Event Bus and
+
+136
+00:15:20.240 --> 00:15:25.159
+actually get them onto the Enterprise Event Bus, so that these data streams would be available for clients.
+
+137
+00:15:25.680 --> 00:15:31.750
+After that comes phase 4. And this is what we're calling the MVP feature complete. What we want to complete
+
+138
+00:15:31.751 --> 00:15:38.770
+is a minimum viable product and begin launching into the final preparations for full production release.
+
+139
 00:15:40.510 --> 00:15:41.930
 And that's what the
 
-134
+140
 00:15:42.990 --> 00:15:45.760
-next next goals of the eventpost, Tim, are.
+next goals of the Event Bus team are.
 
-135
+141
 00:15:46.700 --> 00:15:51.880
 KAREN TAYLOR: Alright. Thank you. We'll wrap up with a quick look at some resources and documentation links.
 
-136
-00:15:52.000 --> 00:16:15.720
-So if you're interested in delving deeper about specifically what's been happening with the last 5 months on the event bus, we have a phase 3 summary document. We also have a folder with lots of ADRs. As we've been making decisions about how to architect the system, there is a phase 3 artifacts folder. These are all on GitHub. By the way, to give you some additional information about research that we've done during this phase, we have a folder of use cases.
+142
+00:15:52.000 --> 00:15:57.000
+So if you're interested in delving deeper about specifically what's been happening with the last 5 months on the Event Bus,
 
-137
-00:16:15.720 --> 00:16:35.410
-This presentation that we've been looking at is available in PDF form. There will also be a recording of this, and we'll add the link to this after the recording is actually available. Keep an eye in the Slack channel. We'll be posting a link to both the slides and the recording there, if you were seeing this after the fact, this is how you can get hold of it.
+143
+00:15:57.001 --> 00:16:05.000
+we have a phase 3 summary document. We also have a folder with lots of ADRs as we've been making decisions about how to architect the system.
 
-138
-00:16:35.410 --> 00:16:47.489
-We also have a developer portal that's been put up. Please note it's draft status. The content is subject to change. This is our first draft of information that we would have available for people who are interested in connecting to and working on the event bus.
+144
+00:16:05.001 --> 00:16:08.250
+There is a phase 3 artifacts folder. These are all on GitHub, by the way.
 
-139
-00:16:47.680 --> 00:17:02.260
-If you enjoyed the demo that Jamie did, and would like to know more about that. We have links to the code, the readme file spec document about the decision letter available to use case as well as some information on the portal about subscribing to decision letter events.
+145
+00:16:08.251 --> 00:16:15.720
+To give you some additional information about research that we've done during this phase, we have a folder of use cases.
 
-140
-00:17:02.660 --> 00:17:30.290
-And we also have some key research artifacts. We had a lot to go over today. So then get very deep into this. But there's been a lot of excellent user research and technical research done. And you can find the results, those activities and all these documents that we have listed here. So we like to thank everyone who is here today with this in person. And anyone who may be watching this video later again. Please keep in mind. It's very easy to contact us in Slack if you have any questions, or would like to get on the books. Thanks.
+146
+00:16:15.720 --> 00:16:21.800
+This presentation that we've been looking at is available in PDF form. There will also be a recording of this,
+
+147
+00:16:21.801 --> 00:16:28.750
+and we'll add the link to this after the recording is actually available. Keep an eye in the Slack channel.
+
+148
+00:16:28.751 --> 00:16:33.410
+We'll be posting a link to both the slides and the recording there. If you were seeing this after the fact,
+
+149
+00:16:33.411 --> 00:16:35.410
+this is how you can get hold of it.
+
+150
+00:16:35.410 --> 00:16:41.000
+We also have a developer portal that's been put up. Please note it's draft status. The content is subject to change.
+
+151
+00:16:41.001 --> 00:16:47.489
+This is our first draft of information that we would have available for people who are interested in connecting to and working on the Event Bus.
+
+152
+00:16:47.680 --> 00:16:54.000
+If you enjoyed the demo that Jamie did, and would like to know more about that, we have links to the code,
+
+153
+00:16:54.001 --> 00:16:57.500
+the readme file spec document about the decision letter availability use case,
+
+154
+00:16:57.501 --> 00:17:02.260
+as well as some information on the portal about subscribing to decision letter events.
+
+155
+00:17:02.660 --> 00:17:07.000
+And we also have some key research artifacts. We had a lot to go over today. So didn't very deep into this,
+
+156
+00:17:07.001 --> 00:17:13.000
+but there's been a lot of excellent user research and technical research done. And you can find the results,
+
+157
+00:17:13.001 --> 00:17:20.290
+those activities and all these documents that we have listed here. So we want to thank everyone who is here today with this in person.
+
+158
+00:17:20.291 --> 00:17:25.500
+And anyone who may be watching this video later again. Please keep in mind. It's very easy to contact us in Slack if you have any questions,
+
+159
+00:17:25.501 --> 00:17:30.290
+or would like to get on the books. Thanks.
 
