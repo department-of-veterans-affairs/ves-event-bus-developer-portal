@@ -8,7 +8,7 @@ An Event Bus allows a system to publish a stream of changes to its data. Systems
 
 <video width="640" height="400" crossorigin="anonymous" controls poster="img/phase3_demo_poster.png">
   <source src="videos/phase3_demo.mp4" type="video/mp4">
-  <track src="videos/GMT20230808-163754_Recording.transcript.vtt" label="English" kind="captions" srclang="en-us" default>
+  <track src="videos/GMT20230808-163754_Recording.transcript.vtt" label="English" kind="captions" srclang="en-us">
 </video>
 
 ## Why use the Enterprise Event Bus?
