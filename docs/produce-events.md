@@ -165,7 +165,7 @@ See for instance this Java code that produces messages to a topic named â€œtestâ
 
 ### Register with CODE VA
 
-[CODE VA](https://code.va.gov/) (must be on VA network to view) is a software catalog that houses information about software entities from across the VA. Once you have your producer application up and running, it's important to register with the catalog to ensure that both current and future consumers can discover your event and access its details.
+[CODE VA](https://code.va.gov/) (must be on VA network to view) is a software catalog that houses information about software entities from across VA. Once you have your producer application up and running, it's important to register with the catalog to ensure that both current and future consumers can discover your event and access its details.
 
 In Backstage, entities represent software components or resources that share a common data shape and semantics. While there are several built-in entities, we have specifically created a custom entity called "Event" for the Event Bus.
 
