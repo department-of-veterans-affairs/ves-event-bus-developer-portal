@@ -165,11 +165,11 @@ See for instance this Java code that produces messages to a topic named â€œtestâ
 
 ### Register with CODE VA
 
-[CODE VA](https://code.va.gov/) (formerly known as the Hub) is a software catalog that houses entities from across VA. Once you have your producer application up and running, it's important to register with the catalog to ensure that both current and future consumers can discover your event and access its details.
+[CODE VA](https://code.va.gov/) (must be on VA network to view) is a software catalog that houses information about software entities from across the VA. Once you have your producer application up and running, it's important to register with the catalog to ensure that both current and future consumers can discover your event and access its details.
 
 In Backstage, entities represent software components or resources that share a common data shape and semantics. While there are several built-in entities, we have specifically created a custom entity called "Event" for the Event Bus.
 
-To register your topic with CODE VA:
+To register your event with CODE VA:
 
 1. Create a file named `catalog-info.yaml` at the root of your source code repository.
 2. Populate the `catalog-info.yaml` file with an `Event` Backstage entity based on the data structure below:
@@ -179,84 +179,69 @@ To register your topic with CODE VA:
     kind: Event
     metadata:
       name: event-name
-      description: Event description
+      description: Event description.
       title: Event Name
       links:
         - url: https://sample-slack-link.com
-          title: Event Producer slack channel
+          title: Event Producer Slack Channel
         - url: https://sample-link.com
-          title: Event documentation
+          title: Event Documentation
     spec:
       type: event
       lifecycle: production
       domain: health
-      productowner: platform-PO-that-owns-this-work-for-VA
-      team: team-that-maintains-event-producing-code
-      system: system-that-produces-the-event
+      sourceSystems:
+        - systemName: Source System Name
+          teamName: Source System Owning Team
+          productOwner: Source System Product Owner
       topics:
-        - topic: dev_appointments
+        - topic: topic_name
           environment: development
-          brokerAddress: broker_address_from_event_bus
-        - topic: staging_appointments
-          environment: staging
-          brokerAddress: broker_address_from_event_bus
-        - topic: prod_appointments
+        - topic: topic_name
           environment: production
-          brokerAddress: broker_address_from_event_bus
       forwarders:
-        - systemName: First Forwarder
-          teamName: first-forwarder-team
-        - systemName: Second Forwarder
-          teamName: second-forwarder-team
+        - systemName: Forwarding System
+          teamName: Forwarding System Owning Team
+      retention: 20
           
     ```
 
 
     Here is some additional information on the individual fields:
 
-    **apiVersion** [required]: For the time being, `apiVersion` will have a constant, static value of `backstage.io/v1alpha1`, though we are most likely free to change this if we wish. Because we are introducing a new Entity Kind that doesn't exist in Backstage, any `Event` specification we validate against won't correspond to anything. [Read more here](https://backstage.io/docs/features/software-catalog/descriptor-format#apiversion-and-kind-required).
+    **apiVersion** [required]: This value must be set to `backstage.io/v1alpha1`.
 
-    **kind** [required]: This value must be set to `Event` in order to pass JSON schema validation.
+    **kind** [required]: This value must be set to `Event`.
 
-    **metadata** [required]: A structure that contains information about the entity itself. The metadata structure includes the following properties:
+    **metadata** [required]: A structure that contains information about the entity itself. The `metadata` structure includes the following properties.
 
-    * **name** [required]: A machine-readable name of the event
-    
-    * **description** [required]: A short description of the event
+    * **name** [required]: A machine-readable name for the event. This value will be used in CODE VA urls, so it should be all lowercase and use hypens as separators.    
+    * **description** [required]: A concise, high-level description of the event and the data it provides.
+    * **title** [required]: A human-readable representation of the `name` to be used in CODE VA user interfaces.
+    * **links** [optional]: A list of links related to the event. Each link consists of a `url` and a `title`.
+        * **url** [required]: The external url that will be opened when the link is clicked.
+        * **title** [required]: Display text for the link.
 
-    * **title** [required]: A human-readable representation of the `name` to be used in Backstage user interfaces
+    **spec** [required]: A structure that contains information about the event a producer will be emitting. The `spec` structure includes the following properties.
 
-    * **links** [optional]: An optional list of links related to the event that will be displayed on the details page. Each link consists of a `url` and `title`
+    * **type** [required]: This value must be set to `event`.
+    * **lifecycle** [required]: The current development status for the event. This value must be set to: `experimental`, `development`, `production`, or `deprecated`.
+    * **domain** [required]: The VA domain in which a particular event exists. Possible values might be: `claims status`, `health`, `appointments`, `benefits`, etc.
+    * **sourceSystems** [required]: An array of objects that contain information about the sources of this event. Each source system will contain the following fields.
+        * **systemName** [required]: The name of the system that sources this event.
+        * **teamName** [required]: The name of the team that owns this system.
+        * **productOwner** [required]: OCTODE/VA PO embedded on the team that owns this system.
+    * **topics** [required]: An array of objects that contain information about the Kafka topics these events will be published to. The example above shows a topic for the development and production environments. Each topic will contain the following fields.
+        * **topic** [required]: The name of the topic.
+        * **environment** [required]: The environment this topic is available in. This value must be set to `development` or `production`.
+    * **forwarders** [optional]: An array of objects that contain information about systems that forward this event. This property should be used if there is a system sitting in between the source data store and the Event Bus that mutates data before an event is published. Each forwarder will contain the following fields.
+        * **systemName** [required]: The name of the system that forwards this event.
+        * **teamName** [required]: The name of the team that owns this forwarding system.
+    * **retention** [optional]: This value represents the number of days that each event is retained for. It should be set to an integer. This property only needs to be set if your topic has a custom retention policy. If it is not set, the default of 7 days will be displayed.
 
-    **spec** [required]: The section of a `catalog-info.yaml` file that producers will most likely be filling out. Contains information about the events a producer will be emitting.
+    The `catalog.yaml` file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema`, `spec.schemaCompatibilityMode`, and `spec.topics.brokerAddresses` fields included in this JSON schema will be auto-populated and should not be included in the `catalog-info.yaml` file. The optional `spec.averageDailyEvents` field will also be auto-populated and should not be included in the `catalog-info.yaml` file.
 
-    * **type** [required]:
-    Currently set to event
-
-    * **lifecycle** [required]:
-    Displayed in table. The current development status for an event. Possible values are: `experimental`, `development`, `production`, or `deprecated`.
-
-    * **domain** [required]:
-    Displayed in table. The domain in which a particular event exists. Values might be: `claims status`, `health`, `appointments`, `benefits`, etc.
-
-    * **productowner** [required]:
-    Displayed in details page. OCTODE/VA PO embedded on team (directly below) building app code.
-
-    * **team** [required]:
-    The application team that maintains app code responsible for producing events
-
-    * **system** [required]:
-    The system from which events are produced
-
-    * **topics** [required]:
-    The Kafka topics these events will be published to. Each topic consists of the actual topic name, the environment it's available in, and the broker address that will be provided to you by the Event Bus Team. The example shows a topic for each the dev, staging, and production environments.
-
-    * **forwarders** [optional]:
-    Displayed in details page. Array of objects with `systemName` and `teamName` properties. Used if there is a system sitting in between the source data store and the Event Bus that mutates data before an event is published.
-
-    The `catalog.yaml` file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema` and `spec.schemaCompatibilityMode` fields included in this JSON schema will be auto-populated and do not need to be included in the `catalog-info.yaml` file. These values will be fetched from the Schema Registry based on the event's topic name.
-
-3. Once your `catalog-info.yaml` file has been committed, log into [CODE VA](https://code.va.gov/) while on the VA network, and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
+3. Once your `catalog-info.yaml` file has been committed it will be automatically picked up after some time and the event will be viewable on [CODE VA](https://code.va.gov/) (must be on the VA network to view). If you would like the event to display quicker, log into [CODE VA](https://code.va.gov/) while on the VA network and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
 
 ## Logs
