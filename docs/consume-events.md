@@ -160,7 +160,7 @@ See for instance this Java code that consumes messages from a topic named “tes
 
 ### Register with CODE VA
 
-[CODE VA](https://code.va.gov/) (must be on VA network to view) is a software catalog that houses information about software entities from across the VA. Once your consumer application is up and running, it's important to register with the catalog so event producers are aware of how their events are being used and which systems are consuming them.
+[CODE VA](https://code.va.gov/) (must be on VA network to view) is a software catalog that houses information about software entities from across VA. Once your consumer application is up and running, it's important to register with the catalog so event producers are aware of how their events are being used and which systems are consuming them.
 
 To register with CODE VA:
 
