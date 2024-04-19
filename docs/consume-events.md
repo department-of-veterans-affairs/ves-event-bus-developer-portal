@@ -205,7 +205,7 @@ Here is some additional information on these fields:
     * **type** [required]: The component type. Possible values include: `website`, `service`, `library`, etc.
     * **lifecycle** [required]: The current development status for the component. Possible values include: `experimental`, `production`, `deprecated`, etc.
     * **owner** [required]: The team that owns the event-consuming component. If this is set to the name of a GitHub team within the VA's GitHub organization, this field will link to a page with details about the team in CODE VA.
-    * **subscribesToEvent** [required]: An array of strings. Each string corresponds to the `name` of an event entity in CODE VA.
+    * **subscribesToEvent** [required]: An array of strings. Each string must match the `metadata.name` value of a producer's `catalog-info.yaml` file. This field is used to relate the component to the events that it consumes. All consumers of an event will be displayed on the Event Details page.
 
 See [Backstage's Component documentation](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) for more information about additional optional fields.
 
@@ -242,19 +242,7 @@ Here is some additional information on these fields:
 * **spec** [required]: A structure that contains information about the system. The `spec` structure includes the following properties.
     * **owner** [required]: The team that owns the event-consuming system. If this is set to the name of a GitHub team within the VA's GitHub organization, this field will link to a page with details about the team in CODE VA.
     * **domain** [optional]: The VA domain in which a particular system exists. Possible values might be: `claims status`, `health`, `appointments`, `benefits`, etc.
-    * **subscribesToEvent** [required]: An array of strings. Each string corresponds to the `name` of an event entity.
-
-**NOTE**: As a consumer, it is imperative that you include the `subscribesToEvent` property in your `catalog-info.yaml` file, in the `spec` object. `subscribesToEvent` is an array containing strings. Each string corresponds to a `name` specified in a producer's `catalog-info.yaml` file [metadata object](https://backstage.io/docs/features/software-catalog/descriptor-format#common-to-all-kinds-the-metadata). This metadata name property can not always be derived from the event or the topic, so it will require referencing the producer's `catalog-info.yaml` file, e.g.:
-
-    apiVersion: backstage.io/v1alpha1
-    kind: Event
-    metadata:
-        name: event-name // <== This is what needs to be referenced
-        description: Event description
-        title: Event Name
-        // ...
-
-We use the `subscribesToEvent` property to generate [Backstage relations](https://backstage.io/docs/features/software-catalog/extending-the-model#adding-a-new-relation-type) between consumers and producers. These relations are displayed on Event Overview pages in a table. Without this property, there will be no visual representation of what systems or components are subscribing to a given event.
+    * **subscribesToEvent** [required]: An array of strings. Each string must match the `metadata.name` value of a producer's `catalog-info.yaml` file. This field is used to relate the system to the events that it consumes. All consumers of an event will be displayed on the Event Details page.
 
 ## Logs
 
