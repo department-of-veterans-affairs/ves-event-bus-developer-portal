@@ -166,93 +166,83 @@ To register with CODE VA:
 
 1. In CODE VA, an event-consuming software entity can be modeled as a [Component](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) or as a [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system). If you are unsure whether to classify your consumer as a Component or a System, see the [Backstage System Model](https://backstage.io/docs/features/software-catalog/system-model/).
 
-2. Create a file named `catalog-info.yaml` at the root of your source code repository and populate it with the applicable template, updating `metadata` and `spec` with values that correspond to your component or system:
+2. Create a file named `catalog-info.yaml` at the root of your source code repository and populate it with the applicable template, updating `metadata` and `spec` with values that correspond to your component or system.
 
-    **Component**
-    ``` { .yaml .copy }
-        apiVersion: backstage.io/v1alpha1
-        kind: Component
-        metadata:
-            name: component-name
-            description: Component description.
-            title: Component Name
-            links:
-              - url: https://sample-slack-link.com
-                title: Event Consumer Slack Channel
-              - url: https://sample-link.com
-                title: Component Documentation
-        spec:
-            type: service
-            lifecycle: production
-            owner: owning-team
-            subscribesToEvent: [event-name, event-name-two]
-    ```
+3. Once your `catalog-info.yaml` file has been committed it will be automatically picked up after some time and the software entity will be viewable on [CODE VA](https://code.va.gov/) (must be on the VA network to view). If you would like the event to display quicker, log into [CODE VA](https://code.va.gov/) while on the VA network and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
-    Here is some additional information on these fields:
+#### Component Template
+``` { .yaml .copy }
+    apiVersion: backstage.io/v1alpha1
+    kind: Component
+    metadata:
+        name: component-name
+        description: Component description.
+        title: Component Name
+        links:
+            - url: https://sample-slack-link.com
+            title: Event Consumer Slack Channel
+            - url: https://sample-link.com
+            title: Component Documentation
+    spec:
+        type: service
+        lifecycle: production
+        owner: owning-team
+        subscribesToEvent: [event-name, event-name-two]
+```
 
-    **apiVersion** [required]: This value must be set to `backstage.io/v1alpha1`.
+Here is some additional information on these fields:
 
-    **kind** [required]:  This value must be set to `Component`.
-
-    **metadata** [required]: A structure that contains information about the entity. The `metadata` structure includes the following properties.
-        
+* **apiVersion** [required]: This value must be set to `backstage.io/v1alpha1`.
+* **kind** [required]:  This value must be set to `Component`.
+* **metadata** [required]: A structure that contains information about the entity. The `metadata` structure includes the following properties.
     * **name** [required]: A machine-readable name for the component. This value will be used in CODE VA urls, so it should be all lowercase and use hypens as separators.
     * **description** [required]: A concise, high-level description of the event-consuming component.
     * **title** [required]: A human-readable representation of the `name` to be used in CODE VA user interfaces.
     * **links** [optional]: A list of links related to the component. Each link consists of a `url` and a `title`.
         * **url** [required]: The external url that will be opened when the link is clicked.
         * **title** [required]: Display text for the link.
-
-    **spec** [required]: A structure that contains information about the component. The `spec` structure includes the following properties.
-
+* **spec** [required]: A structure that contains information about the component. The `spec` structure includes the following properties.
     * **type** [required]: The component type. Possible values include: `website`, `service`, `library`, etc.
     * **lifecycle** [required]: The current development status for the component. Possible values include: `experimental`, `production`, `deprecated`, etc.
     * **owner** [required]: The team that owns the event-consuming component. If this is set to the name of a GitHub team within the VA's GitHub organization, this field will link to a page with details about the team in CODE VA.
     * **subscribesToEvent** [required]: An array of strings. Each string corresponds to the `name` of an event entity in CODE VA.
 
-    See [Backstage's Component documentation](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) for more information about additional optional fields.
+See [Backstage's Component documentation](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) for more information about additional optional fields.
 
-    **System**
-    ``` { .yaml .copy }
-        apiVersion: backstage.io/v1alpha1
-        kind: System
-        metadata:
-            name: system-name
-            description: System description.
-            title: System Name
-            links:
-              - url: https://sample-slack-link.com
-                title: Event Consumer Slack Channel
-              - url: https://sample-link.com
-                title: System Documentation
-        spec:
-            owner: owning-team
-            domain: health
-            subscribesToEvent: [event-name, event-name-two]
-    ```
+#### System Template
+``` { .yaml .copy }
+    apiVersion: backstage.io/v1alpha1
+    kind: System
+    metadata:
+        name: system-name
+        description: System description.
+        title: System Name
+        links:
+            - url: https://sample-slack-link.com
+            title: Event Consumer Slack Channel
+            - url: https://sample-link.com
+            title: System Documentation
+    spec:
+        owner: owning-team
+        domain: health
+        subscribesToEvent: [event-name, event-name-two]
+```
 
-    Here is some additional information on these fields:
+Here is some additional information on these fields:
 
-    **apiVersion** [required]: This value must be set to `backstage.io/v1alpha1`.
-
-    **kind** [required]:  This value must be set to `System`.
-
-    **metadata** [required]: A structure that contains information about the entity. The `metadata` structure includes the following properties.
-        
+* **apiVersion** [required]: This value must be set to `backstage.io/v1alpha1`.
+* **kind** [required]:  This value must be set to `System`.
+* **metadata** [required]: A structure that contains information about the entity. The `metadata` structure includes the following properties.
     * **name** [required]: A machine-readable name for the system. This value will be used in CODE VA urls, so it should be all lowercase and use hypens as separators.
     * **description** [required]: A concise, high-level description of the event-consuming system.
     * **title** [required]: A human-readable representation of the `name` to be used in CODE VA user interfaces.
     * **links** [optional]: A list of links related to the system. Each link consists of a `url` and a `title`.
         * **url** [required]: The external url that will be opened when the link is clicked.
         * **title** [required]: Display text for the link.
-
-    **spec** [required]: A structure that contains information about the system. The `spec` structure includes the following properties.
-
+* **spec** [required]: A structure that contains information about the system. The `spec` structure includes the following properties.
     * **owner** [required]: The team that owns the event-consuming system. If this is set to the name of a GitHub team within the VA's GitHub organization, this field will link to a page with details about the team in CODE VA.
     * **domain** [optional]: The VA domain in which a particular system exists. Possible values might be: `claims status`, `health`, `appointments`, `benefits`, etc.
     * **subscribesToEvent** [required]: An array of strings. Each string corresponds to the `name` of an event entity.
-
-3. Once your `catalog-info.yaml` file has been committed it will be automatically picked up after some time and the software entity will be viewable on [CODE VA](https://code.va.gov/) (must be on the VA network to view). If you would like the event to display quicker, log into [CODE VA](https://code.va.gov/) while on the VA network and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
 **NOTE**: As a consumer, it is imperative that you include the `subscribesToEvent` property in your `catalog-info.yaml` file, in the `spec` object. `subscribesToEvent` is an array containing strings. Each string corresponds to a `name` specified in a producer's `catalog-info.yaml` file [metadata object](https://backstage.io/docs/features/software-catalog/descriptor-format#common-to-all-kinds-the-metadata). This metadata name property can not always be derived from the event or the topic, so it will require referencing the producer's `catalog-info.yaml` file, e.g.:
 

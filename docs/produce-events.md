@@ -172,58 +172,55 @@ In Backstage, entities represent software components or resources that share a c
 To register your event with CODE VA:
 
 1. Create a file named `catalog-info.yaml` at the root of your source code repository.
-2. Populate the `catalog-info.yaml` file with an `Event` Backstage entity based on the data structure below:
+2. Populate the `catalog-info.yaml` file with an `Event` Backstage entity based on the template below.
+3. Once your `catalog-info.yaml` file has been committed it will be automatically picked up after some time and the event will be viewable on [CODE VA](https://code.va.gov/) (must be on the VA network to view). If you would like the event to display quicker, log into [CODE VA](https://code.va.gov/) while on the VA network and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
-    ``` { .yaml .copy }
-    apiVersion: backstage.io/v1alpha1
-    kind: Event
-    metadata:
-      name: event-name
-      description: Event description.
-      title: Event Name
-      links:
-        - url: https://sample-slack-link.com
-          title: Event Producer Slack Channel
-        - url: https://sample-link.com
-          title: Event Documentation
-    spec:
-      type: event
-      lifecycle: production
-      domain: health
-      sourceSystems:
-        - systemName: Source System Name
-          teamName: Source System Owning Team
-          productOwner: Source System Product Owner
-      topics:
-        - topic: topic_name
-          environment: development
-        - topic: topic_name
-          environment: production
-      forwarders:
-        - systemName: Forwarding System
-          teamName: Forwarding System Owning Team
-      retention: 20
-          
-    ```
+#### Event Template
 
+``` { .yaml .copy }
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+    name: event-name
+    description: Event description.
+    title: Event Name
+    links:
+    - url: https://sample-slack-link.com
+        title: Event Producer Slack Channel
+    - url: https://sample-link.com
+        title: Event Documentation
+spec:
+    type: event
+    lifecycle: production
+    domain: health
+    sourceSystems:
+    - systemName: Source System Name
+        teamName: Source System Owning Team
+        productOwner: Source System Product Owner
+    topics:
+    - topic: topic_name
+        environment: development
+    - topic: topic_name
+        environment: production
+    forwarders:
+    - systemName: Forwarding System
+        teamName: Forwarding System Owning Team
+    retention: 20
+        
+```
 
-    Here is some additional information on the individual fields:
+Here is some additional information on the individual fields:
 
-    **apiVersion** [required]: This value must be set to `backstage.io/v1alpha1`.
-
-    **kind** [required]: This value must be set to `Event`.
-
-    **metadata** [required]: A structure that contains information about the entity itself. The `metadata` structure includes the following properties.
-
+* **apiVersion** [required]: This value must be set to `backstage.io/v1alpha1`.
+* **kind** [required]: This value must be set to `Event`.
+* **metadata** [required]: A structure that contains information about the entity itself. The `metadata` structure includes the following properties.
     * **name** [required]: A machine-readable name for the event. This value will be used in CODE VA urls, so it should be all lowercase and use hypens as separators.    
     * **description** [required]: A concise, high-level description of the event and the data it provides.
     * **title** [required]: A human-readable representation of the `name` to be used in CODE VA user interfaces.
     * **links** [optional]: A list of links related to the event. Each link consists of a `url` and a `title`.
         * **url** [required]: The external url that will be opened when the link is clicked.
         * **title** [required]: Display text for the link.
-
-    **spec** [required]: A structure that contains information about the event a producer will be emitting. The `spec` structure includes the following properties.
-
+* **spec** [required]: A structure that contains information about the event a producer will be emitting. The `spec` structure includes the following properties.
     * **type** [required]: This value must be set to `event`.
     * **lifecycle** [required]: The current development status for the event. This value must be set to: `experimental`, `development`, `production`, or `deprecated`.
     * **domain** [required]: The VA domain in which a particular event exists. Possible values might be: `claims status`, `health`, `appointments`, `benefits`, etc.
@@ -239,10 +236,7 @@ To register your event with CODE VA:
         * **teamName** [required]: The name of the team that owns this forwarding system.
     * **retention** [optional]: This value represents the number of days that each event is retained for. It should be set to an integer. This property only needs to be set if your topic has a custom retention policy. If it is not set, the default of 7 days will be displayed.
 
-    The `catalog.yaml` file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema`, `spec.schemaCompatibilityMode`, and `spec.topics.brokerAddresses` fields included in this JSON schema will be auto-populated and should not be included in the `catalog-info.yaml` file. The optional `spec.averageDailyEvents` field will also be auto-populated and should not be included in the `catalog-info.yaml` file.
-
-3. Once your `catalog-info.yaml` file has been committed it will be automatically picked up after some time and the event will be viewable on [CODE VA](https://code.va.gov/) (must be on the VA network to view). If you would like the event to display quicker, log into [CODE VA](https://code.va.gov/) while on the VA network and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
-
+The `catalog.yaml` file will be validated against [this JSON schema](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema`, `spec.schemaCompatibilityMode`, and `spec.topics.brokerAddresses` fields included in this JSON schema will be auto-populated and should not be included in the `catalog-info.yaml` file. The optional `spec.averageDailyEvents` field will also be auto-populated and should not be included in the `catalog-info.yaml` file.
 
 ## Logs
 
