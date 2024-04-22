@@ -165,10 +165,8 @@ See for instance this Java code that consumes messages from a topic named “tes
 To register with CODE VA:
 
 1. In CODE VA, an event-consuming software entity can be modeled as a [Component](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) or as a [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system). If you are unsure whether to classify your consumer as a Component or a System, see the [Backstage System Model](https://backstage.io/docs/features/software-catalog/system-model/).
-
 2. Create a file named `catalog-info.yaml` at the root of your source code repository and populate it with the applicable template, updating `metadata` and `spec` with values that correspond to your component or system.
-
-3. Once your `catalog-info.yaml` file has been committed it will be automatically picked up after some time and the software entity will be viewable on [CODE VA](https://code.va.gov/) (must be on the VA network to view). If you would like the event to display quicker, log into [CODE VA](https://code.va.gov/) while on the VA network and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
+3. Once your `catalog-info.yaml` file has been committed it will be automatically processed and the software entity will be viewable on [CODE VA](https://code.va.gov/) (must be on the VA network to view) within a few hours. If you would like the software entity to display quicker, follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
 #### Component Template
 ``` { .yaml .copy }
@@ -205,7 +203,7 @@ Here is some additional information on these fields:
     * **type** [required]: The component type. Possible values include: `website`, `service`, `library`, etc.
     * **lifecycle** [required]: The current development status for the component. Possible values include: `experimental`, `production`, `deprecated`, etc.
     * **owner** [required]: The team that owns the event-consuming component. If this is set to the name of a GitHub team within the VA's GitHub organization, this field will link to a page with details about the team in CODE VA.
-    * **subscribesToEvent** [required]: An array of strings. Each string must match the `metadata.name` value of a producer's `catalog-info.yaml` file. This field is used to relate the component to the events that it consumes. All consumers of an event will be displayed on the Event Details page.
+    * **subscribesToEvent** [required]: An array of strings. Each string must match the `metadata.name` value of a producer's `catalog-info.yaml` file. This field is used to relate the component to the events that it consumes and to display the component on each related event's CODE VA catalog entry.
 
 See [Backstage's Component documentation](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) for more information about additional optional fields.
 
@@ -242,7 +240,7 @@ Here is some additional information on these fields:
 * **spec** [required]: A structure that contains information about the system. The `spec` structure includes the following properties.
     * **owner** [required]: The team that owns the event-consuming system. If this is set to the name of a GitHub team within the VA's GitHub organization, this field will link to a page with details about the team in CODE VA.
     * **domain** [optional]: The VA domain in which a particular system exists. Possible values might be: `claims status`, `health`, `appointments`, `benefits`, etc.
-    * **subscribesToEvent** [required]: An array of strings. Each string must match the `metadata.name` value of a producer's `catalog-info.yaml` file. This field is used to relate the system to the events that it consumes. All consumers of an event will be displayed on the Event Details page.
+    * **subscribesToEvent** [required]: An array of strings. Each string must match the `metadata.name` value of a producer's `catalog-info.yaml` file. This field is used to relate the system to the events that it consumes and to display the system on each related event's CODE VA catalog entry.
 
 ## Logs
 

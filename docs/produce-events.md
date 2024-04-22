@@ -173,7 +173,7 @@ To register your event with CODE VA:
 
 1. Create a file named `catalog-info.yaml` at the root of your source code repository.
 2. Populate the `catalog-info.yaml` file with an `Event` Backstage entity based on the template below.
-3. Once your `catalog-info.yaml` file has been committed it will be automatically picked up after some time and the event will be viewable on [CODE VA](https://code.va.gov/) (must be on the VA network to view). If you would like the event to display quicker, log into [CODE VA](https://code.va.gov/) while on the VA network and follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
+3. Once your `catalog-info.yaml` file has been committed it will be automatically processed and the event will be viewable on [CODE VA](https://code.va.gov/) (must be on the VA network to view) within a few hours. If you would like the event to display quicker, follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
 #### Event Template
 
