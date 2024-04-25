@@ -23,10 +23,8 @@ spec:
  topics:
   - topic: decision_letter_availability
     environment: development
-    brokerAddress: development.broker-address.com/dev-connection/v0/
   - topic: prod_test
     environment: production
-    brokerAddress: broker-address.com/dev-connection/v0/
  forwarders:
   - systemName: firstForwarder
     teamName: ves-event-bus

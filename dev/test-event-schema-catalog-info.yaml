@@ -23,10 +23,8 @@ spec:
  topics:
   - topic: test
     environment: development
-    brokerAddress: development.broker-address.com/dev-connection/v0/
   - topic: test
-    environment: staging
-    brokerAddress: staging.broker-address.com/staging-connection/v0/
+    environment: production
  forwarders:
   - systemName: firstForwarder
     teamName: ves-event-bus
