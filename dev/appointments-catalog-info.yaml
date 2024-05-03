@@ -1,0 +1,20 @@
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+  name: appointment
+  description: This event occurs when an appointment is created, changed, or cancelled.
+  title: Appointment
+  links:
+    - url: https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Use%20Cases/Appointments/Appointments%20Use%20Case%20One%20Pager.md
+      title: Appointment Event details
+spec:
+  type: event
+  lifecycle: experimentation
+  domain: health
+  sourceSystems:
+    - systemName: VistA
+      teamName: Healthcare Applications Team
+      productOwner: Healthcare Applications Team
+  topics:
+    - topic: appointments
+      environment: development

@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+  name: vba-dependant-update
+  description: This event occurs when a dependant is added or removed in a VBA system.
+  title: VBA Dependant Update
+spec:
+  type: event
+  lifecycle: development
+  domain: benefits claims
+  sourceSystems:
+    - systemName: Benefits Integration Platform
+      teamName: Benefits Integration Platform Team
+      productOwner: Benefits Integration Platform Team
+  topics:
+    - topic: vba_dependant_update
+      environment: development

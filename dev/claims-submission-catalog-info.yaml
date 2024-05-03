@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+  name: claims-submission
+  description: This event occurs when a benefits claim is submitted.
+  title: Claims Submission
+spec:
+  type: event
+  lifecycle: development
+  domain: claims status
+  sourceSystems:
+    - systemName: Benefits Integration Platform
+      teamName: Benefits Integration Platform Team
+      productOwner: Benefits Integration Platform Team
+  topics:
+    - topic: claims_submission
+      environment: development

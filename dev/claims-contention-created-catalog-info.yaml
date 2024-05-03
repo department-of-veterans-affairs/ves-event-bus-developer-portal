@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+  name: claims-contention-created
+  description: This event occurs when a benefits claim contention is created.
+  title: Claims Contention Created
+spec:
+  type: event
+  lifecycle: development
+  domain: benefits claims
+  sourceSystems:
+    - systemName: Benefits Integration Platform
+      teamName: Benefits Integration Platform Team
+      productOwner: Benefits Integration Platform Team
+  topics:
+    - topic: claims_contention_created
+      environment: development

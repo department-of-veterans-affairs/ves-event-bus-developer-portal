@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+  name: prescription-refill
+  description: This event occurs when a prescription refill action occurs.
+  title: Prescription Refill
+spec:
+  type: event
+  lifecycle: experimental
+  domain: health
+  sourceSystems:
+    - systemName: VistA
+      teamName: Healthcare Applications Team
+      productOwner: Healthcare Applications Team
+  topics:
+    - topic: prescription_refill
+      environment: development

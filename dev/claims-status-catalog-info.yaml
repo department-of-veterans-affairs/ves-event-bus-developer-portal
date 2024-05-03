@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+  name: claims-status
+  description: This event occurs when the status of a benefits claim changes.
+  title: Claims Status
+spec:
+  type: event
+  lifecycle: development
+  domain: claims status
+  sourceSystems:
+    - systemName: Benefits Integration Platform
+      teamName: Benefits Integration Platform Team
+      productOwner: Benefits Integration Platform Team
+  topics:
+    - topic: claims_status
+      environment: development

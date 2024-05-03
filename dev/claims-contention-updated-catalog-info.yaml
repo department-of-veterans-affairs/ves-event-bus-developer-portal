@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+  name: claims-contention-updated
+  description: This event occurs when a benefits claim contention is updated.
+  title: Claims Contention Updated
+spec:
+  type: event
+  lifecycle: development
+  domain: benefits claims
+  sourceSystems:
+    - systemName: Benefits Integration Platform
+      teamName: Benefits Integration Platform Team
+      productOwner: Benefits Integration Platform Team
+  topics:
+    - topic: claims_contention_updated
+      environment: development
