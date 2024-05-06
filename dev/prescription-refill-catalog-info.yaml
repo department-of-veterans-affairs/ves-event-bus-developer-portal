@@ -6,7 +6,7 @@ metadata:
   title: Prescription Refill
 spec:
   type: event
-  lifecycle: experimental
+  lifecycle: mock
   domain: health
   sourceSystems:
     - systemName: VistA

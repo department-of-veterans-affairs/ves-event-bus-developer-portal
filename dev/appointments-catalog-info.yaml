@@ -9,7 +9,7 @@ metadata:
       title: Appointment Event details
 spec:
   type: event
-  lifecycle: experimentation
+  lifecycle: mock
   domain: health
   sourceSystems:
     - systemName: VistA
