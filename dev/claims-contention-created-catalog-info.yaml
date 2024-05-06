@@ -6,7 +6,7 @@ metadata:
   title: Claims Contention Created
 spec:
   type: event
-  lifecycle: mock
+  lifecycle: experimental
   domain: benefits claims
   sourceSystems:
     - systemName: Benefits Integration Platform
