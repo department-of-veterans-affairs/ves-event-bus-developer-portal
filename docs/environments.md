@@ -18,8 +18,8 @@ title: Environments
 
 Event Bus [Kafka](https://kafka.apache.org/) and applications are deployed into several environments for different purposes. The environments are described below.
 
-- **`Dev`** is an environment intended for developer experiments with no expectations for stability. We try our best, but we might release broken code to this environment.
-- **`Sandbox`** is a stable environment that external teams can connect to.
+- **`Dev`** is an unstable environment intended for Event Bus team's development work. No customer applications will be deployed here.
+- **`Sandbox`** is a stable environment that external teams can connect to. It is a "customer dev" environment.
 - **`Pre-prod`** is a testing environment that has been cleared for PHI and PII. `Pre-prod` may be used for performance tests.
 - **`Prod`** is our production environment.
 
