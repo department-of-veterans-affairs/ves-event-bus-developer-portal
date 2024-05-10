@@ -32,6 +32,6 @@ We deploy any new releases to `sandbox` and `prod` on Wednesdays.
 | Environment<br>Name | AWS Account  | Kubernetes<br>Cluster | Kubernetes<br>Namespace     | PHI, PII<br>Allowed |
 |---------------------|--------------|-----------------------|-----------------------------|---------------------|
 | dev                 | ldx-dev      | ldx-nonprod-1         | ves-event-bus-infra-dev     | No                  |
-| sandbox             |              | ldx-nonprod-1         | ves-event-bus-infra-sandbox | No                  |
+| sandbox             | ldx-nprod    | ldx-nonprod-1         | ves-event-bus-infra-sandbox | No                  |
 | pre-prod            | ldx-prod     | ldx-prod-1            | TBD                         | Yes                 |
 | prod                | ldx-prod     | ldx-prod-1            | ves-event-bus-infra-prod    | Yes                 |
