@@ -5,16 +5,10 @@ title: Environments
 # Environments
 
 ## Descriptions
-<!--
- from ticket #2516 "Our four environments are: Dev, Sandbox, Pre Prod, Prod"
 
- Description of environments from Slack 
- https://dsva.slack.com/archives/C06EB8S1FT9/p1710884055935049
-
- https://adhoc.slack.com/archives/C042L8C962D/p1712157437377449?thread_ts=1712058858.556049&cid=C042L8C962D
-
- VA Profile has an environment called INT. int currently connects to EB dev. INT will connect to EB sandbox.
--->
+[comment]: <> (Description of environments from Slack:)
+[comment]: <> (https://dsva.slack.com/archives/C06EB8S1FT9/p1710884055935049)
+[comment]: <> (https://adhoc.slack.com/archives/C042L8C962D/p1712157437377449?thread_ts=1712058858.556049&cid=C042L8C962D)
 
 Event Bus [Kafka](https://kafka.apache.org/) and applications are deployed into several environments for different purposes. The environments are described below.
 
@@ -36,4 +30,4 @@ We deploy any new releases to `sandbox` and `prod` on Wednesdays.
 | pre-prod            | ldx-prod     | ldx-prod-1            | TBD                         | Yes                 |
 | prod                | ldx-prod     | ldx-prod-1            | ves-event-bus-infra-prod    | Yes                 |
 
-<!-- LHDI's dev is in ldx-dev, but the Event Bus dev that customers would connect to is in nprod. -->
+[comment]: <> (LHDI's dev is in ldx-dev, but the Event Bus dev that customers would connect to is in nprod.)
