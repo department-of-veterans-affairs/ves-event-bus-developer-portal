@@ -21,6 +21,7 @@ nav:
   - administrative-requirements.md
   - consume-events.md
   - produce-events.md
+  - environments.md
   - use-events.md
   - offboard.md
   - terminology.md
