@@ -15,7 +15,7 @@ title: Terminology
 
 * **Broker**: (also called a server or node) orchestrates the storage and passing of messages. These are the machines that store and service the data.
 
-* **MSK**: Managed Streams for Kafka. The Enterprise Event Bus uses [AWS Managed Streams for Kafka](https://docs.aws.amazon.com/msk/index.html), a hosted version of Kafka that runs in the VA Enterprise Cloud.
+* **MSK**: Managed Streams for Kafka. The Enterprise Event Bus uses [AWS Managed Streams for Kafka](https://docs.aws.amazon.com/msk/), a hosted version of Kafka that runs in the VA Enterprise Cloud.
 
 * **Producer**: the team, as well as the application that appends messages to the end of the topic. Messages are written to partitions on a round robin basis, or to a specific partition based on the message key.
 
@@ -27,4 +27,4 @@ title: Terminology
 * **Event (instance)**: a specific instance of a business action that has occurred  (note: event, message, and record can be seen interchangeably in various Kafka-related documentation).
     * For example, an appointment was created for Karen to see an orthopedic specialist on 6/1/2023 at 10:30 am.
  
-Find additional terms and abbreviations defined in [Github](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Event%20Bus%20Terminology.md). 
+Find additional terms and abbreviations defined in [Github (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Event%20Bus%20Terminology.md). 
