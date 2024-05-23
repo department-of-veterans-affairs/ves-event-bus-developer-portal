@@ -4,9 +4,9 @@ title: Get Support
 
 # Get Support
 
-The best way to request support from the Event Bus Team is to reach out to us via the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) Slack channel in the Office of CTO @VA workspace.
+The best way to request support from the Event Bus Team is to reach out to us via the [#ves-event-bus Slack channel (must be in the Office of CTO @VA workspace)](https://dsva.slack.com/archives/C042ZQ7JUAX).
 
-Please avoid direct messaging an Event Bus team member in Slack. Chatting openly in the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) channel allows others to learn from the questions and answers discussed.
+Please avoid direct messaging an Event Bus team member in Slack. Chatting openly in the channel allows others to learn from the questions and answers discussed.
 
 ## Slack channel support hours 
 
@@ -21,5 +21,5 @@ Response times are based on the nature of the posting:
 
 Alerts about Event Bus monitoring can be found on the following Slack channels:
 
-* [#ves-event-bus-prod-alerts](https://dsva.slack.com/archives/C06N7QKMQN4)
-* [#vaapi-lhdi-customer-env-alerts](https://lighthouseva.slack.com/archives/C05RZUP7H6D) (includes alerts for the wider LHDI environment)
+* [#ves-event-bus-prod-alerts (must be in the Office of CTO @VA workspace)](https://dsva.slack.com/archives/C06N7QKMQN4)
+* [#vaapi-lhdi-customer-env-alerts (must be in Lighthouse workspace)](https://lighthouseva.slack.com/archives/C05RZUP7H6D) (includes alerts for the wider LHDI environment)
