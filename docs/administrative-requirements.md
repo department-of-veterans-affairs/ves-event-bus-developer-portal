@@ -56,7 +56,7 @@ Getting an eMASS ID is a prerequisite for System Categorization.
 
 **For non-LHDI clients**:
 
-* If a prospective client system does not have an eMASS ID, it will need to submit a [LEAF intake request (must be on VA network to view)](https://leaf.va.gov/NATIONAL/103/cybersecurity_request_portal/) to get one.
+* If a prospective client system does not have an eMASS ID, it will need to submit a LEAF intake (formerly GRC intake) request: [Unified System Registry Intake (must be on VA network to view)](https://leaf.va.gov/NATIONAL/103/cybersecurity_request_portal/) to get one.
 
 **For new LHDI clients**:
 
@@ -80,7 +80,7 @@ For new teams within the Lighthouse Delivery Infrastructure, please consult your
 
 As part of the eMASS process, System Categorization will evaluate the impact to the organization of loss or compromise to the data in the application. The outcome of the System Categorization process is a FISMA risk level rating of Low, Moderate, or High.
 
-If a prospective client system has not been through System Categorization, it will need to follow the steps outlined on this [GRC System Categorization page](https://confluence.devops.va.gov/display/VAExternal/GRC+-+System+Categorization). Note that completing a Privacy Threshold Analysis (PTA) document is a prerequisite for System Categorization.
+If a prospective client system has not been through System Categorization, it will need to follow the steps outlined on this [GRC System Categorization page (must be on VA network to view)](https://confluence.devops.va.gov/display/VAExternal/GRC+-+System+Categorization). Note that completing a Privacy Threshold Analysis (PTA) document is a prerequisite for System Categorization.
 
 **Note**: For teams handling ePHI (medical information specific to an individually identifiable patient), the HIPAA Security Rule applies and further review will be required. Support for this can be requested by sending an email to [VHAHCSDevelopmentSecurity2@va.gov](mailto:VHAHCSDevelopmentSecurity2@va.gov).
 
@@ -103,7 +103,8 @@ PTAs are renewed annually and PIAs are renewed every three years, unless there a
 Resources:
 
 * [Privacy Threshold Analysis (PTA) and Privacy Impact Assessment (PIA) Submittal Checklist and Process Overview (PDF file, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/PTA%20Training%20Resources/Forms/AllItems.aspx?id=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources%2FPTA%20and%20PIA%20Submittal%20Checklist%20and%20Process%20Overview%2Epdf&parent=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources&isSPOFile=1&OR=Teams%2DHL&CT=1709826099209&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyNy8yNDAxMDQxNzUwNCIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D)
-* [PTA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/Privacy-Impact-Assessment.aspx?csf=1&web=1&e=u8YJ0w)
+* [PIA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/Privacy-Impact-Assessment.aspx?csf=1&web=1&e=u8YJ0w)
+* [PTA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/Privacy-Threshold-Analysis.aspx?csf=1&web=1&e=MY0flg)
 
 ## ESECC
 

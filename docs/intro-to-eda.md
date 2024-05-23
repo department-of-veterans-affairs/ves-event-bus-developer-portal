@@ -8,7 +8,7 @@ title: Event-Driven Architecture at VA
 
 The Enterprise Event Bus is an asynchronous event processing system that spans systems and lines of business at VA. Event-driven architecture uses events &mdash; types of actions, such as a Veteran creating a medical appointment or updating their beneficiaries &mdash; to communicate with systems that are subscribed to the stream of events. The systems that are producing the events, also known as [producers](./produce-events.md), are decoupled from the systems that are consuming their events, also known as [consumers](./consume-events.md).
 
-_The following conceptual diagram illustrates how the different components of the Enterprise Event Bus might come together to produce streams of events. [View the full-sized diagram.](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
+_The following conceptual diagram illustrates how the different components of the Enterprise Event Bus might come together to produce streams of events. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
 
 ![A conceptual diagram showing various event-producing systems on the left, which funnel into business topics in the center, which are finally filtered out to consuming systems on the right.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/f0dfe62a-8509-459c-bd9a-074e0babb22b)
 
@@ -43,9 +43,9 @@ When determining what information an event should contain, a guiding principle i
 
 Enterprise Event Bus, like most other event-based systems in VA, is based on [Apache Kafka](https://kafka.apache.org/), an open-source distributed event streaming platform. It is considered the industry standard for handling real-time data feeds, and is capable of handling the kinds of large scale, high-throughput loads we would expect an enterprise-wide event bus in VA to be able to handle. In addition to being a proven technology, Kafka is already used in a production capacity by other teams in VA, such as the [Benefits Integration Platform](https://confluence.devops.va.gov/pages/viewpage.action?spaceKey=VAExternal&title=Benefits+Integration+Events).
 
-The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs.aws.amazon.com/msk/index.html), a hosted version of Kafka that runs in the VA Enterprise Cloud. 
+The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs.aws.amazon.com/msk/), a hosted version of Kafka that runs in the VA Enterprise Cloud. 
 
-_The following diagram illustrates how events pass through the different components of the Enterprise Event Bus system. [View the full-sized diagram.](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/Data%20Flow.jpeg)_
+_The following diagram illustrates how events pass through the different components of the Enterprise Event Bus system. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/Data%20Flow.jpeg)_
 ![A diagram showing a producer application on the left, pushing a stream of events to a topic. In the center of the diagram, events are shown in a box called AWS MSK (indicating that they are hosted there) and distributed among brokers and partitions to balance the load. There is a note explaining that metadata managed by the cluster informs producers and consumers which broker to connect to. The data on AWS MSK is stored in AWS EBS. Consumer applications can subscribe to topics to pull streams of events, as the consuming application is doing in the right side of the diagram.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
 
 ## Learn more
