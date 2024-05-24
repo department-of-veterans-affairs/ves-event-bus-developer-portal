@@ -14,6 +14,7 @@ An Event Bus allows a system to publish a stream of changes to its data. Systems
 ## Why use the Enterprise Event Bus?
 
 Teams can use the Enterprise Event Bus to generate events based on state changes to the data they own and publish them on an event bus. Consumers are free to consume those events and react accordingly. More specifically, with the Enterprise Event Bus:
+
 * Event producers don’t need to know who the interested consumers are and therefore don’t need to keep growing their outbound complexity.
 * Multiple consumers may receive and act on an event; it’s not just an asynchronous queue sitting between a single producer and consumer.
 

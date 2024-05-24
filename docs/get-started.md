@@ -44,5 +44,5 @@ The Event Bus is rated at a Medium level under FISMA and VA system categorizatio
 
 If you think the Enterprise Event Bus would be a good fit for your situation, please [reach out](./get-support.md)!
 
-The best way to contact the Event Bus Team is via the [#ves-event-bus](https://dsva.slack.com/archives/C042ZQ7JUAX) Slack channel in the Office of CTO @VA workspace.
+The best way to contact the Event Bus Team is via the [#ves-event-bus Slack channel (must be in the Office of CTO @VA workspace)](https://dsva.slack.com/archives/C042ZQ7JUAX).
 
