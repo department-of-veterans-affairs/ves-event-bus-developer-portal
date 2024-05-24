@@ -26,6 +26,7 @@ Please include the following information in your email:
 
 Alerts and warnings from Event Bus monitoring can be found in the following Slack channels:
 
+
 * [#ves-event-bus-sandbox-alerts (must be in the Office of CTO @VA workspace)][slack-#ves-event-bus-sandbox-alerts]
 * [#ves-event-bus-prod-alerts (must be in the Office of CTO @VA workspace)][slack-#ves-event-bus-prod-alerts]
 * [#vaapi-lhdi-customer-env-alerts (must be in the Lighthouse workspace)][slack-#vaapi-lhdi-customer-env-alerts] (includes alerts for the wider LHDI environment)
