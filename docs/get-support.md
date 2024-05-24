@@ -14,7 +14,7 @@ Event Bus Slack channel support hours are from 12pm - 5pm ET, Monday through Fri
 
 ## Report an incident
 
-To report a security or privacy incident, or an urgent critical operational incident email event-bus@veterans-affairs.pagerduty.com. This will generate a page to the on-call engineer's mobile device 24/7. You can expect a response within 30 minutes at all hours.
+To report a security or privacy incident, or an urgent critical operational incident email event-bus@veterans-affairs.pagerduty.com. This will generate a page to the on-call engineer's mobile device 24/7. You can expect a response within 30 minutes.
 
 Please include the following information in your email:
 - Is this a security or privacy incident? Y/N
