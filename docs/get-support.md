@@ -6,9 +6,9 @@ title: Get Support
 
 ## General support requests
 
-The best way to request support from the Event Bus Team is to reach out to us via the [#event-bus-support][slack-#event-bus-support] Slack channel in the Office of CTO @VA workspace.
+The best way to request support from the Event Bus Team is to reach out to us via the [#event-bus-support Slack channel (must be in the Office of CTO @VA workspace)][slack-#event-bus-support].
 
-Please avoid direct messaging an Event Bus team member in Slack. Chatting openly in the [#event-bus-support][slack-#event-bus-support] channel allows others to learn from the questions and answers discussed.
+Please avoid direct messaging an Event Bus team member in Slack. Chatting openly in the channel allows others to learn from the questions and answers discussed.
 
 Event Bus Slack channel support hours are from 12pm - 5pm ET, Monday through Friday, with the exception of federal holidays. Often, an engineer will respond by 9am ET if they live in the Eastern or Central timezones. You can expect a response within 1 hour during the support hours.
 
@@ -26,9 +26,9 @@ Please include the following information in your email:
 
 Alerts and warnings from Event Bus monitoring can be found in the following Slack channels:
 
-* [#ves-event-bus-sandbox-alerts][slack-#ves-event-bus-sandbox-alerts]
-* [#ves-event-bus-prod-alerts][slack-#ves-event-bus-prod-alerts]
-* [#vaapi-lhdi-customer-env-alerts][slack-#vaapi-lhdi-customer-env-alerts] (includes alerts for the wider LHDI environment)
+* [#ves-event-bus-sandbox-alerts (must be in the Office of CTO @VA workspace)][slack-#ves-event-bus-sandbox-alerts]
+* [#ves-event-bus-prod-alerts (must be in the Office of CTO @VA workspace)][slack-#ves-event-bus-prod-alerts]
+* [#vaapi-lhdi-customer-env-alerts (must be in the Lighthouse workspace)][slack-#vaapi-lhdi-customer-env-alerts] (includes alerts for the wider LHDI environment)
 
 <!-- links -->
 [slack-#event-bus-support]: https://dsva.slack.com/archives/C074VK55M9P
