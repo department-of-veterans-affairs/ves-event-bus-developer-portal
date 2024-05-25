@@ -24,6 +24,8 @@ spec:
   - topic: decision_letter_availability
     environment: development
   - topic: decision_letter_availability
+    environment: sandbox
+  - topic: decision_letter_availability
     environment: production
  forwarders:
   - systemName: firstForwarder
