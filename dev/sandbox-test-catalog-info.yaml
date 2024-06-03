@@ -1,0 +1,29 @@
+apiVersion: backstage.io/v1alpha1
+kind: Event
+metadata:
+  name: test-event
+  description: This event occurs when a decision letter for a Veteran's benefits claim is electronically available.
+  title: Test Event
+  links:
+    - url: https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Use%20Cases/Decision%20Letter%20Availability/Decision%20Letter%20Availability%20Use%20Case.md
+      title: Decision Letter Availability Event details
+spec:
+  type: event
+  lifecycle: production
+  domain: claims status
+  sourceSystems:
+    - systemName: Benefits Integration Platform
+      teamName: Benefits Integration Platform Team
+      productOwner: Benefits Integration Platform Team
+  topics:
+    - topic: decision_letter_availability
+      environment: development
+    - topic: decision_letter_availability
+      environment: sandbox
+    - topic: decision_letter_availability
+      environment: production
+  forwarders:
+    - systemName: DLA Deduplicator
+      teamName: ves-event-bus
+    - systemName: DLA Filter
+      teamName: ves-event-bus
