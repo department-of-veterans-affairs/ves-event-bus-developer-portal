@@ -98,8 +98,8 @@ PTAs are renewed annually and PIAs are renewed every three years, unless there a
 Resources:
 
 * [Privacy Threshold Analysis (PTA) and Privacy Impact Assessment (PIA) Submittal Checklist and Process Overview (PDF file, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/PTA%20Training%20Resources/Forms/AllItems.aspx?id=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources%2FPTA%20and%20PIA%20Submittal%20Checklist%20and%20Process%20Overview%2Epdf&parent=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources&isSPOFile=1&OR=Teams%2DHL&CT=1709826099209&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyNy8yNDAxMDQxNzUwNCIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D)
-* [PIA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/Privacy-Impact-Assessment.aspx?csf=1&web=1&e=u8YJ0w)
-* [PTA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/Privacy-Threshold-Analysis.aspx?csf=1&web=1&e=MY0flg)
+* [PTA Training Resources (VA SharePoint, must be on VA network to view)]([https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/Privacy-Threshold-Analysis.aspx?csf=1&web=1&e=MY0flg](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PTA-Training-Resources.aspx))
+* [PIA Training Resources (VA SharePoint, must be on VA network to view)]([https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/Privacy-Impact-Assessment.aspx?csf=1&web=1&e=u8YJ0w](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PIA-Training-Resources.aspx))
 
 ## VASI and eMASS 
 
