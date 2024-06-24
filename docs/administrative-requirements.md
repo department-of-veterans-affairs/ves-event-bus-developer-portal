@@ -144,7 +144,7 @@ Getting an eMASS ID is a prerequisite for System Categorization.
 
 Web Application Security Assessment (WASA) scanning may be needed as part of the ATO process when a client system builds a web application for consuming events from the Event Bus. Please note that a 30 day notice is required for WASA testing.
 
-The VA SAVD WASA Coordination team can be contacted via email at `VASAVDWASACoordination[at]va.gov`. A request for WASA testing can be submitted on the [Security Assessment Portal home page (must be on VA network to view)](https://portalapps.vansoc.va.gov/EAS/Home).
+The VA SAVD WASA Coordination team can be contacted via email at `VASAVDWASACoordination[at]va.gov`. A request for WASA testing can be submitted on the [Security Assessment Portal home page (must be on VA network to view)](https://saportal.va.gov/Home).
 
 ## Other Resources
 
