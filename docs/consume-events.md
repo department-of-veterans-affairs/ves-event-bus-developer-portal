@@ -27,6 +27,10 @@ This [example documentation (must be part of VA GitHub organization to view)](ht
 
 ![A diagram showing various scenarios indicating whether a system would need an ESECC. If you are already on the Lighthouse Delivery Infrastructure (LHDI), no ESECC is required. If you are on AWS GovCloud but outside of LHDI, check to see if an ESECC is required. If you are on Non-AWS Cloud (e.g. Azure), check to see if an ESECC is required. If you are on-premises, e.g., VistA, an ESECC is required.](img/Client-Environments-ESECC-Decision-Circles.svg)
 
+### For consumers of BIP-sourced Events
+
+Read the [documentation on requesting data access and sensitivity filtering](./administrative-requirements.md#consumers-of-bip-sourced-events) in our Administrative Requirements section.
+
 ### Set up authorization and authentication
 
 To subscribe to specific topics on the Event Bus, consumers need to be authenticated and have the appropriate permissions. The Event Bus MSK cluster is only accessible from the VA Network, and we use AWS IAM (Identity and Access Management) Roles and Policies to control access to different resources. If your consuming application is within the AWS environment, you will need to let us know to which IAM Role(s) or IAM User(s) we should grant access. We will then set up the corresponding IAM Policies on our end and assign a named role for consumers to authenticate with AWS MSK in their application code.
