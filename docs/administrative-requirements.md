@@ -57,7 +57,7 @@ Approval must be granted first for use in non-production environments, and then 
 
 The implementation of Sensitivity Filtering is required when event data, or data spawned from a callback initiated by the data, will be displayed through a VA application user interface to a VA employee or contractor.
 
-[Documentation for the rationale behind sensitivity filtering (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/Benefits%20Information%20Sensitivity%20Filtering.md) and [instructions for implementing Sensitivity Filtering (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/Benefits%20Information%20Sensitivity%20Level%20Filtering%20Options.md) can be found in the Enterprise Event Bus GitHub repository. 
+[What is sensitivity filtering? (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/Benefits%20Information%20Sensitivity%20Filtering.md) and [instructions for implementing Sensitivity Filtering (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/Benefits%20Information%20Sensitivity%20Level%20Filtering%20Options.md) can be found in the Enterprise Event Bus GitHub repository. 
 
 ## ESECC
 
