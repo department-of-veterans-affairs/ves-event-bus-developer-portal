@@ -43,15 +43,15 @@ For clients that are LHDI tenants:
 
 ### OBI Access Form
 
-Event Bus Consumers consuming a BIP-sourced event that is available on the Event Bus must follow the OBI data access form process (aka the Corp DB Access form).
+Event Bus Consumers consuming a BIP-sourced event that is available on the Event Bus must follow the OBI Data Access Form process (aka the Corp DB Access Form).
 
-If the same consumer wants to consume additional BIP-sourced events at a later time, another OBI data access request form must be submitted to cover the use of that additional data.
+If the same consumer wants to consume additional BIP-sourced events at a later time, another OBI Data Access Form must be submitted to cover the use of that additional data.
+
+Note that if _both_ the Event Bus and the Consumer are consuming an event for the first time, the Consumer must wait for the Event Bus to submit and get approval for its own OBI Data Access Form request before submitting its own request.
 
 [Instructions for filling out the form (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/SOP_Corporate_DB_Access_Approval%20081123%201.pdf) and [an example (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/CorpDB%20Application%20Access%20Enterprise%20Event%20Bus%20full%20production.pdf) are available in the Enterprise Event Bus GitHub repository. 
 
-Approval typically takes place in two stages: first for use in non-production environments, then for use in production.
-
-Production approval will require that proof of ATO has been registered in eMASS.
+Approval must be granted first for use in non-production environments, and then for use in production. Typically access is granted for use in lower environments first. Production access is granted once proof that the team's ATO has been registered in eMASS is provided. It may be acceptable to submit only one request, as long as ATO confirmation is provided at some point during the Event Bus integration process.
 
 ### Sensitivity Filtering
 
