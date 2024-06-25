@@ -29,13 +29,15 @@ ATO, or “Authority to Operate,” indicates that your system has been evaluate
 
 Teams that have an active ATO should review it to understand the implications of integrating with other systems.
 
-**For non-LHDI clients**:
+**For Teams without an ATO**
 
-ATO is evaluated once eMASS system registration has been completed and approved. Teams that do not have an active ATO should begin the process as early as possible in the Enterprise Event Bus integration process.
+For clients that are not LHDI tenants:
 
-**For new LHDI clients**:
+- ATO is evaluated once eMASS system registration has been completed and approved. Teams that do not have an active ATO should begin the process as early as possible in the Enterprise Event Bus integration process.
 
-For new teams within the Lighthouse Delivery Infrastructure, please consult your LHDI Enablement Liaison to begin the ATO process.
+For clients that are LHDI tenants:
+
+- Teams within the Lighthouse Delivery Infrastructure should consult their LHDI Enablement Liaison to begin the ATO process.
 
 ## Consumers of BIP-sourced Events
 
@@ -116,13 +118,15 @@ The VA Systems Inventory (VASI) is intended to be a registry of all applications
 
 The Enterprise Event Bus VASI ID is 3325, and [this is our entry (must be on VA network to view)](https://vaww.vear.ea.oit.va.gov/system_and_application_domain_defs_system_381405.htm) in the VASI registry. You may find your system’s VASI ID by visiting the [VA System Inventory (must be on VA network to view)](https://vaww.vear.ea.oit.va.gov/).
 
-**For non-LHDI clients**:
+**For Teams without a VASI ID**
 
-* If a prospective client system does not have a VASI ID, it will need to submit a LEAF intake request to get one. 
+For clients that are not LHDI tenants:
 
-**For new LHDI clients**:
+- Prospective client systems that do not have a VASI ID will need to submit a LEAF intake request to get one. 
 
-* For new teams on Lighthouse Delivery Infrastructure (LHDI), please consult your LHDI Enablement Liaison to start the LEAF intake request and LHDI-specific onboarding. 
+For clients that are LHDI tenants:
+
+- Teams on the Lighthouse Delivery Infrastructure (LHDI) should consult their LHDI Enablement Liaison to submit a LEAF intake request. 
 
 ### eMASS
 
@@ -130,15 +134,17 @@ Enterprise Mission Assurance Support Service (eMASS) is VA’s Governance, Risk 
 
 All VA systems are given an entry with a unique number in the eMASS system. The Enterprise Event Bus eMASS ID is 2350. 
 
-Getting an eMASS ID is a prerequisite for System Categorization. 
+Getting an eMASS ID is a prerequisite for System Categorization.
 
-**For non-LHDI clients**:
+**For Teams without an eMASS ID**
 
-* If a prospective client system does not have an eMASS ID, it will need to submit a LEAF intake (formerly GRC intake) request: [Unified System Registry Intake (must be on VA network to view)](https://leaf.va.gov/NATIONAL/103/cybersecurity_request_portal/) to get one.
+For clients that are not LHDI tenants:
 
-**For new LHDI clients**:
+- Prospective client systems that do not have an eMASS ID will need to submit a LEAF intake request to get one.
 
-* For new teams on Lighthouse Delivery Infrastructure (LHDI), please consult your LHDI Enablement Liaison to start the LEAF intake request process and LHDI-specific onboarding. 
+For clients that are LHDI tenants:
+
+- Teams on the Lighthouse Delivery Infrastructure (LHDI) should consult their LHDI Enablement Liaison to submit a LEAF intake request. 
 
 ## WASA Testing
 
@@ -148,10 +154,10 @@ The VA SAVD WASA Coordination team can be contacted via email at `VASAVDWASACoor
 
 ## Other Resources
 
-**For non-LHDI clients**:
+For clients that are not LHDI tenants:
 
-OIS Official Documentation on the VASI/eMASS/ATO process: [eMass Authorization Requirements SOP Guide (PDF file, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITOIS/KnowledgeService/eMassDocumentLibrary/eMASS_Authorization_Requirements_SOP_Guide.pdf)
+- OIS Official Documentation on the VASI/eMASS/ATO process: [eMass Authorization Requirements SOP Guide (PDF file, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITOIS/KnowledgeService/eMassDocumentLibrary/eMASS_Authorization_Requirements_SOP_Guide.pdf)
 
-**For new LHDI clients**:
+For clients that are LHDI tenants:
 
-[Lighthouse Delivery Infrastructure Onboarding Process Overview (Mural document, view only)](https://app.mural.co/t/departmentofveteransaffairs9999/m/departmentofveteransaffairs9999/1684963245734/426a066d466aad4b985d0c6fdc1887ef18cd6a8d?invited=true&sender=u7b7ab34685f00706a24a6128)
+- [Lighthouse Delivery Infrastructure Onboarding Process Overview (Mural document, view only)](https://app.mural.co/t/departmentofveteransaffairs9999/m/departmentofveteransaffairs9999/1684963245734/426a066d466aad4b985d0c6fdc1887ef18cd6a8d?invited=true&sender=u7b7ab34685f00706a24a6128)
