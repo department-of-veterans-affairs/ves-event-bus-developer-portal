@@ -63,15 +63,12 @@ The implementation of Sensitivity Filtering is required when event data, or data
 
 A request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
 
-Prior to determining if your system will require an ESECC, teams are highly encouraged to attempt connecting to the Enterprise Event Bus. If an error message indicates that traffic is blocked at the network level, then check to see if an ESECC is required.
+Prior to determining if your system will require an ESECC, we will attempt connecting to the Enterprise Event Bus from your system. If an error message indicates that traffic is blocked at the network level, then an ESECC is required.
 
-![A diagram showing various scenarios indicating whether a system would need an ESECC. If you are already on the Lighthouse Delivery Infrastructure (LHDI), no ESECC is required. If you are on AWS GovCloud but outside of LHDI, check to see if an ESECC is required. If you are on Non-AWS Cloud (e.g. Azure), check to see if an ESECC is required. If you are on-premises, e.g., VistA, an ESECC is required.](img/Client-Environments-ESECC-Decision-Circles.svg)
+If an ESECC is required, the Enterprise Event Bus team will take point on getting the request submitted. We will need the following information:
 
-Resources:
-
-* [ESECC Public URL process (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/devops/blob/master/docs/ESECC-Public-URL-process.md#prereq)
-* [Tutorial video (must be on VA network to view)](https://dvagov.sharepoint.com/:v:/r/sites/OITECOESDKM/KM%20video%20library/Stream%20Migrated%20Videos/Knowledge%20Management%20Videos/KB0106755%20-%20Network%20ESECC%20-%20Create%20a%20Change%20Request-20221206_034448.mp4?csf=1&web=1&e=cCAS5z&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) on creating a Change Request in ESECC
-* [ESECC Self-service Portal (must be on VA network to view)](https://esecc.va.gov/CGWeb/Main.aspx) for initiating new requests or change requests
+* The IP address of your system. This can be a list of specific IP addresses, a CIDR block, or a list of CIDR blocks.
+* Your system's connection ID assigned by VA NSOC (Network Security Operations Center) 
 
 ## FISMA System Categorization
 
