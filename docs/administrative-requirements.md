@@ -63,9 +63,9 @@ The implementation of Sensitivity Filtering is required when event data, or data
 
 A request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
 
-Prior to determining if your system will require an ESECC, we will attempt connecting to the Enterprise Event Bus from your system. If an error message indicates that traffic is blocked at the network level, then an ESECC is required.
+Prior to determining if your system will require an ESECC, we will collaborate on testing a connection from your system to the Enterprise Event Bus. If an error message indicates that traffic is blocked at the network level, then an ESECC will be required.
 
-If an ESECC is required, the Enterprise Event Bus team will take point on getting the request submitted. We will need the following information:
+If an ESECC is required, the Enterprise Event Bus team will submit the ESECC request on your team's behalf. We will need the following information:
 
 * The IP address of your system. This can be a list of specific IP addresses, a CIDR block, or a list of CIDR blocks.
 * Your system's connection ID assigned by VA NSOC (Network Security Operations Center) 
