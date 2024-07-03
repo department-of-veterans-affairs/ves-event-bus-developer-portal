@@ -1,7 +1,3 @@
----
-title: Get Support
----
-
 # Get Support
 
 ## General support requests

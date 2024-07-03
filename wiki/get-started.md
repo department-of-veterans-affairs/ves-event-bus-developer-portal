@@ -1,7 +1,3 @@
----
-title: Are you a good fit for the Enterprise Event Bus?
----
-
 # Are you a good fit for the Enterprise Event Bus?
 
 Before you make further plans to leverage enterprise events, you should evaluate if your system is the right fit for event-driven architecture. Please read the content below, which describes the sorts of systems that would benefit (or not benefit) from enterprise events.

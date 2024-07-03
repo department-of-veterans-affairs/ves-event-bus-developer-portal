@@ -14,7 +14,15 @@ jobs:
       - name: Checkout developer portal repo
         uses: actions/checkout@v4
 
-      # Run script to edit links
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Update file names
+        run: python scripts/update_file_names.py
+
+      # Run script to update links
 
       - name: Checkout wiki repo
         uses: actions/checkout@v4
