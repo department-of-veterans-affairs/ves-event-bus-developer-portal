@@ -1,3 +1,7 @@
+---
+title: Home
+---
+
 # Enterprise Event Bus
 
 ## What is the Enterprise Event Bus?
