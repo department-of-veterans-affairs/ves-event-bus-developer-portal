@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: department-of-veterans-affairs/ves-event-bus-developer-portal.wiki
-          path: "$WIKI_FOLDER"
+          path: ${{ env.WIKI_FOLDER }}
       
       - name: Publish to GitHub Wiki
         run: |
