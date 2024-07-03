@@ -4,6 +4,7 @@ directory = 'wiki'
 
 for file in os.scandir(directory):
     if file.is_file() and file.name.lower().endswith('.md'):
+        print(file.path)
         filename = file.name
         split = file.name.split('-')
         capitalized = [string.capitalize() for string in split]
