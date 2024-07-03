@@ -1,0 +1,42 @@
+name: Publish GitHub Wiki
+on:
+  push:
+    branches:
+      - 3261/github-wiki-spike
+    paths:
+      - wiki/**
+      - .github/publish-wiki.yml
+jobs:
+  deploy-wiki:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    env:
+      WIKI_FOLDER: FOLDER=bin/department-of-veterans-affairs/ves-event-bus-developer-portal.wiki
+    steps:
+      - name: Checkout developer portal repo
+        uses: actions/checkout@v4
+
+      # Run script to edit links
+
+      - name: Checkout wiki repo
+        uses: actions/checkout@v4
+        with:
+          repository: department-of-veterans-affairs/ves-event-bus-developer-portal.wiki
+          path: $WIKI_FOLDER
+      
+      - name: Publish to GitHub Wiki
+        run: |
+          cd $WIKI_FOLDER
+
+          # Setup the committers identity
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+          # Copy latest markdown files to wiki
+          cp -R ../../../wiki .
+
+          # Commit the changes and push
+          git add .
+          git commit -m "Publish latest wiki content"
+          git push origin master
