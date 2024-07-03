@@ -12,7 +12,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     env:
-      WIKI_FOLDER: FOLDER=bin/department-of-veterans-affairs/ves-event-bus-developer-portal.wiki
+      WIKI_FOLDER: department-of-veterans-affairs/ves-event-bus-developer-portal.wiki
     steps:
       - name: Checkout developer portal repo
         uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
           # Copy latest markdown files to wiki
-          cp -R ../../../wiki .
+          cp -R ../../wiki .
 
           # Commit the changes and push
           git add .
