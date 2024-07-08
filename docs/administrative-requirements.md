@@ -67,8 +67,8 @@ Prior to determining if your system will require an ESECC, we will collaborate o
 
 If an ESECC is required, the Enterprise Event Bus team will submit the ESECC request on your team's behalf. We will need the following information:
 
-* The IP address of your system. This can be a list of specific IP addresses or CIDR blocks.
-* Your system's connection ID assigned by VA NSOC (Network Security Operations Center).
+* The IP address of your system. This can be a list of specific IP addresses or CIDR blocks. If your system is deployed to a few IP addresses that are always the same, then we will use those specific IP addresses. If your system is deployed to different IP addresses within a CIDR block or a few CIDR blocks, then we'll use CIDR blocks.
+* Your system's connection ID assigned by VA NSOC (VA Network Security Operations Center).
 
 ## FISMA System Categorization
 
