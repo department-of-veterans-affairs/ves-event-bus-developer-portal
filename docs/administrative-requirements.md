@@ -63,15 +63,12 @@ The implementation of Sensitivity Filtering is required when event data, or data
 
 A request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
 
-Prior to determining if your system will require an ESECC, teams are highly encouraged to attempt connecting to the Enterprise Event Bus. If an error message indicates that traffic is blocked at the network level, then check to see if an ESECC is required.
+Prior to determining if your system will require an ESECC, we will collaborate on testing a connection from your system to the Enterprise Event Bus. If an error message indicates that traffic is blocked at the network level, then an ESECC will be required.
 
-![A diagram showing various scenarios indicating whether a system would need an ESECC. If you are already on the Lighthouse Delivery Infrastructure (LHDI), no ESECC is required. If you are on AWS GovCloud but outside of LHDI, check to see if an ESECC is required. If you are on Non-AWS Cloud (e.g. Azure), check to see if an ESECC is required. If you are on-premises, e.g., VistA, an ESECC is required.](img/Client-Environments-ESECC-Decision-Circles.svg)
+If an ESECC is required, the Enterprise Event Bus team will submit the ESECC request on your team's behalf. We will need the following information:
 
-Resources:
-
-* [ESECC Public URL process (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/devops/blob/master/docs/ESECC-Public-URL-process.md#prereq)
-* [Tutorial video (must be on VA network to view)](https://dvagov.sharepoint.com/:v:/r/sites/OITECOESDKM/KM%20video%20library/Stream%20Migrated%20Videos/Knowledge%20Management%20Videos/KB0106755%20-%20Network%20ESECC%20-%20Create%20a%20Change%20Request-20221206_034448.mp4?csf=1&web=1&e=cCAS5z&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) on creating a Change Request in ESECC
-* [ESECC Self-service Portal (must be on VA network to view)](https://esecc.va.gov/CGWeb/Main.aspx) for initiating new requests or change requests
+* The IP address of your system. This can be a list of specific IP addresses or CIDR blocks. If your system is deployed to a few IP addresses that are always the same, then we will use those specific IP addresses. If your system is deployed to different IP addresses within a CIDR block or a few CIDR blocks, then we'll use CIDR blocks.
+* Your system's connection ID assigned by VA NSOC (VA Network Security Operations Center).
 
 ## FISMA System Categorization
 
@@ -100,8 +97,8 @@ PTAs are renewed annually and PIAs are renewed every three years, unless there a
 Resources:
 
 * [Privacy Threshold Analysis (PTA) and Privacy Impact Assessment (PIA) Submittal Checklist and Process Overview (PDF file, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/PTA%20Training%20Resources/Forms/AllItems.aspx?id=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources%2FPTA%20and%20PIA%20Submittal%20Checklist%20and%20Process%20Overview%2Epdf&parent=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources&isSPOFile=1&OR=Teams%2DHL&CT=1709826099209&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyNy8yNDAxMDQxNzUwNCIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D)
-* [PTA Training Resources (VA SharePoint, must be on VA network to view)]([https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/Privacy-Threshold-Analysis.aspx?csf=1&web=1&e=MY0flg](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PTA-Training-Resources.aspx))
-* [PIA Training Resources (VA SharePoint, must be on VA network to view)]([https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/Privacy-Impact-Assessment.aspx?csf=1&web=1&e=u8YJ0w](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PIA-Training-Resources.aspx))
+* [PTA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PTA-Training-Resources.aspx)
+* [PIA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PIA-Training-Resources.aspx)
 
 ## VASI and eMASS 
 
