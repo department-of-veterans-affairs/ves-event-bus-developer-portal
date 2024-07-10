@@ -18,13 +18,7 @@ If there is a mutual interest to continue after the initial meeting, the Event B
 
 ### Determine if you need an ESECC request
 
-Depending on the location of a producer application, you may need to obtain an ESECC (Enterprise Security External Change Council) request. ESECC requests are required to open certain non-standard ports between different systems and allow traffic to flow over those ports.
-
-The diagram below illustrates the relationship between producer locations and ESECC requirements. If you’re unsure which category your use case fits in, please reach out to the Event Bus Team for help. However, please also note that while the Event Bus Team is happy to give direction and assist with some aspects of the ESECC process, producers are ultimately responsible for initiating and monitoring the request.
-
-This [example documentation (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/checkin-devops/blob/master/docs/esecc-requests.md) provides a starting point that outlines the steps and processes involved in an ESECC request. Note that we have not verified that the document is complete and would be applicable in all situations. Please do your own research and be sure to get started as early as possible, as this can be a lengthy process.
-
-![A diagram showing various scenarios indicating whether a system would need an ESECC. If you are already on the Lighthouse Delivery Infrastructure (LHDI), no ESECC is required. If you are on AWS GovCloud but outside of LHDI, check to see if an ESECC is required. If you are on Non-AWS Cloud (e.g. Azure), check to see if an ESECC is required. If you are on-premises, e.g., VistA, an ESECC is required.](img/Client-Environments-ESECC-Decision-Circles.svg)
+See the [ESECC section](./administrative-requirements.md#esecc) on the Administrative Requirements page.
 
 ### Choose configuration settings and submit onboarding request
 
@@ -59,105 +53,100 @@ Once the authentication and authorization steps have been completed, you will be
 
 Many programming languages and frameworks offer libraries designed to interact with Kafka. To ensure full compatibility with the Event Bus, your code needs to authenticate with the AWS MSK cluster using the assigned role provided during the onboarding process. Additionally, producers should reference the Confluent Schema Registry and use the created schema to serialize messages in Avro.
 
-See for instance this Java code that produces messages to a topic named “test”:
+See for instance the following Java code that produces messages to a topic named “test”. To see this producer code in context, please check out the [kafka-client-sample (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code/tree/main/kafka-client-sample) in the `ves-event-bus-sample-code` repository.
 
-!!! info
-    To see this Java producer code in context, please check out the [kafka-client-sample (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code/tree/main/kafka-client-sample) in the `ves-event-bus-sample-code` repository.
+```java
+    package gov.va.eventbus.example;
 
-???+ example
+    import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
+    import io.confluent.kafka.serializers.KafkaAvroSerializer;
+    import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
+    import java.time.LocalDate;
+    import java.util.Properties;
+    import org.apache.avro.specific.SpecificRecord;
+    import org.apache.kafka.clients.CommonClientConfigs;
+    import org.apache.kafka.clients.producer.KafkaProducer;
+    import org.apache.kafka.clients.producer.ProducerConfig;
+    import org.apache.kafka.clients.producer.ProducerRecord;
+    import org.apache.kafka.common.config.SaslConfigs;
+    import org.apache.kafka.common.config.SslConfigs;
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
 
-    ```java
-        package gov.va.eventbus.example;
+    public class TestProducer implements Runnable {
+        private static final Logger LOG = LoggerFactory.getLogger(TestProducer.class);
 
-        import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
-        import io.confluent.kafka.serializers.KafkaAvroSerializer;
-        import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
-        import java.time.LocalDate;
-        import java.util.Properties;
-        import org.apache.avro.specific.SpecificRecord;
-        import org.apache.kafka.clients.CommonClientConfigs;
-        import org.apache.kafka.clients.producer.KafkaProducer;
-        import org.apache.kafka.clients.producer.ProducerConfig;
-        import org.apache.kafka.clients.producer.ProducerRecord;
-        import org.apache.kafka.common.config.SaslConfigs;
-        import org.apache.kafka.common.config.SslConfigs;
-        import org.slf4j.Logger;
-        import org.slf4j.LoggerFactory;
+        // Producer values
+        private static final String TOPIC = "test";
+        private static final String EB_BOOTSTRAP_SERVERS = System.getenv("EB_BOOTSTRAP_SERVERS");
+        private static final String EB_SECURITY_PROTOCOL = System.getenv("EB_SECURITY_PROTOCOL");
+        private static final String SCHEMA_REGISTRY_URL = System.getenv("SCHEMA_REGISTRY_URL");
+        private static final String AWS_ROLE = System.getenv("AWS_ROLE");
 
-        public class TestProducer implements Runnable {
-            private static final Logger LOG = LoggerFactory.getLogger(TestProducer.class);
+        private final KafkaProducer<Long, SpecificRecord> producer;
 
-            // Producer values
-            private static final String TOPIC = "test";
-            private static final String EB_BOOTSTRAP_SERVERS = System.getenv("EB_BOOTSTRAP_SERVERS");
-            private static final String EB_SECURITY_PROTOCOL = System.getenv("EB_SECURITY_PROTOCOL");
-            private static final String SCHEMA_REGISTRY_URL = System.getenv("SCHEMA_REGISTRY_URL");
-            private static final String AWS_ROLE = System.getenv("AWS_ROLE");
+        public TestProducer() {
+            this.producer = createProducer();
+        }
 
-            private final KafkaProducer<Long, SpecificRecord> producer;
+        @Override
+        public void run() {
+            try {
+                var sequenceNumber = 0;
+                while (true) {
+                    sequenceNumber++;
+                    // The messages in the topic adhere to a User schema
+                    var user = User.newBuilder()
+                            .setName("Newbie")
+                            .setCompany("Ad Hoc")
+                            .setDateOfBirth(LocalDate.of(2000,7,26))
+                            .setSequenceNumber(sequenceNumber)
+                            .build();
 
-            public TestProducer() {
-                this.producer = createProducer();
-            }
+                    // Create producer record
+                    ProducerRecord<Long, SpecificRecord> producerRecord = new ProducerRecord<>(TOPIC, user);
 
-            @Override
-            public void run() {
-                try {
-                    var sequenceNumber = 0;
-                    while (true) {
-                        sequenceNumber++;
-                        // The messages in the topic adhere to a User schema
-                        var user = User.newBuilder()
-                                .setName("Newbie")
-                                .setCompany("Ad Hoc")
-                                .setDateOfBirth(LocalDate.of(2000,7,26))
-                                .setSequenceNumber(sequenceNumber)
-                                .build();
-
-                        // Create producer record
-                        ProducerRecord<Long, SpecificRecord> producerRecord = new ProducerRecord<>(TOPIC, user);
-
-                        // Send the record to the Kafka topic
-                        producer.send(producerRecord);
-                        Thread.sleep(1000);
-                    }
-                } catch (final Exception e) {
-                    LOG.error("An exception occurred while producing messages", e);
-                } finally {
-                    producer.close();
+                    // Send the record to the Kafka topic
+                    producer.send(producerRecord);
+                    Thread.sleep(1000);
                 }
-            }
-
-            private KafkaProducer<Long, SpecificRecord> createProducer() {
-                final Properties props = new Properties();
-
-                props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, EB_BOOTSTRAP_SERVERS);
-                props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
-                props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
-                props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
-                props.put(KafkaAvroSerializerConfig.AUTO_REGISTER_SCHEMAS, false);
-                props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false);
-
-                // Use SASL_SSL in production but PLAINTEXT in local environment
-                // w/docker_compose
-                if ("SASL_SSL".equals(EB_SECURITY_PROTOCOL)) {
-                    props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, EB_SECURITY_PROTOCOL);
-                    props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/tmp/kafka.client.truststore.jks");
-                    props.put(SaslConfigs.SASL_MECHANISM, "OAUTHBEARER");
-                    props.put(SaslConfigs.SASL_JAAS_CONFIG,
-                            "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required awsRoleArn=\""
-                                    + AWS_ROLE // use the role name provided to you
-                                    + "\" awsStsRegion=\"us-gov-west-1\";");
-                    props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS,
-                            "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
-                } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
-                    LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);
-                }
-
-                return new KafkaProducer<>(props);
+            } catch (final Exception e) {
+                LOG.error("An exception occurred while producing messages", e);
+            } finally {
+                producer.close();
             }
         }
-    ```
+
+        private KafkaProducer<Long, SpecificRecord> createProducer() {
+            final Properties props = new Properties();
+
+            props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, EB_BOOTSTRAP_SERVERS);
+            props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
+            props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
+            props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
+            props.put(KafkaAvroSerializerConfig.AUTO_REGISTER_SCHEMAS, false);
+            props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false);
+
+            // Use SASL_SSL in production but PLAINTEXT in local environment
+            // w/docker_compose
+            if ("SASL_SSL".equals(EB_SECURITY_PROTOCOL)) {
+                props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, EB_SECURITY_PROTOCOL);
+                props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/tmp/kafka.client.truststore.jks");
+                props.put(SaslConfigs.SASL_MECHANISM, "OAUTHBEARER");
+                props.put(SaslConfigs.SASL_JAAS_CONFIG,
+                        "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required awsRoleArn=\""
+                                + AWS_ROLE // use the role name provided to you
+                                + "\" awsStsRegion=\"us-gov-west-1\";");
+                props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS,
+                        "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
+            } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
+                LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);
+            }
+
+            return new KafkaProducer<>(props);
+        }
+    }
+```
 
 ### Register with CODE VA
 
@@ -202,7 +191,6 @@ spec:
     - systemName: Forwarding System
         teamName: Forwarding System Owning Team
     retention: 20
-        
 ```
 
 Here is some additional information on the individual fields:
@@ -242,4 +230,4 @@ Datadog is a monitoring and analytics tool that is used within the VA. LHDI team
 
 ## Troubleshooting
 
-If you have questions or run into difficulties with any of these steps, please [contact the Enterprise Event Bus Team](get-support.md).
+If you have questions or run into difficulties with any of these steps, please [contact the Enterprise Event Bus Team](./get-support.md).
