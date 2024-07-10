@@ -162,7 +162,7 @@ To register your event with CODE VA:
 
 #### Event Template
 
-``` { .yaml .copy }
+```yaml
 apiVersion: backstage.io/v1alpha1
 kind: Event
 metadata:

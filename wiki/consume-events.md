@@ -159,7 +159,7 @@ To register with CODE VA:
 3. Once your `catalog-info.yaml` file has been committed it will be automatically processed and the software entity will be viewable on [CODE VA (must be on the VA network to view)](https://code.va.gov/) within a few hours. If you would like the software entity to display quicker, follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
 
 #### Component Template
-``` { .yaml .copy }
+```yaml
     apiVersion: backstage.io/v1alpha1
     kind: Component
     metadata:
@@ -198,7 +198,7 @@ Here is some additional information on these fields:
 See [Backstage's Component documentation](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) for more information about additional optional fields.
 
 #### System Template
-``` { .yaml .copy }
+```yaml
     apiVersion: backstage.io/v1alpha1
     kind: System
     metadata:
