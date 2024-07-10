@@ -1,7 +1,7 @@
 * [Home](./home.md)
 * [Are you a good fit for the Enterprise Event Bus?](./get-started.md)
 * [Event-Driven Architecture at VA](./intro-to-eda.md)
-* [Consuming Events](https://github.com/department-of-veterans-affairs/ves-event-bus-apps/wiki)
+* [Consuming Events](./consume-events.md)
 * [Producing Events](./produce-events.md)
 * [Environments](./environments.md)
 * [Get Support](./get-support.md)
