@@ -6,7 +6,7 @@ Event-driven architecture enables systems to share data changes in real time acr
 
 An Event Bus allows a system to publish a stream of changes to its data. Systems that are interested in those data changes can receive the information in real time and use it to send updates to trigger actions, send updates to Veterans, communicate with other internal teams, and more.
 
-![video](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/raw/main/docs/videos/phase3_demo.mp4)
+[Watch a demo video](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/raw/main/docs/videos/phase3_demo.mp4)
 
 <video width="640" height="400" crossorigin="anonymous" controls poster="img/phase3_demo_poster.png">
   <source src="videos/phase3_demo.mp4" type="video/mp4">
