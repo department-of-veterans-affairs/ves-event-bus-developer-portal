@@ -1,8 +1,6 @@
-[Home](./home.md)
-
-[Are you a good fit for the Enterprise Event Bus?](./get-started.md)
-
-[Event-Driven Architecture at VA](./intro-to-eda.md)
+* [Home](./home.md)
+* [Are you a good fit for the Enterprise Event Bus?](./get-started.md)
+* [Event-Driven Architecture at VA](./intro-to-eda.md)
 
 <details open>
   <summary>Development</summary>
@@ -12,6 +10,5 @@
 
 </details open>
 
-[Environments](./environments.md)
-
-[Get Support](./get-support.md)
+* [Environments](./environments.md)
+* [Get Support](./get-support.md)
