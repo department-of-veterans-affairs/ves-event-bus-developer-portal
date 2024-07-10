@@ -8,5 +8,6 @@
   * [Producing Events](./produce-events.md)
 
 </details open>
+
 [Environments](./environments.md)
 [Get Support](./get-support.md)
