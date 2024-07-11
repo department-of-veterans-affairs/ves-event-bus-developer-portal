@@ -20,4 +20,8 @@ Dolore ratione nesciunt neque eveniet quisquam sit. Ipsam quos natus nulla dolor
 
 </div>
 
-<span style="display: block"><pre>Note</pre></span>
+<span style="display: block">
+
+<pre>Note</pre>
+
+</span>
