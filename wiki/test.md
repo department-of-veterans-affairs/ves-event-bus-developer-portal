@@ -1,3 +1,12 @@
+<style>
+
+h1 {color:red;}
+
+p {color:blue;}
+
+</style>
+
+
 # Header 1
 
 Inventore et et deserunt dolorem hic voluptatum. Consequuntur sint nihil recusandae autem temporibus. Aut inventore et mollitia consectetur et debitis. Aut non debitis in. Enim porro pariatur et. Velit minus et quo aut.
@@ -12,7 +21,7 @@ Dolore ratione nesciunt neque eveniet quisquam sit. Ipsam quos natus nulla dolor
 
 #### Header 4
 
-<p>Quia sit ut alias autem corrupti dolor. Iure laborum aspernatur placeat. Labore magnam veniam nam.</p>
+Quia sit ut alias autem corrupti dolor. Iure laborum aspernatur placeat. Labore magnam veniam nam.
 
 - List item
 - List item
@@ -20,8 +29,13 @@ Dolore ratione nesciunt neque eveniet quisquam sit. Ipsam quos natus nulla dolor
 
 </div>
 
-<span style="display: block">
-
 <pre>Note</pre>
 
-</span>
+<table>
+
+<tr>
+  <td>cell</td>
+  <td>cell</td>
+</tr>
+  
+</table>
