@@ -1,3 +1,7 @@
+---
+title: Style Guide
+---
+
 # Header 1
 
 Inventore et et deserunt dolorem hic voluptatum. Consequuntur sint nihil recusandae autem temporibus. Aut inventore et mollitia consectetur et debitis. Aut non debitis in. Enim porro pariatur et. Velit minus et quo aut.
