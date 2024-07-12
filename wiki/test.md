@@ -24,7 +24,7 @@ Quia sit ut alias autem corrupti dolor. Iure laborum aspernatur placeat. Labore 
 
 <pre>Note</pre>
 
-<table>
+<table bordercolor=red>
   <tr>
     <td>cell</td>
     <td>cell</td>
