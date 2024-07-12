@@ -30,7 +30,7 @@ Quia sit ut alias autem corrupti dolor. Iure laborum aspernatur placeat. Labore 
     <td>cell</td>
   </tr>
   <tr>
-    <td>
+    <td colspan=2>
       <div>cell</div>
       <div>cell</div>
     </td>
