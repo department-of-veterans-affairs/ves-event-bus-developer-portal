@@ -1,5 +1,3 @@
-<!-- comment -->
-
 # Header 1
 
 Inventore et et deserunt dolorem hic voluptatum. Consequuntur sint nihil recusandae autem temporibus. Aut inventore et mollitia consectetur et debitis. Aut non debitis in. Enim porro pariatur et. Velit minus et quo aut.
@@ -22,13 +20,13 @@ Quia sit ut alias autem corrupti dolor. Iure laborum aspernatur placeat. Labore 
 
 </div>
 
+<!-- comment does not render in the wiki -->
+
 <pre>Note</pre>
 
 <table>
-
-<tr>
-  <td>cell</td>
-  <td>cell</td>
-</tr>
-  
+  <tr>
+    <td>cell</td>
+    <td>cell</td>
+  </tr>
 </table>
