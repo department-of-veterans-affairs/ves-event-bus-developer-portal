@@ -38,122 +38,193 @@ Once the authentication and authorization steps have been completed, you will re
 * 9098 (for access from AWS)
 * 9198 (for access from outside of AWS)
 
-### Develop and deploy Your consumer application
+### Develop and deploy your consumer application
 
 Many programming languages and frameworks offer libraries designed to interact with Kafka. To ensure full compatibility with the Event Bus, your code needs to authenticate with the AWS MSK cluster using the assigned role provided during the onboarding process. Additionally, consumers should reference the Confluent Schema Registry and use the appropriate schema to deserialize messages in Avro.
 
-See for instance this Java code that consumes messages from a topic named “test”:
+#### Client properties
+
+To connect to the Event Bus, consumers in **all programming languages** will need to set these properties, which are required unless otherwise specified:
+
+| Property | Value | Description | Notes |
+| --- | --- | --- | --- |
+| [bootstrap.servers](https://kafka.apache.org/documentation/#consumerconfigs_bootstrap.servers) | List of one or more Event Bus brokers. This will vary depending on the environment (dev, prod, etc.). | A list of host/port pairs to use for establishing the initial connection to the Kafka cluster. | Only one of the Event Bus clusters needs to be included in this list, but including more than one will ensure the application can start up if one of the Kafka servers is down. |
+| [group.id](https://kafka.apache.org/documentation/#consumerconfigs_group.id) | This can be set to any value a consumer wants. | A unique string that identifies the consumer group this consumer belongs to. |  |
+| [sasl.mechanism](https://kafka.apache.org/documentation/#consumerconfigs_sasl.mechanism) | `OAUTHBEARER` | SASL mechanism used for client connections. |  |
+| [security.protocol](https://kafka.apache.org/documentation/#consumerconfigs_security.protocol) | `SASL_SSL` | Protocol used to communicate with brokers. |  |
+| [auto.offset.reset](https://kafka.apache.org/documentation/#consumerconfigs_auto.offset.reset) (recommended) | `earliest` | What to do when there is no initial offset in Kafka or if the current offset does not exist anymore on the server. | Setting this field to "earliest" instead of the default "latest" will cause the consumer to consume older events which are still available on the Event Bus when it first deploys. If past events do not need to be processed when first connecting to the Event Bus, then consumers can use the default. Once a consumer has consumed some events, it will always pick up where it last left off even when it restarts. |
+| [client.rack](https://kafka.apache.org/documentation/#consumerconfigs_client.rack) (recommended) | The AWS Availability Zone in which your application is running, eg. "usgw1-az2" | A rack identifier for this client. This can be any string value which indicates where this client is physically located. | This property is only applicable if your application is deployed to AWS (Amazon Web Services) infrastructure. Setting this to your availability zone will [reduce network traffic costs](https://aws.amazon.com/blogs/big-data/reduce-network-traffic-costs-of-your-amazon-msk-consumers-with-rack-awareness/).
+| [enable.auto.commit](https://kafka.apache.org/documentation/#consumerconfigs_enable.auto.commit) (recommended) | false | If true the consumer's offset will be periodically committed in the background. | If set to true, the consumer may mark some records as consumed before they have been processed. See [Manual Offset Control](https://javadoc.io/static/org.apache.kafka/kafka-clients/3.6.0/org/apache/kafka/clients/consumer/KafkaConsumer.html#:~:text=Manual%20Offset%20Control) for more information. |
+
+Depending on the language client used, additional properties may also be needed for authorization and connecting to the schema registry. For example, these properties are required for **Java clients**:
+
+| Property | Value | Description | Notes |
+| --- | --- | --- | --- |
+| [key.deserializer](https://kafka.apache.org/documentation/#consumerconfigs_key.deserializer) | `KafkaAvroDeserializer` | Deserializer class for key. | All Event Bus records use an Avro schema, so this is required even if the key itself is a primitive type like `string` or `long`. |
+| [sasl.jaas.config](https://kafka.apache.org/documentation/#consumerconfigs_sasl.jaas.config) | `OAuthBearerLoginModule` and role settings. The role will vary for each consumer. | JAAS login context parameters for SASL connections in the format used by JAAS configuration files.  | See [specifying an AWS IAM role](https://github.com/aws/aws-msk-iam-auth#specifying-an-aws-iam-role-for-a-client) for more information. |
+| [sasl.login.callback.handler.class](https://kafka.apache.org/documentation/#consumerconfigs_sasl.login.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL login callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
+| [sasl.login.callback.handler.class](https://kafka.apache.org/documentation/#consumerconfigs_sasl.client.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL client callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
+| [value.deserializer](https://kafka.apache.org/documentation/#consumerconfigs_value.deserializer) | `KafkaAvroDeserializer` | Deserializer class for value. |  |
+| schema.registry.url | Event Bus schema registry endpoint. This will vary depending on the environment (dev, prod, etc.). | Comma-separated list of URLs for Schema Registry instances that can be used to register or look up schemas. | |
+
+#### Code samples
 
 !!! info
-    To see this Java consumer code in context, please check out the [kafka-client-sample (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code/tree/main/kafka-client-sample) in the `ves-event-bus-sample-code` repository.
+    Expand the sections below to see consumer code examples in Java and Ruby. To see the consumer code samples in context, please check out the [`ves-event-bus-sample-code` repository (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code).
 
-???+ example
+??? example "Java Consumer"
     ```java
-        package gov.va.eventbus.example;
+    package gov.va.eventbus.example;
 
-        import org.apache.avro.generic.GenericRecord;
-        import org.apache.kafka.clients.CommonClientConfigs;
-        import org.apache.kafka.clients.consumer.ConsumerConfig;
-        import org.apache.kafka.clients.consumer.ConsumerRecord;
-        import org.apache.kafka.clients.consumer.ConsumerRecords;
-        import org.apache.kafka.clients.consumer.KafkaConsumer;
-        import org.apache.kafka.common.config.SaslConfigs;
-        import org.apache.kafka.common.config.SslConfigs;
-        import org.apache.kafka.common.errors.WakeupException;
-        import org.slf4j.Logger;
-        import org.slf4j.LoggerFactory;
-        import java.util.concurrent.atomic.AtomicBoolean;
+    import org.apache.avro.generic.GenericRecord;
+    import org.apache.kafka.clients.CommonClientConfigs;
+    import org.apache.kafka.clients.consumer.ConsumerConfig;
+    import org.apache.kafka.clients.consumer.ConsumerRecord;
+    import org.apache.kafka.clients.consumer.ConsumerRecords;
+    import org.apache.kafka.clients.consumer.KafkaConsumer;
+    import org.apache.kafka.common.config.SaslConfigs;
+    import org.apache.kafka.common.config.SslConfigs;
+    import org.apache.kafka.common.errors.WakeupException;
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
+    import java.util.concurrent.atomic.AtomicBoolean;
 
-        import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-        import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
+    import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+    import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 
-        import java.time.Duration;
-        import java.util.Collections;
-        import java.util.Properties;
+    import java.time.Duration;
+    import java.util.Collections;
+    import java.util.Properties;
 
-        public class TestConsumer implements Runnable {
-            private static final Logger LOG = LoggerFactory.getLogger(TestConsumer.class);
-            private final AtomicBoolean shutdown = new AtomicBoolean(false);
+    public class TestConsumer implements Runnable {
+        private static final Logger LOG = LoggerFactory.getLogger(TestConsumer.class);
+        private final AtomicBoolean shutdown = new AtomicBoolean(false);
 
-            // Consumer values
+        // Consumer values
 
-            // Set the topic you want to consume from
-            private static final String TOPIC = "test";
-            private static final String EB_BOOTSTRAP_SERVERS = System.getenv("EB_BOOTSTRAP_SERVERS");
-            private static final String EB_SECURITY_PROTOCOL = System.getenv("EB_SECURITY_PROTOCOL");
-            private static final String SCHEMA_REGISTRY_URL = System.getenv("SCHEMA_REGISTRY_URL");
-            private static final String AWS_ROLE = System.getenv("AWS_ROLE");
+        // Set the topic you want to consume from
+        private static final String TOPIC = "test";
+        private static final String EB_BOOTSTRAP_SERVERS = System.getenv("EB_BOOTSTRAP_SERVERS");
+        private static final String EB_SECURITY_PROTOCOL = System.getenv("EB_SECURITY_PROTOCOL");
+        private static final String SCHEMA_REGISTRY_URL = System.getenv("SCHEMA_REGISTRY_URL");
+        private static final String AWS_ROLE = System.getenv("AWS_ROLE");
 
-            private final KafkaConsumer<Long, User> consumer;
+        private final KafkaConsumer<Long, User> consumer;
 
-            public TestConsumer() {
-                this.consumer = createConsumer();
-            }
+        public TestConsumer() {
+            this.consumer = createConsumer();
+        }
 
-            public void run() {
-                try {
+        public void run() {
+            try {
 
-                    consumer.subscribe(Collections.singletonList(TOPIC));
+                consumer.subscribe(Collections.singletonList(TOPIC));
 
-                    while (!shutdown.get()) {
-                        ConsumerRecords<Long, User> records = consumer.poll(Duration.ofMillis(100));
+                while (!shutdown.get()) {
+                    ConsumerRecords<Long, User> records = consumer.poll(Duration.ofMillis(100));
 
-                        for (ConsumerRecord<Long, User> record : records) {
-                            User user = record.value();
-                            // Process the received Avro record
-                            LOG.info("Received record: {}", user.toString());
-                        }
+                    for (ConsumerRecord<Long, User> record : records) {
+                        User user = record.value();
+                        // Process the received Avro record
+                        LOG.info("Received record: {}", user.toString());
                     }
-                } catch (final WakeupException e) {
-                    // Ignore exception if shutting down
-                    if (!shutdown.get()) {
-                        throw e;
-                    }
-                } catch (final Exception e) {
-                    LOG.error("An exception occurred while consuming messages", e);
-                } finally {
-                    consumer.close();
                 }
-            }
-
-            /**
-            * Stops polling for new messages and wakes up the Kafka consumer.
-            */
-            public void shutdown() {
-                shutdown.set(true);
-                consumer.wakeup();
-            }
-
-            private KafkaConsumer<Long, User> createConsumer() {
-                final Properties props = new Properties();
-
-                props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, EB_BOOTSTRAP_SERVERS);
-                props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
-                props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
-                props.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
-                // ensure records with a schema are converted.
-                props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
-                props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group"); // Set your consumer group ID
-
-                // Use SASL_SSL in production but PLAINTEXT in local environment
-                // w/docker_compose
-                if ("SASL_SSL".equals(EB_SECURITY_PROTOCOL)) {
-                    props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, EB_SECURITY_PROTOCOL);
-                    props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/tmp/kafka.client.truststore.jks");
-                    props.put(SaslConfigs.SASL_MECHANISM, "OAUTHBEARER");
-                    props.put(SaslConfigs.SASL_JAAS_CONFIG,
-                            "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required awsRoleArn=\""
-                                    + AWS_ROLE // use the role name provided to you
-                                    + "\" awsStsRegion=\"us-gov-west-1\";");
-                    props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS,
-                            "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
-                } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
-                    LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);
+            } catch (final WakeupException e) {
+                // Ignore exception if shutting down
+                if (!shutdown.get()) {
+                    throw e;
                 }
-
-                return new KafkaConsumer<>(props);
+            } catch (final Exception e) {
+                LOG.error("An exception occurred while consuming messages", e);
+            } finally {
+                consumer.close();
             }
         }
+
+        /**
+        * Stops polling for new messages and wakes up the Kafka consumer.
+        */
+        public void shutdown() {
+            shutdown.set(true);
+            consumer.wakeup();
+        }
+
+        private KafkaConsumer<Long, User> createConsumer() {
+            final Properties props = new Properties();
+
+            props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, EB_BOOTSTRAP_SERVERS);
+            props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
+            props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
+            props.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
+            // ensure records with a schema are converted.
+            props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
+            props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group"); // Set your consumer group ID
+
+            // Use SASL_SSL in production but PLAINTEXT in local environment
+            // w/docker_compose
+            if ("SASL_SSL".equals(EB_SECURITY_PROTOCOL)) {
+                props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, EB_SECURITY_PROTOCOL);
+                props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/tmp/kafka.client.truststore.jks");
+                props.put(SaslConfigs.SASL_MECHANISM, "OAUTHBEARER");
+                props.put(SaslConfigs.SASL_JAAS_CONFIG,
+                        "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required awsRoleArn=\""
+                                + AWS_ROLE // use the role name provided to you
+                                + "\" awsStsRegion=\"us-gov-west-1\";");
+                props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS,
+                        "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
+            } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
+                LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);
+            }
+
+            return new KafkaConsumer<>(props);
+        }
+    }
+    ```
+
+??? example "Ruby Consumer"
+    ```ruby
+    require 'logger'
+    require 'rdkafka'
+    require 'avro_turf/messaging'
+    require_relative 'oauth_token_refresher'
+
+    logger = Logger.new(STDOUT)
+
+    @consumers = {}
+
+    def refresh_token(_config, consumer_name)
+        consumer = @consumers[consumer_name]
+        OAuthTokenRefresher.new.refresh_token(consumer)
+    end
+
+    security_protocol = ENV['SECURITY_PROTOCOL']
+
+    properties = {
+        'bootstrap.servers': ENV['KAFKA_HOST'],
+        'group.id': 'sample-ruby-consumer',
+        'security.protocol': security_protocol,
+        'enable.auto.commit': false,
+        'auto.offset.reset': 'earliest'
+    }
+
+    if 'SASL_SSL' == security_protocol.upcase
+        properties['sasl.mechanisms'] = 'OAUTHBEARER'
+        Rdkafka::Config.oauthbearer_token_refresh_callback = method(:refresh_token)
+    end
+
+    consumer = Rdkafka::Config.new(properties).consumer(native_kafka_auto_start: false)
+    @consumers[consumer.name] = consumer
+    consumer.start
+    consumer.subscribe("appointments")
+
+    avro = AvroTurf::Messaging.new(registry_url: ENV['SCHEMA_REGISTRY_URL'], registry_path_prefix: ENV['SCHEMA_REGISTRY_PATH_PREFIX'])
+
+    logger.info "Running consumer"
+    consumer.each do |message|
+        logger.info "Message received: #{message}"
+        logger.info "Decoded message payload: #{avro.decode(message.payload)}"
+        consumer.commit
+    end
     ```
 
 ### Register with CODE VA
