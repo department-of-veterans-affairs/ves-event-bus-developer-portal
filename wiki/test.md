@@ -20,13 +20,19 @@ Quia sit ut alias autem corrupti dolor. Iure laborum aspernatur placeat. Labore 
 
 </div>
 
-<!-- comment does not render in the wiki -->
+<!-- comment does not render -->
 
 <pre>Note</pre>
 
-<table bordercolor=red>
+<table>
   <tr>
     <td>cell</td>
     <td>cell</td>
+  </tr>
+  <tr>
+    <td>
+      <div>cell</div>
+      <div>cell</div>
+    </td>
   </tr>
 </table>
