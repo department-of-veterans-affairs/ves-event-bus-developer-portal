@@ -1,6 +1,4 @@
----
-title: Style Guide
----
+<!-- comment -->
 
 # Header 1
 
