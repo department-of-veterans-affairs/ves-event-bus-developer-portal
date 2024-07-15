@@ -57,104 +57,170 @@ Once the authentication and authorization steps have been completed, you will be
 
 Many programming languages and frameworks offer libraries designed to interact with Kafka. To ensure full compatibility with the Event Bus, your code needs to authenticate with the AWS MSK cluster using the assigned role provided during the onboarding process. Additionally, producers should reference the Confluent Schema Registry and use the created schema to serialize messages in Avro.
 
-See for instance this Java code that produces messages to a topic named “test”:
+#### Client properties
+
+To connect to the Event Bus, producers in **all programming languages** will need to set these properties:
+
+| Property | Value | Description | Notes |
+| --- | --- | --- | --- |
+| [bootstrap.servers](https://kafka.apache.org/documentation/#producerconfigs_bootstrap.servers) | List of one or more Event Bus brokers. This will vary depending on the environment (dev, prod, etc.). | A list of host/port pairs to use for establishing the initial connection to the Kafka cluster. | Only one of the Event Bus brokers needs to be included in this list, but including more than one will ensure the application can start up if one of the brokers is down. |
+| [enable.idempotence](https://kafka.apache.org/documentation/#producerconfigs_enable.idempotence) | false | When set to 'true', the producer will ensure that exactly one copy of each message is written in the stream. If 'false', producer retries due to broker failures, etc., may write duplicates of the retried message in the stream. | If idempotence is a must-have for your application, then we will need to grant additional AWS permissions before you can set this to true. |
+| [sasl.mechanism](https://kafka.apache.org/documentation/#producerconfigs_sasl.mechanism) | `OAUTHBEARER` | SASL mechanism used for client connections. |  |
+| [security.protocol](https://kafka.apache.org/documentation/#producerconfigs_security.protocol) | `SASL_SSL` | Protocol used to communicate with brokers. |  |
+
+Depending on the language client used, additional properties may also be needed for authorization and connecting to the schema registry. For example, these properties are required for **Java clients**:
+
+| Property | Value | Description | Notes |
+| --- | --- | --- | --- |
+| [key.serializer](https://kafka.apache.org/documentation/#producerconfigs_key.serializer) | `KafkaAvroSerializer` | Serializer class for key. | All Event Bus records use an Avro schema, so this is required even if the key itself is a primitive type like `string` or `long`. |
+| [sasl.jaas.config](https://kafka.apache.org/documentation/#producerconfigs_sasl.jaas.config) | `OAuthBearerLoginModule` and role settings. The role will vary for each producer. | JAAS login context parameters for SASL connections in the format used by JAAS configuration files.  | See [specifying an AWS IAM role](https://github.com/aws/aws-msk-iam-auth#specifying-an-aws-iam-role-for-a-client) for more information. |
+| [sasl.login.callback.handler.class](https://kafka.apache.org/documentation/#producerconfigs_sasl.login.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL login callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
+| [sasl.client.callback.handler.class](https://kafka.apache.org/documentation/#producerconfigs_sasl.client.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL client callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
+| [value.serializer](https://kafka.apache.org/documentation/#producerconfigs_value.serializer) | `KafkaAvroSerializer` | Serializer class for value. |  |
+| auto.register.schemas | false | Specify if the serializer should attempt to register the schema with the Schema Registry. | If set to true, the producer will attempt to register a new schema rather than using an existing one in the registry. Since writes to the Event Bus schema registry are blocked for unauthorized applications, this will result in an error which prevents the producer from producing events. |
+| schema.registry.url | Event Bus schema registry endpoint. This will vary depending on the environment (dev, prod, etc.). | Comma-separated list of URLs for Schema Registry instances that can be used to register or look up schemas. | |
+
+#### Code samples
 
 !!! info
-    To see this Java producer code in context, please check out the [kafka-client-sample (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code/tree/main/kafka-client-sample) in the `ves-event-bus-sample-code` repository.
+    Expand the sections below to see producer code examples in Java and Ruby. To see the samples in context, please check out the [`ves-event-bus-sample-code` repository (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code).
 
-???+ example
-
+??? example "Java Producer"
     ```java
-        package gov.va.eventbus.example;
+    package gov.va.eventbus.example;
 
-        import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
-        import io.confluent.kafka.serializers.KafkaAvroSerializer;
-        import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
-        import java.time.LocalDate;
-        import java.util.Properties;
-        import org.apache.avro.specific.SpecificRecord;
-        import org.apache.kafka.clients.CommonClientConfigs;
-        import org.apache.kafka.clients.producer.KafkaProducer;
-        import org.apache.kafka.clients.producer.ProducerConfig;
-        import org.apache.kafka.clients.producer.ProducerRecord;
-        import org.apache.kafka.common.config.SaslConfigs;
-        import org.apache.kafka.common.config.SslConfigs;
-        import org.slf4j.Logger;
-        import org.slf4j.LoggerFactory;
+    import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
+    import io.confluent.kafka.serializers.KafkaAvroSerializer;
+    import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
+    import java.time.LocalDate;
+    import java.util.Properties;
+    import org.apache.avro.specific.SpecificRecord;
+    import org.apache.kafka.clients.CommonClientConfigs;
+    import org.apache.kafka.clients.producer.KafkaProducer;
+    import org.apache.kafka.clients.producer.ProducerConfig;
+    import org.apache.kafka.clients.producer.ProducerRecord;
+    import org.apache.kafka.common.config.SaslConfigs;
+    import org.apache.kafka.common.config.SslConfigs;
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
 
-        public class TestProducer implements Runnable {
-            private static final Logger LOG = LoggerFactory.getLogger(TestProducer.class);
+    public class TestProducer implements Runnable {
+        private static final Logger LOG = LoggerFactory.getLogger(TestProducer.class);
 
-            // Producer values
-            private static final String TOPIC = "test";
-            private static final String EB_BOOTSTRAP_SERVERS = System.getenv("EB_BOOTSTRAP_SERVERS");
-            private static final String EB_SECURITY_PROTOCOL = System.getenv("EB_SECURITY_PROTOCOL");
-            private static final String SCHEMA_REGISTRY_URL = System.getenv("SCHEMA_REGISTRY_URL");
-            private static final String AWS_ROLE = System.getenv("AWS_ROLE");
+        // Producer values
+        private static final String TOPIC = "test";
+        private static final String EB_BOOTSTRAP_SERVERS = System.getenv("EB_BOOTSTRAP_SERVERS");
+        private static final String EB_SECURITY_PROTOCOL = System.getenv("EB_SECURITY_PROTOCOL");
+        private static final String SCHEMA_REGISTRY_URL = System.getenv("SCHEMA_REGISTRY_URL");
+        private static final String AWS_ROLE = System.getenv("AWS_ROLE");
 
-            private final KafkaProducer<Long, SpecificRecord> producer;
+        private final KafkaProducer<Long, SpecificRecord> producer;
 
-            public TestProducer() {
-                this.producer = createProducer();
-            }
+        public TestProducer() {
+            this.producer = createProducer();
+        }
 
-            @Override
-            public void run() {
-                try {
-                    var sequenceNumber = 0;
-                    while (true) {
-                        sequenceNumber++;
-                        // The messages in the topic adhere to a User schema
-                        var user = User.newBuilder()
-                                .setName("Newbie")
-                                .setCompany("Ad Hoc")
-                                .setDateOfBirth(LocalDate.of(2000,7,26))
-                                .setSequenceNumber(sequenceNumber)
-                                .build();
+        @Override
+        public void run() {
+            try {
+                var sequenceNumber = 0;
+                while (true) {
+                    sequenceNumber++;
+                    // The messages in the topic adhere to a User schema
+                    var user = User.newBuilder()
+                            .setName("Newbie")
+                            .setCompany("Ad Hoc")
+                            .setDateOfBirth(LocalDate.of(2000,7,26))
+                            .setSequenceNumber(sequenceNumber)
+                            .build();
 
-                        // Create producer record
-                        ProducerRecord<Long, SpecificRecord> producerRecord = new ProducerRecord<>(TOPIC, user);
+                    // Create producer record
+                    ProducerRecord<Long, SpecificRecord> producerRecord = new ProducerRecord<>(TOPIC, user);
 
-                        // Send the record to the Kafka topic
-                        producer.send(producerRecord);
-                        Thread.sleep(1000);
-                    }
-                } catch (final Exception e) {
-                    LOG.error("An exception occurred while producing messages", e);
-                } finally {
-                    producer.close();
+                    // Send the record to the Kafka topic
+                    producer.send(producerRecord);
+                    Thread.sleep(1000);
                 }
-            }
-
-            private KafkaProducer<Long, SpecificRecord> createProducer() {
-                final Properties props = new Properties();
-
-                props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, EB_BOOTSTRAP_SERVERS);
-                props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
-                props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
-                props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
-                props.put(KafkaAvroSerializerConfig.AUTO_REGISTER_SCHEMAS, false);
-                props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false);
-
-                // Use SASL_SSL in production but PLAINTEXT in local environment
-                // w/docker_compose
-                if ("SASL_SSL".equals(EB_SECURITY_PROTOCOL)) {
-                    props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, EB_SECURITY_PROTOCOL);
-                    props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/tmp/kafka.client.truststore.jks");
-                    props.put(SaslConfigs.SASL_MECHANISM, "OAUTHBEARER");
-                    props.put(SaslConfigs.SASL_JAAS_CONFIG,
-                            "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required awsRoleArn=\""
-                                    + AWS_ROLE // use the role name provided to you
-                                    + "\" awsStsRegion=\"us-gov-west-1\";");
-                    props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS,
-                            "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
-                } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
-                    LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);
-                }
-
-                return new KafkaProducer<>(props);
+            } catch (final Exception e) {
+                LOG.error("An exception occurred while producing messages", e);
+            } finally {
+                producer.close();
             }
         }
+
+        private KafkaProducer<Long, SpecificRecord> createProducer() {
+            final Properties props = new Properties();
+
+            props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, EB_BOOTSTRAP_SERVERS);
+            props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
+            props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
+            props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
+            props.put(KafkaAvroSerializerConfig.AUTO_REGISTER_SCHEMAS, false);
+            props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false);
+
+            // Use SASL_SSL in production but PLAINTEXT in local environment
+            // w/docker_compose
+            if ("SASL_SSL".equals(EB_SECURITY_PROTOCOL)) {
+                props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, EB_SECURITY_PROTOCOL);
+                props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/tmp/kafka.client.truststore.jks");
+                props.put(SaslConfigs.SASL_MECHANISM, "OAUTHBEARER");
+                props.put(SaslConfigs.SASL_JAAS_CONFIG,
+                        "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required awsRoleArn=\""
+                                + AWS_ROLE // use the role name provided to you
+                                + "\" awsStsRegion=\"us-gov-west-1\";");
+                props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS,
+                        "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
+            } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
+                LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);
+            }
+
+            return new KafkaProducer<>(props);
+        }
+    }
+    ```
+
+??? example "Ruby Producer"
+    ```ruby
+    require 'logger'
+    require 'rdkafka'
+    require 'avro_turf/messaging'
+    require_relative 'oauth_token_refresher'
+
+    logger = Logger.new(STDOUT)
+
+    @producers = {}
+
+    def refresh_token(_config, producer_name)
+        producer = @producers[producer_name]
+        OAuthTokenRefresher.new.refresh_token(producer)
+    end
+
+    security_protocol = ENV['SECURITY_PROTOCOL']
+
+    properties = {
+        'bootstrap.servers': ENV['KAFKA_HOST'],
+        'security.protocol': security_protocol,
+        'enable.idempotence': false
+    }
+
+    if 'SASL_SSL' == security_protocol.upcase
+        properties['sasl.mechanisms'] = 'OAUTHBEARER'
+        Rdkafka::Config.oauthbearer_token_refresh_callback = method(:refresh_token)
+    end
+
+    producer = Rdkafka::Config.new(properties).producer(native_kafka_auto_start: false)
+    @producers[producer.name] = producer
+    producer.start
+
+    avro = AvroTurf::Messaging.new(registry_url: ENV['SCHEMA_REGISTRY_URL'], registry_path_prefix: ENV['SCHEMA_REGISTRY_PATH_PREFIX'])
+
+    logger.info "Running producer"
+    while true do
+        payload = avro.encode({"name"=>"John Smith", "appointment_time"=>"#{DateTime.now}"}, subject: 'appointments-value', version: 1)
+        delivery_handle = producer.produce(topic: "appointments", payload: payload)
+        delivery_handle.wait
+        sleep 15
+    end
     ```
 
 ### Register with CODE VA
