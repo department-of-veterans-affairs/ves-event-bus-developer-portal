@@ -48,7 +48,7 @@ To connect to the Event Bus, consumers in **all programming languages** will nee
 
 | Property | Value | Description | Notes |
 | --- | --- | --- | --- |
-| [bootstrap.servers](https://kafka.apache.org/documentation/#consumerconfigs_bootstrap.servers) | List of one or more Event Bus brokers. This will vary depending on the environment (dev, prod, etc.). | A list of host/port pairs to use for establishing the initial connection to the Kafka cluster. | Only one of the Event Bus clusters needs to be included in this list, but including more than one will ensure the application can start up if one of the Kafka servers is down. |
+| [bootstrap.servers](https://kafka.apache.org/documentation/#consumerconfigs_bootstrap.servers) | List of one or more Event Bus brokers. This will vary depending on the environment (dev, prod, etc.). | A list of host/port pairs to use for establishing the initial connection to the Kafka cluster. | Only one of the Event Bus brokers needs to be included in this list, but including more than one will ensure the application can start up if one of the Kafka servers is down. |
 | [group.id](https://kafka.apache.org/documentation/#consumerconfigs_group.id) | This can be set to any value a consumer wants. | A unique string that identifies the consumer group this consumer belongs to. |  |
 | [sasl.mechanism](https://kafka.apache.org/documentation/#consumerconfigs_sasl.mechanism) | `OAUTHBEARER` | SASL mechanism used for client connections. |  |
 | [security.protocol](https://kafka.apache.org/documentation/#consumerconfigs_security.protocol) | `SASL_SSL` | Protocol used to communicate with brokers. |  |
