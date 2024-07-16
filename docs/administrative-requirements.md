@@ -43,7 +43,7 @@ For clients that are LHDI tenants:
 
 ### OBI Access Form
 
-Event Bus Consumers consuming a BIP-sourced event that is available on the Event Bus must follow the OBI Data Access Form process (aka the Corp DB Access Form).
+Event Bus Consumers consuming a BIP-sourced event that is available on the Event Bus must follow the OBI Data Access Form process (aka the Corp DB Application Access Form).
 
 **Who needs to submit an approval request?**
 
