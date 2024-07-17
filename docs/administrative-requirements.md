@@ -52,7 +52,7 @@ Anyone who needs to access Corporate database data and has not been previously a
 Examples:
 - Any entity (Event Bus or an Event Bus consumer) accessing Corporate data for the first time. 
 - Any entity (Event Bus or an Event Bus consumer) who currently accesses specific Corporate data through an event on the Event Bus but now needs access to different data.
-- Any entity who wants to use the Corporate data they have access to for a different purpose than what was previously approved. For example: VHA was previously approved to access rating data from Corporate through use of the VA Profile Rating data API. Now VHA would like to access direct deposit data from Corporate. This is a request for different data, so VHA would need to submit a request for approval to access this data.
+- Any entity who wants to use the Corporate data they have access to for a different purpose than what was previously approved. For example: An event bus consuming system has been using an event sourced from Corp DB data to trigger notifications and now wants to use that same event to automatically update data in another VA system.
 - Any entity accessing Corporate data through a third party. For example, those accessing data through:
   - VA Profile APIs
   - MPI
