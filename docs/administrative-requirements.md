@@ -50,10 +50,11 @@ Event Bus Consumers consuming a BIP-sourced event that is available on the Event
 Anyone who needs to access Corporate database data and has not been previously approved for that specific purpose must submit a request.
 
 Examples:
-- Any entity (Event Bus or an Event Bus consumer) accessing Corporate data for the first time. 
-- Any entity (Event Bus or an Event Bus consumer) who currently accesses specific Corporate data through an event on the Event Bus but now needs access to different data.
-- Any entity who wants to use the Corporate data they have access to for a different purpose than what was previously approved; for example: An Event Bus Consumer has been using an event sourced from Corp DB data to trigger notifications and now wants to use that same event to automatically update data in another VA system.
-- Any entity accessing Corporate data through a third party; for example, when a system consumes a BIP-sourced event from the Event Bus.
+
+* Any entity (Event Bus or an Event Bus consumer) accessing Corporate data for the first time. 
+* Any entity (Event Bus or an Event Bus consumer) who currently accesses specific Corporate data through an event on the Event Bus but now needs access to different data.
+* Any entity who wants to use the Corporate data they have access to for a different purpose than what was previously approved; for example: An Event Bus Consumer has been using an event sourced from Corp DB data to trigger notifications and now wants to use that same event to automatically update data in another VA system.
+* Any entity accessing Corporate data through a third party; for example, when a system consumes a BIP-sourced event from the Event Bus.
 
 **Note:** If _both_ the Event Bus and the Consumer are consuming an event for the first time, the Consumer must wait for the Event Bus to submit and get approval for its own OBI Data Access Form request before submitting its own request.
 
