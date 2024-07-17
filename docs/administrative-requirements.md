@@ -43,15 +43,23 @@ For clients that are LHDI tenants:
 
 ### OBI Access Form
 
-Event Bus Consumers consuming a BIP-sourced event that is available on the Event Bus must follow the OBI Data Access Form process (aka the Corp DB Access Form).
+Event Bus Consumers consuming a BIP-sourced event that is available on the Event Bus must follow the OBI Data Access Form process (aka the Corp DB Application Access Form).
 
-If the same consumer wants to consume additional BIP-sourced events at a later time, another OBI Data Access Form must be submitted to cover the use of that additional data.
+**Who needs to submit an approval request?**
 
-Note that if _both_ the Event Bus and the Consumer are consuming an event for the first time, the Consumer must wait for the Event Bus to submit and get approval for its own OBI Data Access Form request before submitting its own request.
+Anyone who needs to access Corporate database data and has not been previously approved for that specific purpose must submit a request.
+
+Examples:
+- Any entity (Event Bus or an Event Bus consumer) accessing Corporate data for the first time. 
+- Any entity (Event Bus or an Event Bus consumer) who currently accesses specific Corporate data through an event on the Event Bus but now needs access to different data.
+- Any entity who wants to use the Corporate data they have access to for a different purpose than what was previously approved; for example: An Event Bus Consumer has been using an event sourced from Corp DB data to trigger notifications and now wants to use that same event to automatically update data in another VA system.
+- Any entity accessing Corporate data through a third party; for example, when a system consumes a BIP-sourced event from the Event Bus.
+
+**Note:** If _both_ the Event Bus and the Consumer are consuming an event for the first time, the Consumer must wait for the Event Bus to submit and get approval for its own OBI Data Access Form request before submitting its own request.
 
 [Instructions for filling out the form (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/SOP_Corporate_DB_Access_Approval%20081123%201.pdf) and [an example (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/CorpDB%20Application%20Access%20Enterprise%20Event%20Bus%20full%20production.pdf) are available in the Enterprise Event Bus GitHub repository. 
 
-Approval must be granted first for use in non-production environments, and then for use in production. Typically access is granted for use in lower environments first. Production access is granted once proof that the team's ATO has been registered in eMASS is provided. It may be acceptable to submit only one request, as long as ATO confirmation is provided at some point during the Event Bus integration process.
+While permission may granted to access Corp DB data for use in both non-production and production environments, there are cases, such as when a team is in the process of obtaining its ATO, that access may be granted for use in lower environments first, with production access granted once the team's ATO has been registered in eMASS. In the case of the latter, it may be acceptable to submit only one request, as long as ATO confirmation is provided at some point during the Event Bus integration process.
 
 ### Sensitivity Filtering
 
