@@ -1,6 +1,6 @@
 # Enterprise Event Bus Developer Portal
 
-This is the public facing developer portal for all things Enterprise Event Bus. The Event Bus is in active development and content in this repository is prone to change frequently. 
+This is the public-facing developer portal for all things Enterprise Event Bus. The Event Bus is in production and fairly stable, but the content in this repository will be updated regularly to keep information current. 
 
 ## Contributing
 
@@ -14,11 +14,15 @@ Rendered documentation is viewable at https://department-of-veterans-affairs.git
 
 ## Local Development
 
+This project requires Python 3.x. For Mac users, Python can be installed using homebrew with:
+
+`brew install python3`
+
 In order to quickly iterate while working on documentation, install the following:
 
-`pip install mkdocs mkdocs-material mkdocs-techdocs-core`
+`pip3 install mkdocs mkdocs-material mkdocs-techdocs-core`
 
-Changes to documentation can be viewed by running `mkdocs serve` in your terminal, from the root of this repository. 
+Changes to documentation can be viewed by running `mkdocs serve` in your terminal, from the root of this repository. The portal will be served at `http://127.0.0.1:8000/`
 
 **Note:** For Mac users, you can install `mkdocs` via homebrew.
 
