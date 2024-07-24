@@ -24,8 +24,6 @@ In order to quickly iterate while working on documentation, install the followin
 
 Changes to documentation can be viewed by running `mkdocs serve` in your terminal, from the root of this repository. The portal will be served at `http://127.0.0.1:8000/`
 
-**Note:** For Mac users, you can install `mkdocs` via homebrew.
-
 ## Support
 
 Need help with something? Feel free to [file an issue](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/issues). 
