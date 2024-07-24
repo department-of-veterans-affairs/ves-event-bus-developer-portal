@@ -63,7 +63,7 @@ Depending on the language client used, additional properties may also be needed 
 | [key.deserializer](https://kafka.apache.org/documentation/#consumerconfigs_key.deserializer) | `KafkaAvroDeserializer` | Deserializer class for key. | All Event Bus records use an Avro schema, so this is required even if the key itself is a primitive type like `string` or `long`. |
 | [sasl.jaas.config](https://kafka.apache.org/documentation/#consumerconfigs_sasl.jaas.config) | `OAuthBearerLoginModule` and role settings. The role will vary for each consumer. | JAAS login context parameters for SASL connections in the format used by JAAS configuration files.  | See [specifying an AWS IAM role](https://github.com/aws/aws-msk-iam-auth#specifying-an-aws-iam-role-for-a-client) for more information. |
 | [sasl.login.callback.handler.class](https://kafka.apache.org/documentation/#consumerconfigs_sasl.login.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL login callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
-| [sasl.login.callback.handler.class](https://kafka.apache.org/documentation/#consumerconfigs_sasl.client.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL client callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
+| [sasl.client.callback.handler.class](https://kafka.apache.org/documentation/#consumerconfigs_sasl.client.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL client callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
 | [value.deserializer](https://kafka.apache.org/documentation/#consumerconfigs_value.deserializer) | `KafkaAvroDeserializer` | Deserializer class for value. |  |
 | schema.registry.url | Event Bus schema registry endpoint. This will vary depending on the environment (dev, prod, etc.). | Comma-separated list of URLs for Schema Registry instances that can be used to register or look up schemas. | |
 
@@ -171,6 +171,8 @@ Depending on the language client used, additional properties may also be needed 
                                 + AWS_ROLE // use the role name provided to you
                                 + "\" awsStsRegion=\"us-gov-west-1\";");
                 props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS,
+                        "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
+                props.put(SaslConfigs.SASL_CLIENT_CALLBACK_HANDLER_CLASS,
                         "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
             } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
                 LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);

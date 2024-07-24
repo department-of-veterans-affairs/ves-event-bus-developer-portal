@@ -170,6 +170,8 @@ Depending on the language client used, additional properties may also be needed 
                                 + "\" awsStsRegion=\"us-gov-west-1\";");
                 props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS,
                         "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
+                props.put(SaslConfigs.SASL_CLIENT_CALLBACK_HANDLER_CLASS,
+                        "software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler");
             } else if (!"PLAINTEXT".equals(EB_SECURITY_PROTOCOL)) {
                 LOG.error("Unknown EB_SECURITY_PROTOCOL '{}'", EB_SECURITY_PROTOCOL);
             }
