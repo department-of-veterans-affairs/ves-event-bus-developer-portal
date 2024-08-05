@@ -6,24 +6,25 @@ title: Consuming Events
 
 ## What’s a consumer?
 
-A consumer is an application that is set up to receive messages or events in an event-driven system. The Event Bus exposes streams of events, called topics, to consumers. The events capture significant occurrences taking place in an external system. A list of currently available topics can be found in our [Event Catalog](./use-events.md).
+A consumer is an application that is set up to receive messages or events in an event-driven system. The Event Bus exposes streams of events, called topics, to consumers. The events capture significant occurrences taking place in an external system. Find out how to view a list of currently available topics by visiting our [Event Catalog page](./use-events.md).
 
-To access messages in a particular topic, an event consumer would subscribe to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. The content below outlines the steps needed to start consuming events. Learn more about the components and processes involved in event-based systems on our [Introduction to Event-Driven Architecture](./intro-to-eda.md) page.
+To access messages in a particular topic, an event consumer would subscribe to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. The content below outlines the steps needed to start consuming events. Learn more about the components and processes involved in event-based systems on our [Introduction to Event-Driven Architecture page](./intro-to-eda.md).
 
 ## Steps to become a consumer
 
 ### Find events/topics to consume
 
 The first step to consuming an event is to [reach out to the Enterprise Event Bus Team](./get-support.md) about your interest in events. From there, you can either subscribe to an existing topic with relevant events, or else identify a team able to provide the topic that is of interest to you. At this point in time, we are unable to identify producers for consumers that do not have a source for their desired events, but we will do our best to work with your chosen producing team.
-See also our [Produce Events](./produce-events.md) page.
+
+See also our [Produce Events page](./produce-events.md).
 
 ### Determine if you need an ESECC request
 
-See the [ESECC section](./administrative-requirements.md#esecc) on the Administrative Requirements page.
+See the [ESECC section on the Administrative Requirements page](./administrative-requirements.md#esecc).
 
 ### For consumers of BIP-sourced Events
 
-Read the [documentation on requesting data access and sensitivity filtering](./administrative-requirements.md#consumers-of-bip-sourced-events) in our Administrative Requirements section.
+Read the [documentation about requesting data access and sensitivity filtering on our Administrative Requirements page](./administrative-requirements.md#consumers-of-bip-sourced-events).
 
 ### Set up authorization and authentication
 
@@ -237,7 +238,7 @@ To register with CODE VA:
 
 1. In CODE VA, an event-consuming software entity can be modeled as a [Component](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) or as a [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system). If you are unsure whether to classify your consumer as a Component or a System, see the [Backstage System Model](https://backstage.io/docs/features/software-catalog/system-model/).
 2. Create a file named `catalog-info.yaml` at the root of your source code repository and populate it with the applicable template, updating `metadata` and `spec` with values that correspond to your component or system.
-3. Once your `catalog-info.yaml` file has been committed it will be automatically processed and the software entity will be viewable on [CODE VA (must be on the VA network to view)](https://code.va.gov/) within a few hours. If you would like the software entity to display quicker, follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
+3. Once your `catalog-info.yaml` file has been committed it will be automatically processed and the software entity will be viewable on [CODE VA website (must be on the VA network to view)](https://code.va.gov/) within a few hours. If you would like the software entity to display quicker, follow the [Backstage documentation on the default method for adding entries to the catalog](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog).
 
 #### Component Template
 ``` { .yaml .copy }

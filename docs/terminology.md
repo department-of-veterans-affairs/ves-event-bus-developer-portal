@@ -17,7 +17,7 @@ title: Terminology
 * **Event (instance)**: a specific instance of a business action that has occurred  (note: event, message, and record can be seen interchangeably in various Kafka-related documentation).
     * For example, an appointment was created for Karen to see an orthopedic specialist on 6/1/2023 at 10:30 am.
 
-* **MSK**: Managed Streams for Kafka. The Enterprise Event Bus uses [AWS Managed Streams for Kafka](https://docs.aws.amazon.com/msk/), a hosted version of Kafka that runs in the VA Enterprise Cloud.
+* **MSK**: Managed Streams for Kafka. The Enterprise Event Bus uses AWS Managed Streams for Kafka, a hosted version of Kafka that runs in the VA Enterprise Cloud.
 
 * **Partitions**: storage units within a topic. They hold a subset of the records owned by the topic. This is a logical concept in Kafka.
     * For example, the number of partitions will impact the distribution of your data. The Enterprise Event Bus team will provide guidance on allocating partitions for a topic during the onboarding process of a producer.
@@ -27,4 +27,4 @@ title: Terminology
 * **Topic**: provides a destination for the storage of data. Each topic is split into one or more partitions. Topics are where events are durably stored; this is similar to how files are stored in a distributed file system. A topic can have many producers and many consumers. Continuing the music analogy from the definition of domain, a topic can be thought of as a radio channel that plays a single band.
     * For example, appointment events can be streamed from the appointments topic.
  
-Find additional terms and abbreviations defined in [Github (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Event%20Bus%20Terminology.md). 
+Find additional terms and abbreviations on the [Event Bus terminology page in Github (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Event%20Bus%20Terminology.md). 

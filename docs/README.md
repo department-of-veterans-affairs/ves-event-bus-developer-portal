@@ -25,6 +25,6 @@ Take the next steps to explore and begin using the Enterprise Event Bus:
 * Learn more about [which teams would benefit from using event-driven architecture](./get-started.md),
 * Understand the [administrative requirements](./administrative-requirements.md) for connecting to the Enterprise Event Bus,
 * [Dive deeper into a technical explanation of events](./intro-to-eda.md),
-* Learn how to [produce events](./produce-events.md),
-* Learn how to [consume events](./consume-events.md), or 
+* [Learn how to produce events](./produce-events.md),
+* [Learn how to consume events](./consume-events.md), or 
 * [Reach out](./get-support.md) to us with questions. 
