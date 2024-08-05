@@ -10,7 +10,7 @@ The Enterprise Event Bus is an asynchronous event processing system that spans s
 
 _The following conceptual diagram illustrates how producers and consumers might interact with the Enterprise Event Bus. Producers publish many different kinds of events. Consumers may do many different things with event data, such as notify a Veteran or kick off a workflow. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
 
-![The conceptual diagram illustrating how producers and consumers interact with the Enterprise Event Bus.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/f0dfe62a-8509-459c-bd9a-074e0babb22b)
+![The conceptual diagram illustrating producers publishing various events to Event Bus and consumers using the event data for various tasks.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/f0dfe62a-8509-459c-bd9a-074e0babb22b)
 
 
 ## Role within the VA enterprise environment
@@ -43,9 +43,9 @@ When determining what information an event should contain, a guiding principle i
 
 Enterprise Event Bus, like most other event-based systems in VA, is based on [Apache Kafka](https://kafka.apache.org/), an open-source distributed event streaming platform. It is considered the industry standard for handling real-time data feeds, and is capable of handling the kinds of large scale, high-throughput loads we would expect an enterprise-wide event bus in VA to be able to handle. In addition to being a proven technology, Kafka is already used in a production capacity by other teams in VA, such as the [Benefits Integration Platform](https://confluence.devops.va.gov/pages/viewpage.action?spaceKey=VAExternal&title=Benefits+Integration+Events).
 
-The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs.aws.amazon.com/msk/), a hosted version of Kafka that runs in the VA Enterprise Cloud. Event-producing systems publish events to Kafka topics that are available on AWS MSK. Events in a single topic are distributed across different brokers and partitions to balance load. Metadata managed by the cluster informs producing and consuming systems which broker they need to connect to. The data on AWS MSK is stored in [AWS Elastic Block Store (EBS)](https://docs.aws.amazon.com/ebs/). Event-consuming systems can subscribe to topics to pull streams of events.
+The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs.aws.amazon.com/msk/), a hosted version of Kafka that runs in the VA Enterprise Cloud. Event-producing systems publish events to Kafka topics that are available on AWS MSK. Events in a single topic are distributed across different brokers and partitions to balance load. Metadata managed by the cluster informs producing and consuming systems which broker they need to connect to. The data on AWS MSK is stored in [AWS Elastic Block Store (EBS)](https://docs.aws.amazon.com/ebs/). Event-consuming systems can subscribe to topics to pull streams of events. The diagram below shows how events are stored in AWS MSK and how producers and consumers interact with the system.
 
-![A diagram showing how producing and consuming systems interact with AWS Managed Streams for Kafka.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
+![The diagram showing the architecture of AWS Managed Streams for Kafka and how producers and consumers interact with it, as descibed above.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
 
 ## Learn more
 
