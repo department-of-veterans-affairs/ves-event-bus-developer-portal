@@ -6,7 +6,7 @@ title: Get Support
 
 ## General support requests
 
-The best way to request support from the Event Bus Team is to reach out to us via the [#event-bus-support Slack channel (must be in the Office of CTO @VA workspace)][slack-#event-bus-support].
+The best way to request support from the Event Bus Team is to reach out to us via the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
 
 Please avoid direct messaging an Event Bus team member in Slack. Chatting openly in the channel allows others to learn from the questions and answers discussed.
 
@@ -14,7 +14,7 @@ Event Bus Slack channel support hours are from 12pm - 5pm ET, Monday through Fri
 
 ## Report an incident
 
-To report a security or privacy incident, or an urgent critical operational incident email `event-bus[at]veterans-affairs.pagerduty.com`. This will generate a page to the on-call engineer's mobile device 24/7. You can expect a response within 30 minutes in the [#event-bus-support][slack-#event-bus-support] Slack channel in the Office of CTO @VA workspace.
+To report a security or privacy incident, or an urgent critical operational incident email `event-bus[at]veterans-affairs.pagerduty.com`. This will generate a page to the on-call engineer's mobile device 24/7. You can expect a response within 30 minutes in the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
 
 Please include the following information in your email:
 

@@ -37,8 +37,11 @@ There are many valid reasons to use other architectures, such as synchronous API
 Your system **lacks well-defined components, or has constantly changing interactions**:<br/>
 Systems that are continuously in flux, or don't have well-established boundaries or communication patterns would make it difficult to introduce event-driven designs.
 
-Your event data **is rated as “high” under [FISMA](https://security.cms.gov/learn/federal-information-security-management-act-fisma) and the [VA system categorization (must be part of VA GitHub organization to view)](https://jubilant-succotash-m55rqe7.pages.github.io/categorization/)**:<br/> 
-The Event Bus is rated at a Medium level under FISMA and VA system categorization, and can only broker data that is rated as Low or Moderate at this time.
+Your event data **is rated as “high” under FISMA (Federal Information Security Modernization Act) and VA system categorization**. The Event Bus is rated at a Medium level under FISMA and VA system categorization, and can only broker data that is rated as Low or Moderate at this time.
+
+ [Learn more about FISMA.](https://security.cms.gov/learn/federal-information-security-management-act-fisma) 
+ 
+ [Learn more about VA system categorization (must be part of VA GitHub organization to view)](https://jubilant-succotash-m55rqe7.pages.github.io/categorization/).
 
 ## Reach out to us
 

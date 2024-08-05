@@ -4,7 +4,7 @@ title: Environments
 
 # Environments
 
-Event Bus [Kafka](https://kafka.apache.org/) and applications are deployed into several environments for different purposes. We deploy any new releases to all environments on Wednesdays. The environments are described in the table below.
+The Enterprise Event Bus' Apache Kafka instances and associated applications are deployed into several environments for different purposes. We deploy any new releases to all environments on Wednesdays. The environments are described in the table below.
 
 | Environment Name | Description                                                                                                | PHI, PII<br>Allowed |
 |------------------|------------------------------------------------------------------------------------------------------------|---------------------|

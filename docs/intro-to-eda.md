@@ -6,7 +6,7 @@ title: Event-Driven Architecture at VA
 
 ## Introduction
 
-The Enterprise Event Bus is an asynchronous event processing system that spans systems and lines of business at VA. Event-driven architecture uses events &mdash; types of actions, such as a Veteran creating a medical appointment or updating their beneficiaries &mdash; to communicate with systems that are subscribed to the stream of events. The systems that are producing the events, also known as [producers](./produce-events.md), are decoupled from the systems that are consuming their events, also known as [consumers](./consume-events.md).
+The Enterprise Event Bus is an asynchronous event processing system that spans systems and lines of business at VA. Event-driven architecture uses events &mdash; types of actions, such as a Veteran creating a medical appointment or updating their beneficiaries &mdash; to communicate with systems that are subscribed to the stream of events. The systems that are producing the events, also known as Producers, are decoupled from the systems that are consuming their events, also known as Consumers.
 
 _The following conceptual diagram illustrates how producers and consumers might interact with the Enterprise Event Bus. Producers publish many different kinds of events. Consumers may do many different things with event data, such as notify a Veteran or kick off a workflow. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
 
@@ -49,9 +49,9 @@ The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs
 
 ## Learn more
 
-* Find definitions for acronyms and event-related terms on the [Terminology](./terminology.md) page.
-* <a href="https://www.youtube.com/watch?v=R6tUoxx2gVY">Watch this brief video</a> for a quick overview of event-driven architecture.
-* <a href="https://developer.confluent.io/patterns/">Learn about event streaming patterns</a> on the Confluent Developer website.
-* <a href="https://www.confluent.io/resources/presentation/one-year-in-lessons-learned-and-plans-for-the-future/">Watch a presentation</a> about “Lessons Learned and Plans for the Future” by Robert Ezekiel from Booz Allen Hamilton.
-* <a href="https://www.confluent.io/events/kafka-summit-americas-2021/improving-veteran-benefit-services-through-efficient-data-streaming/">Watch a presentation</a> about “Improving Veteran Benefit Services Through Efficient Data Streaming” by Robert Ezekiel from Booz Allen Hamilton
-* The Enterprise Event Bus Team offers consultations and is happy to answer questions. [Reach out to us.](./get-support.md)
+* Find definitions for acronyms and event-related terms on the [Terminology page](./terminology.md).
+* <a href="https://www.youtube.com/watch?v=R6tUoxx2gVY">Watch this brief video on YouTube</a> for a quick overview of event-driven architecture.
+* <a href="https://developer.confluent.io/patterns/">Learn about event streaming patterns on the Confluent Developer website</a>.
+* <a href="https://www.confluent.io/resources/presentation/one-year-in-lessons-learned-and-plans-for-the-future/">Watch a presentation on the Confluent Developer website</a> about “Lessons Learned and Plans for the Future” by Robert Ezekiel from Booz Allen Hamilton.
+* <a href="https://www.confluent.io/events/kafka-summit-americas-2021/improving-veteran-benefit-services-through-efficient-data-streaming/">Watch a presentation on the Confluent Developer website</a> about “Improving Veteran Benefit Services Through Efficient Data Streaming” by Robert Ezekiel from Booz Allen Hamilton
+* The Enterprise Event Bus Team offers consultations and is happy to answer questions. [Reach out to us](./get-support.md).

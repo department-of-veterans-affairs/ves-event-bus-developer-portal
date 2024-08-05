@@ -6,9 +6,9 @@ title: Producing Events
 
 ## What's a producer?
 
-A producer is an application designed to generate messages or events within an event-driven system. In the context of the Enterprise Event Bus, which aims to expose streams of events known as topics, producers play a crucial role. Producing teams have access to, or knowledge about, important data changes in the VA ecosystem and can send events to specific topics on the Event Bus. You can find a list of currently available topics in our [Event Catalog](./use-events.md).
+A producer is an application designed to generate messages or events within an event-driven system. In the context of the Enterprise Event Bus, which aims to expose streams of events known as topics, producers play a crucial role. Producing teams have access to, or knowledge about, important data changes in the VA ecosystem and can send events to specific topics on the Event Bus. Find out how to view a list of currently available topics by visiting our [Event Catalog page](./use-events.md).
 
-As producers are responsible for defining topics and their contents, they will work with the Event Bus Team to determine configuration settings such as the number of topic partitions, event versioning, and event retention rules. The content below outlines the steps needed to start producing events. To learn more about the components and processes involved in event-based systems, please visit our [Introduction to Event-Driven Architecture](./intro-to-eda.md) page.
+As producers are responsible for defining topics and their contents, they will work with the Event Bus Team to determine configuration settings such as the number of topic partitions, event versioning, and event retention rules. The content below outlines the steps needed to start producing events. To learn more about the components and processes involved in event-based systems, please visit our [Introduction to Event-Driven Architecture page](./intro-to-eda.md).
 
 ## Steps to become a producer
 
@@ -16,13 +16,13 @@ As producers are responsible for defining topics and their contents, they will w
 
 The first step in producing an event is to [contact the Enterprise Event Bus Team](./get-support.md) and express your interest in contributing an event stream. An ideal event stream represents a business event within the VA that would be of interest to multiple stakeholders and have a significant impact on Veterans. Examples of such events include changes to eligibility for benefits, milestones in the claims process, or updates to a Veteran's health record, such as new appointments, prescriptions, or lab results.
 
-While it is not a requirement to have consumers identified from the start, in an ideal scenario the events would theoretically be meaningful to multiple, independent consumers. If you do have consumers in mind, reach out to them and engage in preliminary discussions about their needs, preferences, and timelines. You can find more information on consuming events on our [Consuming Events](./consume-events.md) page.
+While it is not a requirement to have consumers identified from the start, in an ideal scenario the events would theoretically be meaningful to multiple, independent consumers. If you do have consumers in mind, reach out to them and engage in preliminary discussions about their needs, preferences, and timelines. You can find more information on consuming events on our [Consuming Events page](./consume-events.md).
 
 If there is a mutual interest to continue after the initial meeting, the Event Bus Team will create a one-page description of the proposed event topic, including details about the business context, event purpose, payload, and consumers. The partner team will review and provide feedback on the document and sign a Working Agreement and a Data Sharing Agreement.
 
 ### Determine if you need an ESECC request
 
-See the [ESECC section](./administrative-requirements.md#esecc) on the Administrative Requirements page.
+See the [ESECC section on the Administrative Requirements page](./administrative-requirements.md#esecc).
 
 ### Choose configuration settings and submit onboarding request
 
@@ -34,11 +34,11 @@ Partitions in Kafka serve as the primary unit of storage within a topic, with ea
 
 #### Event retention
 
-Event retention refers to how long an event exists within Kafka and remains available for consumption. This setting would be especially important to consumers who need to be prepared to handle missed events before they expire. For additional information and discussion, see our section about Retention in the [Event Design ADR (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md).
+Event retention refers to how long an event exists within Kafka and remains available for consumption. This setting would be especially important to consumers who need to be prepared to handle missed events before they expire. For additional information and discussion, see our section about Retention in our [Event Design Architectural Decision Record (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md).
 
 #### Event schema and event registry
 
-The Event Bus utilizes the [Confluent Schema Registry](https://docs.confluent.io/platform/7.5/schema-registry/fundamentals/index.html#sr-key-concepts) to store schemas and their versions. Avro is used to define the schema format. Producers must submit an event schema representing the event payload in Avro format as part of the onboarding process. Producers must also use [Apache Avro](https://avro.apache.org/) to serialize data onto the Event Bus so that the event schema, and the data contract it represents, is enforced. Additionally, producers should consider event versioning, which involves planning how schemas will evolve. Event versions are governed by the compatibility type setting, which determines allowed schema changes and how consumers interact with different versions. For most producers, we recommend using the `BACKWARD` compatibility type. For more information, see our [article about the Confluent Schema Registry (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20schema%20registry.md), and about [schema versioning (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20schema%20versioning.md).
+The Event Bus utilizes the [Confluent Schema Registry](https://docs.confluent.io/platform/7.5/schema-registry/fundamentals/index.html#sr-key-concepts) to store schemas and their versions. Avro is used to define the schema format. Producers must submit an event schema representing the event payload in Avro format as part of the onboarding process. Producers must also use [Apache Avro](https://avro.apache.org/) to serialize data onto the Event Bus so that the event schema, and the data contract it represents, is enforced. Additionally, producers should consider event versioning, which involves planning how schemas will evolve. Event versions are governed by the compatibility type setting, which determines allowed schema changes and how consumers interact with different versions. For most producers, we recommend using the `BACKWARD` compatibility type. For more information, see our [article about the Confluent Schema Registry (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20schema%20registry.md), and our [article about schema versioning (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20schema%20versioning.md).
 
 Once the producing team has communicated their decisions about the event schema, the Event Bus team will create the topic, along with the schema, and notify the producing team when everything is ready for use.
 
@@ -235,7 +235,7 @@ To register your event with CODE VA:
 
 1. Create a file named `catalog-info.yaml` at the root of your source code repository.
 2. Populate the `catalog-info.yaml` file with an `Event` Backstage entity based on the template below.
-3. Once your `catalog-info.yaml` file has been committed it will be automatically processed and the event will be viewable on [CODE VA (must be on the VA network to view)](https://code.va.gov/) within a few hours. If you would like the event to display quicker, follow the [default Backstage provided method](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog) for adding entries to the catalog.
+3. Once your `catalog-info.yaml` file has been committed it will be automatically processed and the event will be viewable on [CODE VA (must be on the VA network to view)](https://code.va.gov/) within a few hours. If you would like the event to display quicker, follow the [Backstage documentation on the default method for adding entries to the catalog](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog).
 
 #### Event Template
 
@@ -302,7 +302,7 @@ The `catalog.yaml` file will be validated against [this JSON schema (must be par
 
 ## Logs
 
-Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs are available via [Datadog (must have VA LightHouseDI DataDog access to view)](https://lighthousedi.ddog-gov.com/).
+Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs are available via [LHDI's Datadog instance (must have VA LightHouseDI DataDog access to view)](https://lighthousedi.ddog-gov.com/).
 
 Datadog is a monitoring and analytics tool that is used within the VA. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. To request access to Datadog, complete the HelpDesk form on the ServiceNow Portal at [ECC (Enterprise Command Center) Monitoring Services - your IT Service Portal (must be on the VA network to view)](https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fyourit.va.gov%2Fva%3Fid%3Dsc_cat_item%26sys_id%3D4cdf488b1ba4fcd412979796bc4bcb74&data=05%7C01%7C%7Ccb701e4e7fc944b6041308dbeacea9aa%7Ce95f1b23abaf45ee821db7ab251ab3bf%7C0%7C0%7C638361945550254440%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=sJfq3j8vnXwdtuQrfY%2FBaRttaqyOpKA6X17O8TMK9ug%3D&reserved=0).
 
