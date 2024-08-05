@@ -24,7 +24,7 @@ See the [ESECC section on the Administrative Requirements page](./administrative
 
 ### For consumers of BIP-sourced Events
 
-Read the [documentation on requesting data access and sensitivity filtering on our Administrative Requirements page](./administrative-requirements.md#consumers-of-bip-sourced-events).
+Read the [documentation about requesting data access and sensitivity filtering on our Administrative Requirements page](./administrative-requirements.md#consumers-of-bip-sourced-events).
 
 ### Set up authorization and authentication
 
