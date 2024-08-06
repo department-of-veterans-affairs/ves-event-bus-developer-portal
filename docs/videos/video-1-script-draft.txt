@@ -1,0 +1,23 @@
+Discovering Enterprise Event Bus or What is Event Bus?
+
+Event Bus is an event processing system that offers asynchronous and real-time event transfer between systems within the VA. 
+
+    - What Is An Event?
+
+An event in this context is data describing something that took place in a VA system. Examples of things that could be events include medical claim processing information, contact center ticket information, or Veteran personal data updates. Any data that would be useful to share between systems immediately as soon it's available could be packaged into an event.
+
+    - The Problem
+
+Currently, many VA systems poll for data infrequently, and between many layers of systems. This means an update to one system may take days or months to be updated across systems as the data is slowly requested by each system from another on their own schedules. Not only that, but not all systems are connected or get data from the same source; something that is updated in one place may not ever reach other systems. 
+
+    - The Solution
+
+Event Bus offers a solution to both of these problems. By providing a system that reads from a source and offers the data in a specialized output stream in real-time, client systems can stay connected and receive data as it is available. Every system can connect to the same real-time output stream, reducing the need for slow inter-system polling and connections to many dependent systems. If a Veteran updates their address in one source, it can be fed into Event Bus and all systems can be notified at once, as it happens. No more slow propagation and compiling data from many systems!
+
+   - But Wait, Theres More
+
+Event Bus also offers more. By using an event streaming platform called Kafka and providing a high-uptime single source of data, Event Bus sidesteps some of the reliability issues other systems have. Even in the event of connectivity issues or client downtime, Kafka allows for the ability to temporarily keep outbound data in its output stream and keep track of where each client had last read. As soon as the issue is resolved the data is flowing again right where you left off, with no need to manually query for it or figure out what the last thing processed was.
+
+    - The State of the Bus
+
+As of August 2024, Event Bus is set up with a production environment and ready to serve clients. Hosted on LHDI (our AWS platform) we are fully deployed as a production service and ready for producers and clients to integrate with. We're currently working with the BIP team, BMT, and VA Profile teams to get their events flowing through the Event Bus. 
