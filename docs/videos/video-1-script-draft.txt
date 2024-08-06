@@ -1,6 +1,6 @@
 Discovering Enterprise Event Bus or What is Event Bus?
 
-Event Bus is an event processing system that offers asynchronous and real-time event transfer between systems within the VA. 
+Event Bus is an event processing system that offers asynchronous and real-time event data transfer between systems within the VA. 
 
     - What Is An Event?
 
