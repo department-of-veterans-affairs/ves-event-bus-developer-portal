@@ -4,7 +4,7 @@ Event Bus is an event processing system that offers asynchronous and real-time e
 
     - What Is An Event?
 
-An event in this context is data describing something that took place in a VA system. Examples of things that could be events include medical claim processing information, contact center ticket information, or Veteran personal data updates. Any data that would be useful to share between systems immediately as soon it's available could be packaged into an event.
+An event in this context is data describing something that took place in a VA system. Examples of things that could be events include medical claim processing information, contact center ticket information, or Veteran personal data updates. Any data that would be useful to share between systems as soon it's available could be packaged into an event.
 
     - The Problem
 
@@ -14,7 +14,7 @@ Currently, many VA systems poll for data infrequently, and between many layers o
 
 Event Bus offers a solution to both of these problems. By providing a system that reads from a source and offers the data in a specialized output stream in real-time, client systems can stay connected and receive data as it is available. Every system can connect to the same real-time output stream, reducing the need for slow inter-system polling and connections to many dependent systems. If a Veteran updates their address in one source, it can be fed into Event Bus and all systems can be notified at once, as it happens. No more slow propagation and compiling data from many systems!
 
-   - But Wait, Theres More
+   - But Wait, There's More
 
 Event Bus also offers more. By using an event streaming platform called Kafka and providing a high-uptime single source of data, Event Bus sidesteps some of the reliability issues other systems have. Even in the event of connectivity issues or client downtime, Kafka allows for the ability to temporarily keep outbound data in its output stream and keep track of where each client had last read. As soon as the issue is resolved the data is flowing again right where you left off, with no need to manually query for it or figure out what the last thing processed was.
 
