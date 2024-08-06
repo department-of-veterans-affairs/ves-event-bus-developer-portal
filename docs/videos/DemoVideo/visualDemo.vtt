@@ -1,0 +1,94 @@
+WEBVTT
+
+STYLE
+::cue {
+  font-family: 'proxima-nova', sans-serif;
+}
+
+1
+00:00:01.500 --> 00:00:7.200
+Let's take a look at Event Bus in action, using a visual demo to help see how the data flows through the system.
+
+2
+00:00:08.000 --> 00:00:14.700
+Here we have a representation of our source data; in this case a medical claims processing event coming from a VA system.
+
+3
+00:00:15.000 --> 00:00:18.700
+Our Veteran, Mark, selected here... 
+
+4
+00:00:20.200 --> 00:00:27.400
+...has just had a medical procedure, and the event indicating that a claim has been processed for this procedure is about to be available.
+
+5
+00:00:27.800 --> 00:00:32.700
+The data in this event includes relevant information that can help Mark if other VA systems know about it.
+
+6
+00:00:33.500 --> 00:00:42.800
+In a real situation, the medical data comes pre-defined from the provider, but for the purposes of this demo we can choose what data is included in the medical event.
+
+7
+00:00:43.300 --> 00:00:46.500
+We'll select that the event requires a new prescription...
+
+8
+00:00:47.400 --> 00:00:52.300
+...and that the health update was important and Mark should get an SMS update about it.
+
+9
+00:00:53.300 --> 00:00:55.900
+Now let's trigger that medical processing event!
+
+10
+00:00:58.200 --> 00:01:03.000
+Now that we've triggered the event, it is made available to Event Bus, which picks it up immediately.
+
+11
+00:01:03.200 --> 00:01:07.500
+Event Bus reads the event and sends pieces of the event data to specialized channels in real time,
+
+12
+00:01:07.501 --> 00:01:13.100
+demonstrating one way the Event Bus could be used to give clients only the data they need from a source stream.
+
+13
+00:01:13.200 --> 00:01:21.000
+Event Bus can also be used for simpler streams; in our existing use cases, events are simply passed from a source to a single specialized topic.
+
+14
+00:01:23.000 --> 00:01:27.800
+The first channel is read by a system that informs Mark's local VA office about medical claim events.
+
+15
+00:01:28.400 --> 00:01:33.300
+Now the office is aware the medical event happened for followup appointments and additional treatment.
+
+16
+00:01:34.000 --> 00:01:38.800
+The second channel is read by a system that Mark's pharmacy uses to check for new prescriptions.
+
+17
+00:01:39.200 --> 00:01:45.000
+Now as soon as the event indicates a new prescription is ready, Mark can verify and pick up his prescription.
+
+18
+00:01:45.700 --> 00:01:50.300
+The third channel is read by a system that sends SMS notifications to Veterans.
+
+19
+00:01:50.500 --> 00:01:57.000
+Since this was an important processed claim, Mark is notified that his followup appointment with his VA clinic can be scheduled.
+
+20
+00:01:57.600 --> 00:02:05.900
+With these various systems connected to the Event Bus, VA was able to automate processes that resulted in providing faster service and more proactive communication with Mark.
+
+21
+00:02:06.000 --> 00:02:11.200
+In today's systems, he may have waited days to hear about the processing, if he ever heard at all.
+
+22
+00:02:11.300 --> 00:02:13.500
+That's the power of Event Bus!
