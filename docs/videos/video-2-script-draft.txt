@@ -8,7 +8,7 @@ In a real situation, the medical data comes pre-defined from the provider, but f
 
 (Click Button)
 
-Now that we've triggered the event, it is made available to Event Bus, which picks it up immediately. Event Bus reads the event and sends pieces of the event data to specialized channels in real time.
+Now that we've triggered the event, it is made available to Event Bus, which picks it up immediately. Event Bus reads the event and sends pieces of the event data to specialized channels in real time, demonstrating one way the Event Bus could be used to give clients only the data they need from a source stream. Event Bus can also be used for simpler streams; in our existing use cases, events are simply passed from a source to a single specialized topic.
 
 The first channel is read by a system that informs Mark's local VA office about medical claim events. Now the office is aware the medical event happened for followup appointments and additional treatment.
 
