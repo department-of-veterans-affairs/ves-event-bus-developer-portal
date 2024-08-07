@@ -12,12 +12,13 @@ Currently, many VA systems poll for data infrequently, and between many layers o
 
     - The Solution
 
-Event Bus offers a solution to both of these problems. By providing a system that reads from a source and offers the data in a specialized output stream in real-time, client systems can stay connected and receive data as it is available. Every system can connect to the same real-time output stream, reducing the need for slow inter-system polling and connections to many dependent systems. If a Veteran updates their address in one source, it can be fed into Event Bus and all systems can be notified at once, as it happens. No more slow propagation and compiling data from many systems!
+Event Bus offers a solution to both of these problems. By providing a system that reads from a source and offers the data in a specialized output stream in real-time, client systems can stay connected and receive data as it is available. Every system can connect to the same real-time output stream, reducing the need for slow inter-system polling and one-to-one connections to many dependent systems. If a Veteran updates their address in one source, it can be fed into Event Bus and all systems can be notified at once, as it happens. No more slow propagation and compiling data from many systems!
 
    - But Wait, There's More
 
-Event Bus also offers more. By using an event streaming platform called Kafka and providing a high-uptime single source of data, Event Bus sidesteps some of the reliability issues other systems have. Even in the event of connectivity issues or client downtime, Kafka allows for the ability to temporarily keep outbound data in its output stream and keep track of where each client had last read. As soon as the issue is resolved the data is flowing again right where you left off, with no need to manually query for it or figure out what the last thing processed was.
+Event Bus also offers more. By using an event streaming platform called Kafka and providing a high-uptime single source of data, Event Bus sidesteps some of the reliability issues other systems have. In the event of connectivity issues or client downtime, Kafka allows for the ability to temporarily keep events in its output stream and track where in the stream each client last consumed an event. When the issue is resolved, the data is still available right where you left off, with no need to manually query for it or figure out which event was last processed.
+
 
     - The State of the Bus
 
-As of August 2024, Event Bus is set up with a production environment and ready to serve clients. Hosted on LHDI (our AWS platform) we are fully deployed as a production service and ready for producers and clients to integrate with. We're currently working with the BIP team, BMT, and VA Profile teams to get their events flowing through the Event Bus. 
+As of August 2024, the Event Bus is fully deployed as a production service on the Lighthouse Delivery Infrastructure (LHDI) platform. We currently have a Decision Letter Availability event available, and the Benefits Management Tools (BMT) team is working on an app to consume that event to trigger an email notification to Veterans. We are also working with the VA Profile team to add a Military Service event to the bus and are actively pursuing additional producer and consumer integrations.

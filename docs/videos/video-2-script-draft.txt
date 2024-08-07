@@ -2,7 +2,7 @@ How Event Bus Can Help You (And Veterans!)
 
 Now let's take a look at Event Bus in action, using a visual component to help see how the data flows through the system.
 
-Here we have a representation of our source data; in this case a medical claims processing event coming from a VA system. Our Veteran Mark has just had a medical procedure, and the event that the claim has been processed for procedure is about to be available. In the event data is relevant information that can help Mark if other VA systems know about it.
+Here we have a representation of our source data; in this case a medical claims processing event coming from a VA system. Our Veteran Mark has just had a medical procedure, and the event indicating that a claim has been processed for this procedure is about to be available. The data in this event includes relevant information that can help Mark if other VA systems know about it.
 
 This demo allows us to choose what data is included in the medical event; we'll select that the event requires a new prescription, and that the health update was important and Mark should get an SMS update about it. Now let's trigger that medical processing event!
 
@@ -10,10 +10,10 @@ This demo allows us to choose what data is included in the medical event; we'll 
 
 Now that we've triggered the event, it is made available to Event Bus, which picks it up immediately. Event Bus reads the event and sends pieces of the event data to specialized channels in real time.
 
-The first channel is read by a system that inform's Mark's local VA office about medical claim events. Now the office is aware the medical event happened for followup appointments and additional treatment.
+The first channel is read by a system that informs Mark's local VA office about medical claim events. Now the office is aware the medical event happened for followup appointments and additional treatment.
 
 The second channel is read by a system that Mark's pharmacy uses to check for new prescriptions. Now as soon as the event indicates a new prescription is ready, Mark can verify and pick up his prescription.
 
 The third channel is read by a system that sends SMS notifications to Veterans. Since this was an important processed claim, Mark is notified that his followup appointment with his VA clinic can be scheduled.
 
-Using Event Bus, Mark was able to get the fastest service on multiple channels, in real time! In today's systems, he may have waited days to hear about the processing, if at all. That's the power of Event Bus!
+With these various systems connected to the Event Bus, VA was able to automate processes that resulted in providing faster service and more proactive communication with Mark. In today's systems, he may have waited days to hear about the processing, if at all. That's the power of Event Bus!
