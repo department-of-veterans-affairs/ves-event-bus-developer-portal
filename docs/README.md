@@ -4,14 +4,16 @@
 
 Event-driven architecture enables systems to share data changes in real time across multiple, decoupled teams. It offers an alternative to the coupled, system-to-system API paradigm.
 
-An Event Bus allows a system to publish a stream of changes to its data. Systems that are interested in those data changes can receive the information in real time and use it to send updates to trigger actions, send updates to Veterans, communicate with other internal teams, and more.
+An Event Bus allows a system to publish a stream of changes to its data. Systems that are interested in those data changes can receive the information in real time and use it to send updates to trigger actions, send updates to Veterans, communicate with other internal teams, and more. Watch this video introduction to Event Bus to learn more about how it works:
 
 <video width="640" height="400" crossorigin="anonymous" controls poster="img/eventBusSlides.png">
   <source src="videos/EventBusVideo/eventBusVideo.mp4" type="video/mp4">
   <track src="videos/EventBusVideo/eventBus.vtt" label="English" kind="captions" srclang="en-us">
 </video>
 
-Here is a visual demo to help show Event Bus in action.
+For a more technical breakdown, there is also <a href="videos/phase3_demo.mp4">this video from August 2023</a> about the state of the system at that time.
+
+Here is a visual demo to help show Event Bus in action:
 
 <video width="640" height="400" crossorigin="anonymous" controls poster="img/eventBusDemo.png">
   <source src="videos/DemoVideo/visualDemo.mp4" type="video/mp4">

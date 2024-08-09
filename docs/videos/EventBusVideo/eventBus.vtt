@@ -92,19 +92,3 @@ In addition, Event Bus is a centralized hub for events, reducing intersystem dep
 22
 00:02:31.100 --> 00:02:35.200
 With Event Bus acting as the Data Hub, systems don't need to be so tightly coupled!
-
-23
-00:02:38.300 --> 00:02:47.000
-As of August 2024, Event Bus is fully deployed as a production service on the Lighthouse Delivery Infrastructure (LHDI) platform. 
-
-24
-00:02:47.500 --> 00:02:57.300
-We currently have a Decision Letter Availability event available, and the Benefits Management Tools team is working on an app to consume that event to trigger an email notification to Veterans. 
-
-25
-00:02:57.700 --> 00:03:05.900
-We are also working with the VA Profile team to add a Military Service event to the bus and are actively pursuing additional producer and consumer integrations.
-
-26
-00:03:06.200 --> 00:03:12.000
-If you're interested in getting on the Event Bus, please reach out in Slack and the team can answer any questions.
