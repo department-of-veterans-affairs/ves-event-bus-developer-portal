@@ -1,10 +1,5 @@
 WEBVTT
 
-STYLE
-::cue {
-  font-family: 'proxima-nova', sans-serif;
-}
-
 1
 00:00:03.500 --> 00:00:9.200
 Hi, I'm Logan Mitchell, an Engineer on the Event Bus Team, and today I'm going to guide you through the Enterprise Event Bus.
