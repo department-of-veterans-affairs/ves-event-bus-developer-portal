@@ -285,6 +285,7 @@ Here is some additional information on the individual fields:
 * **spec** [required]: A structure that contains information about the event a producer will be emitting. The `spec` structure includes the following properties.
     * **type** [required]: This value must be set to `event`.
     * **lifecycle** [required]: The current development status for the event. This value must be set to: `experimental`, `development`, `production`, or `deprecated`.
+    * **removalDate** [optional]: This property should only be set if `lifecycle` is set to `deprecated`. This property specifies the date that a deprecated event will be removed.
     * **domain** [required]: The VA domain in which a particular event exists. Possible values might be: `claims status`, `health`, `appointments`, `benefits`, etc.
     * **sourceSystems** [required]: An array of objects that contain information about the sources of this event. Each source system will contain the following fields.
         * **systemName** [required]: The name of the system that sources this event.
