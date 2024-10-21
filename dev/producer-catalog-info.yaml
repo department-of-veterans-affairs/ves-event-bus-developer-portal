@@ -11,7 +11,7 @@ metadata:
     title: More documentation
 spec:
  type: event
- lifecycle: experimental
+ lifecycle: deprecated
  domain: appointments
  sourceSystems:
   - systemName: BIP
