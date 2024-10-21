@@ -12,6 +12,7 @@ metadata:
 spec:
  type: event
  lifecycle: deprecated
+ removalDate: 10/31/2024
  domain: appointments
  sourceSystems:
   - systemName: BIP
