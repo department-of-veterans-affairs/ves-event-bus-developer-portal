@@ -12,6 +12,10 @@ The product documentation made available lives in the `/docs` directory of this 
 
 Rendered documentation is viewable at https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/.
 
+## Search
+
+Default search functionality provided by MkDocs has been turned off in this project to mitigate a few accessibility issues. These issues need to be fixed in Material for MkDocs or MkDocs source code, so we decided to disable this functionality for now. Search was disabled by adding `plugins: []` to [the mkdocs.yaml file](./mkdocs.yml). To turn search functionality back on, simply remove that line.
+
 ## Local Development
 
 This project requires Python 3.x. For Mac users, Python can be installed using homebrew with:
