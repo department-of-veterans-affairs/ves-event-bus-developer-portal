@@ -20,3 +20,5 @@ spec:
       environment: development
     - topic: appointments
       environment: preprod
+    - topic: appointments
+      environment: production
