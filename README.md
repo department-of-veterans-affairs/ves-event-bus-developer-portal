@@ -26,6 +26,8 @@ In order to quickly iterate while working on documentation, install the followin
 
 `pip3 install mkdocs mkdocs-material mkdocs-techdocs-core`
 
+`mkdocs` may need to be added to `PATH`.
+
 Changes to documentation can be viewed by running `mkdocs serve` in your terminal, from the root of this repository. The portal will be served at `http://127.0.0.1:8000/`
 
 ## Support
