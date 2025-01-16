@@ -16,7 +16,6 @@ theme:
       example: material/code-tags
 nav:
   - 'Home': README.md
-  - get-started.md
   - intro-to-eda.md
   - administrative-requirements.md
   - consume-events.md
