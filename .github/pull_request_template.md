@@ -1,4 +1,4 @@
-### Part of ticket [x](https://github.com/department-of-veterans-affairs/ves/issues/x)
+Resolves https://github.com/department-of-veterans-affairs/ves/issues/x
 
 ### Description
 - Adds _
