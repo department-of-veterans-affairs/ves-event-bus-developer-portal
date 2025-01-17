@@ -6,7 +6,9 @@ title: Event Catalog
 
 ## About the Catalog
 
-The Event Catalog is the single source of truth for all events currently published on the Event Bus. The Event Catalog lives on CODE VA (formerly called the Lighthouse Hub). [Visit the CODE VA website (must be on the VA network to view)](https://code.va.gov/).
+The Event Catalog is the single source of truth for all events currently published on the Event Bus. The Event Catalog lives on CODE VA (formerly called the Lighthouse Hub).
+
+Visit the CODE VA website (must be on the VA network to view): [https://code.va.gov/](https://code.va.gov/) (click on Software Catalog in left nav and then Events in top nav to display Events list) or use this [direct link](https://code.va.gov/catalog?filters%5Bkind%5D=event&filters%5Buser%5D=all&limit=20).
 
 In the Event Catalog, you’ll find the following information for every event:
 
@@ -20,9 +22,9 @@ In the Event Catalog, you’ll find the following information for every event:
     * consuming systems
 * Schema: the overall structure of an event payload, described as an Avro schema. [Read more about Avro on the Oracle website](https://docs.oracle.com/cd/E26161_02/html/GettingStartedGuide/avroschemas.html).
 
-![A table displaying all events in the Event Catalog on the CODE VA website. The headers are name, topic, lifecycle, domain, and actions. Filters allow content in the table to be filtered.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/18290306/c50c04e0-0f98-4901-81f8-0b3c9d709137)
+![A table displaying all events in the Event Catalog on the CODE VA website. The headers are name, topic, lifecycle, domain, and actions. Filters allow content in the table to be filtered.](img/CODEVAEventsList.jpg)
 
-![An event details page on the CODE VA website. The page gives an overview of one event, including the information listed above.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/18290306/c6f32b9f-475c-4426-aeeb-65bb2cf8d6a4)
+![An event details page on the CODE VA website. The page gives an overview of one event, including the information listed above.](img/CODEVAEventsDLA.jpg)
 
 ## Producing and consuming events from the catalog
 
