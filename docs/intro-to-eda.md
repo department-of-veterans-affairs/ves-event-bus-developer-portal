@@ -8,6 +8,25 @@ title: Event-Driven Architecture at VA
 
 The Enterprise Event Bus is an asynchronous event processing system that spans systems and lines of business at VA. Event-driven architecture uses events &mdash; types of actions, such as a Veteran creating a medical appointment or updating their beneficiaries &mdash; to communicate with systems that are subscribed to the stream of events. The systems that are producing the events, also known as Producers, are decoupled from the systems that are consuming their events, also known as Consumers.
 
+
+## Key Benefits
+- Improved responsiveness and scalability
+- Real-time data processing
+- Reduced system coupling
+- Enhanced system reliability
+## Use Case Examples
+- Medical claim information
+- Veteran personal data updates
+- Scheduling and cancelling appointments
+## How Events Work
+An event happens when:
+
+- A person or automated process takes an action and changes the state of the system in which it occurs, usually by creating new or updating existing data
+- That action prompts the Producer system to publish the new or revised information to a streaming queue 
+- Subscribers known as Consumers receive the updated information
+- Those Consumers then share that information with their end users
+
+
 _The following conceptual diagram illustrates how producers and consumers might interact with the Enterprise Event Bus. Producers publish many different kinds of events. Consumers may do many different things with event data, such as notify a Veteran or kick off a workflow. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
 
 ![A conceptual diagram illustrating how producers publish various events to the Event Bus and how consumers may use the event data for different purposes.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/f0dfe62a-8509-459c-bd9a-074e0babb22b)
