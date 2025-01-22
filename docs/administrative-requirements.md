@@ -2,11 +2,7 @@
 title: Administrative Requirements
 ---
 
-# Administrative Requirements
-
-## Introduction
-
-Preparing to connect your system to Enterprise Event Bus may require additional interactions with VA IT teams and systems.
+# Onboarding and Administrative Requirements 
 
 **Prerequisites**:
 
@@ -22,6 +18,10 @@ Preparing to connect your system to Enterprise Event Bus may require additional 
 * The client system has been through the System Categorization process and has a FISMA rating.
 * The client system has approved PTA and PIA documents.
 * Depending on the client system, an ESECC request and/or WASA scan may also be required.
+
+## Introduction
+Preparing to connect your system to Enterprise Event Bus may require additional interactions with VA IT teams and systems.
+
 
 ## Authority to Operate (ATO)
 
@@ -39,75 +39,11 @@ For clients that are LHDI tenants:
 
 - Teams within the Lighthouse Delivery Infrastructure should consult their LHDI Enablement Liaison to begin the ATO process.
 
-## Consumers of BIP-sourced Events
+## WASA Testing
 
-### OBI Access Form
+Web Application Security Assessment (WASA) scanning may be needed as part of the ATO process when a client system builds a web application for consuming events from the Event Bus. Please note that a 30 day notice is required for WASA testing.
 
-Event Bus Consumers consuming a BIP-sourced event that is available on the Event Bus must follow the OBI Data Access Form process (aka the Corp DB Application Access Form).
-
-**Who needs to submit an approval request?**
-
-Anyone who needs to access Corporate database data and has not been previously approved for that specific purpose must submit a request.
-
-Examples:
-
-* Any entity (Event Bus or an Event Bus Consumer) accessing Corporate data for the first time. 
-* Any entity (Event Bus or an Event Bus Consumer) who currently accesses specific Corporate data through an event on the Event Bus but now needs access to different data.
-* Any entity who wants to use the Corporate data they have access to for a different purpose than what was previously approved; for example, An Event Bus Consumer has been using an event sourced from Corp DB data to trigger notifications and now wants to use that same event to automatically update data in another VA system.
-* Any entity accessing Corporate data through a third party; for example, when a system consumes a BIP-sourced event from the Event Bus.
-
-**Note:** If _both_ the Event Bus and the Consumer are consuming an event for the first time, the Consumer must wait for the Event Bus to submit and get approval for its own OBI Data Access Form request before submitting its own request.
-
-[Instructions for filling out the OBI Data Access form (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/SOP_Corporate_DB_Access_Approval%20081123%201.pdf) and [an example of the OBI Data Access form (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/CorpDB%20Application%20Access%20Enterprise%20Event%20Bus%20full%20production.pdf) are available in the Enterprise Event Bus GitHub repository. 
-
-While permission may be granted to access Corp DB data for use in both non-production and production environments, there are cases, such as when a team is in the process of obtaining its ATO, that access may be granted for use in lower environments first, with production access granted once the team's ATO has been registered in eMASS. In the case of the latter, it may be acceptable to submit only one request, as long as ATO confirmation is provided at some point during the Event Bus integration process.
-
-### Sensitivity Filtering
-
-The implementation of Sensitivity Filtering is required when event data, or data spawned from a callback initiated by the data, will be displayed through a VA application user interface to a VA employee or contractor.
-
-[An article on sensitivity filtering (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/Benefits%20Information%20Sensitivity%20Filtering.md) and [instructions for implementing Sensitivity Filtering (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/Benefits%20Information%20Sensitivity%20Level%20Filtering%20Options.md) can be found in the Enterprise Event Bus GitHub repository. 
-
-## ESECC
-
-A request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
-
-Prior to determining if your system will require an ESECC, we will collaborate on testing a connection from your system to the Enterprise Event Bus. If an error message indicates that traffic is blocked at the network level, then an ESECC will be required.
-
-If an ESECC is required, the Enterprise Event Bus team will submit the ESECC request on your team's behalf. We will need the following information:
-
-* The IP address of your system. This can be a list of specific IP addresses or CIDR blocks. If your system is deployed to a few IP addresses that are always the same, then we will use those specific IP addresses. If your system is deployed to different IP addresses within a CIDR block or a few CIDR blocks, then we'll use CIDR blocks.
-* Your system's connection ID assigned by VA NSOC (VA Network Security Operations Center).
-
-## FISMA System Categorization
-
-As part of the eMASS process, System Categorization will evaluate the impact to the organization of loss or compromise to the data in the application. The outcome of the System Categorization process is a FISMA risk level rating of Low, Moderate, or High.
-
-If a prospective client system has not been through System Categorization, it will need to follow the steps outlined on this [GRC System Categorization page (must be on VA network to view)](https://confluence.devops.va.gov/display/VAExternal/GRC+-+System+Categorization). Note that completing a Privacy Threshold Analysis (PTA) document is a prerequisite for System Categorization.
-
-**Note**: For teams handling ePHI (medical information specific to an individually identifiable patient), the HIPAA Security Rule applies and further review will be required. Support for this can be requested by sending an email to `VHAHCSDevelopmentSecurity2[at]va.gov`.
-
-## PTA and PIA
-
-A PTA, or Privacy Threshold Analysis, is a required document used to determine if a system is privacy-sensitive and requires additional privacy compliance documentation such as a PIA or SORN.  It is also the first step of the privacy compliance documentation process. 
-
-A PIA, or Privacy Impact Assessment, is a public document that describes:  
-
-* What PII the system is collecting  
-* Why the PII is being collected
-* How the PII will be collected, used, accessed, shared, safeguarded, and stored 
-
-Whenever there is a change to the data being shared between VA systems, such as a new Event Bus integration or change to an existing Event Bus integration, the Privacy Office should be consulted, regardless of whether it is a major change or not, in order to make a determination that an updated PTA or PIA may be required.
-
-PTAs are renewed annually and PIAs are renewed every three years, unless there are major changes. Submitting a new PTA restarts the clock on annual renewal.
-
-*Note that all producing and consuming client systems are subject to their own PTA and PIA reviews.
-
-Resources:
-
-* [Privacy Threshold Analysis (PTA) and Privacy Impact Assessment (PIA) Submittal Checklist and Process Overview (PDF file, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/PTA%20Training%20Resources/Forms/AllItems.aspx?id=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources%2FPTA%20and%20PIA%20Submittal%20Checklist%20and%20Process%20Overview%2Epdf&parent=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources&isSPOFile=1&OR=Teams%2DHL&CT=1709826099209&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyNy8yNDAxMDQxNzUwNCIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D)
-* [PTA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PTA-Training-Resources.aspx)
-* [PIA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PIA-Training-Resources.aspx)
+The VA SAVD WASA Coordination team can be contacted via email at `VASAVDWASACoordination[at]va.gov`. A request for WASA testing can be submitted on the [Security Assessment Portal home page (must be on VA network to view)](https://saportal.va.gov/Home).
 
 ## VASI and eMASS 
 
@@ -152,11 +88,79 @@ For clients that are LHDI tenants:
 
 - Teams on the Lighthouse Delivery Infrastructure (LHDI) should consult their LHDI Enablement Liaison to submit a LEAF intake request. 
 
-## WASA Testing
 
-Web Application Security Assessment (WASA) scanning may be needed as part of the ATO process when a client system builds a web application for consuming events from the Event Bus. Please note that a 30 day notice is required for WASA testing.
+## FISMA System Categorization
 
-The VA SAVD WASA Coordination team can be contacted via email at `VASAVDWASACoordination[at]va.gov`. A request for WASA testing can be submitted on the [Security Assessment Portal home page (must be on VA network to view)](https://saportal.va.gov/Home).
+As part of the eMASS process, System Categorization will evaluate the impact to the organization of loss or compromise to the data in the application. The outcome of the System Categorization process is a FISMA risk level rating of Low, Moderate, or High.
+
+If a prospective client system has not been through System Categorization, it will need to follow the steps outlined on this [GRC System Categorization page (must be on VA network to view)](https://confluence.devops.va.gov/display/VAExternal/GRC+-+System+Categorization). Note that completing a Privacy Threshold Analysis (PTA) document is a prerequisite for System Categorization.
+
+**Note**: For teams handling ePHI (medical information specific to an individually identifiable patient), the HIPAA Security Rule applies and further review will be required. Support for this can be requested by sending an email to `VHAHCSDevelopmentSecurity2[at]va.gov`.
+
+
+## Consumers of BIP-sourced Events
+
+### OBI Access Form
+
+Event Bus Consumers consuming a BIP-sourced event that is available on the Event Bus must follow the OBI Data Access Form process (aka the Corp DB Application Access Form).
+
+**Who needs to submit an approval request?**
+
+Anyone who needs to access Corporate database data and has not been previously approved for that specific purpose must submit a request.
+
+Examples:
+
+* Any entity (Event Bus or an Event Bus Consumer) accessing Corporate data for the first time. 
+* Any entity (Event Bus or an Event Bus Consumer) who currently accesses specific Corporate data through an event on the Event Bus but now needs access to different data.
+* Any entity who wants to use the Corporate data they have access to for a different purpose than what was previously approved; for example, An Event Bus Consumer has been using an event sourced from Corp DB data to trigger notifications and now wants to use that same event to automatically update data in another VA system.
+* Any entity accessing Corporate data through a third party; for example, when a system consumes a BIP-sourced event from the Event Bus.
+
+**Note:** If _both_ the Event Bus and the Consumer are consuming an event for the first time, the Consumer must wait for the Event Bus to submit and get approval for its own OBI Data Access Form request before submitting its own request.
+
+[Instructions for filling out the OBI Data Access form (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/SOP_Corporate_DB_Access_Approval%20081123%201.pdf) and [an example of the OBI Data Access form (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/CorpDB%20Application%20Access%20Enterprise%20Event%20Bus%20full%20production.pdf) are available in the Enterprise Event Bus GitHub repository. 
+
+While permission may be granted to access Corp DB data for use in both non-production and production environments, there are cases, such as when a team is in the process of obtaining its ATO, that access may be granted for use in lower environments first, with production access granted once the team's ATO has been registered in eMASS. In the case of the latter, it may be acceptable to submit only one request, as long as ATO confirmation is provided at some point during the Event Bus integration process.
+
+### Sensitivity Filtering
+
+The implementation of Sensitivity Filtering is required when event data, or data spawned from a callback initiated by the data, will be displayed through a VA application user interface to a VA employee or contractor.
+
+[An article on sensitivity filtering (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/Benefits%20Information%20Sensitivity%20Filtering.md) and [instructions for implementing Sensitivity Filtering (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/Benefits%20Information%20Sensitivity%20Level%20Filtering%20Options.md) can be found in the Enterprise Event Bus GitHub repository. 
+
+## ESECC
+
+A request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
+
+Prior to determining if your system will require an ESECC, we will collaborate on testing a connection from your system to the Enterprise Event Bus. If an error message indicates that traffic is blocked at the network level, then an ESECC will be required.
+
+If an ESECC is required, the Enterprise Event Bus team will submit the ESECC request on your team's behalf. We will need the following information:
+
+* The IP address of your system. This can be a list of specific IP addresses or CIDR blocks. If your system is deployed to a few IP addresses that are always the same, then we will use those specific IP addresses. If your system is deployed to different IP addresses within a CIDR block or a few CIDR blocks, then we'll use CIDR blocks.
+* Your system's connection ID assigned by VA NSOC (VA Network Security Operations Center).
+
+
+## PTA and PIA
+
+A PTA, or Privacy Threshold Analysis, is a required document used to determine if a system is privacy-sensitive and requires additional privacy compliance documentation such as a PIA or SORN.  It is also the first step of the privacy compliance documentation process. 
+
+A PIA, or Privacy Impact Assessment, is a public document that describes:  
+
+* What PII the system is collecting  
+* Why the PII is being collected
+* How the PII will be collected, used, accessed, shared, safeguarded, and stored 
+
+Whenever there is a change to the data being shared between VA systems, such as a new Event Bus integration or change to an existing Event Bus integration, the Privacy Office should be consulted, regardless of whether it is a major change or not, in order to make a determination that an updated PTA or PIA may be required.
+
+PTAs are renewed annually and PIAs are renewed every three years, unless there are major changes. Submitting a new PTA restarts the clock on annual renewal.
+
+*Note that all producing and consuming client systems are subject to their own PTA and PIA reviews.
+
+Resources:
+
+* [Privacy Threshold Analysis (PTA) and Privacy Impact Assessment (PIA) Submittal Checklist and Process Overview (PDF file, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/PTA%20Training%20Resources/Forms/AllItems.aspx?id=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources%2FPTA%20and%20PIA%20Submittal%20Checklist%20and%20Process%20Overview%2Epdf&parent=%2Fsites%2FOITPrivacyHub%2FPTA%20Training%20Resources&isSPOFile=1&OR=Teams%2DHL&CT=1709826099209&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyNy8yNDAxMDQxNzUwNCIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D)
+* [PTA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PTA-Training-Resources.aspx)
+* [PIA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PIA-Training-Resources.aspx)
+
 
 ## Other Resources
 
