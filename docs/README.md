@@ -12,7 +12,13 @@ An Event Bus allows a system to publish a stream of changes to its data. Systems
 - A centralized hub for events
 - Reliability guarantee with Kafka
 
+## Event Bus Workflow Example
+
+<br />
+
 <img src="img/ebDiagram.png" width=600 />
+
+<br />
 
 Watch this video introduction to Event Bus to learn more about how it works:
 
