@@ -6,14 +6,14 @@ title: Get Support
 
 ## Report an incident
 
-To report a security or privacy incident, or an urgent critical operational incident requiring immediate support, email `event-bus[at]veterans-affairs.pagerduty.com`. This will generate a page to the on-call engineer's mobile device 24/7. You can expect a response within 30 minutes in the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
+To report a security or privacy incident, or an urgent critical operational incident requiring immediate support, check the [#event-bus-support Slack channel][slack-#event-bus-support] Topic for our PagerDuty email address. Sending an email to this PagerDuty address will generate a notification to the on-call engineer's mobile device 24/7. You can expect a response within 30 minutes in the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
 
 Please include the following information in your email:
 
 * Is this a security or privacy incident? Yes/No
 * Which environment is impacted? Sandbox/Production
 * Briefly, what is the impact of the incident?
-  
+
 ## General support requests
 
 For non-urgent support requests, the best way to request support from the Event Bus Team is to reach out to us via the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
