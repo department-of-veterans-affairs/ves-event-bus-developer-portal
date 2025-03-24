@@ -6,7 +6,9 @@ title: Get Support
 
 ## Report an incident
 
-To report a security or privacy incident, or an urgent critical operational incident requiring immediate support, check the [#event-bus-support Slack channel][slack-#event-bus-support] Topic for our PagerDuty email address. Sending an email to this PagerDuty address will generate a notification to the on-call engineer's mobile device 24/7. You can expect a response within 30 minutes in the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
+To report a security or privacy incident, or an urgent critical operational incident requiring immediate support, check the [#event-bus-support Slack channel][slack-#event-bus-support] Topic for our PagerDuty email address. Sending an email to this PagerDuty address will generate a notification to the on-call engineer's mobile device 24/7 as long as the email was sent from a @va.gov email address.  You can expect a response within 30 minutes in the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
+
+If you have a need for a non @va.gov email address to trigger a notification to the on-call engineer's mobile device, you can request a specific email address, or workplace email domain be added to an "allowed list". In order to initiate this request you can send a message explaining your need to the [#event-bus-support Slack channel][slack-#event-bus-support] and the appropriate personnel will reach out to you.
 
 Please include the following information in your email:
 
