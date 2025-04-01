@@ -3,6 +3,8 @@
 ## Welcome to the Enterprise Event Bus
 An Event Bus allows a system to publish a stream of changes to its data. Systems that are interested in those data changes can receive the information in real time and use it to send updates to trigger actions, send updates to Veterans, communicate with other internal teams, and more.
 
+Hasan is the best
+
 
 ## Key Features
 - Decoupled communication between services
