@@ -1,10 +1,10 @@
-# Enterprise Event Bus
+# **Enterprise Event Bus**
 
-## Welcome to the Enterprise Event Bus
+## **Welcome to the Enterprise Event Bus**
 An Event Bus allows a system to publish a stream of changes to its data. Systems that are interested in those data changes can receive the information in real time and use it to send updates to trigger actions, send updates to Veterans, communicate with other internal teams, and more.
 
 
-## Key Features
+## **Key Features**
 - Decoupled communication between services
 - Asynchronous and real-time event processing
 - Quicker processing for data updates
@@ -12,7 +12,7 @@ An Event Bus allows a system to publish a stream of changes to its data. Systems
 - A centralized hub for events
 - Reliability guarantee with Kafka
 
-## Event Bus Workflow Example
+## **Event Bus Workflow Example**
 
 <br />
 
@@ -36,7 +36,7 @@ Here is a visual demo to help show Event Bus in action:
   <track src="videos/DemoVideo/visualDemo.vtt" label="English" kind="captions" srclang="en-us">
 </video>
 
-## Why use the Enterprise Event Bus?
+## **Why use the Enterprise Event Bus?**
 
 - Show value by measuring success.
 - Help Veterans meet unmet needs.
@@ -52,16 +52,16 @@ Teams can use the Enterprise Event Bus to generate events based on state changes
 - Multiple consumers may receive and act on an event; it’s not just an asynchronous queue sitting between a single producer and consumer.
 
 
-## Event Bus is Suitable for:
+## **Event Bus is Suitable for:**
 - Large enterprises with multiple services
 - Organizations seeking to reduce system coupling
 - Teams looking to implement event-driven architectures
 
-## Is the Event Bus a Good Fit for You?
+## **Is the Event Bus a Good Fit for You?**
 
 Before you make further plans to leverage enterprise events, you should evaluate if your system is the right fit for event-driven architecture. Please read the content below, which describes the sorts of systems that would benefit (or not benefit) from enterprise events.
 
-## The Enterprise Event Bus is a good fit if:
+## **The Enterprise Event Bus is a good fit if:**
 
 Your system relies on **heavy orchestration**:<br/>
 Coordinating multiple systems or services can become a challenging task, especially when some individual components lack reliability. This can lead to (partial) failures due to delayed status responses, unclear errors, or frequent retry attempts. A well-considered event-driven solution can greatly enhance the quality and performance of such systems.
@@ -78,7 +78,7 @@ Instead of direct and synchronous interactions between components, producing and
 Your system has **delayed or no user notifications**:<br/>
 Although there are many systems that would benefit from events, almost any scenario where a side effect of the business event is “to notify the Veteran” could be a candidate for an event stream.
 
-## The Enterprise Event Bus is not a good fit if:
+## **The Enterprise Event Bus is not a good fit if:**
 
 You are interested in a **one-time data sweep**:<br/>
 If you just need to search through a data source to identify specific cases for further processing, event-driven systems would introduce unnecessary complexity and overhead. The Enterprise Event Bus is geared towards handling ongoing event streams rather than singular, one-time data analysis tasks.
@@ -98,13 +98,13 @@ Your event data **is rated as “high” under FISMA (Federal Information Securi
  
  [Learn more about VA system categorization (must be part of VA GitHub organization to view)](https://jubilant-succotash-m55rqe7.pages.github.io/categorization/).
 
-## Reach out to us
+## **Reach out to us**
 
 If you think the Enterprise Event Bus would be a good fit for your situation, please [reach out](./get-support.md)!
 
 The best way to contact the Event Bus Team is via the [#ves-event-bus Slack channel (must be in the Office of CTO @VA workspace)](https://dsva.slack.com/archives/C042ZQ7JUAX).
 
-## Next steps
+## **Next steps**
 
 Take the next steps to explore and begin using the Enterprise Event Bus:
 
