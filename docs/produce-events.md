@@ -2,17 +2,17 @@
 title: Producing Events
 ---
 
-# Producing Events
+# **Producing Events**
 
-## What's a producer?
+## **What's a producer?**
 
 A producer is an application designed to generate messages or events within an event-driven system. In the context of the Enterprise Event Bus, which aims to expose streams of events known as topics, producers play a crucial role. Producing teams have access to, or knowledge about, important data changes in the VA ecosystem and can send events to specific topics on the Event Bus. Find out how to view a list of currently available topics by visiting our [Event Catalog page](./use-events.md).
 
 As producers are responsible for defining topics and their contents, they will work with the Event Bus Team to determine configuration settings such as the number of topic partitions, event versioning, and event retention rules. The content below outlines the steps needed to start producing events. To learn more about the components and processes involved in event-based systems, please visit our [Introduction to Event-Driven Architecture page](./intro-to-eda.md).
 
-## Steps to become a producer
+## **Steps to become a producer**
 
-### Define the event or topic
+### **Define the event or topic**
 
 The first step in producing an event is to [contact the Enterprise Event Bus Team](./get-support.md) and express your interest in contributing an event stream. An ideal event stream represents a business event within the VA that would be of interest to multiple stakeholders and have a significant impact on Veterans. Examples of such events include changes to eligibility for benefits, milestones in the claims process, or updates to a Veteran's health record, such as new appointments, prescriptions, or lab results.
 
@@ -20,44 +20,44 @@ While it is not a requirement to have consumers identified from the start, in an
 
 If there is a mutual interest to continue after the initial meeting, the Event Bus Team will create a one-page description of the proposed event topic, including details about the business context, event purpose, payload, and consumers. The partner team will review and provide feedback on the document and sign a Working Agreement and a Data Sharing Agreement.
 
-### Determine if you need an ESECC request
+### **Determine if you need an ESECC request**
 
 See the [ESECC section on the Administrative Requirements page](./administrative-requirements.md#esecc).
 
-### Choose configuration settings and submit onboarding request
+### **Choose configuration settings and submit onboarding request**
 
 Before creating a topic, you need to consider various Kafka settings. Producing teams must choose appropriate settings based on their specific use case and technical requirements. From a logistical perspective, the Event Bus Team will handle the initial creation of the topic using the Kafka CLI and make it available for production.
 
-#### Number of partitions
+#### **Number of partitions**
 
 Partitions in Kafka serve as the primary unit of storage within a topic, with each partition containing a subset of events. Determining the number of partitions is crucial, as it has implications for storage, scalability, replication, and message movement. To learn more about reasonable defaults, and other partition-related concerns, read our [guidance on topics and partitions (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20Kafka%20Partitions.md).
 
-#### Event retention
+#### **Event retention**
 
 Event retention refers to how long an event exists within Kafka and remains available for consumption. This setting would be especially important to consumers who need to be prepared to handle missed events before they expire. For additional information and discussion, see the section about Retention in our [Event Design Architectural Decision Record (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md).
 
-#### Event schema and event registry
+#### **Event schema and event registry**
 
 The Event Bus utilizes the [Confluent Schema Registry](https://docs.confluent.io/platform/7.5/schema-registry/fundamentals/index.html#sr-key-concepts) to store schemas and their versions. Avro is used to define the schema format. Producers must submit an event schema representing the event payload in Avro format as part of the onboarding process. Producers must also use [Apache Avro](https://avro.apache.org/) to serialize data onto the Event Bus so that the event schema, and the data contract it represents, is enforced. Additionally, producers should consider event versioning, which involves planning how schemas will evolve. Event versions are governed by the compatibility type setting, which determines allowed schema changes and how consumers interact with different versions. For most producers, we recommend using the `BACKWARD` compatibility type. For more information, see our [article about the Confluent Schema Registry (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20schema%20registry.md), and our [article about schema versioning (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20schema%20versioning.md).
 
 Once the producing team has communicated their decisions about the event schema, the Event Bus team will create the topic, along with the schema, and notify the producing team when everything is ready for use.
 
-### Set up authorization and authentication
+### **Set up authorization and authentication**
 
 To produce messages to specific topics on the Event Bus, producers need to be authenticated and have the appropriate permissions. The Event Bus MSK cluster is only accessible from the VA Network, and we use AWS IAM (Identity and Access Management) Roles and Policies to control access to different resources. If your producing application is within the AWS environment, please inform us of the IAM Role(s) or IAM User(s) to which we should grant access. We will then set up the corresponding IAM Policies on our end and assign a named role for producers to authenticate with AWS MSK in their application code. If your producing application is outside of the AWS environment, we will request an IAM User to be created on your behalf. You will then be able to access the requested topic(s) using those credentials.
 
-### Connect to the Event Bus in the development environment
+### **Connect to the Event Bus in the development environment**
 
 Once the authentication and authorization steps have been completed, you will be able to connect to the Event Bus MSK cluster using the Kafka bootstrap server addresses and port numbers available in the Event Catalog. The following ports are open for consumers and producers that are authenticated with AWS IAM:
 
 * 9098 (for access from AWS)
 * 9198 (for access from outside of AWS)
 
-### Develop and deploy your producer application
+### **Develop and deploy your producer application**
 
 Many programming languages and frameworks offer libraries designed to interact with Kafka. To ensure full compatibility with the Event Bus, your code needs to authenticate with the AWS MSK cluster using the assigned role provided during the onboarding process. Additionally, producers should reference the Confluent Schema Registry and use the created schema to serialize messages in Avro.
 
-#### Client properties
+#### **Client properties**
 
 To connect to the Event Bus, producers in **all programming languages** will need to set these properties:
 
@@ -80,7 +80,7 @@ Depending on the language client used, additional properties may also be needed 
 | auto.register.schemas | false | Specify if the serializer should attempt to register the schema with the Schema Registry. | If set to true, the producer will attempt to register a new schema rather than using an existing one in the registry. Since writes to the Event Bus schema registry are blocked for unauthorized applications, this will result in an error which prevents the producer from producing events. |
 | schema.registry.url | Event Bus schema registry endpoint. This will vary depending on the environment (dev, prod, etc.). | Comma-separated list of URLs for Schema Registry instances that can be used to register or look up schemas. | |
 
-#### Code samples
+#### **Code samples**
 
 !!! info
     Expand the sections below to see producer code examples in Java and Ruby. To see the samples in context, please check out the [`ves-event-bus-sample-code` repository (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code).
@@ -225,7 +225,7 @@ Depending on the language client used, additional properties may also be needed 
     end
     ```
 
-### Register with CODE VA
+### **Register with CODE VA**
 
 [CODE VA (must be on VA network to view)](https://code.va.gov/) is a software catalog that houses information about software entities from across VA. Once you have your producer application up and running, it's important to register with the catalog to ensure that both current and future consumers can discover your event and access its details.
 
@@ -237,7 +237,7 @@ To register your event with CODE VA:
 2. Populate the `catalog-info.yaml` file with an `Event` Backstage entity based on the template below.
 3. Once your `catalog-info.yaml` file has been committed it will be automatically processed and the event will be viewable on [CODE VA (must be on the VA network to view)](https://code.va.gov/) within a few hours. If you would like the event to display quicker, follow the [Backstage documentation on the default method for adding entries to the catalog](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog).
 
-#### Event Template
+#### **Event Template**
 
 ``` { .yaml .copy }
 apiVersion: backstage.io/v1alpha1
@@ -301,12 +301,12 @@ Here is some additional information on the individual fields:
 
 The `catalog.yaml` file will be validated against [this JSON schema (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema`, `spec.schemaCompatibilityMode`, and `spec.topics.brokerAddresses` fields included in this JSON schema will be auto-populated and should not be included in the `catalog-info.yaml` file. The optional `spec.averageDailyEvents` field will also be auto-populated and should not be included in the `catalog-info.yaml` file.
 
-## Logs
+## **Logs**
 
 Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs are available via [LHDI's Datadog instance (must have VA LightHouseDI DataDog access to view)](https://lighthousedi.ddog-gov.com/).
 
 Datadog is a monitoring and analytics tool that is used within the VA. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. To request access to Datadog, complete the HelpDesk form on the ServiceNow Portal at [ECC (Enterprise Command Center) Monitoring Services - your IT Service Portal (must be on the VA network to view)](https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fyourit.va.gov%2Fva%3Fid%3Dsc_cat_item%26sys_id%3D4cdf488b1ba4fcd412979796bc4bcb74&data=05%7C01%7C%7Ccb701e4e7fc944b6041308dbeacea9aa%7Ce95f1b23abaf45ee821db7ab251ab3bf%7C0%7C0%7C638361945550254440%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=sJfq3j8vnXwdtuQrfY%2FBaRttaqyOpKA6X17O8TMK9ug%3D&reserved=0).
 
-## Troubleshooting
+## **Troubleshooting**
 
 If you have questions or run into difficulties with any of these steps, please [contact the Enterprise Event Bus Team](get-support.md).
