@@ -2,8 +2,8 @@
 title: Onboarding and Administrative Requirements
 ---
 
-# Onboarding and Administrative Requirements 
-## Onboarding
+# **Onboarding and Administrative Requirements** 
+## **Onboarding**
 
 **Prerequisites**:
 
@@ -20,11 +20,11 @@ title: Onboarding and Administrative Requirements
 * The client system has approved PTA and PIA documents.
 * Depending on the client system, an ESECC request and/or WASA scan may also be required.
 
-## Introduction
+## **Introduction**
 Preparing to connect your system to Enterprise Event Bus may require additional interactions with VA IT teams and systems.
 
 
-## Authority to Operate (ATO)
+## **Authority to Operate (ATO)**
 
 ATO, or “Authority to Operate,” indicates that your system has been evaluated by VA and given permission to deploy code in production.
 
@@ -40,13 +40,13 @@ For clients that are LHDI tenants:
 
 - Teams within the Lighthouse Delivery Infrastructure should consult their LHDI Enablement Liaison to begin the ATO process.
 
-## WASA Testing
+## **WASA Testing**
 
 Web Application Security Assessment (WASA) scanning may be needed as part of the ATO process when a client system builds a web application for consuming events from the Event Bus. Please note that a 30 day notice is required for WASA testing.
 
 The VA SAVD WASA Coordination team can be contacted via email at `VASAVDWASACoordination[at]va.gov`. A request for WASA testing can be submitted on the [Security Assessment Portal home page (must be on VA network to view)](https://saportal.va.gov/Home).
 
-## VASI and eMASS 
+## **VASI and eMASS** 
 
 The client system should either have or be in the process of procuring: 
 
@@ -55,7 +55,7 @@ The client system should either have or be in the process of procuring:
 
 **Note**: The VASI and eMASS Processes have merged and are now accomplished via a single LEAF intake (formerly GRC intake) request: [Unified System Registry Intake (must be on VA network to view)](https://leaf.va.gov/NATIONAL/103/cybersecurity_request_portal/).
 
-### VASI
+### **VASI**
 
 The VA Systems Inventory (VASI) is intended to be a registry of all applications in use at VA. 
 
@@ -71,7 +71,7 @@ For clients that are LHDI tenants:
 
 - Teams on the Lighthouse Delivery Infrastructure (LHDI) should consult their LHDI Enablement Liaison to submit a LEAF intake request. 
 
-### eMASS
+### **eMASS**
 
 Enterprise Mission Assurance Support Service (eMASS) is VA’s Governance, Risk and Compliance (GRC) tool. All systems will be assessed in eMASS by the Risk Review team for an authorization recommendation to be submitted to the Authorizing Official (AO) for final ATO consideration.
 
@@ -90,7 +90,7 @@ For clients that are LHDI tenants:
 - Teams on the Lighthouse Delivery Infrastructure (LHDI) should consult their LHDI Enablement Liaison to submit a LEAF intake request. 
 
 
-## FISMA System Categorization
+## **FISMA System Categorization**
 
 As part of the eMASS process, System Categorization will evaluate the impact to the organization of loss or compromise to the data in the application. The outcome of the System Categorization process is a FISMA risk level rating of Low, Moderate, or High.
 
@@ -99,9 +99,9 @@ If a prospective client system has not been through System Categorization, it wi
 **Note**: For teams handling ePHI (medical information specific to an individually identifiable patient), the HIPAA Security Rule applies and further review will be required. Support for this can be requested by sending an email to `VHAHCSDevelopmentSecurity2[at]va.gov`.
 
 
-## Consumers of BIP-sourced Events
+## **Consumers of BIP-sourced Events**
 
-### OBI Access Form
+### **OBI Access Form**
 
 Event Bus Consumers consuming a BIP-sourced event that is available on the Event Bus must follow the OBI Data Access Form process (aka the Corp DB Application Access Form).
 
@@ -122,13 +122,13 @@ Examples:
 
 While permission may be granted to access Corp DB data for use in both non-production and production environments, there are cases, such as when a team is in the process of obtaining its ATO, that access may be granted for use in lower environments first, with production access granted once the team's ATO has been registered in eMASS. In the case of the latter, it may be acceptable to submit only one request, as long as ATO confirmation is provided at some point during the Event Bus integration process.
 
-### Sensitivity Filtering
+### **Sensitivity Filtering**
 
 The implementation of Sensitivity Filtering is required when event data, or data spawned from a callback initiated by the data, will be displayed through a VA application user interface to a VA employee or contractor.
 
 [An article on sensitivity filtering (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/Benefits%20Information%20Sensitivity%20Filtering.md) and [instructions for implementing Sensitivity Filtering (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Partner%20Teams/BIP%20Meetings%20and%20Materials/Benefits%20Information%20Sensitivity%20Level%20Filtering%20Options.md) can be found in the Enterprise Event Bus GitHub repository. 
 
-## ESECC
+## **ESECC**
 
 A request to the Enterprise Security External Change Council (ESECC) may be needed to authorize an opening in the firewall to enable a connection between the client system and the Enterprise Event Bus.
 
@@ -140,7 +140,7 @@ If an ESECC is required, the Enterprise Event Bus team will submit the ESECC req
 * Your system's connection ID assigned by VA NSOC (VA Network Security Operations Center).
 
 
-## PTA and PIA
+## **PTA and PIA**
 
 A PTA, or Privacy Threshold Analysis, is a required document used to determine if a system is privacy-sensitive and requires additional privacy compliance documentation such as a PIA or SORN.  It is also the first step of the privacy compliance documentation process. 
 
@@ -163,7 +163,7 @@ Resources:
 * [PIA Training Resources (VA SharePoint, must be on VA network to view)](https://dvagov.sharepoint.com/sites/OITPrivacyHub/SitePages/PIA-Training-Resources.aspx)
 
 
-## Other Resources
+## **Other Resources**
 
 For clients that are not LHDI tenants:
 
