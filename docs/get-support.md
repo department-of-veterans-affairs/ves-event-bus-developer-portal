@@ -6,15 +6,19 @@ title: Get Support
 
 ## **Report an incident**
 
-To report a security or privacy incident, or an urgent critical operational incident requiring immediate support, check the [#event-bus-support Slack channel][slack-#event-bus-support] Topic for our PagerDuty email address. Sending an email to this PagerDuty address will generate a notification to the on-call engineer's mobile device 24/7 as long as the email was sent from a @va.gov email address.  You can expect a response within 30 minutes in the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
+To report a security or privacy incident, or an urgent critical operational incident, send an email from your @va.gov email address (or other pre-approved email domain) to the PagerDuty email address. You can find our PagerDuty email address in the Topic of the [#event-bus-support Slack channel][slack-#event-bus-support]. 
 
-If you prefer to use a non @va.gov email address to trigger notifications to the on-call engineer's mobile device, you can request a specific email address, or workplace email domain, be added to an "allowed list". To initiate this request, send a message explaining your need to the [#event-bus-support Slack channel][slack-#event-bus-support] and the appropriate personnel will reach out to you.
+* Please include the following information in your Incident email:
+    * Is this a security or privacy incident? Yes/No
+    * Which environment is impacted? Sandbox/Production
+    * Briefly, what is the impact of the incident?
+* Sending an email to the PagerDuty address will generate a PagerDuty notification to the on-call engineer's mobile device 24/7.
+* You can expect a response within 30 minutes in the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
 
-Please include the following information in your email:
+### Pre-approved email domains
 
-* Is this a security or privacy incident? Yes/No
-* Which environment is impacted? Sandbox/Production
-* Briefly, what is the impact of the incident?
+If you prefer to use a non @va.gov email address to trigger notifications to the on-call engineer's mobile device, you can request a specific email address, or workplace email domain, be added to an "allowed list". To initiate this request, post a message explaining your need in the [#event-bus-support Slack channel][slack-#event-bus-support] and the appropriate personnel will reach out to you.
+
 
 ## **General support requests**
 
@@ -22,7 +26,13 @@ For non-urgent support requests, the best way to request support from the Event 
 
 Please avoid direct messaging an Event Bus team member in Slack. Chatting openly in the channel allows others to learn from the questions and answers discussed.
 
-Event Bus Slack channel support hours are from 12pm - 5pm ET, Monday through Friday, with the exception of federal holidays. Often, an engineer will respond by 9am ET if they live in the Eastern or Central timezones. You can expect a response within 1 hour during the support hours.
+### Event Bus Slack channel support hours
+
+|Monday - Friday (except federal holidays)|
+|-|
+|12pm - 5pm ET|
+
+You can expect a response within 1 hour during the support hours. Often, an engineer will respond by 9am ET if they live in the Eastern or Central timezones. 
 
 
 ## **Slack service notifications**
