@@ -1,8 +1,8 @@
 ---
-title: Event-Driven Architecture at VA
+title: How Event Bus Implements Event-driven Architecture
 ---
 
-# **Event-Driven Architecture at VA**
+# **How Event Bus Implements Event-driven Architecture**
 
 ## **Introduction**
 
@@ -14,22 +14,19 @@ The Enterprise Event Bus is an asynchronous event processing system that spans s
 - Real-time data processing
 - Reduced system coupling
 - Enhanced system reliability
-## **Use Case Examples**
-- Medical claim information
-- Veteran personal data updates
-- Scheduling and cancelling appointments
+
 ## **How Events Work**
 An event happens when:
 
 - A person or automated process takes an action and changes the state of the system in which it occurs, usually by creating new or updating existing data
 - That action prompts the Producer system to publish the new or revised information to a streaming queue 
 - Subscribers known as Consumers receive the updated information
-- Those Consumers then share that information with their end users
+- Those Consumers then share that information to take action (e.g., sharing information with Veterans or with another VA system)
 
 
-_The following conceptual diagram illustrates how producers and consumers might interact with the Enterprise Event Bus. Producers publish many different kinds of events. Consumers may do many different things with event data, such as notify a Veteran or kick off a workflow. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
+_The following conceptual diagram illustrates how Producers and Consumers might interact with the Enterprise Event Bus. Producers publish many different kinds of events. Consumers may do many different things with event data, such as notify a Veteran or kick off a workflow. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
 
-![A conceptual diagram illustrating how producers publish various events to the Event Bus and how consumers may use the event data for different purposes.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/f0dfe62a-8509-459c-bd9a-074e0babb22b)
+![A conceptual diagram illustrating how Producers publish various events to the Event Bus and how Consumers may use the event data for different purposes.](https://private-user-images.githubusercontent.com/188224362/435702534-f2b10a5f-3f5a-4f19-8d97-e22fc69aaefd.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDUyNDY3MDgsIm5iZiI6MTc0NTI0NjQwOCwicGF0aCI6Ii8xODgyMjQzNjIvNDM1NzAyNTM0LWYyYjEwYTVmLTNmNWEtNGYxOS04ZDk3LWUyMmZjNjlhYWVmZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQyMVQxNDQwMDhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mYWZkYTdjMGFmMGJlZGMzZTRlNWZkYWE0ZmI2YzFmODk5ZWZkODQ2NjY2YTkyY2VhNWUyZDY4ZTRmNzA4YmU1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.F5G2CfBOG9J_8rFilhrUSNEvlMVQwgQwahh7ISL-cJM)
 
 
 ## **Role within the VA enterprise environment**
@@ -42,29 +39,40 @@ It should be noted that Enterprise Event Bus does not aspire to be the only even
 
 ## **An opinionated conduit**
 
-We often refer to the Enterprise Event Bus team as an opinionated conduit between event consumers and producers across the VA ecosystem. That’s because our research, hands-on experience, and deep knowledge of [Apache Kafka best practices](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md) have led us to definite opinions regarding:
+We often refer to the Enterprise Event Bus team as an opinionated conduit between event Consumers and Producers across the VA ecosystem. That’s because our research, hands-on experience, and deep knowledge of [Apache Kafka best practices](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md) have led us to definite opinions regarding:
 
-* the type of events that best fit an _Enterprise_ Event Bus architecture (more on that below)
-* the choice of technologies with which we implement the Enterprise Event Bus across different contexts of use 
-* and the most suitable infrastructure for implementing it. 
+* The type of events that best fit an _Enterprise_ Event Bus architecture (more on that below)
+* The choice of technologies with which we implement the Enterprise Event Bus across different contexts of use 
+* The most suitable infrastructure for implementing it. 
 
-These enable us to provide producers and consumers with clear guidance to and assist with onboarding and learning about the underlying technologies.
+These enable us to provide Producers and Consumers with clear guidance to and assist with onboarding and learning about the underlying technologies.
 
 ## **Enterprise events versus data events**
 
 The focus of the Enterprise Event Bus is enterprise events rather than data events. As described above, an event is a specific action that involves a change in data. An _enterprise_ event is a business event that is of potential interest to a broad scope of consuming systems. 
 
-For example, when Veterans apply for benefits, they are issued a benefits decision letter detailing VA’s decision about what benefits they are eligible for. The benefits decision letter becoming available is an _enterprise_ event. The specific changes in the underlying data that indicate this document has become available are _data_ events. Teams producing events onto the Enterprise Event Bus are encouraged to frame their events as enterprise events; that is, broadly speaking, an event that describes a concrete business event has the potential to be more useful to a broader audience than specific data change events. 
+For example, when Veterans apply for benefits, they are issued a benefits decision letter detailing VA’s decision about the benefits for which they are eligible. The benefits decision letter becoming available is an _enterprise_ event. The specific changes in the underlying data that indicate this document has become available are _data_ events. Teams producing events onto the Enterprise Event Bus are encouraged to frame their events as enterprise events; that is, broadly speaking, an event that describes a concrete business event has the potential to be more useful to a broader audience than specific data change events. 
 
-When determining what information an event should contain, a guiding principle is that consumers need events to at least contain enough information to know whether the event is of interest to them, while minimizing the amount of sensitive data in the event payload. In general it is easier to add new pieces of information to a schema than it is to later remove it; thus the system should trend towards leaner events.
+When determining what information an event should contain, a guiding principle is that Consumers need events to at least contain enough information to know whether the event is of interest to them, while minimizing the amount of sensitive data in the event payload. In general it is easier to add new pieces of information to a schema than it is to later remove it; thus the system should trend towards leaner events.
+
+## **Schemas and platform independence**
+
+Event Bus transports events as platform-independent byte streams (i.e., data broken down into its simplest form, sequences of bytes). This allows systems that store objects in different formats to communicate with each other without needing to understand each other's formats. This is done through the process of serialization/deserialization and the use of an event schema. Event schemas are stored in a schema registry.
+
+When a Producer application has event data to push to Event Bus, the event data will be serialized (converted from objects into byte streams), using rules defined in the version of the schema the Producer is using. Serializers allow Producers three options for setting the schema version: always use the latest schema version, pin to a specific schema version, or let the serializer dynamically infer the version from the event payload itself. We recommend pinning to a specific schema version to reduce ambiguity and to avoid issues that can arise from using the latest version if a new schema version is added to the schema registry.
+
+When a Consumer application pulls event data from Event Bus, the event data will be deserialized (converted from byte streams into objects), using rules defined in the version of the schema the Consumer is using. Deserializers allow Consumers two options for setting the schema version: always use the latest schema version, or use the schema version included in the event payload. We recommend using the schema version included in the event payload to avoid issues that can arise from using the latest version if a new schema version is added to the schema registry.
+
+Occasionally there may be schema updates and new schema versions will be added to the schema registry. This will require Producers and Consumers to update their applications. When an update is needed, we will direct consumer applications to update first, to maintain optimum compatibility across applications utilizing Event Bus.
+
 
 ##  **Technology overview**
 
 Enterprise Event Bus, like most other event-based systems in VA, is based on [Apache Kafka](https://kafka.apache.org/), an open-source distributed event streaming platform. It is considered the industry standard for handling real-time data feeds, and is capable of handling the kinds of large scale, high-throughput loads we would expect an enterprise-wide event bus in VA to be able to handle. In addition to being a proven technology, Kafka is already used in a production capacity by other teams in VA, such as the [Benefits Integration Platform](https://confluence.devops.va.gov/pages/viewpage.action?spaceKey=VAExternal&title=Benefits+Integration+Events).
 
-The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs.aws.amazon.com/msk/), a hosted version of Kafka that runs in the VA Enterprise Cloud. Producer systems publish events to Kafka topics that are available on AWS MSK. Events in a single topic are distributed across multiple brokers and partitions in order to balance load. Metadata managed by the cluster informs producing and consuming systems which broker they need to connect to. The data on AWS MSK is stored in [AWS Elastic Block Store (EBS)](https://docs.aws.amazon.com/ebs/). Consumer systems can subscribe to topics to pull streams of events. The diagram below shows how events are stored in AWS MSK and how events are distributed from producers to consumers via AWS MSK.
+The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs.aws.amazon.com/msk/), a hosted version of Kafka that runs in the VA Enterprise Cloud (VAEC). Producer systems publish events to Kafka topics that are available on AWS MSK. Events in a single topic are distributed across multiple brokers and partitions in order to balance load. Metadata managed by the cluster informs producing and consuming systems which broker they need to connect to. The data on AWS MSK is stored in [AWS Elastic Block Store (EBS)](https://docs.aws.amazon.com/ebs/). Consumer systems can subscribe to topics to pull streams of events. The diagram below shows how events are stored in AWS MSK and how events are distributed from Producers to Consumers via AWS MSK.
 
-![Diagram showing a high-level overview of AWS MSK and how events are distributed from producers to consumers using multiple brokers in AWS MSK.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
+![Diagram showing a high-level overview of AWS MSK and how events are distributed from Producers to Consumers using multiple brokers in AWS MSK.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
 
 ## **Learn more**
 
