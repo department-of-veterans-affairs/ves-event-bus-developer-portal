@@ -8,7 +8,7 @@ title: Producing Events
 
 A producer is an application designed to generate messages or events within an event-driven system. In the context of the Enterprise Event Bus, which aims to expose streams of events known as topics, producers play a crucial role. Producing teams have access to, or knowledge about, important data changes in the VA ecosystem and can send events to specific topics on the Event Bus. Find out how to view a list of currently available topics by visiting our [Event Catalog page](./use-events.md).
 
-As producers are responsible for defining topics and their contents, they will work with the Event Bus Team to determine configuration settings such as the number of topic partitions, event versioning, and event retention rules. The content below outlines the steps needed to start producing events. To learn more about the components and processes involved in event-based systems, please visit our [Introduction to Event-Driven Architecture page](./intro-to-eda.md).
+As producers are responsible for defining topics and their contents, they will work with the Event Bus Team to determine configuration settings such as the number of topic partitions, event versioning, and event retention rules. The content below outlines the steps needed to start producing events. To learn more about the components and processes involved in event-based systems, please visit our [How Event Bus Implements Event-Driven Architecture page](./intro-to-eda.md).
 
 ## **Steps to become a producer**
 
@@ -34,7 +34,7 @@ Partitions in Kafka serve as the primary unit of storage within a topic, with ea
 
 #### **Event retention**
 
-Event retention refers to how long an event exists within Kafka and remains available for consumption. This setting would be especially important to consumers who need to be prepared to handle missed events before they expire. For additional information and discussion, see the section about Retention in our [Event Design Architectural Decision Record (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md).
+Event retention refers to how long an event exists within Kafka and remains available for consumption. This setting would be especially important to consumers who need to be prepared to handle missed events before they expire. For additional information and discussion, see the section about Retention in our [Event Design Architectural Decision Record (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md#event-retention).
 
 #### **Event schema and event registry**
 
@@ -78,15 +78,18 @@ Depending on the language client used, additional properties may also be needed 
 | [sasl.client.callback.handler.class](https://kafka.apache.org/documentation/#producerconfigs_sasl.client.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL client callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
 | [value.serializer](https://kafka.apache.org/documentation/#producerconfigs_value.serializer) | `KafkaAvroSerializer` | Serializer class for value. |  |
 | auto.register.schemas | false | Specify if the serializer should attempt to register the schema with the Schema Registry. | If set to true, the producer will attempt to register a new schema rather than using an existing one in the registry. Since writes to the Event Bus schema registry are blocked for unauthorized applications, this will result in an error which prevents the producer from producing events. |
-| schema.registry.url | Event Bus schema registry endpoint. This will vary depending on the environment (dev, prod, etc.). | Comma-separated list of URLs for Schema Registry instances that can be used to register or look up schemas. | |
+| schema.registry.url | Event Bus schema registry endpoint. This will vary depending on the environment (dev, prod, etc.). | Comma-separated list of URLs for Schema Registry instances that can be used to register or look up schemas. | 
+| use.latest.version | false (this is the default value) | Flag that indicates if the latest schema version should be used for serialization.| Event Bus recommends setting this value to false to avoid issues when a new schema version is added to the schema registry. |
+| use.schema.id | ID of the schema in the Event Bus schema registry. This will vary depending on the environment. The Event Bus team will supply this value. | Integer ID that indicates which schema to use for serialization. | Event Bus recommends setting this value to be specific about which schema version is used to write events and to reduce ambiguity. | |
 
 #### **Code samples**
 
-!!! info
-    Expand the sections below to see producer code examples in Java and Ruby. To see the samples in context, please check out the [`ves-event-bus-sample-code` repository (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code).
+#### **Info**
 
-??? example "Java Producer"
-    ```java
+Expand the sections below to see producer code examples in Java and Ruby. To see the samples in context, please check out the [`ves-event-bus-sample-code` repository (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code).
+
+#### **Java Producer**
+    
     package gov.va.eventbus.example;
 
     import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
@@ -156,6 +159,7 @@ Depending on the language client used, additional properties may also be needed 
             props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
             props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
             props.put(KafkaAvroSerializerConfig.AUTO_REGISTER_SCHEMAS, false);
+            props.put(KafkaAvroSerializerConfig.USE_SCHEMA_ID, 1);
             props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false);
 
             // Use SASL_SSL in production but PLAINTEXT in local environment
@@ -181,8 +185,8 @@ Depending on the language client used, additional properties may also be needed 
     }
     ```
 
-??? example "Ruby Producer"
-    ```ruby
+#### **Ruby Producer**
+    
     require 'logger'
     require 'rdkafka'
     require 'avro_turf/messaging'
@@ -276,7 +280,7 @@ Here is some additional information on the individual fields:
 * **apiVersion** [required]: This value must be set to `backstage.io/v1alpha1`.
 * **kind** [required]: This value must be set to `Event`.
 * **metadata** [required]: A structure that contains information about the entity itself. The `metadata` structure includes the following properties.
-    * **name** [required]: A machine-readable name for the event. This value will be used in CODE VA urls, so it should be all lowercase and use hypens as separators.    
+    * **name** [required]: A machine-readable name for the event. This value will be used in CODE VA urls, so it should be all lowercase and use hyphens as separators.    
     * **description** [required]: A concise, high-level description of the event and the data it provides.
     * **title** [required]: A human-readable representation of the `name` to be used in CODE VA user interfaces.
     * **links** [optional]: A list of links related to the event. Each link consists of a `url` and a `title`.
@@ -300,6 +304,10 @@ Here is some additional information on the individual fields:
     * **retention** [optional]: This value represents the number of days that each event is retained for. It should be set to an integer. This property only needs to be set if your topic has a custom retention policy. If it is not set, the default of 7 days will be displayed.
 
 The `catalog.yaml` file will be validated against [this JSON schema (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-backstage-plugins/blob/main/plugins/event-kind-backend/src/schema/Event.schema.json). The required `spec.schema`, `spec.schemaCompatibilityMode`, and `spec.topics.brokerAddresses` fields included in this JSON schema will be auto-populated and should not be included in the `catalog-info.yaml` file. The optional `spec.averageDailyEvents` field will also be auto-populated and should not be included in the `catalog-info.yaml` file.
+
+## **Schema Evolution**
+
+Eventually the schema of an event may evolve. After a new version of the schema is added to the schema registry, consumers will need to update their applications to handle the new schema version before producers update to produce events using the new schema. The Event Bus team will coordinate these updates with producers and consumers.
 
 ## **Logs**
 
