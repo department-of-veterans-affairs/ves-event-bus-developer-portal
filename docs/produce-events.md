@@ -84,12 +84,11 @@ Depending on the language client used, additional properties may also be needed 
 
 #### **Code samples**
 
-#### **Info**
+!!! info
+    Expand the sections below to see producer code examples in Java and Ruby. To see the samples in context, please check out the [`ves-event-bus-sample-code` repository (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code).
 
-Expand the sections below to see producer code examples in Java and Ruby. To see the samples in context, please check out the [`ves-event-bus-sample-code` repository (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code).
-
-#### **Java Producer**
-    
+??? example "Java Producer"
+    ```java
     package gov.va.eventbus.example;
 
     import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
@@ -185,8 +184,8 @@ Expand the sections below to see producer code examples in Java and Ruby. To see
     }
     ```
 
-#### **Ruby Producer**
-    
+??? example "Ruby Producer"
+    ```ruby
     require 'logger'
     require 'rdkafka'
     require 'avro_turf/messaging'
