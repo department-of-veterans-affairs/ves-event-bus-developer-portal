@@ -26,7 +26,7 @@ An event happens when:
 
 _The following conceptual diagram illustrates how Producers and Consumers might interact with the Enterprise Event Bus. Producers publish many different kinds of events. Consumers may do many different things with event data, such as notify a Veteran or kick off a workflow. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
 
-![A conceptual diagram illustrating how Producers publish various events to the Event Bus and how Consumers may use the event data for different purposes.](https://private-user-images.githubusercontent.com/188224362/435702534-f2b10a5f-3f5a-4f19-8d97-e22fc69aaefd.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDUyNDY3MDgsIm5iZiI6MTc0NTI0NjQwOCwicGF0aCI6Ii8xODgyMjQzNjIvNDM1NzAyNTM0LWYyYjEwYTVmLTNmNWEtNGYxOS04ZDk3LWUyMmZjNjlhYWVmZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQyMVQxNDQwMDhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mYWZkYTdjMGFmMGJlZGMzZTRlNWZkYWE0ZmI2YzFmODk5ZWZkODQ2NjY2YTkyY2VhNWUyZDY4ZTRmNzA4YmU1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.F5G2CfBOG9J_8rFilhrUSNEvlMVQwgQwahh7ISL-cJM)
+![A conceptual diagram illustrating how Producers publish various events to the Event Bus and how Consumers may use the event data for different purposes.](img/prod-com-diag.png)
 
 
 ## **Role within the VA enterprise environment**
