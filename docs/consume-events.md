@@ -8,7 +8,7 @@ title: Consuming Events
 
 A consumer is an application that is set up to receive messages or events in an event-driven system. The Event Bus exposes streams of events, called topics, to consumers. The events capture significant occurrences taking place in an external system. Find out how to view a list of currently available topics by visiting our [Event Catalog page](./use-events.md).
 
-To access messages in a particular topic, an event consumer would subscribe to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. The content below outlines the steps needed to start consuming events. Learn more about the components and processes involved in event-based systems on our [Introduction to Event-Driven Architecture page](./intro-to-eda.md).
+To access messages in a particular topic, an event consumer subscribes to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. The content below outlines the steps needed to start consuming events. Learn more about the components and processes involved in event-based systems on our [How Event Bus Implements Event-Driven Architecture page](./intro-to-eda.md).
 
 ## **Steps to become a consumer**
 
@@ -57,7 +57,7 @@ To connect to the Event Bus, consumers in **all programming languages** will nee
 | [client.rack](https://kafka.apache.org/documentation/#consumerconfigs_client.rack) (recommended) | The AWS Availability Zone in which your application is running, eg. "usgw1-az2" | A rack identifier for this client. This can be any string value which indicates where this client is physically located. | This property is only applicable if your application is deployed to AWS (Amazon Web Services) infrastructure. Setting this to your availability zone will [reduce network traffic costs](https://aws.amazon.com/blogs/big-data/reduce-network-traffic-costs-of-your-amazon-msk-consumers-with-rack-awareness/).
 | [enable.auto.commit](https://kafka.apache.org/documentation/#consumerconfigs_enable.auto.commit) (recommended) | false | If true the consumer's offset will be periodically committed in the background. | If set to true, the consumer may mark some records as consumed before they have been processed. See [Manual Offset Control](https://javadoc.io/static/org.apache.kafka/kafka-clients/3.6.0/org/apache/kafka/clients/consumer/KafkaConsumer.html#:~:text=Manual%20Offset%20Control) for more information. |
 
-Depending on the language client used, additional properties may also be needed for authorization and connecting to the schema registry. For example, these properties are required for **Java clients**:
+Depending on the client language used, additional properties may also be needed for authorization and connecting to the schema registry. For example, these properties are required for **Java clients**:
 
 | Property | Value | Description | Notes |
 | --- | --- | --- | --- |
@@ -66,7 +66,8 @@ Depending on the language client used, additional properties may also be needed 
 | [sasl.login.callback.handler.class](https://kafka.apache.org/documentation/#consumerconfigs_sasl.login.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL login callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
 | [sasl.client.callback.handler.class](https://kafka.apache.org/documentation/#consumerconfigs_sasl.client.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL client callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
 | [value.deserializer](https://kafka.apache.org/documentation/#consumerconfigs_value.deserializer) | `KafkaAvroDeserializer` | Deserializer class for value. |  |
-| schema.registry.url | Event Bus schema registry endpoint. This will vary depending on the environment (dev, prod, etc.). | Comma-separated list of URLs for Schema Registry instances that can be used to register or look up schemas. | |
+| schema.registry.url | Event Bus schema registry endpoint. This will vary depending on the environment (dev, prod, etc.). | Comma-separated list of URLs for Schema Registry instances that can be used to register or look up schemas. |
+| use.latest.version | false (this is the default value) | Flag that indicates if the latest schema version should be used for deserialization. | Event Bus recommends setting this value to false to avoid issues when a new schema version is added to the schema registry. | |
 
 #### **Code samples**
 
@@ -265,7 +266,7 @@ Here is some additional information on these fields:
 * **apiVersion** [required]: This value must be set to `backstage.io/v1alpha1`.
 * **kind** [required]:  This value must be set to `Component`.
 * **metadata** [required]: A structure that contains information about the entity. The `metadata` structure includes the following properties.
-    * **name** [required]: A machine-readable name for the component. This value will be used in CODE VA urls, so it should be all lowercase and use hypens as separators.
+    * **name** [required]: A machine-readable name for the component. This value will be used in CODE VA urls, so it should be all lowercase and use hyphens as separators.
     * **description** [required]: A concise, high-level description of the event-consuming component.
     * **title** [required]: A human-readable representation of the `name` to be used in CODE VA user interfaces.
     * **links** [optional]: A list of links related to the component. Each link consists of a `url` and a `title`.
@@ -303,7 +304,7 @@ Here is some additional information on these fields:
 * **apiVersion** [required]: This value must be set to `backstage.io/v1alpha1`.
 * **kind** [required]:  This value must be set to `System`.
 * **metadata** [required]: A structure that contains information about the entity. The `metadata` structure includes the following properties.
-    * **name** [required]: A machine-readable name for the system. This value will be used in CODE VA urls, so it should be all lowercase and use hypens as separators.
+    * **name** [required]: A machine-readable name for the system. This value will be used in CODE VA urls, so it should be all lowercase and use hyphens as separators.
     * **description** [required]: A concise, high-level description of the event-consuming system.
     * **title** [required]: A human-readable representation of the `name` to be used in CODE VA user interfaces.
     * **links** [optional]: A list of links related to the system. Each link consists of a `url` and a `title`.
@@ -314,11 +315,19 @@ Here is some additional information on these fields:
     * **domain** [optional]: The VA domain in which a particular system exists. Possible values might be: `claims status`, `health`, `appointments`, `benefits`, etc.
     * **subscribesToEvent** [required]: An array of strings. Each string must match the `metadata.name` value of a producer's `catalog-info.yaml` file. This field is used to relate the system to the events that it consumes and to display the system on each related event's CODE VA catalog entry.
 
+## **Schema Evolution**
+
+Eventually the schema of an event may evolve. After a new version of the schema is added to the schema registry, consumers will need to update their applications to handle the new schema version before producers update to produce events using the new schema. The Event Bus team will inform consumers about upcoming schema changes.
+
 ## **Logs**
 
-Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs are available via [Datadog (must have VA LightHouseDI Datadog access to view)](https://lighthousedi.ddog-gov.com/). Event bus broker logs are available through [this query (must have VA LightHouseDI Datadog access to view)](https://lighthousedi.ddog-gov.com/logs?query=host%3A%22arn%3Aaws%3As3%3A%3A%3Aeventbus-msk-logs%22%20&cols=host%2Cservice&index=%2A&messageDisplay=inline&stream_sort=desc&viz=stream&from_ts=1684858340160&to_ts=1684859240160&live=true) and application logs are available through [this query (must have VA LightHouseDI Datadog access to view)](https://lighthousedi.ddog-gov.com/logs?query=kube_namespace%3Aves-event-bus-infra-dev%20&cols=host%2Cservice&index=%2A&messageDisplay=inline&refresh_mode=sliding&stream_sort=desc&viz=stream&from_ts=1695939680975&to_ts=1696544480975&live=true). 
+Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs are available via [Datadog (must have VA LightHouseDI Datadog access to view)](https://lighthousedi.ddog-gov.com/):
+- [Event Bus broker logs sandbox](https://lighthousedi.ddog-gov.com/logs?query=host%3A%22arn%3Aaws%3As3%3A%3A%3Aeventbus-msk-broker-logs-nprod-sandbox%22&agg_m=count&agg_m_source=base&agg_t=count&cols=host%2Cservice&fromUser=true&messageDisplay=inline&refresh_mode=sliding&storage=hot&stream_sort=desc&viz=stream&from_ts=1684858340160&to_ts=1684859240160&live=true)
+- [Event Bus broker logs Prod](https://lighthousedi.ddog-gov.com/logs?query=host%3A%22arn%3Aaws%3As3%3A%3A%3Aeventbus-msk-broker-logs-prod%22%20&agg_m=count&agg_m_source=base&agg_t=count&cols=host%2Cservice&fromUser=true&messageDisplay=inline&refresh_mode=sliding&storage=hot&stream_sort=desc&viz=stream&from_ts=1684858340160&to_ts=1684859240160&live=true)
+- [Event Bus app logs sandbox](https://lighthousedi.ddog-gov.com/logs?query=kube_namespace%3Aves-event-bus-infra-sandbox&agg_m=count&agg_m_source=base&agg_t=count&cols=host%2Cservice&fromUser=true&messageDisplay=inline&refresh_mode=sliding&storage=hot&stream_sort=desc&viz=stream&from_ts=1695939680975&to_ts=1696544480975&live=true)
+- [Event Bus app logs prod](https://lighthousedi.ddog-gov.com/logs?query=kube_namespace%3Aves-event-bus-infra-prod&agg_m=count&agg_m_source=base&agg_t=count&cols=host%2Cservice&fromUser=true&messageDisplay=inline&refresh_mode=sliding&storage=hot&stream_sort=desc&viz=stream&from_ts=1695939680975&to_ts=1696544480975&live=true)
 
-Datadog is a monitoring and analytics tool that is used within VA and is hosted by the Devops Transformation Services (DOTS) team. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. In order for Event Bus users to [request access to Datadog (must be part of VA GitHub organization to view)](https://animated-carnival-57b3e7f5.pages.github.io/datadog-observability-tools/datadog-access/), they must have a VA email address. To request access to Datadog, complete the HelpDesk form on the ServiceNow Portal at [ECC (Enterprise Command Center) Monitoring Services - your IT Service Portal (must be on the VA network to view)](https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fyourit.va.gov%2Fva%3Fid%3Dsc_cat_item%26sys_id%3D4cdf488b1ba4fcd412979796bc4bcb74&data=05%7C01%7C%7Ccb701e4e7fc944b6041308dbeacea9aa%7Ce95f1b23abaf45ee821db7ab251ab3bf%7C0%7C0%7C638361945550254440%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=sJfq3j8vnXwdtuQrfY%2FBaRttaqyOpKA6X17O8TMK9ug%3D&reserved=0).
+Datadog is a monitoring and analytics tool that is used within VA and is hosted by the Devops Transformation Services (DOTS) team. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. In order for Event Bus users to request access to Datadog they must have a VA email address. To request access to Datadog, complete the HelpDesk form on the ServiceNow Portal at [ECC (Enterprise Command Center) Monitoring Services - your IT Service Portal (must be on the VA network to view)](https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fyourit.va.gov%2Fva%3Fid%3Dsc_cat_item%26sys_id%3D4cdf488b1ba4fcd412979796bc4bcb74&data=05%7C01%7C%7Ccb701e4e7fc944b6041308dbeacea9aa%7Ce95f1b23abaf45ee821db7ab251ab3bf%7C0%7C0%7C638361945550254440%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=sJfq3j8vnXwdtuQrfY%2FBaRttaqyOpKA6X17O8TMK9ug%3D&reserved=0).
 
 ## **Troubleshooting**
 
