@@ -158,7 +158,7 @@ Depending on the language client used, additional properties may also be needed 
             props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
             props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
             props.put(KafkaAvroSerializerConfig.AUTO_REGISTER_SCHEMAS, false);
-            props.put(KafkaAvroSerializerConfig.USE_SCHEMA_ID, 1);
+            producerProps.put(KafkaAvroSerializerConfig.USE_LATEST_VERSION, true);
             props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false);
 
             // Use SASL_SSL in production but PLAINTEXT in local environment
