@@ -24,9 +24,9 @@ An event happens when:
 - Those Consumers then share that information to take action (e.g., sharing information with Veterans or with another VA system)
 
 
-_The following conceptual diagram illustrates how Producers and Consumers might interact with the Enterprise Event Bus. Producers publish many different kinds of events. Consumers may do many different things with event data, such as notify a Veteran or kick off a workflow. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/future%20state%20whole.png)_
+The following conceptual diagram illustrates how Producers and Consumers might interact with the Enterprise Event Bus. Producers publish many different kinds of events. Consumers may do many different things with event data, such as notify a Veteran or kick off a workflow. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/EDA_producer_consumer_diagram.png)
 
-![A conceptual diagram illustrating how Producers publish various events to the Event Bus and how Consumers may use the event data for different purposes.](img/prod-com-diag.png)
+![A conceptual diagram illustrating how Producers publish various events to the Event Bus and how Consumers may use the event data for different purposes.](https://github.com/user-attachments/assets/2baf7cf6-bfb7-4938-ab68-fdcb357cfb56)
 
 
 ## **Role within the VA enterprise environment**
