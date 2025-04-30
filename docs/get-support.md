@@ -1,38 +1,66 @@
 ---
-title: Get Support
+title: Event Bus Contact and Support
 ---
 
-# **Get Support**
+# **Event Bus Contact and Support**
 
-## **Report an incident**
+## **Learn More About Enterprise Event Bus**
 
-To report a security or privacy incident, or an urgent critical operational incident requiring immediate support, check the [#event-bus-support Slack channel][slack-#event-bus-support] Topic for our PagerDuty email address. Sending an email to this PagerDuty address will generate a notification to the on-call engineer's mobile device 24/7 as long as the email was sent from a @va.gov email address.  You can expect a response within 30 minutes in the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
+Interested in learning how Enterprise Event Bus (EEB) can benefit you? Our team is ready to help you understand the capabilities, architecture, and best practices for EEB implementation.
 
-If you prefer to use a non @va.gov email address to trigger notifications to the on-call engineer's mobile device, you can request a specific email address, or workplace email domain, be added to an "allowed list". To initiate this request, send a message explaining your need to the [#event-bus-support Slack channel][slack-#event-bus-support] and the appropriate personnel will reach out to you.
+## **Quick Reference**
 
-Please include the following information in your email:
+| Support Type | Contact Method | Response Time |
+| :---: | :---: | :---: |
+| General Contact | OCTO Slack: #event-bus-support |1 hour (during support hours)|
+| General Contact | Email: OITEnterpriseEventBus@va.gov | Varies |
+| Urgent/Critical Incidents and Security/Privacy Incidents |OCTO Slack: #event-bus-support |1 hour (during support hours) |
+| Urgent/Critical Incidents and Security/Privacy Incidents | Email: found on OCTO Slack [#event-bus-support][slack-#event-bus-support]  | 30 minutes |
 
-* Is this a security or privacy incident? Yes/No
-* Which environment is impacted? Sandbox/Production
-* Briefly, what is the impact of the incident?
+## **General Contact and Support**
 
-## **General support requests**
+To learn more or for non-urgent questions and support:
+- **OCTO Slack:** [#event-bus-support][slack-#event-bus-support]in the Office of CTO @VA workspace
+- **Email:** OITEnterpriseEventBus@va.gov
 
-For non-urgent support requests, the best way to request support from the Event Bus Team is to reach out to us via the [#event-bus-support Slack channel][slack-#event-bus-support] in the Office of CTO @VA workspace.
+**Best Practice:** Please use the public channel rather than direct messaging team members. This helps others learn from shared questions and answers.
 
-Please avoid direct messaging an Event Bus team member in Slack. Chatting openly in the channel allows others to learn from the questions and answers discussed.
+## **Support Hours**
 
-Event Bus Slack channel support hours are from 12pm - 5pm ET, Monday through Friday, with the exception of federal holidays. Often, an engineer will respond by 9am ET if they live in the Eastern or Central timezones. You can expect a response within 1 hour during the support hours.
+- **Slack Support Hours:** Monday - Friday, 12pm - 5pm ET (excluding federal holidays)
+- **Note:** Engineers often respond by 9am ET if they're in Eastern or Central timezones
+- **24/7 Support:** Available for urgent incidents via PagerDuty email which can be found on OCTO Slack [#event-bus-support][slack-#event-bus-support]  (Must email from a @va.gov address. If you do not have a @va.gov email address, see below.)
 
+## **Reporting Urgent Incidents**
 
-## **Slack service notifications**
+When you need immediate assistance with a critical operational, security, or privacy incident:
 
-Alerts and warnings from Event Bus monitoring can be found in the following Slack channels:
+1. Check the [#event-bus-support][slack-#event-bus-support] OCTO Slack channel first
+2. Email the PagerDuty email **from a @va.gov email address**
+   - This will alert the on-call engineer's mobile device 24/7
+   - Response expected within 30 minutes in the [#event-bus-support][slack-#event-bus-support] OCTO Slack Channel
 
+**Include in your email:**
 
-* [#ves-event-bus-sandbox-alerts (must be in the Office of CTO @VA workspace)][slack-#ves-event-bus-sandbox-alerts]
-* [#ves-event-bus-prod-alerts (must be in the Office of CTO @VA workspace)][slack-#ves-event-bus-prod-alerts]
-* [#vaapi-lhdi-customer-env-alerts (must be in the Lighthouse workspace)][slack-#vaapi-lhdi-customer-env-alerts] (includes alerts for the wider LHDI environment)
+- Is this a security or privacy incident? (Yes/No)
+- Which environment is impacted? (Sandbox/Production)
+- Brief description of the incident's impact
+
+## **Using Non-VA Email Addresses**
+
+If you need to use a non @va.gov email address to contact the on-call engineer:
+
+1. Send a message to the [#event-bus-support][slack-#event-bus-support] OCTO Slack channel
+2. Request your email address or domain be added to the "allowed list"
+3. Explain your specific need for using a non-VA email address
+
+## **Monitoring and Alerts**
+
+Stay informed about Event Bus status through these Slack channels:
+
+- **Sandbox Environment:** [#ves-event-bus-sandbox-alerts (must be in the Office of CTO @VA workspace)][slack-#ves-event-bus-sandbox-alerts]
+- **Production Environment:** [#ves-event-bus-prod-alerts (must be in the Office of CTO @VA workspace)][slack-#ves-event-bus-prod-alerts]
+- **LHDI Environment:** [#vaapi-lhdi-customer-env-alerts (must be in the Lighthouse workspace)][slack-#vaapi-lhdi-customer-env-alerts]
 
 <!-- links -->
 [slack-#event-bus-support]: https://dsva.slack.com/archives/C074VK55M9P
