@@ -160,6 +160,8 @@ Depending on the language client used, additional properties may also be needed 
             props.put(KafkaAvroSerializerConfig.AUTO_REGISTER_SCHEMAS, false);
             producerProps.put(KafkaAvroSerializerConfig.USE_LATEST_VERSION, true);
             props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false);
+            // * See note below about SCHEMA_ID_FROM_EB
+            props.put(ProducerConfig.USE_SCHEMA_ID, <SCHEMA_ID_FROM_EB>); 
 
             // Use SASL_SSL in production but PLAINTEXT in local environment
             // w/docker_compose
@@ -183,6 +185,8 @@ Depending on the language client used, additional properties may also be needed 
         }
     }
     ```
+    *`SCHEMA_ID_FROM_EB`: Schema ID is an integer ID assigned by the Schema Registry.
+    The Event Bus Team will provide you this value.  Reach out to them when you are ready.
 
 ??? example "Ruby Producer"
     ```ruby
