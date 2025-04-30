@@ -12,15 +12,16 @@ Interested in learning how Enterprise Event Bus (EEB) can benefit you? Our team 
 
 | Support Type | Contact Method | Response Time |
 | :---: | :---: | :---: |
-| General Contact | OCTO Slack: #event-bus-support |1 hour (during support hours)|
+| General Contact | OCTO Slack: [#ves-event-bus][slack-#ves-event-bus] |1 hour (during support hours)|
 | General Contact | Email: OITEnterpriseEventBus@va.gov | Varies |
-| Urgent/Critical Incidents and Security/Privacy Incidents |OCTO Slack: #event-bus-support |1 hour (during support hours) |
+| Urgent/Critical Incidents and Security/Privacy Incidents |OCTO Slack: [#event-bus-support][slack-#event-bus-support] |1 hour (during support hours) |
 | Urgent/Critical Incidents and Security/Privacy Incidents | Email: found on OCTO Slack [#event-bus-support][slack-#event-bus-support]  | 30 minutes |
 
 ## **General Contact and Support**
 
-To learn more or for non-urgent questions and support:
-- **OCTO Slack:** [#event-bus-support][slack-#event-bus-support]in the Office of CTO @VA workspace
+To learn more or for non-urgent questions:
+
+- **OCTO Slack:** [#ves-event-bus][slack-#ves-event-bus] in the Office of CTO @VA workspace
 - **Email:** OITEnterpriseEventBus@va.gov
 
 **Best Practice:** Please use the public channel rather than direct messaging team members. This helps others learn from shared questions and answers.
@@ -63,6 +64,7 @@ Stay informed about Event Bus status through these Slack channels:
 - **LHDI Environment:** [#vaapi-lhdi-customer-env-alerts (must be in the Lighthouse workspace)][slack-#vaapi-lhdi-customer-env-alerts]
 
 <!-- links -->
+[slack-#ves-event-bus]: https://dsva.slack.com/archives/C042ZQ7JUAX
 [slack-#event-bus-support]: https://dsva.slack.com/archives/C074VK55M9P
 [slack-#ves-event-bus-sandbox-alerts]: https://dsva.slack.com/archives/C07177SEPH9
 [slack-#ves-event-bus-prod-alerts]: https://dsva.slack.com/archives/C06N7QKMQN4
