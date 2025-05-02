@@ -3,6 +3,7 @@
 ## **What is the Enterprise Event Bus**
 
 The Enterprise Event Bus (EEB) is a centralized, scalable platform that enables secure, real-time data sharing across VA systems and applications. Unlike a single purpose solution, the Event Bus is designed to unify events from both healthcare and benefits, making them accessible to a wide range of products and teams across VA. By leveraging an event-driven architecture, the Event Bus allows product teams to:
+
 - Share real time data: Deliver critical updates and build more seamless experiences for end-users.
 - Integrate systems enterprise wide: Connect to disparate systems across healthcare and benefits, reducing operational silos.
 - Ensure reliability: Prevent silent failures and maintain data integrity with built-in safeguards and monitoring. 
@@ -16,20 +17,24 @@ The Event Bus is the foundation for creating a connected, integrated VA ecosyste
 The Enterprise Event Bus delivers value to Veterans, VA staff, and the VA organization by addressing key challenges and unlocking new opportunities:
 
 Improves Veteran and Staff Experiences
+
 - Ensures Veterans receive coordinated, timely, and accurate updates across all their interactions with VA.
 - Eliminates duplicate data entries so that Veterans and staff don’t have to enter information repeatedly to get pertinent information immediately.
 - Ensures critical updates flow seamlessly across systems.
 
 Accelerates Delivery
+
 - Cuts integration time through standardized connection pattern for integrating with systems.
 - Teams can concentrate on what they do best without needing to understand how other systems work.
 - Replaces “your turn, my turn” development with a model where all teams can build at the same time.
 
-Drives Operational Efficiency 
+Drives Operational Efficiency
+
 - Breaks down silos by enabling seamless data sharing between healthcare and benefits systems.
 - Supports smarter use of resources by lowering the cost and complexity of system integrations.
 
 Enables Enterprise-Scale Resilience
+
 - Handles high volumes of events across multiple mission critical domains, ensuring VA can scale to meet future demands.
 - Strengthens system resilience by preventing cascading failures when individual components experience issues. 
 - Provides transparency through real-time monitoring, reporting, and system health visibility.
@@ -83,6 +88,7 @@ When a Veteran visits their doctor and receives a new prescription, the system p
 Challenge: After a Veteran files a disability claim, they must wait until they receive their Decision Letter in the mail to learn the outcome, delaying their ability to plan appeals or provide additional information 
 
 Solution: A team that owns the Claims Status Tool on va.gov and the VA Health & Benefits app within the OCTO Benefits Portfolio has partnered with the Event Bus to "listen" for these Decision Letter Availability Events. 
+
 - When a Decision Letter is generated, the Event Bus triggers an immediate email notification to the Veteran, letting them know they can view the letter in their eFolder. 
 
 Impact: Veterans are now notified weeks earlier, giving them more time to plan appeals or satisfy requests for additional information while also reducing uncertainty during the claims process. 
