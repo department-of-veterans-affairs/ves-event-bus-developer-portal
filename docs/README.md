@@ -17,7 +17,7 @@ The Enterprise Event Bus delivers value to Veterans, VA staff and the VA organiz
 
 Improves Veteran and Staff Experiences
 - Ensures Veterans receive coordinated, timely, and accurate updates across all their interactions with VA.
-- Eliminate duplicate data entry so that Veterans and staff don’t have to enter information over and over to get pertinent information immediately.
+- Eliminate duplicate data entries so that Veterans and staff don’t have to enter information over and over to get pertinent information immediately.
 - Ensures critical updates flow seamlessly across systems.
 
 Accelerates Delivery
