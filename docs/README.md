@@ -13,16 +13,16 @@ The Event Bus is the foundation for creating a connected, integrated VA ecosyste
 
 ## **Why use the Enterprise Event Bus**
 
-The Enterprise Event Bus delivers value to Veterans, VA staff and the VA organization by addressing key challenges and unlocking new opportunities:
+The Enterprise Event Bus delivers value to Veterans, VA staff, and the VA organization by addressing key challenges and unlocking new opportunities:
 
 Improves Veteran and Staff Experiences
 - Ensures Veterans receive coordinated, timely, and accurate updates across all their interactions with VA.
-- Eliminate duplicate data entries so that Veterans and staff don’t have to enter information over and over to get pertinent information immediately.
+- Eliminates duplicate data entries so that Veterans and staff don’t have to enter information repeatedly to get pertinent information immediately.
 - Ensures critical updates flow seamlessly across systems.
 
 Accelerates Delivery
-- Cuts integration time through standardized connection pattern for integrating with systems
-- Teams can concentrate on what they do best without needing to understand how other systems work
+- Cuts integration time through standardized connection pattern for integrating with systems.
+- Teams can concentrate on what they do best without needing to understand how other systems work.
 - Replaces “your turn, my turn” development with a model where all teams can build at the same time.
 
 Drives Operational Efficiency 
@@ -30,7 +30,7 @@ Drives Operational Efficiency
 - Supports smarter use of resources by lowering the cost and complexity of system integrations.
 
 Enables Enterprise-Scale Resilience
-- Handleshigh volumes of events across multiple mission critical domains, ensuring VA can scale to meet future demands.
+- Handles high volumes of events across multiple mission critical domains, ensuring VA can scale to meet future demands.
 - Strengthens system resilience by preventing cascading failures when individual components experience issues. 
 - Provides transparency through real-time monitoring, reporting, and system health visibility.
 
@@ -72,8 +72,6 @@ Here is an example of how Event Bus hypothetically could work:
 
 When a Veteran visits their doctor and receives a new prescription, the system publishes an event to the Event Bus. This event instantly updates the local VA clinic’s records for reference for future appointments, notifies the pharmacy to prepare the medication, and sends an SMS to the Veteran letting them know their documents have been updated with their local VA clinic — all at the same time, without manual coordination.
 
-## **Event Bus Workflow Example**
-
 <br />
 
 ![An example of how Event Bus hypothetically could work](https://github.com/user-attachments/assets/c8cbbd18-7876-457b-93b4-3c90983a901c)
@@ -85,7 +83,7 @@ When a Veteran visits their doctor and receives a new prescription, the system p
 Challenge: After a Veteran files a disability claim, they must wait until they receive their Decision Letter in the mail to learn the outcome, delaying their ability to plan appeals or provide additional information 
 
 Solution: A team that owns the Claims Status Tool on va.gov and the VA Health & Benefits app within the OCTO Benefits Portfolio has partnered with the Event Bus to "listen" for these Decision Letter Availability Events. 
-- When a Decision Letter is generated, the Event bus triggers an immediate email notification to the Veteran, letting them know they can view the letter in their eFolder. 
+- When a Decision Letter is generated, the Event Bus triggers an immediate email notification to the Veteran, letting them know they can view the letter in their eFolder. 
 
 Impact: Veterans are now notified weeks earlier, giving them more time to plan appeals or satisfy requests for additional information while also reducing uncertainty during the claims process. 
 
