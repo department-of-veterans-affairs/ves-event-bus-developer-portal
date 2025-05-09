@@ -83,7 +83,7 @@ When a Veteran visits their doctor and receives a new prescription, the system p
 
 <br />
 
-### **Active Use Case: Veterans Notified of Claims Weeks Earlier with Event Bus**
+### **Active Use Case: Veterans Notified of Claims Much Earlier with Event Bus**
 
 Challenge: After a Veteran files a disability claim, they must wait until they receive their Decision Letter in the mail to learn the outcome, delaying their ability to plan appeals or provide additional information 
 
@@ -91,7 +91,7 @@ Solution: A team that owns the Claims Status Tool on va.gov and the VA Health & 
 
 - When a Decision Letter is generated, the Event Bus triggers an immediate email notification to the Veteran, letting them know they can view the letter in their eFolder. 
 
-Impact: Veterans are now notified weeks earlier, giving them more time to plan appeals or satisfy requests for additional information while also reducing uncertainty during the claims process. 
+Impact: Veterans are now notified 7-10 days earlier, giving them more time to plan appeals or satisfy requests for additional information while also reducing uncertainty during the claims process. 
 
 <br />
 
