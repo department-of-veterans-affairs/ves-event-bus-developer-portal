@@ -67,7 +67,8 @@ Depending on the client language used, additional properties may also be needed 
 | [sasl.client.callback.handler.class](https://kafka.apache.org/documentation/#consumerconfigs_sasl.client.callback.handler.class) | `IAMOAuthBearerLoginCallbackHandler` | The fully qualified name of a SASL client callback handler class. | See [aws-msk-iam-auth](https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism) for more information. |
 | [value.deserializer](https://kafka.apache.org/documentation/#consumerconfigs_value.deserializer) | `KafkaAvroDeserializer` | Deserializer class for value. |  |
 | schema.registry.url | Event Bus schema registry endpoint. This will vary depending on the environment (dev, prod, etc.). | Comma-separated list of URLs for Schema Registry instances that can be used to register or look up schemas. |
-| use.latest.version | false (this is the default value) | Flag that indicates if the latest schema version should be used for deserialization. | Event Bus recommends setting this value to false to avoid issues when a new schema version is added to the schema registry. | |
+| use.latest.version | `false` (this is the default value) | Flag that indicates if the latest schema version should be used for deserialization. | Event Bus recommends setting this value to false to avoid issues when a new schema version is added to the schema registry. |
+| latest.cache.ttl.sec | `-1` (this is the default value) | This sets a TTL for the schema registry cache. `-1` indicates that the cache has no TTL. | Event Bus recommends using the default of `-1` for this value. Schema versions do not change once they are registered. This will decrease the application's dependency on the schema registry. | |
 
 #### **Code samples**
 
