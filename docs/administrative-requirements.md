@@ -10,6 +10,7 @@ This guide covers everything you need to integrate with the Enterprise Event Bus
 **Product Planning**
 
 Before diving into technical details, take some time to clarify your goals and approach: 
+
 - What problem are you solving? Document current pain points, inefficiencies, or limitations that event-driven architecture would address
 - What is the desired outcome? Define specific improvements you expect to achieve
 - How might you define and track success metrics? Identify measurable indicators like reduced latency, improved consistency, or enhanced user experience
@@ -20,9 +21,8 @@ Before diving into technical details, take some time to clarify your goals and a
 
 Once you’ve thought through your use case, here’s how to get the ball rolling:
 
-- Set a meeting with Enterprise Event Bus to discuss use case and technical overview
-  - You can find information on reaching out on the Contact and Support Page
-- Collaborate on a Working Agreement- the Enterprise Event Bus will draft this based on your discussion 
+- Set a meeting with Enterprise Event Bus to discuss use case and technical overview (You can find information on reaching out on the Contact and Support Page)
+- Collaborate on a Working Agreement with the Enterprise Event Bus team and they will draft this based on your discussion 
 - Review and sign Enterprise Event Bus Working Agreement
 
 **System Registration**
