@@ -1,28 +1,66 @@
 ---
-title: Onboarding and Administrative Requirements
+title: Start Guide and Administrative Requirements
 ---
 
-# **Onboarding and Administrative Requirements** 
-## **Onboarding**
+# **Start Guide and Administrative Requirements** 
+## **Start Guide**
 
-**Prerequisites**:
+This guide covers everything you need to integrate with the Enterprise Event Bus from planning your approach to completing technical set up. Working through these steps can seem daunting, but the Event Bus team is here to support you through this process. 
 
-* The client has attended an Enterprise Event Bus business use case meeting.
-* The client has attended an Enterprise Event Bus technical overview meeting.
-* The client has received, reviewed, and signed an Enterprise Event Bus Working Agreement.
+**Product Planning**
 
-**Requirements for production**:
+Before diving into technical details, take some time to clarify your goals and approach: 
+- What problem are you solving? Document current pain points, inefficiencies, or limitations that event-driven architecture would address
+- What is the desired outcome? Define specific improvements you expect to achieve
+- How might you define and track success metrics? Identify measurable indicators like reduced latency, improved consistency, or enhanced user experience
+- What is the timeline for this work? Consider the priority level and whether external deadlines, dependencies, or key milestones will influence when this needs to be completed.
+- Have you identified data sources? While not required upfront, knowing which systems generate the events you need and who owns that data will streamline discussions and technical planning.
 
-* The client system is registered in the VA Systems Inventory (VASI) and has a VASI ID.
-* The client system has been evaluated and classified by the Enterprise Management and Support Services (eMASS) and has an eMASS ID. 
-* The client system has an active Authority to Operate (ATO), or if inside the Lighthouse Delivery Infrastructure (LHDI), a continuous Authority to Operate (cATO).
-* The client system has been through the System Categorization process and has a FISMA rating.
-* The client system has approved PTA and PIA documents.
-* Depending on the client system, an ESECC request and/or WASA scan may also be required.
+**Getting Connected**
 
-## **Introduction**
-Preparing to connect your system to Enterprise Event Bus may require additional interactions with VA IT teams and systems.
+Once you’ve thought through your use case, here’s how to get the ball rolling:
 
+- Set a meeting with Enterprise Event Bus to discuss use case and technical overview
+  - You can find information on reaching out on the Contact and Support Page
+- Collaborate on a Working Agreement- the Enterprise Event Bus will draft this based on your discussion 
+- Review and sign Enterprise Event Bus Working Agreement
+
+**System Registration**
+
+You’ll need to gather system identification information. This helps the Event Bus team verify the system is authorized to connect and handle data appropriately:  
+
+- Identify your VA Systems Inventory (VASI) ID
+- Identify your Enterprise Mission Assurance Support Service (eMASS) ID
+  - As part of setting up your eMASS ID you should have already completed the System Categorization process to obtain a FISMA rating (Low, Moderate, or High)
+- Identify your Authority to Operate (ATO) (or cATO if in LHDI)
+- If building a web application, request Web Application Security Assessment (WASA) (requires 30-day notice)
+
+Note: If you do not already have an eMASS ID, VASI ID, and an ATO/cATO you will need to submit a LEAF intake request for the ones you are missing (LHDI tenants will need to consult with their LHDI Enablement Liaison)
+
+**Privacy Documentation**
+
+These documents help ensure data protection compliance: 
+
+- Complete Privacy Threshold Analysis (PTA)
+- Complete Privacy Impact Assessment (PIA)
+
+**Special Requirements**
+
+Depending on your specific use case, you may also need to complete:
+
+- OBI Data Access Form, which is required for BIP-sourced events 
+- Sensitivity Filtering implementation,  which is required for VA application user interfaces accessing the Corporate database
+
+**Network Configuration**
+
+Finally, let’s make sure your systems can talk with Event Bus:
+
+- Test connection from your system to Enterprise Event Bus
+  - If you are blocked, work with the Event Bus team to submit an Enterprise Security External Change Council (ESECC) request
+    - You will need to provide IP addresses (or CIDR blocks) and your system's connection ID assigned by VA NSOC
+
+
+**You can find more details on each of these topics below**
 
 ## **Authority to Operate (ATO)**
 
