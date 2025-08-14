@@ -95,7 +95,7 @@ Impact: Veterans are now notified 7-10 days earlier, giving them more time to pl
 
 <br />
 
-![Active Use Case: Veterans Notified of Claims Weeks Earlier with Event Bus](https://github.com/user-attachments/assets/bf0cc477-6591-4899-89d5-7ea7fcd7c7ce)
+![Active Use Case: Veterans Notified of Claims Weeks Earlier with Event Bus](img/DLAupdatedflowaug2025.png)
 
 <br />
 
