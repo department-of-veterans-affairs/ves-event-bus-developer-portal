@@ -22,7 +22,7 @@ In the Event Catalog, you’ll find the following information for every event:
     * consuming systems
 * Schema: the overall structure of an event payload, described as an Avro schema. [Read more about Avro on the Oracle website](https://docs.oracle.com/cd/E26161_02/html/GettingStartedGuide/avroschemas.html).
 
-![A table displaying all events in the Event Catalog on the CODE VA website. The headers are name, topic, lifecycle, domain, and actions. Filters allow content in the table to be filtered.](img/CODEVAEventsList.jpg)
+![A table displaying all events in the Event Catalog on the CODE VA website. The headers are name, topic, lifecycle, domain, and actions. Filters allow content in the table to be filtered.](img/EventCatalogAug2025.png)
 
 ![An event details page on the CODE VA website. The page gives an overview of one event, including the information listed above.](img/CODEVAEventsDLA.jpg)
 
