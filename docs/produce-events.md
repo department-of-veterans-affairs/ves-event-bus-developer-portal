@@ -83,6 +83,82 @@ Depending on the language client used, additional properties may also be needed 
 | use.schema.id | ID of the schema in the Event Bus schema registry. This will vary depending on the environment. The Event Bus team will supply this value. | Integer ID that indicates which schema to use for serialization. | Event Bus recommends setting this value to be specific about which schema version is used to write events and to reduce ambiguity. |
 | latest.cache.ttl.sec | `-1` (this is the default value) | This sets a TTL for the schema registry cache. `-1` indicates that the cache has no TTL. | Event Bus recommends using the default of `-1` for this value. Schema versions do not change once they are registered. This will decrease the application's dependency on the schema registry. | |
 
+#### **Producer Performance Optimization**
+
+Kafka producers can be optimized based on message size and throughput requirements. The default Kafka settings (`batch.size=16384` bytes, `linger.ms=0`) are designed for larger messages but can result in poor batch utilization for smaller messages.
+
+##### **Environment Variable Configuration**
+
+Configure via environment variables to allow per-environment optimization:
+
+```java
+// In your dependency provider or configuration class
+public final int KAFKA_PRODUCER_BATCH_SIZE;
+public final int KAFKA_PRODUCER_LINGER_MS;
+
+public DependencyProvider() {
+    // Kafka Producer optimization settings with defaults optimized for small messages
+    // Default Kafka settings: batch.size=16384 (16KB), linger.ms=0
+    // For small messages (104-204 bytes), this results in ~1.2% batch utilization (99% waste)
+    // 
+    // Recommended settings based on message size:
+    // - Small messages (<500 bytes): batch.size=1024 (1KB), linger.ms=5-10ms → ~20% utilization
+    // - Medium messages (500B-5KB): batch.size=8192 (8KB), linger.ms=5-10ms → ~20-60% utilization
+    // - Large messages (>5KB): batch.size=16384 (16KB), linger.ms=0-5ms → ~30-100% utilization
+    //
+    // Trade-off: Adding linger.ms slightly increases latency but significantly improves throughput
+    // Example: 10ms linger allows batching 5-10 small messages, reducing network calls by 5-10x
+    KAFKA_PRODUCER_BATCH_SIZE =
+        Integer.parseInt(ENV.getOrDefault("KAFKA_PRODUCER_BATCH_SIZE", "16384"));
+    KAFKA_PRODUCER_LINGER_MS = 
+        Integer.parseInt(ENV.getOrDefault("KAFKA_PRODUCER_LINGER_MS", "0"));
+}
+
+private Properties createProducerConfig() {
+    Properties producerProps = new Properties();
+    
+    // ... other configuration ...
+    
+    // Kafka producer performance tuning parameters
+    // Configured via environment variables to allow per-environment optimization
+    // Monitor impact using DataDog JMX metrics: batch-size-avg, record-send-rate, request-latency-avg
+    producerProps.put(ProducerConfig.BATCH_SIZE_CONFIG, KAFKA_PRODUCER_BATCH_SIZE);
+    producerProps.put(ProducerConfig.LINGER_MS_CONFIG, KAFKA_PRODUCER_LINGER_MS);
+    
+    return producerProps;
+}
+```
+
+##### **Kubernetes Deployment Configuration**
+
+In your `deployment.yaml`:
+
+```yaml
+env:
+  - name: KAFKA_PRODUCER_BATCH_SIZE
+    # Producer batch size optimization for small messages
+    # Default: 16384 (16KB) - results in ~1.2% utilization for 200-byte messages
+    # Current: {{ .Values.producer.batchSize }} - optimized for our message sizes
+    # Formula: Utilization = Avg Message Size ÷ batch.size
+    # See producer config documentation for calculation details
+    value: "{{ .Values.producer.batchSize }}"
+  - name: KAFKA_PRODUCER_LINGER_MS
+    # Producer linger time - allows batching multiple messages
+    # Default: 0 (send immediately) - results in one network call per message
+    # Current: {{ .Values.producer.lingerMs }}ms - balances latency vs throughput
+    # Trade-off: +{{ .Values.producer.lingerMs }}ms latency for 5-10x fewer network calls
+    # Monitor: record-send-rate and request-latency-avg in DataDog
+    value: "{{ .Values.producer.lingerMs }}"
+```
+
+In your `values.yaml` (dev.yaml, sandbox.yaml, prod.yaml):
+
+```yaml
+producer:
+  batchSize: 1024  # 1KB - Conservative optimization for small messages
+  lingerMs: 5      # 5ms - Balances latency and throughput
+```
+
 #### **Code samples**
 
 !!! info
