@@ -93,6 +93,8 @@ Solution: A team that owns the Claims Status Tool on va.gov and the VA Health & 
 
 Impact: Veterans are now notified 7-10 days earlier, giving them more time to plan appeals or satisfy requests for additional information while also reducing uncertainty during the claims process. 
 
+This feature went live in production in late June 2025. It currently sends about 95K emails a week and has a click-through rate greater than 50%.
+
 <br />
 
 ![Active Use Case: Veterans Notified of Claims Weeks Earlier with Event Bus](img/DLAupdatedflowaug2025.png)
