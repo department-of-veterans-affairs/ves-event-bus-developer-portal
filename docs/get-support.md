@@ -2,13 +2,13 @@
 title: Event Bus Contact and Support
 ---
 
-# **Event Bus Contact and Support**
+# Event Bus Contact and Support
 
-## **Learn More About Enterprise Event Bus**
+## Learn More About Enterprise Event Bus
 
 Interested in learning how Enterprise Event Bus (EEB) can benefit you? Our team is ready to help you understand the capabilities, architecture, and best practices for EEB implementation.
 
-## **Quick Reference**
+## Quick Reference
 
 | Support Type | Contact Method | Response Time |
 | :---: | :---: | :---: |
@@ -17,7 +17,7 @@ Interested in learning how Enterprise Event Bus (EEB) can benefit you? Our team 
 | Urgent/Critical Incidents and Security/Privacy Incidents |OCTO Slack: [#event-bus-support][slack-#event-bus-support] |1 hour (during support hours) |
 | Urgent/Critical Incidents and Security/Privacy Incidents | Email: found on OCTO Slack [#event-bus-support][slack-#event-bus-support]  | 30 minutes |
 
-## **General Contact and Support**
+## General Contact and Support
 
 To learn more or for non-urgent questions:
 
@@ -26,13 +26,13 @@ To learn more or for non-urgent questions:
 
 **Best Practice:** Please use the public channel rather than direct messaging team members. This helps others learn from shared questions and answers.
 
-## **Support Hours**
+## Support Hours
 
 - **Slack Support Hours:** Monday - Friday, 12pm - 5pm ET (excluding federal holidays)
 - **Note:** Engineers often respond by 9am ET if they're in Eastern or Central timezones
 - **24/7 Support:** Available for urgent incidents via PagerDuty email which can be found on OCTO Slack [#event-bus-support][slack-#event-bus-support]  (Must email from a @va.gov address. If you do not have a @va.gov email address, see below.)
 
-## **Reporting Urgent Incidents**
+## Reporting Urgent Incidents
 
 When you need immediate assistance with a critical operational, security, or privacy incident:
 
@@ -47,7 +47,7 @@ When you need immediate assistance with a critical operational, security, or pri
 - Which environment is impacted? (Sandbox/Production)
 - Brief description of the incident's impact
 
-## **Using Non-VA Email Addresses**
+## Using Non-VA Email Addresses
 
 If you need to use a non @va.gov email address to contact the on-call engineer:
 
@@ -55,7 +55,7 @@ If you need to use a non @va.gov email address to contact the on-call engineer:
 2. Request your email address or domain be added to the "allowed list"
 3. Explain your specific need for using a non-VA email address
 
-## **Monitoring and Alerts**
+## Monitoring and Alerts
 
 Stay informed about Event Bus status through these Slack channels:
 

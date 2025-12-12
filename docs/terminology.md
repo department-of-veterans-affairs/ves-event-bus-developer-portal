@@ -2,7 +2,7 @@
 title: Terminology
 ---
 
-# **Terminology**
+# Terminology
 
 * **Broker**: (also called a server or node) orchestrates the storage and passing of messages. These are the machines that store and service the data.
 
