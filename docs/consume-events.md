@@ -2,48 +2,48 @@
 title: Consuming Events
 ---
 
-# **Consuming Events**
+# Consuming Events
 
-## **What’s a consumer?**
+## What’s a consumer?
 
 A consumer is an application that is set up to receive messages or events in an event-driven system. The Event Bus exposes streams of events, called topics, to consumers. The events capture significant occurrences taking place in an external system. Find out how to view a list of currently available topics by visiting our [Event Catalog page](./use-events.md).
 
 To access messages in a particular topic, an event consumer subscribes to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. The content below outlines the steps needed to start consuming events. Learn more about the components and processes involved in event-based systems on our [How Event Bus Implements Event-Driven Architecture page](./intro-to-eda.md).
 
-## **Steps to become a consumer**
+## Steps to become a consumer
 
-### **Find events/topics to consume**
+### Find events/topics to consume
 
 The first step to consuming an event is to [reach out to the Enterprise Event Bus Team](./get-support.md) about your interest in events. From there, you can either subscribe to an existing topic with relevant events, or else identify a team able to provide the topic that is of interest to you. At this point in time, we are unable to identify producers for consumers that do not have a source for their desired events, but we will do our best to work with your chosen producing team.
 
 See also our [Produce Events page](./produce-events.md).
 
-### **Determine if you need an ESECC request**
+### Determine if you need an ESECC request
 
 See the [ESECC section on the Administrative Requirements page](./administrative-requirements.md#esecc).
 
-### **For consumers of BIP-sourced Events**
+### For consumers of BIP-sourced Events
 
 Read the [documentation about requesting data access and sensitivity filtering on our Administrative Requirements page](./administrative-requirements.md#consumers-of-bip-sourced-events).
 
-### **Set up authorization and authentication**
+### Set up authorization and authentication
 
 To subscribe to specific topics on the Event Bus, consumers need to be authenticated and have the appropriate permissions. The Event Bus MSK cluster is only accessible from the VA Network, and we use AWS IAM (Identity and Access Management) Roles and Policies to control access to different resources. If your consuming application is within the AWS environment, you will need to let us know to which IAM Role(s) or IAM User(s) we should grant access. We will then set up the corresponding IAM Policies on our end and assign a named role for consumers to authenticate with AWS MSK in their application code.
 
 If your consuming application is outside of the AWS environment, we will request an IAM User to be created on your behalf. You will then be able to access the requested topic(s) using those credentials.
 
-### **Connect to the Event Bus in the development environment**
+### Connect to the Event Bus in the development environment
 
 Once the authentication and authorization steps have been completed, you will receive the Kafka bootstrap server addresses and port numbers with which you can connect to the Event Bus MSK cluster. The following ports are open for consumers and producers that are authenticated with AWS IAM:
 
 * 9098 (for access from AWS)
 * 9198 (for access from outside of AWS)
 
-### **Develop and deploy your consumer application**
+### Develop and deploy your consumer application
 
 Many programming languages and frameworks offer libraries designed to interact with Kafka. To ensure full compatibility with the Event Bus, your code needs to authenticate with the AWS MSK cluster using the assigned role provided during the onboarding process. Additionally, consumers should reference the Confluent Schema Registry and use the appropriate schema to deserialize messages in Avro.
 
-#### **Client properties**
+#### Client properties
 
 To connect to the Event Bus, consumers in **all programming languages** will need to set these properties, which are required unless otherwise specified:
 
@@ -70,7 +70,7 @@ Depending on the client language used, additional properties may also be needed 
 | use.latest.version | `false` (this is the default value) | Flag that indicates if the latest schema version should be used for deserialization. | Event Bus recommends setting this value to false to avoid issues when a new schema version is added to the schema registry. |
 | latest.cache.ttl.sec | `-1` (this is the default value) | This sets a TTL for the schema registry cache. `-1` indicates that the cache has no TTL. | Event Bus recommends using the default of `-1` for this value. Schema versions do not change once they are registered. This will decrease the application's dependency on the schema registry. | |
 
-#### **Code samples**
+#### Code samples
 
 !!! info
     Expand the sections below to see consumer code examples in Java and Ruby. To see the consumer code samples in context, please check out the [`ves-event-bus-sample-code` repository (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code).
@@ -232,7 +232,7 @@ Depending on the client language used, additional properties may also be needed 
     end
     ```
 
-### **Register with CODE VA**
+### Register with CODE VA
 
 [CODE VA (must be on VA network to view)](https://code.va.gov/) is a software catalog that houses information about software entities from across VA. Once your consumer application is up and running, it's important to register with the catalog so event producers are aware of how their events are being used and which systems are consuming them.
 
@@ -242,7 +242,7 @@ To register with CODE VA:
 2. Create a file named `catalog-info.yaml` at the root of your source code repository and populate it with the applicable template, updating `metadata` and `spec` with values that correspond to your component or system.
 3. Once your `catalog-info.yaml` file has been committed it will be automatically processed and the software entity will be viewable on [CODE VA website (must be on the VA network to view)](https://code.va.gov/) within a few hours. If you would like the software entity to display quicker, follow the [Backstage documentation on the default method for adding entries to the catalog](https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog).
 
-#### **Component Template**
+#### Component Template
 ``` { .yaml .copy }
     apiVersion: backstage.io/v1alpha1
     kind: Component
@@ -281,7 +281,7 @@ Here is some additional information on these fields:
 
 See [Backstage's Component documentation](https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component) for more information about additional optional fields.
 
-#### **System Template**
+#### System Template
 ``` { .yaml .copy }
     apiVersion: backstage.io/v1alpha1
     kind: System
@@ -316,11 +316,11 @@ Here is some additional information on these fields:
     * **domain** [optional]: The VA domain in which a particular system exists. Possible values might be: `claims status`, `health`, `appointments`, `benefits`, etc.
     * **subscribesToEvent** [required]: An array of strings. Each string must match the `metadata.name` value of a producer's `catalog-info.yaml` file. This field is used to relate the system to the events that it consumes and to display the system on each related event's CODE VA catalog entry.
 
-## **Schema Evolution**
+## Schema Evolution
 
 Eventually the schema of an event may evolve. After a new version of the schema is added to the schema registry, consumers will need to update their applications to handle the new schema version before producers update to produce events using the new schema. The Event Bus team will inform consumers about upcoming schema changes.
 
-## **Logs**
+## Logs
 
 Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs are available via [Datadog (must have VA LightHouseDI Datadog access to view)](https://lighthousedi.ddog-gov.com/):
 - [Event Bus broker logs sandbox](https://lighthousedi.ddog-gov.com/logs?query=host%3A%22arn%3Aaws%3As3%3A%3A%3Aeventbus-msk-broker-logs-nprod-sandbox%22&agg_m=count&agg_m_source=base&agg_t=count&cols=host%2Cservice&fromUser=true&messageDisplay=inline&refresh_mode=sliding&storage=hot&stream_sort=desc&viz=stream&from_ts=1684858340160&to_ts=1684859240160&live=true)
@@ -330,6 +330,6 @@ Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket
 
 Datadog is a monitoring and analytics tool that is used within VA and is hosted by the Devops Transformation Services (DOTS) team. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. In order for Event Bus users to request access to Datadog they must have a VA email address. To request access to Datadog, complete the HelpDesk form on the ServiceNow Portal at [ECC (Enterprise Command Center) Monitoring Services - your IT Service Portal (must be on the VA network to view)](https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fyourit.va.gov%2Fva%3Fid%3Dsc_cat_item%26sys_id%3D4cdf488b1ba4fcd412979796bc4bcb74&data=05%7C01%7C%7Ccb701e4e7fc944b6041308dbeacea9aa%7Ce95f1b23abaf45ee821db7ab251ab3bf%7C0%7C0%7C638361945550254440%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=sJfq3j8vnXwdtuQrfY%2FBaRttaqyOpKA6X17O8TMK9ug%3D&reserved=0).
 
-## **Troubleshooting**
+## Troubleshooting
 
 If you have questions or run into difficulties with any of these steps, please [contact the Enterprise Event Bus Team](./get-support.md).
