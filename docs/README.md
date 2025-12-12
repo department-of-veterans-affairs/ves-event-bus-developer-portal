@@ -1,6 +1,6 @@
-# **Enterprise Event Bus**
+# Enterprise Event Bus
 
-## **What is the Enterprise Event Bus**
+## What is the Enterprise Event Bus
 
 The Enterprise Event Bus (EEB) is a centralized, scalable platform that enables secure, real-time data sharing across VA systems and applications. Unlike a single purpose solution, the Event Bus is designed to unify events from both healthcare and benefits, making them accessible to a wide range of products and teams across VA. By leveraging an event-driven architecture, the Event Bus allows product teams to:
 
@@ -12,7 +12,7 @@ The Event Bus is the foundation for creating a connected, integrated VA ecosyste
 
 
 
-## **Why use the Enterprise Event Bus**
+## Why use the Enterprise Event Bus
 
 The Enterprise Event Bus delivers value to Veterans, VA staff, and the VA organization by addressing key challenges and unlocking new opportunities:
 
@@ -39,7 +39,7 @@ Enables Enterprise-Scale Resilience
 - Strengthens system resilience by preventing cascading failures when individual components experience issues. 
 - Provides transparency through real-time monitoring, reporting, and system health visibility.
 
-## **Determining if the Event Bus is Right for You**
+## Determining if the Event Bus is Right for You
 
 Before you make further plans to leverage enterprise events, you should evaluate if event-driven architecture is the right fit for your system. Please read the content below, which describes the sorts of systems that would benefit from enterprise events.
 
@@ -53,7 +53,7 @@ Before you make further plans to leverage enterprise events, you should evaluate
  
  [Learn more about VA system categorization (must be part of VA GitHub organization to view)](https://jubilant-succotash-m55rqe7.pages.github.io/categorization/).
 
-## **Key Features**
+## Key Features
 
 - _Asynchronous real-time processing_ ensures fast, efficient, and scalable operations by handling multiple tasks simultaneously without delays. This means your applications can process live data, respond instantly to user interactions, and seamlessly scale to handle more users without slowdowns or bottlenecks.
 - _Decoupled communication_ through an Event Bus allows system components to interact independently and react to data changes in near real-time. This improves flexibility, scalability, and resilience by reducing dependencies, enabling faster innovation, minimizing downtime, and eliminating the need for batch processing or scheduled data pulls.
@@ -61,7 +61,7 @@ Before you make further plans to leverage enterprise events, you should evaluate
 - _Event Bus functions as a centralized hub for events._ By serving as a shared infrastructure for event-driven communication across VA, it allows systems to exchange both healthcare and benefit data.
 - _Built on Apache Kafka providing strong reliability._ The Event Bus ensures high availability, durability, and fault tolerance through features like message replication, persistent storage, and configurable delivery guarantees.
 
-## **How it Works**
+## How it Works
 
 ### How Events Flow Through the System
 
@@ -71,7 +71,7 @@ Before you make further plans to leverage enterprise events, you should evaluate
   - Event Consumers: Any system can subscribe to these events and take action accordingly
     - Key Benefit: Multiple consumers may receive and act on an event; it's not just an asynchronous queue sitting between a single producer and consumer.
    
-### **Event Bus Workflow Example**
+### Event Bus Workflow Example
 
 Here is an example of how Event Bus hypothetically could work:
 
@@ -83,7 +83,7 @@ When a Veteran visits their doctor and receives a new prescription, the system p
 
 <br />
 
-### **Active Use Case: Veterans Notified of Claims Much Earlier with Event Bus**
+### Active Use Case: Veterans Notified of Claims Much Earlier with Event Bus
 
 Challenge: After a Veteran files a disability claim, they must wait until they receive their Decision Letter in the mail to learn the outcome, delaying their ability to plan appeals or provide additional information 
 
@@ -101,7 +101,7 @@ This feature went live in production in late June 2025. It currently sends about
 
 <br />
 
-### **Event Bus Introduction**
+### Event Bus Introduction
 
 Watch this video introduction to Event Bus to learn more about how it works:
 
@@ -110,7 +110,7 @@ Watch this video introduction to Event Bus to learn more about how it works:
   <track src="videos/EventBusVideo/eventBus.vtt" label="English" kind="captions" srclang="en-us">
 </video>
 
-### **Event Bus Visual Demonstration**
+### Event Bus Visual Demonstration
 
 For a more technical breakdown, there is also <a href="videos/phase3_demo.mp4">this video from August 2023</a> about the state of the system at that time.
 
@@ -124,9 +124,9 @@ Here is a visual demo to help show Event Bus in action:
 [Learn how to produce events](./produce-events.md)
 [Learn how to consume events](./consume-events.md)
 
-## **Getting Started**
+## Getting Started
 
-### **Next Steps**
+### Next Steps
 
 Take the next steps to explore and begin using the Enterprise Event Bus:
 
@@ -136,7 +136,7 @@ Take the next steps to explore and begin using the Enterprise Event Bus:
 * [Learn how to consume events](./consume-events.md), or 
 * [Reach out](./get-support.md) to us with questions.
 
-### **Reach out to us**
+### Reach out to us
 
 If you think the Enterprise Event Bus would be a good fit for your situation, please [reach out](./get-support.md)!
 
