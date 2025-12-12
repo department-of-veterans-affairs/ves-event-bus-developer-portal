@@ -32,6 +32,10 @@ Before creating a topic, you need to consider various Kafka settings. Producing 
 
 Partitions in Kafka serve as the primary unit of storage within a topic, with each partition containing a subset of events. Determining the number of partitions is crucial, as it has implications for storage, scalability, replication, and message movement. To learn more about reasonable defaults, and other partition-related concerns, read our [guidance on topics and partitions (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20Kafka%20Partitions.md).
 
+##### Topic
+
+We recommend all producer lower environments produce events the same topic in the Event Bus sandbox environment, though if you feel like you need multiple topics, please talk to us.
+
 #### **Event retention**
 
 Event retention refers to how long an event exists within Kafka and remains available for consumption. This setting would be especially important to consumers who need to be prepared to handle missed events before they expire. For additional information and discussion, see the section about Retention in our [Event Design Architectural Decision Record (must be part of VA GitHub organization to view)](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Engineering/ADR/ADR%20event%20design.md#event-retention).
