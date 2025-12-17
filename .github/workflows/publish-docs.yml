@@ -17,5 +17,6 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
-      - run: pip install mkdocs-material
+      - run: |
+          pip install --only-binary=:all: -r requirements-lock.txt
       - run: mkdocs gh-deploy --force

@@ -20,7 +20,7 @@ This project requires Python 3.x. For Mac users, Python can be installed using h
 
 In order to quickly iterate while working on documentation, install the following:
 
-`pip3 install mkdocs mkdocs-material mkdocs-techdocs-core`
+`pip3 install --only-binary=:all: -r requirements-lock.txt`
 
 `mkdocs` may need to be added to `PATH`.
 
