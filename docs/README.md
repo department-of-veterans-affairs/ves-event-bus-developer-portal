@@ -138,6 +138,6 @@ Take the next steps to explore and begin using the Enterprise Event Bus:
 
 ### Reach out to us
 
-If you think the Enterprise Event Bus would be a good fit for your situation, please [reach out](./get-support.md)!
+If you think the Enterprise Event Bus would be a good fit for your situation, please see our [Contact and Support page](./get-support.md)!
 
 The best way to contact the Event Bus Team is via the [#ves-event-bus Slack channel (must be in the Office of CTO @VA workspace)](https://dsva.slack.com/archives/C042ZQ7JUAX).
