@@ -81,4 +81,4 @@ The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs
 * <a href="https://developer.confluent.io/patterns/">Learn about event streaming patterns on the Confluent Developer website</a>.
 * <a href="https://www.confluent.io/resources/presentation/one-year-in-lessons-learned-and-plans-for-the-future/">Watch a presentation on the Confluent Developer website</a> about “Lessons Learned and Plans for the Future” by Robert Ezekiel from Booz Allen Hamilton.
 * <a href="https://www.confluent.io/events/kafka-summit-americas-2021/improving-veteran-benefit-services-through-efficient-data-streaming/">Watch a presentation on the Confluent Developer website</a> about “Improving Veteran Benefit Services Through Efficient Data Streaming” by Robert Ezekiel from Booz Allen Hamilton
-* The Enterprise Event Bus Team offers consultations and is happy to answer questions. [Reach out to us](./get-support.md).
+* The Enterprise Event Bus Team offers consultations and is happy to answer questions! Please see our [Contact and Support page](./get-support.md).
