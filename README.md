@@ -31,7 +31,9 @@ The `source` command will activate and start your virtual environment. In order 
 
 `mkdocs` may need to be added to `PATH`.
 
-Changes to documentation can be viewed by running `mkdocs serve` in your terminal, from the root of this repository. The portal will be served at `http://127.0.0.1:8000/`
+Changes to documentation can be viewed by running `mkdocs serve` in your terminal, from the root of this repository. The portal will be served at `http://127.0.0.1:8000/`.
+
+When finished with local development, exit the Python virtual environment by running `deactivate`.
 
 ## Support
 
