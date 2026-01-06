@@ -18,7 +18,14 @@ This project requires Python 3.x. For Mac users, Python can be installed using h
 
 `brew install python3`
 
-In order to quickly iterate while working on documentation, install the following:
+Python will require using a virtual environment. Set up the virtual environment at any path you like. `./venv` is used here.
+
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
+The `source` command will activate and start your virtual environment. In order to quickly iterate while working on documentation, install the following:
 
 `pip3 install --only-binary=:all: -r requirements-lock.txt`
 
