@@ -132,7 +132,7 @@ When a Veteran visits their doctor and receives a new prescription, the system p
 
 <br />
 
-![An example of how Event Bus hypothetically could work](https://github.com/user-attachments/assets/c8cbbd18-7876-457b-93b4-3c90983a901c)
+![An example flow illustrating how the Event Bus distributes a single update to multiple destinations at once, showing one input action leading to synchronized updates for the clinic, pharmacy, and Veteran.](https://github.com/user-attachments/assets/c8cbbd18-7876-457b-93b4-3c90983a901c)
 
 <br />
 
@@ -150,7 +150,7 @@ This feature went live in production in late June 2025. It currently sends about
 
 <br />
 
-![Active Use Case: Veterans Notified of Claims Weeks Earlier with Event Bus](img/DLAupdatedflowaug2025.png)
+![This diagram shows the steps a claim goes through when a veteran submits a claim. First, the veterans submits the claim through VA.gov. Then it goes through an 8 step lengthy review process (claim received, initial review, evidence gathering, evidence review, rating, preparing decision letter, final review, then claim decision). The Benefits Integration Platform generates claim status events and Event Bus filters those events to find the Decision Letters and makes sure that information gets sent to the appropriate places. It first goes to the EB Gateway Application where the application filters to MVP EP codes, then to vets-api and redis queue where the email template is combined with personlized information, and finally the claim decision is sent to the veteran via VA notify.](img/DLAupdatedflowaug2025.png)
 
 <br />
 
