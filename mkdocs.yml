@@ -1,6 +1,7 @@
 site_name: VA | Enterprise Event Bus
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/event-bus-table.css
 markdown_extensions:
   - admonition
   - attr_list
