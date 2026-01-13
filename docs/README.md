@@ -43,11 +43,64 @@ Enables Enterprise-Scale Resilience
 
 Before you make further plans to leverage enterprise events, you should evaluate if event-driven architecture is the right fit for your system. Please read the content below, which describes the sorts of systems that would benefit from enterprise events.
 
-<br />
-
-![A table comparing characteristics of a good or not good fit for potential systems to integrate with Event Bus.](https://github.com/user-attachments/assets/fde3f0c6-e750-487d-bd11-4eda1005b15f)
-
-<br />
+<table class="fit-table">
+    <thead>
+        <tr>
+            <th class="good-fit-header">Event Bus is a Good Fit if...</th>
+            <th class="not-fit-header">Event Bus is Not a Good Fit if...</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="good-fit-cell">
+                Your system has multiple tightly connected parts that need to communicate frequently and independently. Events help decouple these parts so the system stays responsive even if one component is delayed or updated.
+                <em>Example: A benefits system where claims processing, appointment scheduling, eligibility checks, pharmacy orders, and referrals all interact but evolve separately.</em>
+            </td>
+            <td class="not-fit-cell">
+                Your system is simple, changes frequently, or has loosely defined interactions.
+                <em>Example: A form that collects patient feedback, or a prototype platform for testing various intake workflows.</em>
+            </td>
+        </tr>
+        <tr>
+            <td class="good-fit-cell">
+                You want to eliminate inefficient polling and process high volumes of data as it arrives. Events allow real-time updates without delays.
+                <em>Example: A care coordination dashboard that reflects provider notes instantly, or a claims platform that processes submissions in real time instead of in overnight batches.</em>
+            </td>
+            <td class="not-fit-cell">
+                Your system checks data infrequently or only needs to run on a schedule.
+                <em>Example: A tool that retrieves a Veteran's last lab result, or a monthly report on healthcare usage trends.</em>
+            </td>
+        </tr>
+        <tr>
+            <td class="good-fit-cell">
+                You need to send real-time updates to users.
+                <em>Example: A Veteran gets an instant alert when their benefit status changes or an appointment is confirmed.</em>
+            </td>
+            <td class="not-fit-cell">
+                Timeliness isn't critical and users can wait for updates.
+                <em>Example: Notifications about annual benefits re-enrollment.</em>
+            </td>
+        </tr>
+        <tr>
+            <td class="good-fit-cell">
+                You want parts of your system to work independently. Events allow them to update each other without waiting.
+                <em>Example: A pharmacy system that queues refill requests and continues processing others while waiting for prescription verification to complete.</em>
+            </td>
+            <td class="not-fit-cell">
+                Your system relies on synchronous calls between services that wait for a response.
+                <em>Example: A benefit calculator that waits for real-time income validation.</em>
+            </td>
+        </tr>
+        <tr>
+            <td class="good-fit-cell">
+                Your data is Low or Moderate sensitivity as rated by FISMA/VA system categorization.
+            </td>
+            <td class="not-fit-cell">
+                Your data is High sensitivity as rated by FISMA/VA system categorization.
+            </td>
+        </tr>
+    </tbody>
+</table>
 
  [Learn more about FISMA.](https://security.cms.gov/learn/federal-information-security-management-act-fisma) 
  
@@ -79,7 +132,7 @@ When a Veteran visits their doctor and receives a new prescription, the system p
 
 <br />
 
-![An example of how Event Bus hypothetically could work](https://github.com/user-attachments/assets/c8cbbd18-7876-457b-93b4-3c90983a901c)
+![An example flow illustrating how the Event Bus distributes a single update to multiple destinations at once, showing one input action leading to synchronized updates for the clinic, pharmacy, and Veteran.](https://github.com/user-attachments/assets/c8cbbd18-7876-457b-93b4-3c90983a901c)
 
 <br />
 
@@ -97,7 +150,7 @@ This feature went live in production in late June 2025. It currently sends about
 
 <br />
 
-![Active Use Case: Veterans Notified of Claims Weeks Earlier with Event Bus](img/DLAupdatedflowaug2025.png)
+![This diagram shows the steps a claim goes through when a veteran submits a claim. First, the veterans submits the claim through VA.gov. Then it goes through an 8 step lengthy review process (claim received, initial review, evidence gathering, evidence review, rating, preparing decision letter, final review, then claim decision). The Benefits Integration Platform generates claim status events and Event Bus filters those events to find the Decision Letters and makes sure that information gets sent to the appropriate places. It first goes to the EB Gateway Application where the application filters to MVP EP codes, then to vets-api and redis queue where the email template is combined with personlized information, and finally the claim decision is sent to the veteran via VA notify.](img/DLAupdatedflowaug2025.png)
 
 <br />
 

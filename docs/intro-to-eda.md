@@ -26,7 +26,7 @@ An event happens when:
 
 The following conceptual diagram illustrates how Producers and Consumers might interact with the Enterprise Event Bus. Producers publish many different kinds of events. Consumers may do many different things with event data, such as notify a Veteran or kick off a workflow. [View the full-sized diagram (must be part of VA GitHub organization to view).](https://github.com/department-of-veterans-affairs/VES/blob/master/research/Event%20Bus/Diagrams/EDA_producer_consumer_diagram.png)
 
-![A conceptual diagram illustrating how Producers publish various events to the Event Bus and how Consumers may use the event data for different purposes.](https://github.com/user-attachments/assets/2baf7cf6-bfb7-4938-ab68-fdcb357cfb56)
+![A conceptual overview showing various VA systems acting as event producers on the left, each publishing different categories of events into the Enterprise Event Bus in the center. On the right, multiple event consumers receive and use those events for tasks such as triggering workflows, updating systems, or providing notifications to Veterans.](https://github.com/user-attachments/assets/2baf7cf6-bfb7-4938-ab68-fdcb357cfb56)
 
 
 ## Role within the VA enterprise environment
@@ -72,7 +72,7 @@ Enterprise Event Bus, like most other event-based systems in VA, is based on [Ap
 
 The Enterprise Event Bus uses [AWS Managed Streams for Kafka (MSK)](https://docs.aws.amazon.com/msk/), a hosted version of Kafka that runs in the VA Enterprise Cloud (VAEC). Producer systems publish events to Kafka topics that are available on AWS MSK. Events in a single topic are distributed across multiple brokers and partitions in order to balance load. Metadata managed by the cluster informs producing and consuming systems which broker they need to connect to. The data on AWS MSK is stored in [AWS Elastic Block Store (EBS)](https://docs.aws.amazon.com/ebs/). Consumer systems can subscribe to topics to pull streams of events. The diagram below shows how events are stored in AWS MSK and how events are distributed from Producers to Consumers via AWS MSK.
 
-![Diagram showing a high-level overview of AWS MSK and how events are distributed from Producers to Consumers using multiple brokers in AWS MSK.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
+![An illustration of how producer applications publish appointment-related events to a Kafka topic in AWS MSK. Events are distributed across brokers and partitions so consumer applications can subscribe to a topic or topics to receive the event stream.](https://github.com/department-of-veterans-affairs/ves-event-bus-developer-portal/assets/95644573/61c8f134-7228-4735-b9df-c0e1985d9eaa)
 
 ## Learn more
 
