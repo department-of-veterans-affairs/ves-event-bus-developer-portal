@@ -4,5 +4,3 @@
 # Python virtual environment
 venv/**
 
-# MkDocs build output
-site/**
