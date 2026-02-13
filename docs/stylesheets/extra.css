@@ -58,15 +58,15 @@ li a:hover {
 
 /* Addresses Row 17 in Nov 2025 Audit */
 .md-typeset .admonition.quote,.md-typeset details.quote {
-    border-color: #757575
+    border-color: #757575;
 }
 
 .md-typeset .admonition.quote:focus-within,.md-typeset details.quote:focus-within {
-    box-shadow: 0 0 0 .2rem #757575a
+    box-shadow: 0 0 0 .2rem #7575751a;
 }
 
 .md-typeset .quote>.admonition-title,.md-typeset .quote>summary {
-    background-color: #757575a
+    background-color: #7575751a;
 }
 
 .md-typeset .quote>.admonition-title:before,.md-typeset .quote>summary:before {
@@ -76,5 +76,5 @@ li a:hover {
 }
 
 .md-typeset .quote>.admonition-title:after,.md-typeset .quote>summary:after {
-    color: #757575
+    color: #757575;
 }
