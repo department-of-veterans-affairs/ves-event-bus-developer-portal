@@ -1,0 +1,1237 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../administrative-requirements/">
+      
+      
+        <link rel="next" href="../produce-events/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Consuming Events - VA | Enterprise Event Bus</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m14.6%2016.6%204.6-4.6-4.6-4.6L16%206l6%206-6%206zm-5.2%200L4.8%2012l4.6-4.6L8%206l-6%206%206%206z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/event-bus-table.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#consuming-events" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="VA | Enterprise Event Bus" class="md-header__button md-logo" aria-label="VA | Enterprise Event Bus" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VA | Enterprise Event Bus
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Consuming Events
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VA | Enterprise Event Bus" class="md-nav__button md-logo" aria-label="VA | Enterprise Event Bus" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VA | Enterprise Event Bus
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro-to-eda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Event Bus Implements Event-driven Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administrative-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start Guide and Administrative Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consuming Events
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consuming Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#whats-a-consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What’s a consumer?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps-to-become-a-consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps to become a consumer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps to become a consumer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-eventstopics-to-consume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find events/topics to consume
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determine-if-you-need-an-esecc-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Determine if you need an ESECC request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-consumers-of-bip-sourced-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For consumers of BIP-sourced Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-authorization-and-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up authorization and authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-the-event-bus-in-the-development-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connect to the Event Bus in the development environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#develop-and-deploy-your-consumer-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Develop and deploy your consumer application
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Develop and deploy your consumer application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code samples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-with-code-va" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register with CODE VA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Register with CODE VA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Evolution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produce-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Producing Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../offboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offboarding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get-support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Bus Contact and Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="consuming-events">Consuming Events</h1>
+<h2 id="whats-a-consumer">What’s a consumer?</h2>
+<p>A consumer is an application that is set up to receive messages or events in an event-driven system. The Event Bus exposes streams of events, called topics, to consumers. The events capture significant occurrences taking place in an external system. Find out how to view a list of currently available topics by visiting our <a href="../use-events/">Event Catalog page</a>.</p>
+<p>To access messages in a particular topic, an event consumer subscribes to the topic and receive events as they occur in real time. This allows consumers to perform actions based on the event data, such as updating internal state, triggering other processes, etc. The content below outlines the steps needed to start consuming events. Learn more about the components and processes involved in event-based systems on our <a href="../intro-to-eda/">How Event Bus Implements Event-Driven Architecture page</a>.</p>
+<h2 id="steps-to-become-a-consumer">Steps to become a consumer</h2>
+<h3 id="find-eventstopics-to-consume">Find events/topics to consume</h3>
+<p>The first step to consuming an event is to <a href="../get-support/">reach out to the Enterprise Event Bus Team</a> about your interest in events. From there, you can either subscribe to an existing topic with relevant events, or else identify a team able to provide the topic that is of interest to you. At this point in time, we are unable to identify producers for consumers that do not have a source for their desired events, but we will do our best to work with your chosen producing team.</p>
+<p>See also our <a href="../produce-events/">Produce Events page</a>.</p>
+<h3 id="determine-if-you-need-an-esecc-request">Determine if you need an ESECC request</h3>
+<p>See the <a href="../administrative-requirements/#esecc">ESECC section on the Administrative Requirements page</a>.</p>
+<h3 id="for-consumers-of-bip-sourced-events">For consumers of BIP-sourced Events</h3>
+<p>Read the <a href="../administrative-requirements/#consumers-of-bip-sourced-events">documentation about requesting data access and sensitivity filtering on our Administrative Requirements page</a>.</p>
+<h3 id="set-up-authorization-and-authentication">Set up authorization and authentication</h3>
+<p>To subscribe to specific topics on the Event Bus, consumers need to be authenticated and have the appropriate permissions. The Event Bus MSK cluster is only accessible from the VA Network, and we use AWS IAM (Identity and Access Management) Roles and Policies to control access to different resources. If your consuming application is within the AWS environment, you will need to let us know to which IAM Role(s) or IAM User(s) we should grant access. We will then set up the corresponding IAM Policies on our end and assign a named role for consumers to authenticate with AWS MSK in their application code.</p>
+<p>If your consuming application is outside of the AWS environment, we will request an IAM User to be created on your behalf. You will then be able to access the requested topic(s) using those credentials.</p>
+<h3 id="connect-to-the-event-bus-in-the-development-environment">Connect to the Event Bus in the development environment</h3>
+<p>Once the authentication and authorization steps have been completed, you will receive the Kafka bootstrap server addresses and port numbers with which you can connect to the Event Bus MSK cluster. The following ports are open for consumers and producers that are authenticated with AWS IAM:</p>
+<ul>
+<li>9098 (for access from AWS)</li>
+<li>9198 (for access from outside of AWS)</li>
+</ul>
+<h3 id="develop-and-deploy-your-consumer-application">Develop and deploy your consumer application</h3>
+<p>Many programming languages and frameworks offer libraries designed to interact with Kafka. To ensure full compatibility with the Event Bus, your code needs to authenticate with the AWS MSK cluster using the assigned role provided during the onboarding process. Additionally, consumers should reference the Confluent Schema Registry and use the appropriate schema to deserialize messages in Avro.</p>
+<h4 id="client-properties">Client properties</h4>
+<p>To connect to the Event Bus, consumers in <strong>all programming languages</strong> will need to set these properties, which are required unless otherwise specified:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_bootstrap.servers">bootstrap.servers</a></ins></td>
+<td>List of one or more Event Bus brokers. This will vary depending on the environment (dev, prod, etc.).</td>
+<td>A list of host/port pairs to use for establishing the initial connection to the Kafka cluster.</td>
+<td>Only one of the Event Bus brokers needs to be included in this list, but including more than one will ensure the application can start up if one of the Kafka servers is down.</td>
+</tr>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_group.id">group.id</a></ins></td>
+<td>This can be set to any value a consumer wants.</td>
+<td>A unique string that identifies the consumer group this consumer belongs to.</td>
+<td></td>
+</tr>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_sasl.mechanism">sasl.mechanism</a></ins></td>
+<td><code>OAUTHBEARER</code></td>
+<td>SASL mechanism used for client connections.</td>
+<td></td>
+</tr>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_security.protocol">security.protocol</a></ins></td>
+<td><code>SASL_SSL</code></td>
+<td>Protocol used to communicate with brokers.</td>
+<td></td>
+</tr>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_auto.offset.reset">auto.offset.reset</a></ins> (recommended)</td>
+<td><code>earliest</code></td>
+<td>What to do when there is no initial offset in Kafka or if the current offset does not exist anymore on the server.</td>
+<td>Setting this field to "earliest" instead of the default "latest" will cause the consumer to consume older events which are still available on the Event Bus when it first deploys. If past events do not need to be processed when first connecting to the Event Bus, then consumers can use the default. Once a consumer has consumed some events, it will always pick up where it last left off even when it restarts.</td>
+</tr>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_client.rack">client.rack</a></ins> (recommended)</td>
+<td>The AWS Availability Zone in which your application is running, eg. "usgw1-az2"</td>
+<td>A rack identifier for this client. This can be any string value which indicates where this client is physically located.</td>
+<td>This property is only applicable if your application is deployed to AWS (Amazon Web Services) infrastructure. Setting this to your availability zone will <ins><a href="https://aws.amazon.com/blogs/big-data/reduce-network-traffic-costs-of-your-amazon-msk-consumers-with-rack-awareness/">reduce network traffic costs</a></ins>.</td>
+</tr>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_enable.auto.commit">enable.auto.commit</a></ins> (recommended)</td>
+<td>false</td>
+<td>If true the consumer's offset will be periodically committed in the background.</td>
+<td>If set to true, the consumer may mark some records as consumed before they have been processed. See <ins><a href="https://javadoc.io/static/org.apache.kafka/kafka-clients/3.6.0/org/apache/kafka/clients/consumer/KafkaConsumer.html#:~:text=Manual%20Offset%20Control">Manual Offset Control</a></ins> for more information.</td>
+</tr>
+</tbody>
+</table>
+<p>Depending on the client language used, additional properties may also be needed for authorization and connecting to the schema registry. For example, these properties are required for <strong>Java clients</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_key.deserializer">key.deserializer</a></ins></td>
+<td><code>KafkaAvroDeserializer</code></td>
+<td>Deserializer class for key.</td>
+<td>All Event Bus records use an Avro schema, so this is required even if the key itself is a primitive type like <code>string</code> or <code>long</code>.</td>
+</tr>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_sasl.jaas.config">sasl.jaas.config</a></ins></td>
+<td><code>OAuthBearerLoginModule</code> and role settings. The role will vary for each consumer.</td>
+<td>JAAS login context parameters for SASL connections in the format used by JAAS configuration files.</td>
+<td>See <ins><a href="https://github.com/aws/aws-msk-iam-auth#specifying-an-aws-iam-role-for-a-client">specifying an AWS IAM role</a></ins> for more information.</td>
+</tr>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_sasl.login.callback.handler.class">sasl.login.callback.handler.class</a></ins></td>
+<td><code>IAMOAuthBearerLoginCallbackHandler</code></td>
+<td>The fully qualified name of a SASL login callback handler class.</td>
+<td>See <ins><a href="https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism">aws-msk-iam-auth</a></ins> for more information.</td>
+</tr>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_sasl.client.callback.handler.class">sasl.client.callback.handler.class</a></ins></td>
+<td><code>IAMOAuthBearerLoginCallbackHandler</code></td>
+<td>The fully qualified name of a SASL client callback handler class.</td>
+<td>See <ins><a href="https://github.com/aws/aws-msk-iam-auth?tab=readme-ov-file#configuring-a-kafka-client-to-use-aws-iam-with-sasl-oauthbearer-mechanism">aws-msk-iam-auth</a></ins> for more information.</td>
+</tr>
+<tr>
+<td><ins><a href="https://kafka.apache.org/documentation/#consumerconfigs_value.deserializer">value.deserializer</a></ins></td>
+<td><code>KafkaAvroDeserializer</code></td>
+<td>Deserializer class for value.</td>
+<td></td>
+</tr>
+<tr>
+<td>schema.registry.url</td>
+<td>Event Bus schema registry endpoint. This will vary depending on the environment (dev, prod, etc.).</td>
+<td>Comma-separated list of URLs for Schema Registry instances that can be used to register or look up schemas.</td>
+<td></td>
+</tr>
+<tr>
+<td>use.latest.version</td>
+<td><code>false</code> (this is the default value)</td>
+<td>Flag that indicates if the latest schema version should be used for deserialization.</td>
+<td>Event Bus recommends setting this value to false to avoid issues when a new schema version is added to the schema registry.</td>
+</tr>
+<tr>
+<td>latest.cache.ttl.sec</td>
+<td><code>-1</code> (this is the default value)</td>
+<td>This sets a TTL for the schema registry cache. <code>-1</code> indicates that the cache has no TTL.</td>
+<td>Event Bus recommends using the default of <code>-1</code> for this value. Schema versions do not change once they are registered. This will decrease the application's dependency on the schema registry.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="code-samples">Code samples</h4>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Expand the sections below to see consumer code examples in Java and Ruby. To see the consumer code samples in context, please check out the <a href="https://github.com/department-of-veterans-affairs/ves-event-bus-sample-code"><code>ves-event-bus-sample-code</code> repository (must be part of VA GitHub organization to view)</a>.</p>
+</div>
+<details class="example">
+<summary>Java Consumer</summary>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">gov.va.eventbus.example</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.avro.generic.GenericRecord</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.CommonClientConfigs</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.consumer.ConsumerConfig</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.consumer.ConsumerRecord</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.consumer.ConsumerRecords</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.consumer.KafkaConsumer</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.common.config.SaslConfigs</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.common.config.SslConfigs</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.common.errors.WakeupException</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.slf4j.Logger</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.slf4j.LoggerFactory</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.concurrent.atomic.AtomicBoolean</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">io.confluent.kafka.serializers.KafkaAvroDeserializer</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io.confluent.kafka.serializers.KafkaAvroDeserializerConfig</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.time.Duration</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Collections</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Properties</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TestConsumer</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="n">LOG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LoggerFactory</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">TestConsumer</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">AtomicBoolean</span><span class="w"> </span><span class="n">shutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AtomicBoolean</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Consumer values</span>
+
+<span class="w">    </span><span class="c1">// Set the topic you want to consume from</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">TOPIC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">EB_BOOTSTRAP_SERVERS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">getenv</span><span class="p">(</span><span class="s">&quot;EB_BOOTSTRAP_SERVERS&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">EB_SECURITY_PROTOCOL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">getenv</span><span class="p">(</span><span class="s">&quot;EB_SECURITY_PROTOCOL&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">SCHEMA_REGISTRY_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">getenv</span><span class="p">(</span><span class="s">&quot;SCHEMA_REGISTRY_URL&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">AWS_ROLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">getenv</span><span class="p">(</span><span class="s">&quot;AWS_ROLE&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">KafkaConsumer</span><span class="o">&lt;</span><span class="n">Long</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">consumer</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">TestConsumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">consumer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createConsumer</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">consumer</span><span class="p">.</span><span class="na">subscribe</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">singletonList</span><span class="p">(</span><span class="n">TOPIC</span><span class="p">));</span>
+
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">shutdown</span><span class="p">.</span><span class="na">get</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">ConsumerRecords</span><span class="o">&lt;</span><span class="n">Long</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumer</span><span class="p">.</span><span class="na">poll</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMillis</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">ConsumerRecord</span><span class="o">&lt;</span><span class="n">Long</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">records</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
+<span class="w">                    </span><span class="c1">// Process the received Avro record</span>
+<span class="w">                    </span><span class="n">LOG</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Received record: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">WakeupException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Ignore exception if shutting down</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">shutdown</span><span class="p">.</span><span class="na">get</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">LOG</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;An exception occurred while consuming messages&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">consumer</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">    * Stops polling for new messages and wakes up the Kafka consumer.</span>
+<span class="cm">    */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">shutdown</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">shutdown</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">consumer</span><span class="p">.</span><span class="na">wakeup</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">KafkaConsumer</span><span class="o">&lt;</span><span class="n">Long</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">createConsumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">Properties</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Properties</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">BOOTSTRAP_SERVERS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">EB_BOOTSTRAP_SERVERS</span><span class="p">);</span>
+<span class="w">        </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">KEY_DESERIALIZER_CLASS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">KafkaAvroDeserializer</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">        </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">VALUE_DESERIALIZER_CLASS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">KafkaAvroDeserializer</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">        </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">KafkaAvroDeserializerConfig</span><span class="p">.</span><span class="na">SCHEMA_REGISTRY_URL_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">SCHEMA_REGISTRY_URL</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// ensure records with a schema are converted.</span>
+<span class="w">        </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">KafkaAvroDeserializerConfig</span><span class="p">.</span><span class="na">SPECIFIC_AVRO_READER_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">GROUP_ID_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test-consumer-group&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Set your consumer group ID</span>
+
+<span class="w">        </span><span class="c1">// Use SASL_SSL in production but PLAINTEXT in local environment</span>
+<span class="w">        </span><span class="c1">// w/docker_compose</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;SASL_SSL&quot;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">EB_SECURITY_PROTOCOL</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">CommonClientConfigs</span><span class="p">.</span><span class="na">SECURITY_PROTOCOL_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">EB_SECURITY_PROTOCOL</span><span class="p">);</span>
+<span class="w">            </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">SslConfigs</span><span class="p">.</span><span class="na">SSL_TRUSTSTORE_LOCATION_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/tmp/kafka.client.truststore.jks&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">SaslConfigs</span><span class="p">.</span><span class="na">SASL_MECHANISM</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OAUTHBEARER&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">SaslConfigs</span><span class="p">.</span><span class="na">SASL_JAAS_CONFIG</span><span class="p">,</span>
+<span class="w">                    </span><span class="s">&quot;org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required awsRoleArn=\&quot;&quot;</span>
+<span class="w">                            </span><span class="o">+</span><span class="w"> </span><span class="n">AWS_ROLE</span><span class="w"> </span><span class="c1">// use the role name provided to you</span>
+<span class="w">                            </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;\&quot; awsStsRegion=\&quot;us-gov-west-1\&quot;;&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">SaslConfigs</span><span class="p">.</span><span class="na">SASL_LOGIN_CALLBACK_HANDLER_CLASS</span><span class="p">,</span>
+<span class="w">                    </span><span class="s">&quot;software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">SaslConfigs</span><span class="p">.</span><span class="na">SASL_CLIENT_CALLBACK_HANDLER_CLASS</span><span class="p">,</span>
+<span class="w">                    </span><span class="s">&quot;software.amazon.msk.auth.iam.IAMOAuthBearerLoginCallbackHandler&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="s">&quot;PLAINTEXT&quot;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">EB_SECURITY_PROTOCOL</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">LOG</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Unknown EB_SECURITY_PROTOCOL &#39;{}&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">EB_SECURITY_PROTOCOL</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">KafkaConsumer</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Ruby Consumer</summary>
+<div class="highlight"><pre><span></span><code><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;logger&#39;</span>
+<span class="nb">require</span><span class="w"> </span><span class="s1">&#39;rdkafka&#39;</span>
+<span class="nb">require</span><span class="w"> </span><span class="s1">&#39;avro_turf/messaging&#39;</span>
+<span class="n">require_relative</span><span class="w"> </span><span class="s1">&#39;oauth_token_refresher&#39;</span>
+
+<span class="n">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">STDOUT</span><span class="p">)</span>
+
+<span class="vi">@consumers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">refresh_token</span><span class="p">(</span><span class="n">_config</span><span class="p">,</span><span class="w"> </span><span class="n">consumer_name</span><span class="p">)</span>
+<span class="w">    </span><span class="n">consumer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vi">@consumers</span><span class="o">[</span><span class="n">consumer_name</span><span class="o">]</span>
+<span class="w">    </span><span class="no">OAuthTokenRefresher</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">refresh_token</span><span class="p">(</span><span class="n">consumer</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">security_protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;SECURITY_PROTOCOL&#39;</span><span class="o">]</span>
+
+<span class="n">properties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;bootstrap.servers&#39;</span><span class="p">:</span><span class="w"> </span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;KAFKA_HOST&#39;</span><span class="o">]</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;group.id&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;sample-ruby-consumer&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;security.protocol&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">security_protocol</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;enable.auto.commit&#39;</span><span class="p">:</span><span class="w"> </span><span class="kp">false</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;auto.offset.reset&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;earliest&#39;</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="s1">&#39;SASL_SSL&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">security_protocol</span><span class="o">.</span><span class="n">upcase</span>
+<span class="w">    </span><span class="n">properties</span><span class="o">[</span><span class="s1">&#39;sasl.mechanisms&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;OAUTHBEARER&#39;</span>
+<span class="w">    </span><span class="no">Rdkafka</span><span class="o">::</span><span class="no">Config</span><span class="o">.</span><span class="n">oauthbearer_token_refresh_callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">method</span><span class="p">(</span><span class="ss">:refresh_token</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">consumer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Rdkafka</span><span class="o">::</span><span class="no">Config</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">properties</span><span class="p">)</span><span class="o">.</span><span class="n">consumer</span><span class="p">(</span><span class="ss">native_kafka_auto_start</span><span class="p">:</span><span class="w"> </span><span class="kp">false</span><span class="p">)</span>
+<span class="vi">@consumers</span><span class="o">[</span><span class="n">consumer</span><span class="o">.</span><span class="n">name</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumer</span>
+<span class="n">consumer</span><span class="o">.</span><span class="n">start</span>
+<span class="n">consumer</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;appointments&quot;</span><span class="p">)</span>
+
+<span class="n">avro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">AvroTurf</span><span class="o">::</span><span class="no">Messaging</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">registry_url</span><span class="p">:</span><span class="w"> </span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;SCHEMA_REGISTRY_URL&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ss">registry_path_prefix</span><span class="p">:</span><span class="w"> </span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;SCHEMA_REGISTRY_PATH_PREFIX&#39;</span><span class="o">]</span><span class="p">)</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;Running consumer&quot;</span>
+<span class="n">consumer</span><span class="o">.</span><span class="n">each</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">message</span><span class="o">|</span>
+<span class="w">    </span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;Message received: </span><span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;Decoded message payload: </span><span class="si">#{</span><span class="n">avro</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="n">consumer</span><span class="o">.</span><span class="n">commit</span>
+<span class="k">end</span>
+</code></pre></div>
+</details>
+<h3 id="register-with-code-va">Register with CODE VA</h3>
+<p><a href="https://code.va.gov/">CODE VA (must be on VA network to view)</a> is a software catalog that houses information about software entities from across VA. Once your consumer application is up and running, it's important to register with the catalog so event producers are aware of how their events are being used and which systems are consuming them.</p>
+<p>To register with CODE VA:</p>
+<ol>
+<li>In CODE VA, an event-consuming software entity can be modeled as a <a href="https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component">Component</a> or as a <a href="https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system">System</a>. If you are unsure whether to classify your consumer as a Component or a System, see the <a href="https://backstage.io/docs/features/software-catalog/system-model/">Backstage System Model</a>.</li>
+<li>Create a file named <code>catalog-info.yaml</code> at the root of your source code repository and populate it with the applicable template, updating <code>metadata</code> and <code>spec</code> with values that correspond to your component or system.</li>
+<li>Once your <code>catalog-info.yaml</code> file has been committed it will be automatically processed and the software entity will be viewable on <a href="https://code.va.gov/">CODE VA website (must be on the VA network to view)</a> within a few hours. If you would like the software entity to display quicker, follow the <a href="https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog">Backstage documentation on the default method for adding entries to the catalog</a>.</li>
+</ol>
+<h4 id="component-template">Component Template</h4>
+<div class="copy highlight"><pre><span></span><code><span class="w">    </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backstage.io/v1alpha1</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Component</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">component-name</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Component description.</span>
+<span class="w">        </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Component Name</span>
+<span class="w">        </span><span class="nt">links</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://sample-slack-link.com</span>
+<span class="w">            </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Event Consumer Slack Channel</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://sample-link.com</span>
+<span class="w">            </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Component Documentation</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service</span>
+<span class="w">        </span><span class="nt">lifecycle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+<span class="w">        </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">owning-team</span>
+<span class="w">        </span><span class="nt">subscribesToEvent</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">event-name</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">event-name-two</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>Here is some additional information on these fields:</p>
+<ul>
+<li><strong>apiVersion</strong> [required]: This value must be set to <code>backstage.io/v1alpha1</code>.</li>
+<li><strong>kind</strong> [required]:  This value must be set to <code>Component</code>.</li>
+<li><strong>metadata</strong> [required]: A structure that contains information about the entity. The <code>metadata</code> structure includes the following properties.<ul>
+<li><strong>name</strong> [required]: A machine-readable name for the component. This value will be used in CODE VA urls, so it should be all lowercase and use hyphens as separators.</li>
+<li><strong>description</strong> [required]: A concise, high-level description of the event-consuming component.</li>
+<li><strong>title</strong> [required]: A human-readable representation of the <code>name</code> to be used in CODE VA user interfaces.</li>
+<li><strong>links</strong> [optional]: A list of links related to the component. Each link consists of a <code>url</code> and a <code>title</code>.<ul>
+<li><strong>url</strong> [required]: The external url that will be opened when the link is clicked.</li>
+<li><strong>title</strong> [required]: Display text for the link.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>spec</strong> [required]: A structure that contains information about the component. The <code>spec</code> structure includes the following properties.<ul>
+<li><strong>type</strong> [required]: The component type. Possible values include: <code>website</code>, <code>service</code>, <code>library</code>, etc.</li>
+<li><strong>lifecycle</strong> [required]: The current development status for the component. Possible values include: <code>experimental</code>, <code>production</code>, <code>deprecated</code>, etc.</li>
+<li><strong>owner</strong> [required]: The team that owns the event-consuming component. If this is set to the name of a GitHub team within the VA's GitHub organization, this field will link to a page with details about the team in CODE VA.</li>
+<li><strong>subscribesToEvent</strong> [required]: An array of strings. Each string must match the <code>metadata.name</code> value of a producer's <code>catalog-info.yaml</code> file. This field is used to relate the component to the events that it consumes and to display the component on each related event's CODE VA catalog entry.</li>
+</ul>
+</li>
+</ul>
+<p>See <a href="https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component">Backstage's Component documentation</a> for more information about additional optional fields.</p>
+<h4 id="system-template">System Template</h4>
+<div class="copy highlight"><pre><span></span><code><span class="w">    </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backstage.io/v1alpha1</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">System</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system-name</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">System description.</span>
+<span class="w">        </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">System Name</span>
+<span class="w">        </span><span class="nt">links</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://sample-slack-link.com</span>
+<span class="w">            </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Event Consumer Slack Channel</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://sample-link.com</span>
+<span class="w">            </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">System Documentation</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">owning-team</span>
+<span class="w">        </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">health</span>
+<span class="w">        </span><span class="nt">subscribesToEvent</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">event-name</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">event-name-two</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>Here is some additional information on these fields:</p>
+<ul>
+<li><strong>apiVersion</strong> [required]: This value must be set to <code>backstage.io/v1alpha1</code>.</li>
+<li><strong>kind</strong> [required]:  This value must be set to <code>System</code>.</li>
+<li><strong>metadata</strong> [required]: A structure that contains information about the entity. The <code>metadata</code> structure includes the following properties.<ul>
+<li><strong>name</strong> [required]: A machine-readable name for the system. This value will be used in CODE VA urls, so it should be all lowercase and use hyphens as separators.</li>
+<li><strong>description</strong> [required]: A concise, high-level description of the event-consuming system.</li>
+<li><strong>title</strong> [required]: A human-readable representation of the <code>name</code> to be used in CODE VA user interfaces.</li>
+<li><strong>links</strong> [optional]: A list of links related to the system. Each link consists of a <code>url</code> and a <code>title</code>.<ul>
+<li><strong>url</strong> [required]: The external url that will be opened when the link is clicked.</li>
+<li><strong>title</strong> [required]: Display text for the link.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>spec</strong> [required]: A structure that contains information about the system. The <code>spec</code> structure includes the following properties.<ul>
+<li><strong>owner</strong> [required]: The team that owns the event-consuming system. If this is set to the name of a GitHub team within the VA's GitHub organization, this field will link to a page with details about the team in CODE VA.</li>
+<li><strong>domain</strong> [optional]: The VA domain in which a particular system exists. Possible values might be: <code>claims status</code>, <code>health</code>, <code>appointments</code>, <code>benefits</code>, etc.</li>
+<li><strong>subscribesToEvent</strong> [required]: An array of strings. Each string must match the <code>metadata.name</code> value of a producer's <code>catalog-info.yaml</code> file. This field is used to relate the system to the events that it consumes and to display the system on each related event's CODE VA catalog entry.</li>
+</ul>
+</li>
+</ul>
+<h2 id="schema-evolution">Schema Evolution</h2>
+<p>Eventually the schema of an event may evolve. After a new version of the schema is added to the schema registry, consumers will need to update their applications to handle the new schema version before producers update to produce events using the new schema. The Event Bus team will inform consumers about upcoming schema changes.</p>
+<h2 id="logs">Logs</h2>
+<p>Logs are stored within a LightHouse Delivery Infrastructure (LHDI) AWS S3 bucket. Only LHDI admins with AWS access can access this bucket and its content. Although producers and consumers will not have access to the S3 bucket directly, logs are available via <a href="https://lighthousedi.ddog-gov.com/">Datadog (must have VA LightHouseDI Datadog access to view)</a>:
+- <a href="https://lighthousedi.ddog-gov.com/logs?query=host%3A%22arn%3Aaws%3As3%3A%3A%3Aeventbus-msk-broker-logs-nprod-sandbox%22&amp;agg_m=count&amp;agg_m_source=base&amp;agg_t=count&amp;cols=host%2Cservice&amp;fromUser=true&amp;messageDisplay=inline&amp;refresh_mode=sliding&amp;storage=hot&amp;stream_sort=desc&amp;viz=stream&amp;from_ts=1684858340160&amp;to_ts=1684859240160&amp;live=true">Event Bus broker logs sandbox</a>
+- <a href="https://lighthousedi.ddog-gov.com/logs?query=host%3A%22arn%3Aaws%3As3%3A%3A%3Aeventbus-msk-broker-logs-prod%22%20&amp;agg_m=count&amp;agg_m_source=base&amp;agg_t=count&amp;cols=host%2Cservice&amp;fromUser=true&amp;messageDisplay=inline&amp;refresh_mode=sliding&amp;storage=hot&amp;stream_sort=desc&amp;viz=stream&amp;from_ts=1684858340160&amp;to_ts=1684859240160&amp;live=true">Event Bus broker logs Prod</a>
+- <a href="https://lighthousedi.ddog-gov.com/logs?query=kube_namespace%3Aves-event-bus-infra-sandbox&amp;agg_m=count&amp;agg_m_source=base&amp;agg_t=count&amp;cols=host%2Cservice&amp;fromUser=true&amp;messageDisplay=inline&amp;refresh_mode=sliding&amp;storage=hot&amp;stream_sort=desc&amp;viz=stream&amp;from_ts=1695939680975&amp;to_ts=1696544480975&amp;live=true">Event Bus app logs sandbox</a>
+- <a href="https://lighthousedi.ddog-gov.com/logs?query=kube_namespace%3Aves-event-bus-infra-prod&amp;agg_m=count&amp;agg_m_source=base&amp;agg_t=count&amp;cols=host%2Cservice&amp;fromUser=true&amp;messageDisplay=inline&amp;refresh_mode=sliding&amp;storage=hot&amp;stream_sort=desc&amp;viz=stream&amp;from_ts=1695939680975&amp;to_ts=1696544480975&amp;live=true">Event Bus app logs prod</a></p>
+<p>Datadog is a monitoring and analytics tool that is used within VA and is hosted by the Devops Transformation Services (DOTS) team. LHDI team members are admins within the Datadog space where the Event Bus metrics and logs are available. In order for Event Bus users to request access to Datadog they must have a VA email address. To request access to Datadog, complete the HelpDesk form on the ServiceNow Portal at <a href="https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fyourit.va.gov%2Fva%3Fid%3Dsc_cat_item%26sys_id%3D4cdf488b1ba4fcd412979796bc4bcb74&amp;data=05%7C01%7C%7Ccb701e4e7fc944b6041308dbeacea9aa%7Ce95f1b23abaf45ee821db7ab251ab3bf%7C0%7C0%7C638361945550254440%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=sJfq3j8vnXwdtuQrfY%2FBaRttaqyOpKA6X17O8TMK9ug%3D&amp;reserved=0">ECC (Enterprise Command Center) Monitoring Services - your IT Service Portal (must be on the VA network to view)</a>.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If you have questions or run into difficulties with any of these steps, please see our <a href="../get-support/">Contact and Support page</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../administrative-requirements/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Start Guide and Administrative Requirements">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Start Guide and Administrative Requirements
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../produce-events/" class="md-footer__link md-footer__link--next" aria-label="Next: Producing Events">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Producing Events
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.footer", "toc.integrate"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
