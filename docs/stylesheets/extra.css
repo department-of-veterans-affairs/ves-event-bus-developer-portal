@@ -36,6 +36,9 @@ li a:hover {
   color: black;
 }
 
+:hover>.md-clipboard {
+  color: black;
+}
 /* use anchor element color for search result marks to increase contrast */
 .md-search-result mark {
   color: var(--md-typeset-a-color);
