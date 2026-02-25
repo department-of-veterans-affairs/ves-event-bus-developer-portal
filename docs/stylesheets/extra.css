@@ -29,6 +29,12 @@ li a:hover {
 .md-search-result__meta {
   color: var(--md-typeset-color);
 }
+.md-nav__link--passed {
+  color: black;
+}
+.md-search-result .md-typeset {
+  color: black;
+}
 
 /* use anchor element color for search result marks to increase contrast */
 .md-search-result mark {
