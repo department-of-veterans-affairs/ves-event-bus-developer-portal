@@ -1,4 +1,5 @@
 # Enterprise Event Bus Developer Portal
+https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal/
 
 This is the public-facing developer portal for all things Enterprise Event Bus. The Event Bus is in production and fairly stable, but the content in this repository will be updated regularly to keep information current. 
 
