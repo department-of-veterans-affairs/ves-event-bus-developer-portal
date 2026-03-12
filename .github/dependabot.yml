@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      gha-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    labels:
+      - "Event Bus"
+      - "dependencies"
+      - "github-actions"
