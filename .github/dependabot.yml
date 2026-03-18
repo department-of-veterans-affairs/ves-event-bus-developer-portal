@@ -4,12 +4,15 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    groups:
-      gha-minor-patch:
+    groups: # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#groups
+      breaking:
         update-types:
-          - "minor"
-          - "patch"
+        - "major"
+      nonbreaking: # Group together nonbreaking upgrades
+        update-types:
+        - "minor"
+        - "patch"
+    reviewers:
+      - "ves-event-bus-infra"
     labels:
-      - "Event Bus"
-      - "dependencies"
-      - "github-actions"
+      - "dependency-shepherd"
