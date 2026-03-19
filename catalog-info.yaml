@@ -4,6 +4,9 @@ metadata:
  name: event-bus-dev-portal
  description: A place for event bus documentation
  title: Event Bus Developer Portal
+ annotations:
+   backstage.io/techdocs-ref: dir:.
+ 
  links:
    - url: https://department-of-veterans-affairs.github.io/ves-event-bus-developer-portal
      title: Event Bus Developer Portal
