@@ -24,7 +24,7 @@ jobs:
     name: Publish CodeVA
     uses: department-of-veterans-affairs/code-va/.github/workflows/build-publish-docs.yaml@main
     with:
-      enable-production: true
+      branch: ${{ github.ref_name }}
       repository: ${{ github.repository }}
     secrets:
       token: ${{ secrets.TECHDOCS_TOKEN }}
