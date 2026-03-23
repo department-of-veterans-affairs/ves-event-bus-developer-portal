@@ -20,3 +20,11 @@ jobs:
       - run: |
           pip install --only-binary=:all: -r requirements-lock.txt
       - run: mkdocs gh-deploy --force
+  publish-codeva:
+    name: Publish CodeVA
+    uses: department-of-veterans-affairs/code-va/.github/workflows/build-publish-docs.yaml@main
+    with:
+      branch: ${{ github.ref_name }}
+      repository: ${{ github.repository }}
+    secrets:
+      token: ${{ secrets.TECHDOCS_TOKEN }}
