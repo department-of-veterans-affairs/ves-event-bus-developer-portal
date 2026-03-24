@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups: # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#groups
+      breaking:
+        update-types:
+        - "major"
+      nonbreaking: # Group together nonbreaking upgrades
+        update-types:
+        - "minor"
+        - "patch"
+    reviewers:
+      - "ves-event-bus-infra"
+    labels:
+      - "Event Bus"
+      - "dependencies"
+      - "dependency-shepherd"
