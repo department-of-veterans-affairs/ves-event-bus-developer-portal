@@ -1,11 +1,11 @@
 name: Publish to CodeVA
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - '.github/**'
-      - '**/README.md'
+    # branches:
+    #   - main
+    # paths-ignore:
+    #   - '.github/**'
+    #   - '**/README.md'
   workflow_dispatch:
 
 permissions:
