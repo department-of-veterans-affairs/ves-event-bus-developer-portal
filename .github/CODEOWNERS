@@ -1,5 +1,8 @@
-# These owners will be the default owners for everything in 
+# These owners will be the default owners for everything in
 # the repo. Unless a later match takes precedence,
-# @department-of-veterans-affairs/ves-event-infra will be requested for
+# @department-of-veterans-affairs/ves-event-bus will be requested for
 # review when someone opens a pull request.
-* @department-of-veterans-affairs/ves-event-infra
+*     @department-of-veterans-affairs/ves-event-bus
+
+# GitHub Actions Workflows and scripts
+/.github/ @department-of-veterans-affairs/ves-event-bus-infra

@@ -1,0 +1,21 @@
+name: Publish to CodeVA
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/**'
+      - '**/README.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+jobs:
+  publish-codeva:
+    name: Publish CodeVA
+    uses: department-of-veterans-affairs/code-va/.github/workflows/build-publish-docs.yaml@main
+    with:
+      branch: ${{ github.ref_name }}
+      repository: ${{ github.repository }}
+    secrets:
+      token: ${{ secrets.READ_TEAM_PAT}}
